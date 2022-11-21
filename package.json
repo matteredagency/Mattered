@@ -11,7 +11,12 @@
     "three": "^0.146.0"
   },
   "scripts": {
-    "build": "webpack"
+    "development": "yarn run build && yarn run serve && yarn run watch:*",
+    "serve": "webpack serve",
+    "build": "webpack",
+    "watch:src": "nodemon --watch src/",
+    "watch:public": "nodemon --watch public/",
+    "build:pdroduction": "NODE_ENV=production webpack --mode production"
   },
   "devDependencies": {
     "@types/three": "^0.146.0",
@@ -19,6 +24,7 @@
     "css-minimizer-webpack-plugin": "^4.2.2",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.7.0",
+    "nodemon": "^2.0.20",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.1",
     "typescript": "^4.9.3",
