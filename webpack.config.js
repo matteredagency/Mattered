@@ -41,12 +41,13 @@ module.exports = {
   },
   plugins: [new MiniCssExtractPlugin({ filename: "[name].css" })],
   devServer: {
-    contentBase: `${__dirname}/public`,
-    watchContentBase: true,
     open: true,
-    host: "0.0.0.0",
-    hot: true,
-    useLocalIp: true,
-    port: 8080,
+    host: "localhost",
+    liveReload: true,
+    watchFiles: ["src/*", "public/*"],
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    port: 3000,
   },
 };
