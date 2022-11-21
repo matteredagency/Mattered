@@ -41,7 +41,7 @@ module.exports = {
   },
   plugins: [new MiniCssExtractPlugin({ filename: "[name].css" })],
   devServer: {
-    open: true,
+    open: "chrome",
     host: "localhost",
     liveReload: true,
     watchFiles: ["src/*", "public/*"],
