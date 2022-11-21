@@ -1,4 +1,7 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   entry: "./src/main.ts",
@@ -12,30 +15,19 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+  optimization: {
+    minimizer: [new CssMinimizerPlugin(), new UglifyJsPlugin()],
+  },
   module: {
     rules: [
       {
         test: /\.css$/,
-        exclude: [/node_modules/],
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              minimize: true,
-              modules: {
-                localIdentName:
-                  process.env.NODE_ENV === "development"
-                    ? "[name]__[local]--[hash:base64:5]"
-                    : "[hash:base64:5]",
-              },
-            },
-          },
-        ],
+        exclude: [/node_modules/, /dist/],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.ts$/,
-        exclude: [/node_modules/],
+        exclude: [/node_modules/, /dist/],
         loader: "ts-loader",
       },
       {
@@ -44,4 +36,5 @@ module.exports = {
       },
     ],
   },
+  plugins: [new MiniCssExtractPlugin({ filename: "[name].css" })],
 };
