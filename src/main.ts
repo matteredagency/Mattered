@@ -55,13 +55,27 @@ async function PlaneScene() {
         gltf.scene.position.y += gltf.scene.position.y - center.y;
         gltf.scene.position.z += gltf.scene.position.z - center.z;
         airplane = gltf.scene;
+        gltf.scene.scale.set(0.5, 0.5, 0.5);
         scene.add(gltf.scene);
       })
     )
   );
   // Particles
 
-  scene.add(new Stars(1000, 700).createStars());
+  const video = document.getElementById("video");
+  if (video) {
+    const texture = new THREE.VideoTexture(video as HTMLVideoElement);
+    const material = new THREE.SpriteMaterial({
+      map: texture,
+    });
+
+    const sprite = new THREE.Sprite(material);
+
+    sprite.scale.set(100, 100, 100);
+    scene.add(sprite);
+  }
+
+  scene.add(new Stars(5000, 700).createStars());
   console.log(camera);
 
   let [mouseX, mouseY]: number[] = [0, 0];
