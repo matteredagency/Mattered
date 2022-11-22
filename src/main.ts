@@ -75,7 +75,9 @@ async function PlaneScene() {
     scene.add(sprite);
   }
 
-  scene.add(new Galaxy(3000, 500).createGalaxy());
+  const galaxyMeshes = new Galaxy(500).galaxyMeshes;
+
+  galaxyMeshes.forEach((mesh) => scene.add(mesh.init()));
 
   let [mouseX, mouseY]: number[] = [0, 0];
   function onMouseMove(event: MouseEvent) {
@@ -91,10 +93,12 @@ async function PlaneScene() {
 
   document.addEventListener("mousemove", onMouseMove, false);
 
+  console.log(camera);
   const rendering = function () {
     requestAnimationFrame(rendering);
     // Constantly rotate boo
     if (airplane) camera.lookAt(airplane?.position);
+    galaxyMeshes.forEach((mesh) => mesh.updateParticles());
 
     renderer.render(scene, camera);
   };
