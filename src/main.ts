@@ -1,5 +1,5 @@
 import "../public/index.css";
-import Stars from "./stars";
+import Galaxy from "./galaxy";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 import * as THREE from "three";
@@ -75,8 +75,7 @@ async function PlaneScene() {
     scene.add(sprite);
   }
 
-  scene.add(new Stars(5000, 700).createStars());
-  console.log(camera);
+  scene.add(new Galaxy(3000, 500).createGalaxy());
 
   let [mouseX, mouseY]: number[] = [0, 0];
   function onMouseMove(event: MouseEvent) {

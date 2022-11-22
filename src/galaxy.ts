@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import { PointsMaterial } from "three";
 
-export default class Stars {
+export default class Galaxy {
   geometry: THREE.BufferGeometry;
   sideLength: number;
   starCount: number;
@@ -27,13 +28,27 @@ export default class Stars {
     );
   }
 
-  createStars() {
+  createGalaxy() {
     this.setVertices();
-    const texture = new THREE.TextureLoader().load("dust.webp");
-    const stars = new THREE.Points(
-      this.geometry,
-      new THREE.PointsMaterial({ size: 1, map: texture, transparent: true })
-    );
-    return stars;
+    const starTexture = new THREE.TextureLoader().load("star.webp");
+    const gasTexture = new THREE.TextureLoader().load("galaxyCloud.webp");
+
+    const starMaterial = new THREE.PointsMaterial({
+      size: 1.5,
+      map: starTexture,
+      transparent: true,
+    });
+
+    const gasMaterial = new THREE.PointsMaterial({
+      size: 5,
+      map: gasTexture,
+      transparent: true,
+    });
+    const stars = new THREE.Points(this.geometry, [starMaterial, gasMaterial]);
+    const particlesBox = new THREE.Box3().setFromObject(galaxy);
+    const particlesBoxCenter = particlesBox.getCenter(new THREE.Vector3());
+    galaxy.position.x += galaxy.position.x - particlesBoxCenter.x;
+    galaxy.position.y += galaxy.position.y - particlesBoxCenter.y;
+    return galaxy;
   }
 }
