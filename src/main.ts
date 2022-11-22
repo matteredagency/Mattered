@@ -56,6 +56,7 @@ async function PlaneScene() {
         gltf.scene.position.z += gltf.scene.position.z - center.z;
         airplane = gltf.scene;
         gltf.scene.scale.set(0.5, 0.5, 0.5);
+        gltf.scene.rotation.y = Math.PI / 2;
         scene.add(gltf.scene);
       })
     )
