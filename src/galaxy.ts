@@ -82,17 +82,31 @@ class GalaxyParticleMesh {
     );
   }
 
-  updateParticles() {
+  updateParticles(isForward: boolean) {
     const positionAttribute = this.geometry.getAttribute("position");
     for (let i = 0; i < positionAttribute.count; i++) {
-      const z = positionAttribute.getZ(i);
-      this.particles[i].velocity += this.particles[i].acceleration;
+      let z = positionAttribute.getZ(i);
+
+      if (isForward) {
+        this.particles[i].velocity += this.particles[i].acceleration;
+        z += this.particles[i].velocity;
+      } else {
+        this.particles[i].velocity -= this.particles[i].acceleration;
+        z -= this.particles[i].velocity;
+      }
+
       positionAttribute.setZ(i, z + this.particles[i].velocity);
 
       if (positionAttribute.getZ(i) * Math.random() * 2 > 300) {
         positionAttribute.setZ(i, Math.random() * -1000);
         // positionAttribute.setX(i, Math.random() * this.sideLength);
         this.particles[i].velocity = 0;
+      } else if (
+        positionAttribute.getZ(i) < Math.random() * -1000 &&
+        !isForward
+      ) {
+        positionAttribute.setZ(i, 300);
+        this.particles[i].velocity = Math.floor(Math.random() * (5 - 1) + 1);
       }
     }
     this.geometry.attributes.position.needsUpdate = true;

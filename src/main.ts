@@ -92,14 +92,29 @@ async function PlaneScene() {
     mouseY = event.clientY;
   }
 
-  document.addEventListener("mousemove", onMouseMove, false);
+  // document.addEventListener("mousemove", onMouseMove, false);
 
-  console.log(camera);
+  const scrollContainer = document.getElementById("scroll-container");
+  scrollContainer?.scroll({ behavior: "smooth" });
+  let oldScrollPercent = 0;
+
+  if (scrollContainer)
+    scrollContainer.addEventListener("scroll", (event) => {
+      event.preventDefault();
+      const { scrollHeight, scrollTop } = scrollContainer;
+
+      const newScrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
+
+      galaxyMeshes.forEach((mesh) =>
+        mesh.updateParticles(oldScrollPercent > newScrollPercent)
+      );
+      oldScrollPercent = newScrollPercent;
+    });
+
   const rendering = function () {
     requestAnimationFrame(rendering);
     // Constantly rotate boo
     if (airplane) camera.lookAt(airplane?.position);
-    galaxyMeshes.forEach((mesh) => mesh.updateParticles());
 
     renderer.render(scene, camera);
   };
