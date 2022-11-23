@@ -23,7 +23,11 @@ html {
   overflow-y: scroll;
 }
 
+#scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
 #scroll-container > div {
-  height: 500%;
+  height: 5000%;
   width: 100%;
 }
