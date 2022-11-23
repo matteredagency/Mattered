@@ -14,9 +14,6 @@ async function PlaneScene() {
     1200
   );
 
-  camera.position.z = 100;
-  camera.position.y = 10;
-
   // Renderer
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setClearColor("#00000");
@@ -30,10 +27,13 @@ async function PlaneScene() {
     camera.updateProjectionMatrix();
   });
 
+  const galaxyGeometry = new THREE.PlaneGeometry();
+
   const gui = new GUI();
 
   const cameraFolder = gui.addFolder("Camera");
-  cameraFolder.add(camera.position, "z", 0, 1000);
+  const planeFolder = gui.addFolder("Plane");
+  // cameraFolder.add(camera.position, "z", 0, 1000);
   cameraFolder.add(camera.position, "x", 0, 1000);
   cameraFolder.add(camera.position, "y", 0, 1000);
   cameraFolder.add(camera.rotation, "x", 0, Math.PI * 2);
@@ -41,6 +41,9 @@ async function PlaneScene() {
   cameraFolder.add(camera.rotation, "z", 0, Math.PI * 2);
 
   cameraFolder.open();
+
+  camera.position.setY(10);
+  camera.position.setZ(200);
 
   //light
 
@@ -64,8 +67,17 @@ async function PlaneScene() {
         airplane = gltf.scene;
         gltf.scene.scale.set(0.5, 0.5, 0.5);
 
-        gltf.scene.rotation.y = Math.PI / 2;
         gltf.scene.position.setX(-42.25);
+        gltf.scene.position.setY(-10);
+        planeFolder.add(gltf.scene.position, "x", -84.5, 0);
+        planeFolder.add(gltf.scene.position, "y", -20, 20);
+        planeFolder.add(gltf.scene.position, "z", -10, 10);
+        planeFolder.add(gltf.scene.rotation, "x", 0, Math.PI * 2);
+        planeFolder.add(gltf.scene.rotation, "z", 0, Math.PI * 2);
+        gltf.scene.rotateOnAxis(
+          new THREE.Vector3(Math.sin(4) * 0.1, 1),
+          Math.PI / 2
+        );
         scene.add(gltf.scene);
       })
     )
@@ -85,9 +97,11 @@ async function PlaneScene() {
     scene.add(sprite);
   }
 
-  const galaxyMeshes = new Galaxy(500).galaxyMeshes;
+  const galaxyMeshes = new Galaxy(2500).galaxyMeshes;
 
-  galaxyMeshes.forEach((mesh) => scene.add(mesh.init()));
+  galaxyMeshes.forEach((mesh) => {
+    scene.add(mesh.init());
+  });
 
   let [mouseX, mouseY]: number[] = [0, 0];
   function onMouseMove(event: MouseEvent) {

@@ -6,15 +6,9 @@ export default class Galaxy {
   constructor(galaxySize: number) {
     this.galaxyMeshes = [
       new GalaxyParticleMesh(3000, galaxySize, {
-        size: 10,
+        size: 5,
         map: new THREE.TextureLoader().load("star.webp"),
         transparent: true,
-      }),
-      new GalaxyParticleMesh(20, galaxySize, {
-        size: 100,
-        map: new THREE.TextureLoader().load("smoke.webp"),
-        transparent: true,
-        blending: THREE.NormalBlending,
       }),
     ];
   }
@@ -97,7 +91,7 @@ class GalaxyParticleMesh {
 
       positionAttribute.setZ(i, z);
 
-      if (positionAttribute.getZ(i) * Math.random() * 2 > 300) {
+      if (positionAttribute.getZ(i) > 200) {
         positionAttribute.setZ(i, Math.random() * -1000);
         // positionAttribute.setX(i, Math.random() * this.sideLength);
         this.particles[i].velocity = 0;
@@ -105,7 +99,7 @@ class GalaxyParticleMesh {
         positionAttribute.getZ(i) < Math.random() * -1000 &&
         !isForward
       ) {
-        positionAttribute.setZ(i, 300);
+        positionAttribute.setZ(i, 200);
         this.particles[i].velocity = Math.floor(Math.random() * (5 - 1) + 1);
       }
     }
