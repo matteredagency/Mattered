@@ -3,6 +3,7 @@ import Galaxy from "./galaxy";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GUI } from "dat.gui";
 import * as THREE from "three";
+import ThirdPersonCamera from "./camera";
 
 async function PlaneScene() {
   const scene = new THREE.Scene();
@@ -10,7 +11,7 @@ async function PlaneScene() {
   const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
-    0.1,
+    2,
     1200
   );
 
@@ -27,7 +28,39 @@ async function PlaneScene() {
     camera.updateProjectionMatrix();
   });
 
-  const galaxyGeometry = new THREE.PlaneGeometry();
+  // const galaxyGeometry = new THREE.PlaneGeometry();
+
+  // galaxyGeometry.setAttribute(
+  //   "position",
+  //   new THREE.BufferAttribute(positionArray, 3)
+  // );
+
+  // const nebulaMesh = new THREE.Points(
+  //   galaxyGeometry,
+  //   new THREE.PointsMaterial({
+  //     size: 100,
+  //     transparent: true,
+  //     map: new THREE.TextureLoader().load("smoke.webp"),
+  //   })
+  // );
+
+  // scene.add(nebulaMesh);
+  const positionArray = new Float32Array(1000 * 3);
+
+  const geometry = new THREE.PlaneGeometry(10000, 10000);
+  const material = new THREE.MeshLambertMaterial({
+    map: new THREE.TextureLoader().load("smoke.webp"),
+    transparent: true,
+    color: new THREE.Color(0x3b0db7),
+  });
+
+  for (let i = 0; i < 1000; i++) {
+    positionArray[i] = (Math.random() - 0.75) * 1000;
+  }
+
+  const plane = new THREE.Mesh(geometry, material);
+  plane.position.setZ(-1000);
+  scene.add(plane);
 
   const gui = new GUI();
 
@@ -36,6 +69,7 @@ async function PlaneScene() {
   // cameraFolder.add(camera.position, "z", 0, 1000);
   cameraFolder.add(camera.position, "x", 0, 1000);
   cameraFolder.add(camera.position, "y", 0, 1000);
+  cameraFolder.add(camera.position, "z", 0, 1000);
   cameraFolder.add(camera.rotation, "x", 0, Math.PI * 2);
   cameraFolder.add(camera.rotation, "y", 0, Math.PI * 2);
   cameraFolder.add(camera.rotation, "z", 0, Math.PI * 2);
@@ -118,8 +152,8 @@ async function PlaneScene() {
   const size = 1000;
   const divisions = 10;
 
-  const gridHelper = new THREE.GridHelper(size, divisions);
-  scene.add(gridHelper);
+  // const gridHelper = new THREE.GridHelper(size, divisions);
+  // scene.add(gridHelper);
   // document.addEventListener("mousemove", onMouseMove, false);
 
   const scrollContainer = document.getElementById("scroll-container");
