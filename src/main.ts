@@ -1,7 +1,7 @@
 import "../public/index.css";
 import Galaxy from "./galaxy";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
+import { GUI } from "dat.gui";
 import * as THREE from "three";
 
 async function PlaneScene() {
@@ -30,6 +30,18 @@ async function PlaneScene() {
     camera.updateProjectionMatrix();
   });
 
+  const gui = new GUI();
+
+  const cameraFolder = gui.addFolder("Camera");
+  cameraFolder.add(camera.position, "z", 0, 1000);
+  cameraFolder.add(camera.position, "x", 0, 1000);
+  cameraFolder.add(camera.position, "y", 0, 1000);
+  cameraFolder.add(camera.rotation, "x", 0, Math.PI * 2);
+  cameraFolder.add(camera.rotation, "y", 0, Math.PI * 2);
+  cameraFolder.add(camera.rotation, "z", 0, Math.PI * 2);
+
+  cameraFolder.open();
+
   //light
 
   const directionalLight = new THREE.DirectionalLight(undefined, 2);
@@ -49,14 +61,11 @@ async function PlaneScene() {
   await new Promise((res) =>
     res(
       loader.load("BB_Paper_Plane.gltf", function (gltf) {
-        const box = new THREE.Box3().setFromObject(gltf.scene);
-        const center = box.getCenter(new THREE.Vector3());
-        gltf.scene.position.x += gltf.scene.position.x - center.x;
-        gltf.scene.position.y += gltf.scene.position.y - center.y;
-        gltf.scene.position.z += gltf.scene.position.z - center.z;
         airplane = gltf.scene;
         gltf.scene.scale.set(0.5, 0.5, 0.5);
+
         gltf.scene.rotation.y = Math.PI / 2;
+        gltf.scene.position.setX(-42.25);
         scene.add(gltf.scene);
       })
     )
@@ -92,6 +101,11 @@ async function PlaneScene() {
     mouseY = event.clientY;
   }
 
+  const size = 1000;
+  const divisions = 10;
+
+  const gridHelper = new THREE.GridHelper(size, divisions);
+  scene.add(gridHelper);
   // document.addEventListener("mousemove", onMouseMove, false);
 
   const scrollContainer = document.getElementById("scroll-container");
@@ -114,7 +128,7 @@ async function PlaneScene() {
   const rendering = function () {
     requestAnimationFrame(rendering);
     // Constantly rotate boo
-    if (airplane) camera.lookAt(airplane?.position);
+    // if (airplane) camera.lookAt(airplane?.position);
 
     renderer.render(scene, camera);
   };

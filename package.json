@@ -19,9 +19,11 @@
     "build:production": "SET NODE_ENV=production && webpack --mode production"
   },
   "devDependencies": {
+    "@types/dat.gui": "^0.7.7",
     "@types/three": "^0.146.0",
     "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "dat.gui": "^0.7.9",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.7.0",
     "nodemon": "^2.0.20",

@@ -6,7 +6,7 @@ export default class Galaxy {
   constructor(galaxySize: number) {
     this.galaxyMeshes = [
       new GalaxyParticleMesh(3000, galaxySize, {
-        size: 1.5,
+        size: 10,
         map: new THREE.TextureLoader().load("star.webp"),
         transparent: true,
       }),
