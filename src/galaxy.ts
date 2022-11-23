@@ -95,7 +95,7 @@ class GalaxyParticleMesh {
         z -= this.particles[i].velocity;
       }
 
-      positionAttribute.setZ(i, z + this.particles[i].velocity);
+      positionAttribute.setZ(i, z);
 
       if (positionAttribute.getZ(i) * Math.random() * 2 > 300) {
         positionAttribute.setZ(i, Math.random() * -1000);

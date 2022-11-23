@@ -96,19 +96,19 @@ async function PlaneScene() {
 
   const scrollContainer = document.getElementById("scroll-container");
   scrollContainer?.scroll({ behavior: "smooth" });
-  let oldScrollPercent = 0;
-
+  let scrollPercent = 0;
+  let oldScrollTop = 0;
   if (scrollContainer)
     scrollContainer.addEventListener("scroll", (event) => {
       event.preventDefault();
       const { scrollHeight, scrollTop } = scrollContainer;
 
-      const newScrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
+      scrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
 
       galaxyMeshes.forEach((mesh) =>
-        mesh.updateParticles(oldScrollPercent > newScrollPercent)
+        mesh.updateParticles(oldScrollTop < scrollTop)
       );
-      oldScrollPercent = newScrollPercent;
+      oldScrollTop = scrollTop;
     });
 
   const rendering = function () {
