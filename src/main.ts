@@ -13,7 +13,7 @@ async function PlaneScene() {
     75,
     window.innerWidth / window.innerHeight,
     5,
-    3000
+    2000
   );
 
   // Renderer
@@ -49,7 +49,7 @@ async function PlaneScene() {
       side: THREE.BackSide,
     });
     const concaveMesh = new THREE.Mesh(geometry, material);
-    concaveMesh.position.setZ(250);
+    concaveMesh.position.setZ(0);
     concaveMesh.position.setY(0);
     scene.add(concaveMesh);
   });
@@ -107,7 +107,7 @@ async function PlaneScene() {
   );
   // Particles
 
-  const galaxyMeshes = new Galaxy(2500).galaxyMeshes;
+  const galaxyMeshes = new Galaxy(1000).galaxyMeshes;
 
   galaxyMeshes.forEach((mesh) => {
     scene.add(mesh.init());
