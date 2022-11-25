@@ -4,6 +4,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GUI } from "dat.gui";
 import * as THREE from "three";
 import ThirdPersonCamera from "./camera";
+import { RepeatWrapping } from "three";
 
 async function PlaneScene() {
   const scene = new THREE.Scene();
@@ -11,8 +12,8 @@ async function PlaneScene() {
   const camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
-    2,
-    1200
+    5,
+    3000
   );
 
   // Renderer
@@ -28,45 +29,36 @@ async function PlaneScene() {
     camera.updateProjectionMatrix();
   });
 
-  // const galaxyGeometry = new THREE.PlaneGeometry();
+  const geometry = new THREE.SphereGeometry(
+    1000,
+    10,
+    10,
+    Math.PI * 0.75,
+    Math.PI * 1.5
+  );
 
-  // galaxyGeometry.setAttribute(
-  //   "position",
-  //   new THREE.BufferAttribute(positionArray, 3)
-  // );
+  new THREE.TextureLoader().load("smoke.webp", (texture) => {
+    texture.wrapS = texture.wrapT = RepeatWrapping;
 
-  // const nebulaMesh = new THREE.Points(
-  //   galaxyGeometry,
-  //   new THREE.PointsMaterial({
-  //     size: 100,
-  //     transparent: true,
-  //     map: new THREE.TextureLoader().load("smoke.webp"),
-  //   })
-  // );
-
-  // scene.add(nebulaMesh);
-  const positionArray = new Float32Array(1000 * 3);
-
-  const geometry = new THREE.PlaneGeometry(10000, 10000);
-  const material = new THREE.MeshLambertMaterial({
-    map: new THREE.TextureLoader().load("smoke.webp"),
-    transparent: true,
-    color: new THREE.Color(0x3b0db7),
+    texture.repeat.set(0.95, 0.95);
+    const material = new THREE.MeshLambertMaterial({
+      map: texture,
+      transparent: true,
+      color: new THREE.Color(0x3b0db7),
+      opacity: 0.7,
+      side: THREE.BackSide,
+    });
+    const concaveMesh = new THREE.Mesh(geometry, material);
+    concaveMesh.position.setZ(250);
+    concaveMesh.position.setY(0);
+    scene.add(concaveMesh);
   });
-
-  for (let i = 0; i < 1000; i++) {
-    positionArray[i] = (Math.random() - 0.75) * 1000;
-  }
-
-  const plane = new THREE.Mesh(geometry, material);
-  plane.position.setZ(-1000);
-  scene.add(plane);
 
   const gui = new GUI();
 
   const cameraFolder = gui.addFolder("Camera");
   const planeFolder = gui.addFolder("Plane");
-  // cameraFolder.add(camera.position, "z", 0, 1000);
+  cameraFolder.add(camera.position, "z", 0, 1000);
   cameraFolder.add(camera.position, "x", 0, 1000);
   cameraFolder.add(camera.position, "y", 0, 1000);
   cameraFolder.add(camera.position, "z", 0, 1000);
@@ -74,7 +66,7 @@ async function PlaneScene() {
   cameraFolder.add(camera.rotation, "y", 0, Math.PI * 2);
   cameraFolder.add(camera.rotation, "z", 0, Math.PI * 2);
 
-  cameraFolder.open();
+  // cameraFolder.open();
 
   camera.position.setY(10);
   camera.position.setZ(200);
@@ -99,37 +91,21 @@ async function PlaneScene() {
     res(
       loader.load("BB_Paper_Plane.gltf", function (gltf) {
         airplane = gltf.scene;
-        gltf.scene.scale.set(0.5, 0.5, 0.5);
+        gltf.scene.scale.set(0.25, 0.25, 0.25);
 
         gltf.scene.position.setX(-42.25);
         gltf.scene.position.setY(-10);
-        planeFolder.add(gltf.scene.position, "x", -84.5, 0);
-        planeFolder.add(gltf.scene.position, "y", -20, 20);
-        planeFolder.add(gltf.scene.position, "z", -10, 10);
-        planeFolder.add(gltf.scene.rotation, "x", 0, Math.PI * 2);
-        planeFolder.add(gltf.scene.rotation, "z", 0, Math.PI * 2);
-        gltf.scene.rotateOnAxis(
-          new THREE.Vector3(Math.sin(4) * 0.1, 1),
-          Math.PI / 2
-        );
+        // planeFolder.add(gltf.scene.position, "x", -84.5, 0);
+        // planeFolder.add(gltf.scene.position, "y", -20, 20);
+        // planeFolder.add(gltf.scene.position, "z", -10, 10);
+        // planeFolder.add(gltf.scene.rotation, "x", 0, Math.PI * 2);
+        // planeFolder.add(gltf.scene.rotation, "z", 0, Math.PI * 2);
+        gltf.scene.rotateOnAxis(new THREE.Vector3(0, 1), Math.PI / 2);
         scene.add(gltf.scene);
       })
     )
   );
   // Particles
-
-  const video = document.getElementById("video");
-  if (video) {
-    const texture = new THREE.VideoTexture(video as HTMLVideoElement);
-    const material = new THREE.SpriteMaterial({
-      map: texture,
-    });
-
-    const sprite = new THREE.Sprite(material);
-
-    sprite.scale.set(100, 100, 100);
-    scene.add(sprite);
-  }
 
   const galaxyMeshes = new Galaxy(2500).galaxyMeshes;
 
@@ -156,6 +132,7 @@ async function PlaneScene() {
   // scene.add(gridHelper);
   // document.addEventListener("mousemove", onMouseMove, false);
 
+  renderer.setClearColor(new THREE.Color(0x050010));
   const scrollContainer = document.getElementById("scroll-container");
   scrollContainer?.scroll({ behavior: "smooth" });
   let scrollPercent = 0;
