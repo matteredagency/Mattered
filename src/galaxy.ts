@@ -91,13 +91,13 @@ class GalaxyParticleMesh {
 
       positionAttribute.setZ(i, z);
 
-      if (positionAttribute.getZ(i) > 200) {
+      if (positionAttribute.getZ(i) >= 200) {
         positionAttribute.setZ(i, -1000);
         // positionAttribute.setX(i, Math.random() * this.sideLength);
         this.particles[i].velocity = 0;
-      } else if (positionAttribute.getZ(i) < -1000 && !isForward) {
+      } else if (positionAttribute.getZ(i) <= -990 && !isForward) {
         positionAttribute.setZ(i, 200);
-        this.particles[i].velocity = Math.floor(Math.random() * (5 - 1) + 1);
+        this.particles[i].velocity = 6.91;
       }
     }
     this.geometry.attributes.position.needsUpdate = true;
