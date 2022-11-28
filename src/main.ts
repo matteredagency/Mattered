@@ -1,9 +1,9 @@
 import "../public/index.css";
-import Galaxy from "./galaxy";
+import Stars from "./Stars";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GUI } from "dat.gui";
 import * as THREE from "three";
-import ThirdPersonCamera from "./camera";
+import ThirdPersonCamera from "./Camera";
 import { RepeatWrapping } from "three";
 
 async function PlaneScene() {
@@ -107,7 +107,7 @@ async function PlaneScene() {
   );
   // Particles
 
-  const galaxyMeshes = new Galaxy(1000).galaxyMeshes;
+  const galaxyMeshes = new Stars(1000).starMeshes;
 
   galaxyMeshes.forEach((mesh) => {
     scene.add(mesh.init());
