@@ -113,18 +113,6 @@ async function PlaneScene() {
     scene.add(mesh.init());
   });
 
-  let [mouseX, mouseY]: number[] = [0, 0];
-  function onMouseMove(event: MouseEvent) {
-    event.preventDefault();
-    mouseX = event.clientX - window.innerWidth / 2;
-    mouseY = event.clientY - window.innerHeight / 2;
-
-    camera.position.x += (mouseX - camera.position.x) * 0.001;
-    camera.position.y += (-mouseY - camera.position.y) * 0.001;
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-  }
-
   const size = 1000;
   const divisions = 10;
 

@@ -22,6 +22,15 @@ export default class MatteredExperience {
     this.sizes = new Sizes();
     this.camera = new Camera();
     this.renderer = new Renderer();
+
+    this.sizes.on("resize", () => {
+      this.resize();
+    });
+  }
+
+  resize() {
+    this.camera?.resize();
+    this.renderer?.resize();
   }
 
   update() {
