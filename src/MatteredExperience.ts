@@ -26,6 +26,8 @@ export default class MatteredExperience {
     this.sizes.on("resize", () => {
       this.resize();
     });
+
+    this.update();
   }
 
   resize() {
@@ -34,7 +36,6 @@ export default class MatteredExperience {
   }
 
   update() {
-    this.camera?.update();
     this.renderer?.update();
   }
 }

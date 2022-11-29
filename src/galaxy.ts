@@ -15,6 +15,7 @@ export default class Galaxy {
     );
 
     this.setTexture();
+    this.experience.renderer?.renderer?.setClearColor(0x050010);
   }
 
   setTexture() {

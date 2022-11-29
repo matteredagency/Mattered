@@ -27,6 +27,4 @@ export default class Camera {
       this.perspectiveCamera.updateProjectionMatrix();
     }
   }
-
-  update() {}
 }
