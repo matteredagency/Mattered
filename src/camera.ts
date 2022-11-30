@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import MatteredExperience from "./MatteredExperience";
-import Sizes from "./Sizes";
 export default class Camera {
   experience: MatteredExperience;
   perspectiveCamera?: THREE.PerspectiveCamera;
@@ -17,8 +16,9 @@ export default class Camera {
       2000
     );
     this.experience?.scene?.add(this.perspectiveCamera);
-    this.perspectiveCamera.position.setY(10);
+    this.perspectiveCamera.position.setY(30);
     this.perspectiveCamera.position.setZ(200);
+    this.perspectiveCamera.rotateX(Math.PI * 0.05 * -1);
   }
 
   resize() {
@@ -27,4 +27,5 @@ export default class Camera {
       this.perspectiveCamera.updateProjectionMatrix();
     }
   }
+  update() {}
 }
