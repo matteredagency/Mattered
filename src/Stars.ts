@@ -103,12 +103,6 @@ export default class Stars {
     }
   }
 
-  private centerGeometry(points: THREE.Points) {
-    const particlesBox = new THREE.Box3().setFromObject(points);
-    const particlesBoxCenter = particlesBox.getCenter(new THREE.Vector3());
-    points.position.x += points.position.x - particlesBoxCenter.x;
-    points.position.y += points.position.y - particlesBoxCenter.y;
-  }
   private setPointsMesh() {
     return new THREE.Points(
       this.geometry,
@@ -124,7 +118,8 @@ export default class Stars {
     this.setParticles();
     this.updateGeometry();
     this.pointsMesh = this.setPointsMesh();
-    this.centerGeometry(this.pointsMesh);
+    this.pointsMesh.position.setY(100);
+    // this.centerGeometry(this.pointsMesh);
     this.experience.scene?.add(this.pointsMesh);
   }
 }

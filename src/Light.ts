@@ -13,7 +13,7 @@ export default class Light {
   }
 
   private init() {
-    this.directionalLight.intensity = 2;
+    this.directionalLight.intensity = 5;
     this.directionalLight.position.set(0, 5, 5);
     this.directionalLight.castShadow = true;
     this.directionalLight.shadow.mapSize.width = 1024;

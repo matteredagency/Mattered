@@ -14,6 +14,7 @@ export default class Space {
       "./PaperPlane.glb",
       0.25
     ).init() as THREE.Group;
+
     this.stars = new Stars(3000, 1000);
   }
 }
