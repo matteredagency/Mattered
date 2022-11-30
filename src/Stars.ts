@@ -17,6 +17,7 @@ export default class Stars {
     velocity: number;
     acceleration: number;
   }[];
+  pointsMesh: THREE.Points | null;
   constructor(particleCount: number, galaxySize: number) {
     this.geometry = new THREE.BufferGeometry();
     this.galaxySize = galaxySize;
@@ -25,6 +26,7 @@ export default class Stars {
     this.particleVelocities = [];
     this.particleAccelerations = [];
     this.experience = new MatteredExperience();
+    this.pointsMesh = null;
     this.init();
     return this;
   }
@@ -112,9 +114,7 @@ export default class Stars {
       this.geometry,
       new PointsMaterial({
         size: 3,
-        map: new THREE.TextureLoader().load("./star.webp", () =>
-          console.log("texture loaded")
-        ),
+        map: new THREE.TextureLoader().load("./star.webp"),
         transparent: true,
       })
     );
@@ -123,8 +123,8 @@ export default class Stars {
   init() {
     this.setParticles();
     this.updateGeometry();
-    const points = this.setPointsMesh();
-    this.centerGeometry(points);
-    this.experience.scene?.add(points);
+    this.pointsMesh = this.setPointsMesh();
+    this.centerGeometry(this.pointsMesh);
+    this.experience.scene?.add(this.pointsMesh);
   }
 }
