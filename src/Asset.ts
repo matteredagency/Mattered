@@ -22,8 +22,9 @@ export default class Asset {
       this.asset = gltf.scene;
       gltf.scene.scale.set(this.scaleSize, this.scaleSize, this.scaleSize);
       this.experience.scene?.add(this.asset);
-      this.asset.rotateZ(Math.PI * 0.05);
-      // this.asset.rotateOnAxis(new THREE.Vector3(), Math.PI * 0.01);
+      const folder = this.experience.gui?.addFolder("plane");
+      folder?.add(this.asset.rotation, "y", Math.PI * -1, Math.PI * 2);
+      folder?.add(this.asset.rotation, "z", Math.PI * -1, Math.PI * 2);
     });
 
     return this.asset;

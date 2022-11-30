@@ -119,7 +119,6 @@ export default class Stars {
     this.updateGeometry();
     this.pointsMesh = this.setPointsMesh();
     this.pointsMesh.position.setY(100);
-    // this.centerGeometry(this.pointsMesh);
     this.experience.scene?.add(this.pointsMesh);
   }
 }

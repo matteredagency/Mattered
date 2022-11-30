@@ -19,6 +19,13 @@ export default class Camera {
     this.perspectiveCamera.position.setY(30);
     this.perspectiveCamera.position.setZ(200);
     this.perspectiveCamera.rotateX(Math.PI * 0.05 * -1);
+    const folder = this.experience.gui?.addFolder("camera");
+    folder?.add(
+      this.perspectiveCamera?.position as THREE.Vector3,
+      "x",
+      -10,
+      10
+    );
   }
 
   resize() {

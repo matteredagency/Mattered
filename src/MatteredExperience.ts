@@ -1,3 +1,4 @@
+import { GUI } from "dat.gui";
 import * as THREE from "three";
 import Camera from "./Camera";
 import Controls from "./Controls";
@@ -5,6 +6,7 @@ import Light from "./Light";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
+import * as dat from "dat.gui";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -16,11 +18,13 @@ export default class MatteredExperience {
   spaceScene?: Space;
   controls?: Controls;
   light?: Light;
+  gui?: GUI;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
+    this.gui = new dat.GUI();
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();
