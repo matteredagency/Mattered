@@ -9,7 +9,7 @@ export default class MatteredExperience {
   canvas?: HTMLCanvasElement;
   camera?: Camera;
   sizes?: Sizes;
-  renderer?: Renderer;
+  rendererInstance?: Renderer;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -21,7 +21,7 @@ export default class MatteredExperience {
     this.scene = new THREE.Scene();
     this.sizes = new Sizes();
     this.camera = new Camera();
-    this.renderer = new Renderer();
+    this.rendererInstance = new Renderer();
 
     this.sizes.on("resize", () => {
       this.resize();
@@ -32,10 +32,10 @@ export default class MatteredExperience {
 
   resize() {
     this.camera?.resize();
-    this.renderer?.resize();
+    this.rendererInstance?.resize();
   }
 
   update() {
-    this.renderer?.update();
+    this.rendererInstance?.update();
   }
 }

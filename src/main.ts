@@ -92,7 +92,7 @@ async function PlaneScene() {
       loader.load("BB_Paper_Plane.gltf", function (gltf) {
         airplane = gltf.scene;
         gltf.scene.scale.set(0.25, 0.25, 0.25);
-
+        gltf.scene.remove();
         gltf.scene.position.setX(-42.25);
         gltf.scene.position.setY(-10);
         // planeFolder.add(gltf.scene.position, "x", -84.5, 0);
@@ -101,7 +101,7 @@ async function PlaneScene() {
         // planeFolder.add(gltf.scene.rotation, "x", 0, Math.PI * 2);
         // planeFolder.add(gltf.scene.rotation, "z", 0, Math.PI * 2);
         gltf.scene.rotateOnAxis(new THREE.Vector3(0, 1), Math.PI / 2);
-        scene.add(gltf.scene);
+        scene.add(airplane);
       })
     )
   );
@@ -131,6 +131,7 @@ async function PlaneScene() {
       const { scrollHeight, scrollTop } = scrollContainer;
 
       scrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
+      if (airplane) scene.remove(airplane);
 
       galaxyMeshes.forEach((mesh) =>
         mesh.updateParticles(oldScrollTop < scrollTop)
