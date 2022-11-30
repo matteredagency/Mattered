@@ -89,7 +89,7 @@ async function PlaneScene() {
   let airplane: THREE.Group | null = null;
   await new Promise((res) =>
     res(
-      loader.load("BB_Paper_Plane.gltf", function (gltf) {
+      loader.load("PaperPlane.glb", function (gltf) {
         airplane = gltf.scene;
         gltf.scene.scale.set(0.25, 0.25, 0.25);
 
