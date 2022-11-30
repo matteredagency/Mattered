@@ -1,16 +1,15 @@
 import * as THREE from "three";
 import { PointsMaterial } from "three";
+import MatteredExperience from "./MatteredExperience";
 
 export default class Stars {
-  starMeshes: StarsParticleMesh[];
+  starsMesh: StarsParticleMesh;
   constructor(galaxySize: number) {
-    this.starMeshes = [
-      new StarsParticleMesh(3000, galaxySize, {
-        size: 3,
-        map: new THREE.TextureLoader().load("star.webp"),
-        transparent: true,
-      }),
-    ];
+    this.starsMesh = new StarsParticleMesh(3000, galaxySize, {
+      size: 3,
+      map: new THREE.TextureLoader().load("star.webp"),
+      transparent: true,
+    });
   }
 }
 
@@ -21,6 +20,7 @@ class StarsParticleMesh {
   particleVelocities: number[];
   particleAccelerations: number[];
   pointsMaterialOptions: THREE.PointsMaterialParameters;
+  experience: MatteredExperience;
   particles: {
     position: number;
     size: number;
@@ -41,6 +41,7 @@ class StarsParticleMesh {
     this.particleVelocities = [];
     this.particleAccelerations = [];
     this.pointsMaterialOptions = options;
+    this.experience = new MatteredExperience();
   }
 
   private updateGeometry() {
@@ -93,7 +94,6 @@ class StarsParticleMesh {
 
       if (positionAttribute.getZ(i) >= 200) {
         positionAttribute.setZ(i, -1000);
-        // positionAttribute.setX(i, Math.random() * this.sideLength);
         this.particles[i].velocity = 0;
       } else if (positionAttribute.getZ(i) <= -990 && !isForward) {
         positionAttribute.setZ(i, 200);
@@ -134,7 +134,7 @@ class StarsParticleMesh {
     this.updateGeometry();
     const points = this.setPointsMesh();
     this.centerGeometry(points);
-    console.log(points);
+    this.experience.scene?.add(points);
     return points;
   }
 }

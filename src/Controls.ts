@@ -18,9 +18,10 @@ export default class Controls {
 
         this.scrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
 
-        galaxyMeshes.forEach((mesh) =>
-          mesh.updateParticles(oldScrollTop < scrollTop)
+        this.experience.spaceScene?.stars?.starsMesh.updateParticles(
+          this.oldScrollTop < scrollTop
         );
+
         this.oldScrollTop = scrollTop;
         requestAnimationFrame(this.experience?.update);
       }
