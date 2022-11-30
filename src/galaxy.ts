@@ -4,8 +4,9 @@ import MatteredExperience from "./MatteredExperience";
 export default class Galaxy {
   geometry?: THREE.SphereGeometry;
   experience?: MatteredExperience;
-  construtor() {
+  constructor() {
     this.experience = new MatteredExperience();
+
     this.geometry = new THREE.SphereGeometry(
       1000,
       10,
@@ -15,7 +16,7 @@ export default class Galaxy {
     );
 
     this.setTexture();
-    this.experience.rendererInstance?.renderer?.setClearColor(0x050010);
+    return this;
   }
 
   setTexture() {

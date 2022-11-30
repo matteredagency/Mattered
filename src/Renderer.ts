@@ -12,9 +12,10 @@ export default class Renderer {
   setRenderer() {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
+      canvas: this.experience.canvas,
     });
 
-    this.renderer.setClearColor("#00000");
+    this.renderer.setClearColor("0x050010");
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
