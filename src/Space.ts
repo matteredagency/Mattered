@@ -11,6 +11,8 @@ export default class Space {
     if (Space.instance) {
       return Space.instance;
     }
+
+    Space.instance = this;
     this.galaxy = new Galaxy();
 
     this.paperPlane = new Asset(
@@ -18,6 +20,6 @@ export default class Space {
       "./PaperPlane.glb",
       0.25
     ).init() as THREE.Group;
-    this.stars = new Stars(1000);
+    this.stars = new Stars(3000, 1000);
   }
 }

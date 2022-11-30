@@ -3,19 +3,8 @@ import { PointsMaterial } from "three";
 import MatteredExperience from "./MatteredExperience";
 
 export default class Stars {
-  starsMesh: StarsParticleMesh;
-  constructor(galaxySize: number) {
-    this.starsMesh = new StarsParticleMesh(3000, galaxySize, {
-      size: 3,
-      map: new THREE.TextureLoader().load("star.webp"),
-      transparent: true,
-    });
-  }
-}
-
-class StarsParticleMesh {
   geometry: THREE.BufferGeometry;
-  sideLength: number;
+  galaxySize: number;
   particleCount: number;
   particleVelocities: number[];
   particleAccelerations: number[];
@@ -31,17 +20,19 @@ class StarsParticleMesh {
   }[];
   constructor(
     particleCount: number,
-    sideLength: number,
+    galaxySize: number,
     options: THREE.PointsMaterialParameters
   ) {
     this.geometry = new THREE.BufferGeometry();
-    this.sideLength = sideLength;
+    this.galaxySize = galaxySize;
     this.particles = [];
     this.particleCount = particleCount;
     this.particleVelocities = [];
     this.particleAccelerations = [];
     this.pointsMaterialOptions = options;
     this.experience = new MatteredExperience();
+    this.init();
+    return this;
   }
 
   private updateGeometry() {
@@ -106,7 +97,7 @@ class StarsParticleMesh {
   private setParticles() {
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
-        position: (Math.random() - 0.75) * this.sideLength,
+        position: (Math.random() - 0.75) * this.galaxySize,
         size: Math.random() * 10,
         rotation: Math.random() * 2 * Math.PI,
         velocity: 0,
@@ -135,6 +126,5 @@ class StarsParticleMesh {
     const points = this.setPointsMesh();
     this.centerGeometry(points);
     this.experience.scene?.add(points);
-    return points;
   }
 }

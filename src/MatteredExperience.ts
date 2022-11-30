@@ -17,7 +17,6 @@ export default class MatteredExperience {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    if (canvas) this.canvas = canvas;
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();
