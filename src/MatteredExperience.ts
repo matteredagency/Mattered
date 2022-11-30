@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Camera from "./Camera";
 import Controls from "./Controls";
+import Light from "./Light";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
@@ -14,6 +15,7 @@ export default class MatteredExperience {
   rendererInstance?: Renderer;
   spaceScene?: Space;
   controls?: Controls;
+  light?: Light;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -27,7 +29,7 @@ export default class MatteredExperience {
     this.rendererInstance = new Renderer();
     this.spaceScene = new Space();
     this.controls = new Controls();
-
+    this.light = new Light();
     this.sizes.on("resize", () => {
       this.resize();
     });
