@@ -18,7 +18,7 @@ export default class Controls {
 
         this.scrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
 
-        this.experience.spaceScene?.stars?.starsMesh.updateParticles(
+        this.experience.spaceScene?.stars?.updateParticles(
           this.oldScrollTop < scrollTop
         );
 
