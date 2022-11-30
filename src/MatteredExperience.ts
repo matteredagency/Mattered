@@ -13,7 +13,7 @@ export default class MatteredExperience {
   sizes?: Sizes;
   rendererInstance?: Renderer;
   spaceScene?: Space;
-  controls: Controls;
+  controls?: Controls;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -26,10 +26,11 @@ export default class MatteredExperience {
     this.camera = new Camera();
     this.rendererInstance = new Renderer();
     this.spaceScene = new Space();
+    this.controls = new Controls();
+
     this.sizes.on("resize", () => {
       this.resize();
     });
-    this.controls = new Controls();
     this.update();
   }
 
@@ -39,7 +40,10 @@ export default class MatteredExperience {
   }
 
   update() {
-    requestAnimationFrame(() => this.update());
+    requestAnimationFrame(() => {
+      this.update();
+    });
+
     this.rendererInstance?.update();
   }
 }

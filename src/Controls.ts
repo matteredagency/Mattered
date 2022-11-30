@@ -23,7 +23,6 @@ export default class Controls {
         );
 
         this.oldScrollTop = scrollTop;
-        requestAnimationFrame(this.experience?.update);
       }
     });
   }

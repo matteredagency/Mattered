@@ -7,6 +7,7 @@ export default class Renderer {
   constructor() {
     this.experience = new MatteredExperience();
     this.setRenderer();
+    return this;
   }
 
   setRenderer() {
