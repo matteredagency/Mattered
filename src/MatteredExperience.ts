@@ -37,6 +37,7 @@ export default class MatteredExperience {
   }
 
   update() {
+    requestAnimationFrame(() => this.update());
     this.rendererInstance?.update();
   }
 }

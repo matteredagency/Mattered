@@ -15,7 +15,7 @@ export default class Renderer {
       canvas: this.experience.canvas,
     });
 
-    this.renderer.setClearColor("0x050010");
+    this.renderer.setClearColor(0x050010);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
