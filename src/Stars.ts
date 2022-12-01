@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { PointsMaterial } from "three";
 import MatteredExperience from "./MatteredExperience";
+import randomNumInRange from "./utils/randomNumInRange";
 
 export default class Stars {
   geometry: THREE.BufferGeometry;
@@ -10,7 +11,7 @@ export default class Stars {
   particleAccelerations: number[];
   experience: MatteredExperience;
   particles: {
-    position: number;
+    position: number[];
     size: number;
     color: THREE.Color;
     rotation: number;
@@ -39,7 +40,9 @@ export default class Stars {
 
     for (let i = 0; i < this.particles.length; i++) {
       const { position, color, size, rotation } = this.particles[i];
-      positions[i] = position;
+
+      position.forEach((coord, index) => (positions[i * 3 + index] = coord));
+
       const currentFloatIndex = i * 3;
       colors[currentFloatIndex] = color.r;
       colors[currentFloatIndex + 1] = color.g;
@@ -93,7 +96,11 @@ export default class Stars {
   private setParticles() {
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
-        position: (Math.random() - 0.75) * this.galaxySize,
+        position: [
+          randomNumInRange(-1000, 1000),
+          randomNumInRange(-500, 500),
+          randomNumInRange(-1000, 200),
+        ],
         size: Math.random() * 10,
         rotation: Math.random() * 2 * Math.PI,
         velocity: 0,

@@ -15,6 +15,6 @@ export default class Space {
       0.25
     ).init() as THREE.Group;
 
-    this.stars = new Stars(3000, 1000);
+    this.stars = new Stars(2000, 1000);
   }
 }
