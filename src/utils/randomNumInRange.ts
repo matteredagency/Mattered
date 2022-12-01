@@ -3,12 +3,11 @@ export default function randomNumInRange(
   max: number,
   tunnelSize?: number
 ): number {
-  if (tunnelSize !== undefined) {
-    return [
-      randomNumInRange(min, tunnelSize * -1),
-      randomNumInRange(tunnelSize, max),
-    ][randomNumInRange(0, 2)];
+  const coord = Math.floor(Math.random() * (max - min) + min);
+
+  if (!tunnelSize || coord > tunnelSize || coord < tunnelSize * -1) {
+    return coord;
   }
 
-  return Math.floor(Math.random() * (max - min) + min);
+  return coord > 0 ? tunnelSize : tunnelSize * -1;
 }
