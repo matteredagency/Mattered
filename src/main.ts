@@ -15,9 +15,17 @@ const vertices = new Float32Array([
   1.0, 1.0, 10, -1.0, 1.0, 10,
 ]);
 
+const colors = new Float32Array([
+  -1.0, -1.0, 10, 1.0, -1.0, 10,
+
+  1.0, 1.0, 10, -1.0, 1.0, 10,
+]);
+
 // itemSize = 3 because there are 3 values (components) per vertex
 geometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
-const material = new THREE.PointsMaterial({ color: 0xff0000 });
+const material = new THREE.PointsMaterial({
+  color: new THREE.Color(1, 0.5, 1),
+});
 const mesh = new THREE.Points(geometry, material);
 
-// experience.scene?.add(mesh);
+experience.scene?.add(mesh);

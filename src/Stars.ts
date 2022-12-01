@@ -10,10 +10,8 @@ export default class Stars {
   particleAccelerations: number[];
   experience: MatteredExperience;
   particles: {
-    position: number[];
-    size: number;
-    color: THREE.Color;
-    rotation: number;
+    positionsArray: number[];
+    colorsArray: number[];
     velocity: number;
     acceleration: number;
   }[];
@@ -30,38 +28,37 @@ export default class Stars {
     return this;
   }
 
+  private insertVertexValue(
+    vertexIndex: number,
+    valueIndex: number,
+    value: number,
+    array: Float32Array
+  ) {
+    array[vertexIndex * 3 + valueIndex] = value;
+  }
+
   private updateGeometry() {
-    const positions = new Float32Array(this.particleCount * 3);
-    const sizes = new Float32Array(this.particleCount * 3);
-    const colors = new Float32Array(this.particleCount * 3);
-    const angles = new Float32Array(this.particleCount * 3);
+    const positionsBuffer = new Float32Array(this.particleCount * 3);
+    const colorsBuffer = new Float32Array(this.particleCount * 3);
 
     for (let i = 0; i < this.particles.length; i++) {
-      const { position, color, size, rotation } = this.particles[i];
-
-      position.forEach((coord, index) => (positions[i * 3 + index] = coord));
-
-      const currentFloatIndex = i * 3;
-      colors[currentFloatIndex] = color.r;
-      colors[currentFloatIndex + 1] = color.g;
-      colors[currentFloatIndex + 2] = color.b;
+      const { positionsArray, colorsArray } = this.particles[i];
+      positionsArray.forEach((value, valueIndex) =>
+        this.insertVertexValue(i, valueIndex, value, positionsBuffer)
+      );
+      colorsArray.forEach((value, valueIndex) =>
+        this.insertVertexValue(i, valueIndex, value, colorsBuffer)
+      );
     }
 
     this.geometry.setAttribute(
       "position",
-      new THREE.Float32BufferAttribute(positions, 3)
+      new THREE.Float32BufferAttribute(positionsBuffer, 3)
     );
-    this.geometry.setAttribute(
-      "size",
-      new THREE.Float32BufferAttribute(sizes, 1)
-    );
+
     this.geometry.setAttribute(
       "color",
-      new THREE.Float32BufferAttribute(colors, 4)
-    );
-    this.geometry.setAttribute(
-      "angle",
-      new THREE.Float32BufferAttribute(angles, 1)
+      new THREE.Float32BufferAttribute(colorsBuffer, 3)
     );
   }
 
@@ -94,16 +91,14 @@ export default class Stars {
   private setParticles() {
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
-        position: [
+        positionsArray: [
           randomNumInRange(-500, 500, 10),
           randomNumInRange(-500, 500, 10),
           randomNumInRange(-1000, 200),
         ],
-        size: Math.random() * 10,
-        rotation: Math.random() * 2 * Math.PI,
         velocity: 0,
         acceleration: 0.02,
-        color: new THREE.Color().setHex(Math.random() * 0xffffff),
+        colorsArray: [Math.random(), Math.random(), Math.random()],
       });
     }
   }
@@ -115,6 +110,7 @@ export default class Stars {
         size: 3,
         map: new THREE.TextureLoader().load("./star.webp"),
         transparent: true,
+        opacity: 0.75,
       })
     );
   }
