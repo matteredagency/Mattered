@@ -89,6 +89,11 @@ export default class Stars {
   }
 
   private setParticles() {
+    const starColorSelection = [
+      [0.44, 0.2, 0.68],
+      [0.88, 0.43, 0.9],
+      [1, 1, 1],
+    ];
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
         positionsArray: [
@@ -98,7 +103,7 @@ export default class Stars {
         ],
         velocity: 0,
         acceleration: 0.02,
-        colorsArray: [Math.random(), Math.random(), Math.random()],
+        colorsArray: starColorSelection[Math.floor(Math.random() * 3)],
       });
     }
   }
@@ -110,7 +115,8 @@ export default class Stars {
         size: 3,
         map: new THREE.TextureLoader().load("./star.webp"),
         transparent: true,
-        opacity: 0.75,
+        vertexColors: true,
+        alphaTest: 0.1,
       })
     );
   }
