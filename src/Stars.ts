@@ -5,7 +5,6 @@ import randomNumInRange from "./utils/randomNumInRange";
 
 export default class Stars {
   geometry: THREE.BufferGeometry;
-  galaxySize: number;
   particleCount: number;
   particleVelocities: number[];
   particleAccelerations: number[];
@@ -19,9 +18,8 @@ export default class Stars {
     acceleration: number;
   }[];
   pointsMesh: THREE.Points | null;
-  constructor(particleCount: number, galaxySize: number) {
+  constructor(particleCount: number) {
     this.geometry = new THREE.BufferGeometry();
-    this.galaxySize = galaxySize;
     this.particles = [];
     this.particleCount = particleCount;
     this.particleVelocities = [];
@@ -97,7 +95,7 @@ export default class Stars {
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
         position: [
-          randomNumInRange(-1000, 1000, 10),
+          randomNumInRange(-500, 500, 10),
           randomNumInRange(-500, 500, 10),
           randomNumInRange(-1000, 200),
         ],
@@ -125,7 +123,6 @@ export default class Stars {
     this.setParticles();
     this.updateGeometry();
     this.pointsMesh = this.setPointsMesh();
-    this.pointsMesh.position.setY(100);
     this.experience.scene?.add(this.pointsMesh);
   }
 }
