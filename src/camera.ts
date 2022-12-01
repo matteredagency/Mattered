@@ -26,6 +26,18 @@ export default class Camera {
       -10,
       10
     );
+    folder?.add(
+      this.perspectiveCamera?.position as THREE.Vector3,
+      "y",
+      -100,
+      100
+    );
+    folder?.add(
+      this.perspectiveCamera?.position as THREE.Vector3,
+      "z",
+      -400,
+      800
+    );
   }
 
   resize() {
