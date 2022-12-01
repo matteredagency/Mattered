@@ -97,8 +97,8 @@ export default class Stars {
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
         position: [
-          randomNumInRange(-1000, 1000),
-          randomNumInRange(-500, 500),
+          randomNumInRange(-1000, 1000, 10),
+          randomNumInRange(-500, 500, 10),
           randomNumInRange(-1000, 200),
         ],
         size: Math.random() * 10,
