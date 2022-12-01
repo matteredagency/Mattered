@@ -11,7 +11,6 @@ export default class Stars {
   experience: MatteredExperience;
   particles: {
     positionsArray: number[];
-    colorsArray: number[];
     velocity: number;
     acceleration: number;
   }[];
@@ -39,26 +38,17 @@ export default class Stars {
 
   private updateGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
-    const colorsBuffer = new Float32Array(this.particleCount * 3);
 
     for (let i = 0; i < this.particles.length; i++) {
-      const { positionsArray, colorsArray } = this.particles[i];
+      const { positionsArray } = this.particles[i];
       positionsArray.forEach((value, valueIndex) =>
         this.insertVertexValue(i, valueIndex, value, positionsBuffer)
-      );
-      colorsArray.forEach((value, valueIndex) =>
-        this.insertVertexValue(i, valueIndex, value, colorsBuffer)
       );
     }
 
     this.geometry.setAttribute(
       "position",
       new THREE.Float32BufferAttribute(positionsBuffer, 3)
-    );
-
-    this.geometry.setAttribute(
-      "color",
-      new THREE.Float32BufferAttribute(colorsBuffer, 3)
     );
   }
 
@@ -89,11 +79,6 @@ export default class Stars {
   }
 
   private setParticles() {
-    const starColorSelection = [
-      [0.44, 0.2, 0.68],
-      [0.88, 0.43, 0.9],
-      [1, 1, 1],
-    ];
     for (let i = 0; i < this.particleCount; i++) {
       this.particles.push({
         positionsArray: [
@@ -103,7 +88,6 @@ export default class Stars {
         ],
         velocity: 0,
         acceleration: 0.02,
-        colorsArray: starColorSelection[Math.floor(Math.random() * 3)],
       });
     }
   }
@@ -112,10 +96,9 @@ export default class Stars {
     return new THREE.Points(
       this.geometry,
       new PointsMaterial({
-        size: 3,
+        size: 2,
         map: new THREE.TextureLoader().load("./star.webp"),
         transparent: true,
-        vertexColors: true,
         alphaTest: 0.1,
       })
     );
