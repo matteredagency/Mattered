@@ -97,7 +97,9 @@ export default class Stars {
       this.geometry,
       new PointsMaterial({
         size: 2,
-        map: new THREE.TextureLoader().load("./assets/textures/star.webp"),
+        map: new THREE.TextureLoader().load(
+          `.${process.env.NODE_ENV ? "" : "/assets"}/textures/star.webp`
+        ),
         transparent: true,
         alphaTest: 0.1,
       })

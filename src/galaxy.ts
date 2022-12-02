@@ -21,7 +21,7 @@ export default class Galaxy {
 
   setTexture() {
     new THREE.TextureLoader().load(
-      "./assets/textures/galaxy.webp",
+      `.${process.env.NODE_ENV ? "" : "/assets"}/textures/galaxy.webp`,
       (texture) => {
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(0.95, 0.95);

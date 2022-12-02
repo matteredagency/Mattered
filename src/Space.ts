@@ -11,7 +11,7 @@ export default class Space {
 
     this.paperPlane = new Asset(
       "paperPlane",
-      "./assets/objects/PaperPlane.glb",
+      `.${process.env.NODE_ENV ? "" : "/assets"}/objects/PaperPlane.glb`,
       0.25
     ).init() as THREE.Group;
 
