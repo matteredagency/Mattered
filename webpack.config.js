@@ -15,7 +15,7 @@ module.exports = {
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, isDevelopment ? "/public" : "/dist"),
+    path: path.resolve(__dirname, isDevelopment ? "public" : "dist"),
   },
   optimization: {
     minimizer: [new CssMinimizerPlugin(), new UglifyJsPlugin()],
@@ -36,7 +36,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+        test: /\.(jpg|jpeg|png|gif|mp3|svg|glb|webp)$/,
         use: ["file-loader"],
       },
     ],
