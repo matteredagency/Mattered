@@ -5,6 +5,8 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const CopyPlugin = require("copy-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const environment = process.env.NODE_ENV || "development";
 const isDevelopment = environment === "development";
 
@@ -47,7 +49,9 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({ filename: "[name].css" }),
     new HtmlWebpackPlugin({ template: "./public/index.html" }),
-    new BundleAnalyzerPlugin(),
+    new CopyPlugin({
+      patterns: ["./public/assets"],
+    }),
   ],
   devServer: {
     host: "localhost",
