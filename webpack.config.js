@@ -50,7 +50,7 @@ module.exports = {
     new MiniCssExtractPlugin({ filename: "[name].css" }),
     new HtmlWebpackPlugin({ template: "./public/index.html" }),
     new CopyPlugin({
-      patterns: ["./public/assets"],
+      patterns: ["./public"],
     }),
   ],
   devServer: {
