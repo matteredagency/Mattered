@@ -9,12 +9,14 @@ export default class Asset {
   loader: GLTFLoader;
   scaleSize: number;
   experience: MatteredExperience;
+  acceleration: number;
   constructor(name: string, file: string, scaleSize: number) {
     this.name = name;
     this.file = file;
     this.loader = new GLTFLoader();
     this.scaleSize = scaleSize;
     this.experience = new MatteredExperience();
+    this.acceleration = 0;
   }
 
   init() {
@@ -29,6 +31,8 @@ export default class Asset {
 
     return this.asset;
   }
+
+  updateZ(isForward: boolean) {}
 
   remove() {
     this.experience.scene?.remove(this.asset as THREE.Group);
