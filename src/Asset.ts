@@ -19,17 +19,21 @@ export default class Asset {
     this.acceleration = 0;
   }
 
-  init() {
-    this.loader.load(this.file, (gltf) => {
-      this.asset = gltf.scene;
-      gltf.scene.scale.set(this.scaleSize, this.scaleSize, this.scaleSize);
-      this.experience.scene?.add(this.asset);
-      // const folder = this.experience.gui?.addFolder("plane");
-      // folder?.add(this.asset.rotation, "y", Math.PI * -1, Math.PI * 2);
-      // folder?.add(this.asset.rotation, "z", Math.PI * -1, Math.PI * 2);
-    });
+  async init() {
+    return await new Promise((res) =>
+      this.loader.load(this.file, (gltf) => {
+        this.asset = gltf.scene;
+        gltf.scene.scale.set(this.scaleSize, this.scaleSize, this.scaleSize);
+        this.experience.scene?.add(this.asset);
+        res(this.asset);
 
-    return this.asset;
+        if (this.name === "paperPlane") {
+          const folder = this.experience.gui?.addFolder("plane");
+          folder?.add(this.asset.rotation, "y", Math.PI * -1, Math.PI * 2);
+          folder?.add(this.asset.rotation, "z", Math.PI * -1, Math.PI * 2);
+        }
+      })
+    );
   }
 
   updateZ(isForward: boolean) {}

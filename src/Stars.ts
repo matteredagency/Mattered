@@ -23,7 +23,6 @@ export default class Stars {
     this.particleAccelerations = [];
     this.experience = new MatteredExperience();
     this.pointsMesh = null;
-    this.init();
     return this;
   }
 
@@ -92,24 +91,29 @@ export default class Stars {
     }
   }
 
-  private setPointsMesh() {
+  private async setPointsMesh() {
+    const texture = (await new Promise((res) =>
+      res(
+        new THREE.TextureLoader().load(
+          `.${process.env.NODE_ENV ? "" : "/assets"}/textures/star.webp`
+        )
+      )
+    )) as THREE.Texture;
     return new THREE.Points(
       this.geometry,
       new PointsMaterial({
         size: 2.5,
-        map: new THREE.TextureLoader().load(
-          `.${process.env.NODE_ENV ? "" : "/assets"}/textures/star.webp`
-        ),
+        map: texture,
         transparent: true,
         alphaTest: 0.05,
       })
     );
   }
 
-  init() {
+  async init() {
     this.setParticles();
     this.updateGeometry();
-    this.pointsMesh = this.setPointsMesh();
+    this.pointsMesh = await this.setPointsMesh();
     this.experience.scene?.add(this.pointsMesh);
   }
 }
