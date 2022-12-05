@@ -6,6 +6,7 @@ export default class Space {
   galaxy?: Galaxy;
   paperPlane?: THREE.Group;
   stars?: Stars;
+  venus?: THREE.Group;
   constructor() {
     this.galaxy = new Galaxy();
 
@@ -14,6 +15,12 @@ export default class Space {
       `.${process.env.NODE_ENV ? "" : "/assets"}/objects/PaperPlane.glb`,
       0.25
     ).init() as THREE.Group;
+
+    // this.venus = new Asset(
+    //   "venus",
+    //   `.${process.env.NODE_ENV ? "" : "/assets"}/objects/Venus.glb`,
+    //   10
+    // ).init() as THREE.Group;
 
     this.stars = new Stars(1000);
   }

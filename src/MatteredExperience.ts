@@ -6,6 +6,7 @@ import Light from "./Light";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
+import VenusScene from "./VenusScene";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -19,6 +20,7 @@ export default class MatteredExperience {
   light?: Light;
   gui?: GUI;
   clock!: THREE.Clock;
+  venusScene!: VenusScene;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -39,6 +41,9 @@ export default class MatteredExperience {
     });
     this.clock = new THREE.Clock(true);
     this.clock.start();
+    this.venusScene = new VenusScene();
+
+    this.venusScene.init(0);
     this.update();
   }
 
