@@ -48,7 +48,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "[name].css" }),
-    new HtmlWebpackPlugin({ template: "./public/index.html" }),
+    new HtmlWebpackPlugin({ template: "./public/index.html", inject: "body" }),
     new CopyPlugin({
       patterns: ["./public/assets"],
     }),
