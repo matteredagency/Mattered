@@ -24,9 +24,10 @@ export default class Asset {
       this.loader.load(this.file, (gltf) => {
         this.asset = gltf.scene;
         gltf.scene.scale.set(this.scaleSize, this.scaleSize, this.scaleSize);
+        this.asset.position.setZ(200);
+
         this.experience.scene?.add(this.asset);
         res(this.asset);
-
         if (this.name === "paperPlane") {
           const folder = this.experience.gui?.addFolder("plane");
           folder?.add(this.asset.rotation, "y", Math.PI * -1, Math.PI * 2);

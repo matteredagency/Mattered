@@ -22,6 +22,8 @@ export default class Controls {
           this.oldScrollTop < scrollTop
         );
 
+        this.experience.sceneController.sceneSelct(this.scrollPercent, true);
+
         this.oldScrollTop = scrollTop;
       }
     });

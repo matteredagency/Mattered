@@ -6,6 +6,7 @@ import Light from "./Light";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
+import SceneController from "./SceneController";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -14,11 +15,12 @@ export default class MatteredExperience {
   camera?: Camera;
   sizes?: Sizes;
   rendererInstance?: Renderer;
-  spaceScene?: Space;
+  spaceScene!: Space;
   controls?: Controls;
   light?: Light;
   gui?: GUI;
   clock!: THREE.Clock;
+  sceneController!: SceneController;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -39,7 +41,7 @@ export default class MatteredExperience {
     });
     this.clock = new THREE.Clock(true);
     this.clock.start();
-
+    this.sceneController = new SceneController();
     this.init();
   }
 
@@ -56,7 +58,9 @@ export default class MatteredExperience {
   timeControl() {
     if (this.clock.getElapsedTime() < 10) {
       this.spaceScene?.stars?.updateParticles(true);
-      this.spaceScene?.paperPlane.translateZ(-2);
+      if (this.spaceScene.paperPlane.position.z > 0) {
+        this.spaceScene?.paperPlane.translateZ(-2);
+      }
     } else {
       this.clock?.stop();
     }
