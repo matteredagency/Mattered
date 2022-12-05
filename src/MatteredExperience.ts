@@ -7,6 +7,7 @@ import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
 import * as dat from "dat.gui";
+import { Clock } from "three";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -19,6 +20,7 @@ export default class MatteredExperience {
   controls?: Controls;
   light?: Light;
   gui?: GUI;
+  clock!: Clock;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -37,6 +39,8 @@ export default class MatteredExperience {
     this.sizes.on("resize", () => {
       this.resize();
     });
+    this.clock = new Clock(true);
+    this.clock.start();
     this.update();
   }
 
@@ -45,11 +49,19 @@ export default class MatteredExperience {
     this.rendererInstance?.resize();
   }
 
+  timeControl() {
+    if (this.clock.getElapsedTime() < 10) {
+      this.spaceScene?.stars?.updateParticles(true);
+    } else {
+      this.clock?.stop();
+    }
+  }
+
   update() {
+    this.timeControl();
     requestAnimationFrame(() => {
       this.update();
     });
-
     this.rendererInstance?.update();
   }
 }
