@@ -1,13 +1,11 @@
 import { GUI } from "dat.gui";
-import * as THREE from "three";
+import THREE from "./GlobalImports";
 import Camera from "./Camera";
 import Controls from "./Controls";
 import Light from "./Light";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
-import * as dat from "dat.gui";
-import { Clock } from "three";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -20,13 +18,13 @@ export default class MatteredExperience {
   controls?: Controls;
   light?: Light;
   gui?: GUI;
-  clock!: Clock;
+  clock!: THREE.Clock;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    this.gui = new dat.GUI();
+    this.gui = new GUI();
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();
@@ -39,7 +37,7 @@ export default class MatteredExperience {
     this.sizes.on("resize", () => {
       this.resize();
     });
-    this.clock = new Clock(true);
+    this.clock = new THREE.Clock(true);
     this.clock.start();
     this.update();
   }

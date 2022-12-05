@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import THREE from "./GlobalImports";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import MatteredExperience from "./MatteredExperience";
 

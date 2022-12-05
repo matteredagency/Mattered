@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
 
 export default class Galaxy {

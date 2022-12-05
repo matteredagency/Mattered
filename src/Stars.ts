@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import THREE from "./GlobalImports";
 import { PointsMaterial } from "three";
 import MatteredExperience from "./MatteredExperience";
 import randomNumInRange from "./utils/randomNumInRange";
