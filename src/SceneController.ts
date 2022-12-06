@@ -14,7 +14,7 @@ export default class SceneController {
       new Planet(
         `.${process.env.NODE_ENV ? "" : "/assets"}/objects/Venus.glb`,
         false
-      ).rotate();
+      );
     }
     if (currentPercent >= 20 && currentPercent < 30) {
     }

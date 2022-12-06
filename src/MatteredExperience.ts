@@ -68,6 +68,9 @@ export default class MatteredExperience {
 
   update() {
     this.timeControl();
+    if (this.spaceScene.currentPlanet) {
+      this.spaceScene.currentPlanet.rotate();
+    }
     requestAnimationFrame(() => {
       this.update();
     });

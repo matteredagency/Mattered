@@ -2,6 +2,7 @@ import { Group } from "three";
 import THREE = require("three");
 import Asset from "./Asset";
 import Galaxy from "./Galaxy";
+import Planet from "./Planet";
 import Stars from "./Stars";
 
 export default class Space {
@@ -9,7 +10,7 @@ export default class Space {
   paperPlane!: THREE.Group;
   stars?: Stars;
   venus?: THREE.Group;
-  currentPlanet?: null;
+  currentPlanet?: Planet | null;
   constructor() {
     this.galaxy = new Galaxy();
 
