@@ -13,7 +13,8 @@ export default class SceneController {
     if (currentPercent >= 10 && currentPercent < 20) {
       new Planet(
         `.${process.env.NODE_ENV ? "" : "/assets"}/objects/Venus.glb`,
-        false
+        true,
+        0.0001
       );
     }
     if (currentPercent >= 20 && currentPercent < 30) {

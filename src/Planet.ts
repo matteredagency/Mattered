@@ -5,14 +5,18 @@ import MatteredExperience from "./MatteredExperience";
 export default class Planet {
   static instance: Planet;
   asset!: THREE.Group;
+  rotationSpeed!: number;
   experience!: MatteredExperience;
-  constructor(file: string, clockWiseRotation: boolean) {
+  rotationDirection!: number;
+  constructor(file: string, clockWiseRotation: boolean, rotationSpeed: number) {
     if (Planet.instance) {
       return Planet.instance;
     }
     Planet.instance = this;
-    this.init(file);
     this.experience = new MatteredExperience();
+    this.rotationSpeed = rotationSpeed;
+    this.rotationDirection = clockWiseRotation ? -1 : 1;
+    this.init(file);
   }
 
   async init(file: string) {
@@ -22,7 +26,9 @@ export default class Planet {
     this.experience.spaceScene.currentPlanet = this;
   }
   rotate() {
-    this.asset.rotateY(Math.PI * 0.0002);
+    this.asset.rotateY(Math.PI * this.rotationSpeed * this.rotationDirection);
   }
-  remove() {}
+  remove() {
+    this.experience.scene?.remove(this.asset);
+  }
 }
