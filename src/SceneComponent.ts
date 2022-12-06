@@ -12,4 +12,8 @@ export default class SceneComponent {
   constructor({ start, end, subject, x, y }: ConstructorParameters) {
     this.subject = subject;
   }
+
+  rotateSubject(speed: number, clockWiseDirection: boolean) {
+    // this.subject.asset?.rotateY(Math.PI)
+  }
 }
