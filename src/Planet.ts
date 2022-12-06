@@ -4,12 +4,17 @@ import MatteredExperience from "./MatteredExperience";
 
 export default class Planet {
   static instance: Planet | null;
+  static createNewInstance: boolean;
   asset!: THREE.Group;
   rotationSpeed!: number;
   experience!: MatteredExperience;
   rotationDirection!: number;
   velocity!: number;
   constructor(file: string, clockWiseRotation: boolean, rotationSpeed: number) {
+    if (Planet.createNewInstance === undefined) {
+      Planet.createNewInstance = true;
+    }
+    if (Planet.createNewInstance === false) return;
     if (Planet.instance) {
       return Planet.instance;
     }
@@ -23,7 +28,7 @@ export default class Planet {
 
   async init(file: string) {
     this.asset = (await new Asset("venus", file, 2).init(
-      new THREE.Vector3(-300, 0, -1500)
+      new THREE.Vector3(-300, 0, -1000)
     )) as THREE.Group;
     this.experience.spaceScene.currentPlanet = this;
   }
@@ -32,13 +37,13 @@ export default class Planet {
   }
   remove() {
     this.experience.scene?.remove(this.asset);
+    Planet.createNewInstance = false;
   }
   movePlanet(forward: boolean) {
     this.velocity += 0.02 * (forward ? 1 : -1);
     this.asset.position.z += this.velocity * (forward ? 1 : -1);
-    if (this.asset.position.z >= 200) {
-      this.experience.scene?.remove(this.asset);
-      Planet.instance = null;
+    if (this.asset.position.z > 200 || this.asset.position.z < -1000) {
+      this.remove();
     }
   }
 }
