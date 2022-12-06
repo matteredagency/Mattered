@@ -1,4 +1,5 @@
 import { Group } from "three";
+import THREE = require("three");
 import Asset from "./Asset";
 import Galaxy from "./Galaxy";
 import Stars from "./Stars";
@@ -21,7 +22,7 @@ export default class Space {
       "paperPlane",
       `.${process.env.NODE_ENV ? "" : "/assets"}/objects/PaperPlane.glb`,
       0.25
-    ).init()) as Group;
+    ).init(new THREE.Vector3(0, 0, 200))) as Group;
     await this.stars?.init();
   }
 }

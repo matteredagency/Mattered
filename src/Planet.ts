@@ -1,3 +1,4 @@
+import THREE = require("three");
 import Asset from "./Asset";
 
 export default class Planet {
@@ -12,6 +13,11 @@ export default class Planet {
   }
 
   async init(file: string) {
-    this.asset = (await new Asset("venus", file, 2).init()) as THREE.Group;
+    this.asset = (await new Asset("venus", file, 2).init(
+      new THREE.Vector3(0, 0, -500)
+    )) as THREE.Group;
+  }
+  rotate() {
+    this.asset.rotateY(Math.PI * 0.01);
   }
 }

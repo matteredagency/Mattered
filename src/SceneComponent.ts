@@ -16,4 +16,6 @@ export default class SceneComponent {
   rotateSubject(speed: number, clockWiseDirection: boolean) {
     // this.subject.asset?.rotateY(Math.PI)
   }
+
+  init() {}
 }

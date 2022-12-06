@@ -9,6 +9,14 @@ export default class Light {
     this.init();
     this.experience = new MatteredExperience();
     this.experience.scene?.add(this.directionalLight);
+    this.experience.scene?.add(new THREE.AmbientLight(0x00000));
+
+    const folder = this.experience.gui?.addFolder("light");
+    folder?.add(this.directionalLight.position, "x", -100, 100);
+    folder?.add(this.directionalLight.position, "y", -100, 100);
+    folder?.add(this.directionalLight.position, "z", -100, 100);
+
+    this.directionalLight.rotateY(Math.PI);
     return this;
   }
 
@@ -16,7 +24,5 @@ export default class Light {
     this.directionalLight.intensity = 5;
     this.directionalLight.position.set(0, 5, 5);
     this.directionalLight.castShadow = true;
-    this.directionalLight.shadow.mapSize.width = 1024;
-    this.directionalLight.shadow.mapSize.height = 1024;
   }
 }
