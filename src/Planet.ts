@@ -3,7 +3,7 @@ import Asset from "./Asset";
 import MatteredExperience from "./MatteredExperience";
 
 export default class Planet {
-  static instance: Planet;
+  static instance: Planet | null;
   asset!: THREE.Group;
   rotationSpeed!: number;
   experience!: MatteredExperience;
@@ -36,5 +36,9 @@ export default class Planet {
   movePlanet(forward: boolean) {
     this.velocity += 0.02 * (forward ? 1 : -1);
     this.asset.position.z += this.velocity * (forward ? 1 : -1);
+    if (this.asset.position.z >= 200) {
+      this.experience.scene?.remove(this.asset);
+      Planet.instance = null;
+    }
   }
 }

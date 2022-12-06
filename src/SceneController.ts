@@ -15,6 +15,7 @@ export default class SceneController {
       new Planet(createAssetPath("/objects/Venus.glb"), true, 0.001);
     }
     if (currentPercent >= 20 && currentPercent < 30) {
+      new Planet(createAssetPath("/objects/Earth.glb"), true, 0.001);
     }
   }
 }
