@@ -12,7 +12,7 @@ export default class SceneController {
 
   sceneSelct(currentPercent: number, isForward: boolean) {
     if (currentPercent >= 10 && currentPercent < 20) {
-      new Planet(createAssetPath("/objects/Venus.glb"), true, 0.0001);
+      new Planet(createAssetPath("/objects/Venus.glb"), true, 0.001);
     }
     if (currentPercent >= 20 && currentPercent < 30) {
     }

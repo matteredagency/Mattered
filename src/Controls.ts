@@ -24,6 +24,11 @@ export default class Controls {
 
         this.experience.sceneController.sceneSelct(this.scrollPercent, true);
 
+        if (this.experience.spaceScene.currentPlanet) {
+          this.experience.spaceScene.currentPlanet.movePlanet(
+            this.oldScrollTop < scrollTop
+          );
+        }
         this.oldScrollTop = scrollTop;
       }
     });
