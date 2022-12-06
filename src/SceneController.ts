@@ -1,5 +1,6 @@
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class SceneController {
   scenes: SceneController[];
@@ -11,11 +12,7 @@ export default class SceneController {
 
   sceneSelct(currentPercent: number, isForward: boolean) {
     if (currentPercent >= 10 && currentPercent < 20) {
-      new Planet(
-        `.${process.env.NODE_ENV ? "" : "/assets"}/objects/Venus.glb`,
-        true,
-        0.0001
-      );
+      new Planet(createAssetPath("/objects/Venus.glb"), true, 0.0001);
     }
     if (currentPercent >= 20 && currentPercent < 30) {
     }

@@ -1,5 +1,6 @@
 import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class Galaxy {
   geometry?: THREE.SphereGeometry;
@@ -21,7 +22,7 @@ export default class Galaxy {
 
   setTexture() {
     new THREE.TextureLoader().load(
-      `.${process.env.NODE_ENV ? "" : "/assets"}/textures/galaxy.webp`,
+      createAssetPath("/textures/galaxy.webp"),
       (texture) => {
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(0.95, 0.95);

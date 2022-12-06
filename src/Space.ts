@@ -4,6 +4,7 @@ import Asset from "./Asset";
 import Galaxy from "./Galaxy";
 import Planet from "./Planet";
 import Stars from "./Stars";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class Space {
   galaxy?: Galaxy;
@@ -21,7 +22,7 @@ export default class Space {
   async init() {
     this.paperPlane = (await new Asset(
       "paperPlane",
-      `.${process.env.NODE_ENV ? "" : "/assets"}/objects/PaperPlane.glb`,
+      createAssetPath("/objects/PaperPlane.glb"),
       0.25
     ).init(new THREE.Vector3(0, 0, 200))) as Group;
     await this.stars?.init();

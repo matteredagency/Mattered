@@ -2,6 +2,7 @@ import THREE from "./GlobalImports";
 import { PointsMaterial } from "three";
 import MatteredExperience from "./MatteredExperience";
 import randomNumInRange from "./utils/randomNumInRange";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class Stars {
   geometry: THREE.BufferGeometry;
@@ -94,9 +95,7 @@ export default class Stars {
   private async setPointsMesh() {
     const texture = (await new Promise((res) =>
       res(
-        new THREE.TextureLoader().load(
-          `.${process.env.NODE_ENV ? "" : "/assets"}/textures/star.webp`
-        )
+        new THREE.TextureLoader().load(createAssetPath("/textures/star.webp"))
       )
     )) as THREE.Texture;
     return new THREE.Points(
