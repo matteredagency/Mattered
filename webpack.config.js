@@ -20,7 +20,7 @@ module.exports = {
   },
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, !isDevelopment ? "dist" : "/public"),
+    path: path.resolve(__dirname, isDevelopment ? "/public" : "dist"),
   },
   optimization: {
     minimizer: [new CssMinimizerPlugin(), new UglifyJsPlugin()],
