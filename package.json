@@ -16,7 +16,8 @@
     "build": "webpack",
     "watch:src": "nodemon --watch src/",
     "watch:public": "nodemon --watch public/",
-    "build:production": "NODE_ENV=production && webpack --mode production"
+    "build:production": "NODE_ENV=production && webpack --mode production",
+    "build:local": "SET NODE_ENV=production && webpack --mode production"
   },
   "devDependencies": {
     "@types/dat.gui": "^0.7.7",
