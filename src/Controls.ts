@@ -15,7 +15,6 @@ export default class Controls {
       event.preventDefault();
       if (this.scrollContainer) {
         const { scrollHeight, scrollTop } = this.scrollContainer;
-
         this.scrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
 
         this.experience.spaceScene?.stars?.updateParticles(

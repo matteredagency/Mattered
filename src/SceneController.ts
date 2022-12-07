@@ -16,15 +16,7 @@ export default class SceneController {
     if (currentPercent > 10 && currentPercent < 20) {
       // console.log(lerp(-10, 0, scalePercent(11, 19, currentPercent)));
 
-      console.log(
-        lerp(0, Math.PI * 0.0001, scalePercent(11, 19, currentPercent))
-      );
-
       new Planet(createAssetPath("/objects/Venus.glb"), true, 0.001);
-    } else if (currentPercent > 20 && currentPercent < 30) {
-      new Planet(createAssetPath("/objects/Earth.glb"), true, 0.001);
-    } else if (!Planet.createNewInstance) {
-      Planet.createNewInstance = true;
     }
   }
 }
