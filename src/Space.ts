@@ -24,7 +24,7 @@ export default class Space {
       "paperPlane",
       createAssetPath("/objects/PaperPlane.glb"),
       0.25
-    ).init(new THREE.Vector3(0, 0, 200))) as Group;
+    ).init(new THREE.Vector3(0, 0, 0))) as Group;
     await this.stars?.init();
   }
 }

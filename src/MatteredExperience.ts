@@ -55,19 +55,19 @@ export default class MatteredExperience {
     this.rendererInstance?.resize();
   }
 
-  timeControl() {
-    if (this.clock.getElapsedTime() < 10) {
-      this.spaceScene?.stars?.updateParticles(true);
-      if (this.spaceScene.paperPlane.position.z > 0) {
-        this.spaceScene?.paperPlane.translateZ(-2);
-      }
-    } else {
-      this.clock?.stop();
-    }
-  }
+  // timeControl() {
+  //   if (this.clock.getElapsedTime() < 10) {
+  //     this.spaceScene?.stars?.updateParticles(true);
+  //     if (this.spaceScene.paperPlane.position.z > 0) {
+  //       this.spaceScene?.paperPlane.translateZ(-2);
+  //     }
+  //   } else {
+  //     this.clock?.stop();
+  //   }
+  // }
 
   update() {
-    this.timeControl();
+    // this.timeControl();
     if (this.spaceScene.currentPlanet) {
       this.spaceScene.currentPlanet.rotate();
     }
