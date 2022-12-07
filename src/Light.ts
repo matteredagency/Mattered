@@ -11,10 +11,10 @@ export default class Light {
     this.experience.scene?.add(this.directionalLight);
     this.experience.scene?.add(new THREE.AmbientLight(0x00000));
 
-    const folder = this.experience.gui?.addFolder("light");
-    folder?.add(this.directionalLight.position, "x", -100, 100);
-    folder?.add(this.directionalLight.position, "y", -100, 100);
-    folder?.add(this.directionalLight.position, "z", -100, 100);
+    // const folder = this.experience.gui?.addFolder("light");
+    // folder?.add(this.directionalLight.position, "x", -100, 100);
+    // folder?.add(this.directionalLight.position, "y", -100, 100);
+    // folder?.add(this.directionalLight.position, "z", -100, 100);
 
     this.directionalLight.rotateY(Math.PI);
     return this;

@@ -32,11 +32,11 @@ export default class Asset {
 
         this.experience.scene?.add(this.asset);
         res(this.asset);
-        if (this.name === "paperPlane") {
-          const folder = this.experience.gui?.addFolder("plane");
-          folder?.add(this.asset.rotation, "y", Math.PI * -1, Math.PI * 2);
-          folder?.add(this.asset.rotation, "z", Math.PI * -1, Math.PI * 2);
-        }
+        // if (this.name === "paperPlane") {
+        //   const folder = this.experience.gui?.addFolder("plane");
+        //   folder?.add(this.asset.rotation, "y", Math.PI * -1, Math.PI * 2);
+        //   folder?.add(this.asset.rotation, "z", Math.PI * -1, Math.PI * 2);
+        // }
       })
     );
   }

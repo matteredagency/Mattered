@@ -1,4 +1,4 @@
-import THREE = require("three");
+import THREE from "./GlobalImports";
 import Asset from "./Asset";
 import MatteredExperience from "./MatteredExperience";
 
