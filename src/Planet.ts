@@ -38,7 +38,10 @@ export default class Planet {
   movePlanet(forward: boolean) {
     this.velocity += 0.02 * (forward ? 1 : -1);
     this.asset.position.z += this.velocity * (forward ? 1 : -1);
-    if (this.asset.position.z > 200 || this.asset.position.z < -1000) {
+    if (
+      this.asset.position.z > 200 ||
+      (this.asset.position.z < -1000 && this.planetIsVisible)
+    ) {
       this.remove();
       this.planetIsVisible = false;
     } else if (!this.planetIsVisible) {
