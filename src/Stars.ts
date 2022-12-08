@@ -69,6 +69,7 @@ export default class Stars {
 
       if (positionAttribute.getZ(i) >= 200) {
         positionAttribute.setZ(i, -1000);
+        console.log(this.particles[i].velocity);
         this.particles[i].velocity = 0;
       } else if (positionAttribute.getZ(i) <= -990 && !isForward) {
         positionAttribute.setZ(i, 200);
@@ -87,7 +88,7 @@ export default class Stars {
           randomNumInRange(-1000, 200),
         ],
         velocity: 0,
-        acceleration: 0.02,
+        acceleration: 0.5,
       });
     }
   }
