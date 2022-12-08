@@ -10,10 +10,14 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      [0, 0, 0],
-      [0, 0, -100],
-      [-5, 0, -105],
-      [-100, 0, -105],
+      [0, 0, 100],
+      [5, 0, -75],
+      [-105, 0, -180],
+      [-100, 0, -300],
+      [-50, 0, -350],
+      [300, 0, -370],
+      [305, 0, -305],
+      [305, 0, -405],
     ];
 
     const vector3Points = points.map(
@@ -24,6 +28,7 @@ export default class Track {
     //Create a path from the points
     this.path = new THREE.CatmullRomCurve3(vector3Points);
 
+    console.log(this.path.getPointAt(0.4));
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
@@ -51,15 +56,21 @@ export default class Track {
       planetPosition.z
     );
 
+    planet.asset?.position.set(
+      planetPosition.x,
+      planetPosition.y,
+      planetPosition.z
+    );
+
     this.experience.scene?.add(mesh);
     return this;
   }
 
   updateCameraPosition(currentPercent: number) {
     const p1 = this.path.getPointAt(currentPercent);
-    const p2 = this.path.getPointAt(currentPercent + 0.2);
-    this.experience.camera?.perspectiveCamera?.position.set(p1.x, 10, p1.z);
-    this.experience.spaceScene.paperPlane.position.set(p2.x, p2.y, p2.z);
+    const p2 = this.path.getPointAt(currentPercent + 0.01);
+    this.experience.camera?.perspectiveCamera?.position.set(p1.x, 0, p1.z);
+    // this.experience.spaceScene.paperPlane.position.set(p2.x, p2.y, p2.z);
 
     this.experience.camera?.perspectiveCamera?.lookAt(p2);
   }
