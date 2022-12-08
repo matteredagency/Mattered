@@ -11,11 +11,11 @@ export default class Space {
   paperPlane!: THREE.Group;
   stars?: Stars;
   venus?: THREE.Group;
-  currentPlanet?: Planet | null;
+  currentPlanet!: Planet | null;
   constructor() {
     this.galaxy = new Galaxy();
+    new Planet(createAssetPath("/objects/Venus.glb"), true, 0.001);
 
-    this.currentPlanet = null;
     this.stars = new Stars(1000);
   }
 
