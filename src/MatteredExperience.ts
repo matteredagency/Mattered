@@ -1,4 +1,4 @@
-// import { GUI } from "dat.gui";
+import { GUI } from "dat.gui";
 import THREE from "./GlobalImports";
 import Camera from "./Camera";
 import Controls from "./Controls";
@@ -7,6 +7,8 @@ import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
 import SceneController from "./SceneController";
+import createAssetPath from "./utils/createAssetPath";
+import Track from "./Track";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -18,7 +20,7 @@ export default class MatteredExperience {
   spaceScene!: Space;
   controls?: Controls;
   light?: Light;
-  // gui?: GUI;
+  gui?: GUI;
   clock!: THREE.Clock;
   sceneController!: SceneController;
   constructor(canvas?: HTMLCanvasElement) {
@@ -26,7 +28,7 @@ export default class MatteredExperience {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    // this.gui = new GUI();
+    this.gui = new GUI();
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();
@@ -42,6 +44,8 @@ export default class MatteredExperience {
     this.clock = new THREE.Clock(true);
     this.clock.start();
     this.sceneController = new SceneController();
+    new Track();
+
     this.init();
   }
 
