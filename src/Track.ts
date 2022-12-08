@@ -22,17 +22,29 @@ export default class Track {
 
     //C
     //Create a path from the points
-    var path = new THREE.CatmullRomCurve3(vector3Points);
+    const path = new THREE.CatmullRomCurve3(vector3Points);
+
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
     const geometry = new THREE.TubeGeometry(path, 300, 50, 32, false);
 
-    const mesh = new THREE.Points(
+    const mesh = new THREE.LineSegments(
       geometry,
-      new THREE.PointsMaterial({ color: new THREE.Color() })
+      new THREE.LineBasicMaterial({
+        linewidth: 2,
+        opacity: 0.2,
+        transparent: true,
+      })
     );
 
+    const p1 = path.getPointAt(0.45);
+    const p2 = path.getPointAt(0.5);
+
+    // console.log(p1);
+
+    this.experience.camera?.perspectiveCamera?.position.set(p1.x, p1.y, p1.z);
+    this.experience.camera?.perspectiveCamera?.lookAt(p2);
     this.experience.scene?.add(mesh);
   }
 }
