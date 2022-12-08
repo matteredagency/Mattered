@@ -4,6 +4,7 @@ import MatteredExperience from "./MatteredExperience";
 
 export default class Track {
   experience: MatteredExperience;
+  path: THREE.CatmullRomCurve3;
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
@@ -22,12 +23,12 @@ export default class Track {
 
     //C
     //Create a path from the points
-    const path = new THREE.CatmullRomCurve3(vector3Points);
+    this.path = new THREE.CatmullRomCurve3(vector3Points);
 
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
-    const geometry = new THREE.TubeGeometry(path, 300, 50, 32, false);
+    const geometry = new THREE.TubeGeometry(this.path, 300, 50, 32, false);
 
     const mesh = new THREE.LineSegments(
       geometry,
@@ -38,13 +39,16 @@ export default class Track {
       })
     );
 
-    const p1 = path.getPointAt(0.45);
-    const p2 = path.getPointAt(0.5);
-
-    // console.log(p1);
-
-    this.experience.camera?.perspectiveCamera?.position.set(p1.x, p1.y, p1.z);
-    this.experience.camera?.perspectiveCamera?.lookAt(p2);
     this.experience.scene?.add(mesh);
+    return this;
+  }
+
+  updateCameraPosition(currentPercent: number) {
+    const p1 = this.path.getPointAt(currentPercent);
+    const p2 = this.path.getPointAt(currentPercent + 0.07);
+    this.experience.camera?.perspectiveCamera?.position.set(p1.x, 10, p1.z);
+    this.experience.spaceScene.paperPlane.position.set(p2.x, p2.y, p2.z);
+
+    this.experience.camera?.perspectiveCamera?.lookAt(p2);
   }
 }

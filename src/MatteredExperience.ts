@@ -21,6 +21,7 @@ export default class MatteredExperience {
   controls?: Controls;
   light?: Light;
   gui?: GUI;
+  track!: Track;
   clock!: THREE.Clock;
   sceneController!: SceneController;
   constructor(canvas?: HTMLCanvasElement) {
@@ -44,7 +45,7 @@ export default class MatteredExperience {
     this.clock = new THREE.Clock(true);
     this.clock.start();
     this.sceneController = new SceneController();
-    new Track();
+    this.track = new Track();
 
     this.init();
   }

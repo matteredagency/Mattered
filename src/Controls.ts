@@ -15,14 +15,14 @@ export default class Controls {
       event.preventDefault();
       if (this.scrollContainer) {
         const { scrollHeight, scrollTop } = this.scrollContainer;
-        this.scrollPercent = Math.floor((scrollTop / scrollHeight) * 100);
+        this.scrollPercent = scrollTop / scrollHeight;
 
         this.experience.spaceScene?.stars?.updateParticles(
           this.oldScrollTop < scrollTop
         );
-
+        console.log(this.scrollPercent);
         this.experience.sceneController.sceneSelct(this.scrollPercent, true);
-
+        this.experience.track.updateCameraPosition(this.scrollPercent);
         this.oldScrollTop = scrollTop;
       }
     });
