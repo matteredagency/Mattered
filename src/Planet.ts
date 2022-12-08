@@ -36,7 +36,7 @@ export default class Planet {
     this.experience.scene?.remove(this.asset);
   }
   movePlanet(forward: boolean) {
-    this.velocity += 0.02 * (forward ? 1 : -1);
+    this.velocity += 0.05 * (forward ? 1 : -1);
     this.asset.position.z += this.velocity * (forward ? 1 : -1);
     if (
       this.asset.position.z > 200 ||

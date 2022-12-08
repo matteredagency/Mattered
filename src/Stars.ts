@@ -69,11 +69,10 @@ export default class Stars {
 
       if (positionAttribute.getZ(i) >= 200) {
         positionAttribute.setZ(i, -1000);
-        console.log(this.particles[i].velocity);
         this.particles[i].velocity = 0;
       } else if (positionAttribute.getZ(i) <= -990 && !isForward) {
         positionAttribute.setZ(i, 200);
-        this.particles[i].velocity = 6.91;
+        this.particles[i].velocity = 34.5;
       }
     }
     this.geometry.attributes.position.needsUpdate = true;
