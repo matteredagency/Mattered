@@ -19,16 +19,11 @@ export default class Asset {
     this.acceleration = 0;
   }
 
-  async init(startPosition: THREE.Vector3) {
+  async init() {
     return await new Promise((res) =>
       this.loader.load(this.file, (gltf) => {
         this.asset = gltf.scene;
         gltf.scene.scale.set(this.scaleSize, this.scaleSize, this.scaleSize);
-        this.asset.position.set(
-          startPosition.x,
-          startPosition.y,
-          startPosition.z
-        );
 
         this.experience.scene?.add(this.asset);
         res(this.asset);

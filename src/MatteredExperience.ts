@@ -12,7 +12,7 @@ import Track from "./Track";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
-  scene?: THREE.Scene;
+  scene!: THREE.Scene;
   canvas?: HTMLCanvasElement;
   camera?: Camera;
   sizes?: Sizes;

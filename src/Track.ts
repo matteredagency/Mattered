@@ -1,6 +1,8 @@
-import { Vector3 } from "three";
+import { PointLight, Vector3 } from "three";
 import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
+import Planet from "./Planet";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class Track {
   experience: MatteredExperience;
@@ -9,12 +11,9 @@ export default class Track {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
       [0, 0, 0],
-      [0, 0, -200],
-      [-5, 0, -210],
-      [-10, 0, -220],
-      [-15, 0, -230],
-      [-20, 0, -230],
-      [-300, 0, -230],
+      [0, 0, -100],
+      [-5, 0, -105],
+      [-100, 0, -105],
     ];
 
     const vector3Points = points.map(
@@ -39,13 +38,26 @@ export default class Track {
       })
     );
 
+    const planet = new Planet(
+      createAssetPath("/objects/Venus.glb"),
+      true,
+      0.001
+    );
+    const planetPosition = this.path.getPointAt(0.5);
+
+    this.experience.spaceScene.currentPlanet?.asset.position.set(
+      planetPosition.x,
+      planetPosition.y,
+      planetPosition.z
+    );
+
     this.experience.scene?.add(mesh);
     return this;
   }
 
   updateCameraPosition(currentPercent: number) {
     const p1 = this.path.getPointAt(currentPercent);
-    const p2 = this.path.getPointAt(currentPercent + 0.07);
+    const p2 = this.path.getPointAt(currentPercent + 0.2);
     this.experience.camera?.perspectiveCamera?.position.set(p1.x, 10, p1.z);
     this.experience.spaceScene.paperPlane.position.set(p2.x, p2.y, p2.z);
 

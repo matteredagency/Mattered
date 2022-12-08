@@ -24,9 +24,10 @@ export default class Planet {
   }
 
   async init(file: string) {
-    this.asset = (await new Asset("venus", file, 2).init(
-      new THREE.Vector3(-300, 0, -1000)
-    )) as THREE.Group;
+    this.asset = (await new Asset("venus", file, 2).init()) as THREE.Group;
+    this.asset.position.setX(75);
+    this.asset.position.setZ(-101);
+    this.asset.scale.set(0.5, 0.5, 0.5);
     this.experience.spaceScene.currentPlanet = this;
   }
   rotate() {
