@@ -1,18 +1,30 @@
+import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
 import createAssetPath from "./utils/createAssetPath";
 
 export default class SceneController {
-  scenes: SceneController[];
   experience: MatteredExperience;
+  planets: {
+    venus: Planet;
+  };
   constructor() {
-    this.scenes = [];
+    this.planets = {
+      venus: new Planet(
+        createAssetPath("/objects/Venus.glb"),
+        true,
+        0.001,
+        new THREE.Vector3(-110, 0, -300),
+        0.5
+      ),
+    };
+    this.planets.venus.init();
     this.experience = new MatteredExperience();
   }
 
-  sceneSelct(currentPercent: number, isForward: boolean) {
-    // if (currentPercent > 10 && currentPercent < 20) {
-    //   new Planet(createAssetPath("/objects/Venus.glb"), true, 0.001);
-    // }
+  sceneSelect(currentPercent: number) {
+    if (currentPercent >= 0.5) {
+      this.planets.venus.remove();
+    }
   }
 }

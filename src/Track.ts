@@ -10,25 +10,17 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      [0, 0, 100],
-      [5, 0, -75],
-      [-105, 0, -180],
-      [-100, 0, -300],
-      [-50, 0, -350],
-      [300, 0, -370],
-      [305, 0, -305],
-      [305, 0, -405],
+      new THREE.Vector3(0, 0, 100),
+      new THREE.Vector3(-70, 0, -160),
+      new THREE.Vector3(-65, 0, -300),
+      new THREE.Vector3(-45, 0, -330),
+      new THREE.Vector3(-30, 0, -300),
     ];
-
-    const vector3Points = points.map(
-      (point) => new Vector3(point[0], point[1], point[2])
-    );
 
     //C
     //Create a path from the points
-    this.path = new THREE.CatmullRomCurve3(vector3Points);
+    this.path = new THREE.CatmullRomCurve3(points);
 
-    console.log(this.path.getPointAt(0.4));
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
@@ -41,25 +33,6 @@ export default class Track {
         opacity: 0.2,
         transparent: true,
       })
-    );
-
-    const planet = new Planet(
-      createAssetPath("/objects/Venus.glb"),
-      true,
-      0.001
-    );
-    const planetPosition = this.path.getPointAt(0.5);
-
-    this.experience.spaceScene.currentPlanet?.asset.position.set(
-      planetPosition.x,
-      planetPosition.y,
-      planetPosition.z
-    );
-
-    planet.asset?.position.set(
-      planetPosition.x,
-      planetPosition.y,
-      planetPosition.z
     );
 
     this.experience.scene?.add(mesh);

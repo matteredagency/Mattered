@@ -21,7 +21,7 @@ export default class Controls {
           this.oldScrollTop < scrollTop
         );
         console.log(this.scrollPercent);
-        this.experience.sceneController.sceneSelct(this.scrollPercent, true);
+        this.experience.sceneController.sceneSelect(this.scrollPercent);
         this.experience.track.updateCameraPosition(this.scrollPercent);
         this.oldScrollTop = scrollTop;
       }

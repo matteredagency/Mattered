@@ -9,45 +9,48 @@ export default class Planet {
   experience!: MatteredExperience;
   rotationDirection!: number;
   velocity!: number;
-  planetIsVisible!: boolean;
-  constructor(file: string, clockWiseRotation: boolean, rotationSpeed: number) {
-    if (Planet.instance) {
-      return Planet.instance;
-    }
-    Planet.instance = this;
+  planetRendered!: boolean;
+  file!: string;
+  size!: number;
+  position!: THREE.Vector3;
+
+  constructor(
+    file: string,
+    clockWiseRotation: boolean,
+    rotationSpeed: number,
+    position: THREE.Vector3,
+    size: number
+  ) {
+    if (this.planetRendered !== undefined) return this;
     this.experience = new MatteredExperience();
     this.rotationSpeed = rotationSpeed;
     this.rotationDirection = clockWiseRotation ? -1 : 1;
+    this.file = file;
+    this.size = size;
+    this.position = position;
     this.velocity = 0;
-    this.planetIsVisible = false;
-    this.init(file);
   }
 
-  async init(file: string) {
-    this.asset = (await new Asset("venus", file, 2).init()) as THREE.Group;
-    this.asset.position.setX(-200);
-    this.asset.position.setZ(-300);
-    this.asset.scale.set(0.5, 0.5, 0.5);
-    this.experience.spaceScene.currentPlanet = this;
+  async init() {
+    if (this.planetRendered === true) return;
+    if (this.planetRendered === false) {
+      this.planetRendered = true;
+      this.experience.scene.add(this.asset);
+      return;
+    }
+    this.planetRendered = true;
+    this.asset = (await new Asset("venus", this.file, 2).init()) as THREE.Group;
+    this.asset.position.set(this.position.x, this.position.y, this.position.z);
+    this.asset.scale.set(this.size, this.size, this.size);
+    this.experience.scene.add(this.asset);
   }
   rotate() {
     this.asset.rotateY(Math.PI * this.rotationSpeed * this.rotationDirection);
   }
   remove() {
+    if (!this.planetRendered) return;
+
+    this.planetRendered = false;
     this.experience.scene?.remove(this.asset);
-  }
-  movePlanet(forward: boolean) {
-    this.velocity += 0.075 * (forward ? 1 : -1);
-    this.asset.position.z += this.velocity * (forward ? 1 : -1);
-    if (
-      this.asset.position.z > 200 ||
-      (this.asset.position.z < -1000 && this.planetIsVisible)
-    ) {
-      this.remove();
-      this.planetIsVisible = false;
-    } else if (!this.planetIsVisible) {
-      this.planetIsVisible = true;
-      this.experience.scene?.add(this.asset);
-    }
   }
 }
