@@ -7,15 +7,13 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      [10, 89, 0],
-      [50, 88, 10],
-      [76, 139, 20],
-      [126, 141, 12],
-      [150, 112, 8],
-      [157, 73, 0],
-      [180, 44, 5],
-      [207, 35, 10],
-      [232, 36, 0],
+      [0, 0, 0],
+      [0, 0, -200],
+      [-5, 0, -210],
+      [-10, 0, -220],
+      [-15, 0, -230],
+      [-20, 0, -230],
+      [-300, 0, -230],
     ];
 
     const vector3Points = points.map(
@@ -28,11 +26,11 @@ export default class Track {
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
-    const geometry = new THREE.TubeGeometry(path, 300, 4, 32, false);
+    const geometry = new THREE.TubeGeometry(path, 300, 50, 32, false);
 
-    const mesh = new THREE.Mesh(
+    const mesh = new THREE.Points(
       geometry,
-      new THREE.MeshBasicMaterial({ color: new THREE.Color(0xf54266) })
+      new THREE.PointsMaterial({ color: new THREE.Color() })
     );
 
     this.experience.scene?.add(mesh);
