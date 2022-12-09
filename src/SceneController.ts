@@ -13,8 +13,8 @@ export default class SceneController {
       venus: new Planet(
         createAssetPath("/objects/Venus.glb"),
         true,
-        0.001,
-        new THREE.Vector3(-110, 0, -300),
+        0.0005,
+        new THREE.Vector3(-130, 0, -330),
         0.5
       ),
     };
@@ -22,9 +22,5 @@ export default class SceneController {
     this.experience = new MatteredExperience();
   }
 
-  sceneSelect(currentPercent: number) {
-    if (currentPercent >= 0.5) {
-      this.planets.venus.remove();
-    }
-  }
+  sceneSelect(currentPercent: number) {}
 }
