@@ -36,8 +36,6 @@ export default class Asset {
     );
   }
 
-  updateZ(isForward: boolean) {}
-
   remove() {
     this.experience.scene?.remove(this.asset as THREE.Group);
   }

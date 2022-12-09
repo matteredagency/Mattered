@@ -10,11 +10,23 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(0, 0, 100),
-      new THREE.Vector3(-70, 0, -160),
-      new THREE.Vector3(-65, 0, -300),
-      new THREE.Vector3(-45, 0, -330),
-      new THREE.Vector3(-30, 0, -300),
+      new THREE.Vector3(-500, 0, 500),
+      new THREE.Vector3(-500, 0, 250),
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(500, 0, 0),
+      new THREE.Vector3(500, 0, -125),
+      new THREE.Vector3(-250, 0, -250),
+      new THREE.Vector3(-500, 0, -250),
+      new THREE.Vector3(-500, 0, -500),
+      new THREE.Vector3(-500, 0, -750),
+      new THREE.Vector3(-250, 0, -1000),
+      new THREE.Vector3(0, 0, -1000),
+      new THREE.Vector3(250, 0, -1000),
+      new THREE.Vector3(500, 0, -750),
+      new THREE.Vector3(1000, 0, -750),
+      new THREE.Vector3(1000, 0, -875),
+      new THREE.Vector3(750, 0, -1000),
+      new THREE.Vector3(0, 0, -1500),
     ];
 
     //C
