@@ -9,6 +9,7 @@ import Space from "./Space";
 import SceneController from "./SceneController";
 import createAssetPath from "./utils/createAssetPath";
 import Track from "./Track";
+import { Texture, TextureLoader } from "three";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -47,6 +48,9 @@ export default class MatteredExperience {
     this.sceneController = new SceneController();
     this.track = new Track();
 
+    this.scene.background = new TextureLoader().load(
+      createAssetPath("/textures/skybox1_py.jpg")
+    );
     this.init();
   }
 
