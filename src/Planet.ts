@@ -41,7 +41,7 @@ export default class Planet {
     this.asset = (await new Asset("venus", this.file, 2).init()) as THREE.Group;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.asset.scale.set(this.size, this.size, this.size);
-    this.experience.spaceScene.currentPlanet = this;
+    this.experience.spaceObjects.currentPlanet = this;
     this.experience.scene.add(this.asset);
   }
   rotate() {
@@ -52,6 +52,6 @@ export default class Planet {
 
     this.planetRendered = false;
     this.experience.scene?.remove(this.asset);
-    this.experience.spaceScene.currentPlanet = null;
+    this.experience.spaceObjects.currentPlanet = null;
   }
 }

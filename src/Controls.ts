@@ -17,10 +17,6 @@ export default class Controls {
         const { scrollHeight, scrollTop } = this.scrollContainer;
         this.scrollPercent = scrollTop / scrollHeight;
 
-        this.experience.spaceScene?.stars?.updateParticles(
-          this.oldScrollTop < scrollTop
-        );
-        console.log(this.scrollPercent);
         this.experience.sceneController.sceneSelect(this.scrollPercent);
         this.experience.track.updateCameraPosition(this.scrollPercent);
         this.oldScrollTop = scrollTop;

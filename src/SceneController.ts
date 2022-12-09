@@ -22,5 +22,9 @@ export default class SceneController {
     this.experience = new MatteredExperience();
   }
 
-  sceneSelect(currentPercent: number) {}
+  sceneSelect(currentPercent: number) {
+    if (currentPercent >= 0 && currentPercent < 0.5) {
+      this.planets.venus.init();
+    }
+  }
 }

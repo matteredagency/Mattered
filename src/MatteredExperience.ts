@@ -17,7 +17,7 @@ export default class MatteredExperience {
   camera?: Camera;
   sizes?: Sizes;
   rendererInstance?: Renderer;
-  spaceScene!: Space;
+  spaceObjects!: Space;
   controls?: Controls;
   light?: Light;
   gui?: GUI;
@@ -36,7 +36,7 @@ export default class MatteredExperience {
     this.sizes = new Sizes();
     this.camera = new Camera();
     this.rendererInstance = new Renderer();
-    this.spaceScene = new Space();
+    this.spaceObjects = new Space();
     this.controls = new Controls();
     this.light = new Light();
     this.sizes.on("resize", () => {
@@ -51,7 +51,7 @@ export default class MatteredExperience {
   }
 
   async init() {
-    await this.spaceScene?.init();
+    await this.spaceObjects?.init();
     this.update();
   }
 
@@ -62,7 +62,7 @@ export default class MatteredExperience {
 
   // timeControl() {
   //   if (this.clock.getElapsedTime() < 10) {
-  //     this.spaceScene?.stars?.updateParticles(true);
+  //     this.spaceObjects?.stars?.updateParticles(true);
   //     if (this.spaceScene.paperPlane.position.z > 0) {
   //       this.spaceScene?.paperPlane.translateZ(-2);
   //     }
@@ -73,8 +73,8 @@ export default class MatteredExperience {
 
   update() {
     // this.timeControl();
-    if (this.spaceScene.currentPlanet) {
-      this.spaceScene.currentPlanet.rotate();
+    if (this.spaceObjects.currentPlanet) {
+      this.spaceObjects.currentPlanet.rotate();
     }
     requestAnimationFrame(() => {
       this.update();
