@@ -14,11 +14,11 @@ export default class Space {
   currentPlanet!: Planet | null;
   constructor() {}
   async init() {
-    this.paperPlane = (await new Asset(
-      "paperPlane",
-      createAssetPath("/objects/PaperPlane.glb"),
-      0.1
-    ).init()) as THREE.Group;
+    // this.paperPlane = (await new Asset(
+    //   "paperPlane",
+    //   createAssetPath("/objects/PaperPlane.glb"),
+    //   0.1
+    // ).init()) as THREE.Group;
     this.currentPlanet = null;
   }
 }

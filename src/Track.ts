@@ -10,23 +10,20 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(-500, 0, 500),
-      new THREE.Vector3(-500, 0, 250),
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(500, 0, 0),
-      new THREE.Vector3(500, 0, -125),
-      new THREE.Vector3(-250, 0, -250),
-      new THREE.Vector3(-500, 0, -250),
-      new THREE.Vector3(-500, 0, -500),
-      new THREE.Vector3(-500, 0, -750),
-      new THREE.Vector3(-250, 0, -1000),
-      new THREE.Vector3(0, 0, -1000),
-      new THREE.Vector3(250, 0, -1000),
-      new THREE.Vector3(500, 0, -750),
-      new THREE.Vector3(1000, 0, -750),
-      new THREE.Vector3(1000, 0, -875),
-      new THREE.Vector3(750, 0, -1000),
-      new THREE.Vector3(0, 0, -1500),
+      new THREE.Vector3(500, 0, 500),
+      new THREE.Vector3(-375, 0, 500),
+      new THREE.Vector3(-500, 0, 375),
+      new THREE.Vector3(-375, 0, 250),
+      new THREE.Vector3(375, 0, 250),
+      new THREE.Vector3(500, 0, 125),
+      new THREE.Vector3(375, 0, 0),
+      new THREE.Vector3(-375, 0, 0),
+      new THREE.Vector3(-500, 0, -125),
+      new THREE.Vector3(-375, 0, -250),
+      new THREE.Vector3(375, 0, -250),
+      new THREE.Vector3(500, 0, -375),
+      new THREE.Vector3(375, 0, -500),
+      new THREE.Vector3(-375, 0, -500),
     ];
 
     //C
@@ -38,11 +35,10 @@ export default class Track {
     //Create a new geometry with a different radius
     const geometry = new THREE.TubeGeometry(this.path, 300, 50, 32, false);
 
-    const mesh = new THREE.LineSegments(
+    const mesh = new THREE.Mesh(
       geometry,
-      new THREE.LineBasicMaterial({
-        linewidth: 2,
-        opacity: 0.2,
+      new THREE.MeshBasicMaterial({
+        opacity: 0,
         transparent: true,
       })
     );
@@ -55,7 +51,7 @@ export default class Track {
     const p1 = this.path.getPointAt(currentPercent);
     const p2 = this.path.getPointAt(currentPercent + 0.01);
     this.experience.camera?.perspectiveCamera?.position.set(p1.x, 0, p1.z);
-    // this.experience.spaceScene.paperPlane.position.set(p2.x, p2.y, p2.z);
+    // this.experience.spaceObjects.paperPlane.position.set(p2.x, p2.y, p2.z);
 
     this.experience.camera?.perspectiveCamera?.lookAt(p2);
   }
