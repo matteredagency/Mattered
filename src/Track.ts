@@ -34,7 +34,9 @@ export default class Track {
     const mesh = new THREE.Mesh(
       geometry,
       new THREE.MeshBasicMaterial({
-        wireframe: true,
+        // wireframe: true,
+        transparent: true,
+        opacity: 0,
         color: 0xffffff,
       })
     );

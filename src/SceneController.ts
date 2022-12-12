@@ -17,28 +17,28 @@ export default class SceneController {
         createAssetPath("/objects/Venus.glb"),
         true,
         0.0005,
-        new THREE.Vector3(-550, 0, 475),
+        new THREE.Vector3(-150, 0, 400),
         0.5
       ),
       earth: new Planet(
         createAssetPath("/objects/Earth.glb"),
         true,
         0.0005,
-        new THREE.Vector3(435, 0, 250),
+        new THREE.Vector3(115, 0, 130),
         0.5
       ),
       mars: new Planet(
         createAssetPath("/objects/Mars.glb"),
         true,
         0.0005,
-        new THREE.Vector3(-435, 0, 0),
+        new THREE.Vector3(-330, 0, 38),
         0.5
       ),
       jupiter: new Planet(
         createAssetPath("/objects/Jupiter.glb"),
         true,
         0.0005,
-        new THREE.Vector3(525, 0, -260),
+        new THREE.Vector3(-450, 0, -425),
         2
       ),
     };
@@ -47,8 +47,8 @@ export default class SceneController {
   }
 
   sceneSelect(currentPercent: number) {
-    console.log(currentPercent);
-    if (currentPercent >= 0 && currentPercent < 2) {
+    console.log(currentPercent, this.experience.spaceObjects.currentPlanet);
+    if (currentPercent >= 0 && currentPercent < 0.08) {
       // if (
       //   this.experience.spaceObjects.currentPlanet !== this.planets.venus &&
       //   this.planets.venus
@@ -57,17 +57,17 @@ export default class SceneController {
       // }
       this.planets.venus.init();
     }
-    if (currentPercent >= 0.2 && currentPercent <= 0.4) {
-      // if (
-      //   this.experience.spaceObjects.currentPlanet !== this.planets.earth &&
-      //   this.planets.earth
-      // ) {
-      //   this.experience.spaceObjects.currentPlanet = this.planets.earth;
-      // }
+    if (currentPercent >= 0.08 && currentPercent <= 0.22) {
+      if (
+        this.experience.spaceObjects.currentPlanet !== this.planets.earth &&
+        this.planets.earth
+      ) {
+        this.experience.spaceObjects.currentPlanet = this.planets.earth;
+      }
 
       this.planets.earth.init();
     }
-    if (currentPercent >= 0.4 && currentPercent <= 0.6) {
+    if (currentPercent >= 0.22 && currentPercent <= 0.41) {
       // if (
       //   this.experience.spaceObjects.currentPlanet !== this.planets.mars &&
       //   this.planets.mars
@@ -77,7 +77,7 @@ export default class SceneController {
 
       this.planets.mars.init();
     }
-    if (currentPercent >= 0.6 && currentPercent <= 0.8) {
+    if (currentPercent >= 0.41 && currentPercent <= 0.8) {
       // if (
       //   this.experience.spaceObjects.currentPlanet !== this.planets.jupiter &&
       //   this.planets.jupiter

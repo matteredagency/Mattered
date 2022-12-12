@@ -31,10 +31,12 @@ export default class Planet {
   }
 
   async init() {
-    if (this.planetRendered === true) return;
-    if (this.planetRendered === false) {
+    if (this.planetRendered === true) {
+      return;
+    } else if (this.planetRendered === false) {
       this.planetRendered = true;
       this.experience.scene.add(this.asset);
+      this.experience.spaceObjects.currentPlanet = this;
       return;
     }
     this.planetRendered = true;
