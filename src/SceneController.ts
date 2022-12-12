@@ -2,6 +2,8 @@ import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
 import createAssetPath from "./utils/createAssetPath";
+import scalePercent from "./utils/scalePercent";
+import lerp from "./utils/lerp";
 
 export default class SceneController {
   experience: MatteredExperience;
@@ -49,6 +51,15 @@ export default class SceneController {
   sceneSelect(currentPercent: number) {
     if (currentPercent >= 0 && currentPercent < 0.08) {
       this.planets.venus.init();
+      this.experience.spaceObjects.paperPlane.rotation.set(
+        0,
+        lerp(
+          Math.PI * 0.33,
+          Math.PI * 0.25,
+          scalePercent(0, 0.08, currentPercent)
+        ),
+        0
+      );
     }
     if (currentPercent >= 0.08 && currentPercent <= 0.22) {
       this.planets.venus.remove();
@@ -62,6 +73,41 @@ export default class SceneController {
     if (currentPercent >= 0.41 && currentPercent <= 0.8) {
       this.planets.mars.remove();
       this.planets.jupiter.init();
+    }
+    console.log(currentPercent);
+
+    if (currentPercent >= 0 && currentPercent < 0.07) {
+      this.experience.spaceObjects.paperPlane.rotation.set(
+        0,
+        lerp(
+          Math.PI * 0.33,
+          Math.PI * 0.1,
+          scalePercent(0, 0.07, currentPercent)
+        ),
+        0
+      );
+    }
+    if (currentPercent >= 0.07 && currentPercent < 0.13) {
+      this.experience.spaceObjects.paperPlane.rotation.set(
+        0,
+        lerp(
+          Math.PI * 0.1,
+          -Math.PI * 0.36,
+          scalePercent(0.07, 0.13, currentPercent)
+        ),
+        0
+      );
+    }
+    if (currentPercent >= 0.16 && currentPercent < 0.27) {
+      this.experience.spaceObjects.paperPlane.rotation.set(
+        0,
+        lerp(
+          -Math.PI * 0.36,
+          Math.PI * 0.55,
+          scalePercent(0.16, 0.27, currentPercent)
+        ),
+        0
+      );
     }
   }
 }
