@@ -10,6 +10,7 @@ import SceneController from "./SceneController";
 import createAssetPath from "./utils/createAssetPath";
 import Track from "./Track";
 import { Texture, TextureLoader } from "three";
+import PlaneController from "./PlaneController";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -25,6 +26,7 @@ export default class MatteredExperience {
   track!: Track;
   clock!: THREE.Clock;
   sceneController!: SceneController;
+  planeController!: PlaneController;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -46,6 +48,7 @@ export default class MatteredExperience {
     this.clock = new THREE.Clock(true);
     this.clock.start();
     this.sceneController = new SceneController();
+    this.planeController = new PlaneController();
     this.track = new Track();
 
     this.init();

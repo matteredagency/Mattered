@@ -65,49 +65,14 @@ export default class SceneController {
       this.planets.venus.remove();
       this.planets.earth.init();
     }
-    if (currentPercent >= 0.22 && currentPercent <= 0.41) {
+    if (currentPercent >= 0.22 && currentPercent <= 0.43) {
       this.planets.earth.remove();
 
       this.planets.mars.init();
     }
-    if (currentPercent >= 0.41 && currentPercent <= 0.8) {
+    if (currentPercent >= 0.43 && currentPercent <= 0.8) {
       this.planets.mars.remove();
       this.planets.jupiter.init();
-    }
-    console.log(currentPercent);
-
-    if (currentPercent >= 0 && currentPercent <= 0.07) {
-      this.experience.spaceObjects.paperPlane.rotation.set(
-        0,
-        lerp(
-          Math.PI * 0.33,
-          Math.PI * 0.1,
-          scalePercent(0, 0.07, currentPercent)
-        ),
-        lerp(0, -Math.PI * 0.15, scalePercent(0, 0.07, currentPercent))
-      );
-    }
-    if (currentPercent >= 0.07 && currentPercent < 0.13) {
-      this.experience.spaceObjects.paperPlane.rotation.set(
-        0,
-        lerp(
-          Math.PI * 0.1,
-          -Math.PI * 0.36,
-          scalePercent(0.07, 0.13, currentPercent)
-        ),
-        lerp(-Math.PI * 0.15, 0, scalePercent(0.07, 0.13, currentPercent))
-      );
-    }
-    if (currentPercent >= 0.16 && currentPercent < 0.27) {
-      this.experience.spaceObjects.paperPlane.rotation.set(
-        0,
-        lerp(
-          -Math.PI * 0.36,
-          Math.PI * 0.55,
-          scalePercent(0.16, 0.27, currentPercent)
-        ),
-        lerp(0, Math.PI * 0.2, scalePercent(0.16, 0.27, currentPercent))
-      );
     }
   }
 }
