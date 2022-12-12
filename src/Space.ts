@@ -13,7 +13,7 @@ export default class Space {
   venus?: THREE.Group;
   currentPlanet!: Planet | null;
   constructor() {
-    this.stars = new Stars(1000);
+    this.stars = new Stars(1500);
   }
   async init() {
     this.paperPlane = (await new Asset(
