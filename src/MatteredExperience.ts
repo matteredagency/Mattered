@@ -48,9 +48,6 @@ export default class MatteredExperience {
     this.sceneController = new SceneController();
     this.track = new Track();
 
-    this.scene.background = new TextureLoader().load(
-      createAssetPath("/textures/skybox1_py.jpg")
-    );
     this.init();
   }
 

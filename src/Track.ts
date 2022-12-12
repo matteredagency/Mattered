@@ -1,4 +1,4 @@
-import { PointLight, Vector3 } from "three";
+import { Color, PointLight, Vector3 } from "three";
 import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
@@ -10,22 +10,18 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(500, 0, 500),
-      new THREE.Vector3(-375, 0, 500),
-      new THREE.Vector3(-500, 0, 375),
-      new THREE.Vector3(-375, 0, 250),
-      new THREE.Vector3(375, 0, 250),
-      new THREE.Vector3(500, 0, 125),
-      new THREE.Vector3(375, 0, 0),
-      new THREE.Vector3(-375, 0, 0),
-      new THREE.Vector3(-500, 0, -125),
-      new THREE.Vector3(-375, 0, -250),
-      new THREE.Vector3(375, 0, -250),
-      new THREE.Vector3(500, 0, -375),
-      new THREE.Vector3(375, 0, -500),
-      new THREE.Vector3(-375, 0, -500),
+      new THREE.Vector3(75, 0, 500),
+      new THREE.Vector3(-75, 0, 400),
+      new THREE.Vector3(-100, 0, 325),
+      new THREE.Vector3(-75, 0, 250),
+      new THREE.Vector3(75, 0, 150),
+      new THREE.Vector3(100, 0, 75),
+      new THREE.Vector3(75, 0, 0),
+      new THREE.Vector3(-400, 0, 0),
+      new THREE.Vector3(-500, 0, -150),
+      new THREE.Vector3(-200, 0, -500),
+      new THREE.Vector3(500, 0, -300),
     ];
-
     //C
     //Create a path from the points
     this.path = new THREE.CatmullRomCurve3(points);
@@ -33,13 +29,13 @@ export default class Track {
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
-    const geometry = new THREE.TubeGeometry(this.path, 300, 50, 32, false);
+    const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
     const mesh = new THREE.Mesh(
       geometry,
       new THREE.MeshBasicMaterial({
-        opacity: 0,
-        transparent: true,
+        wireframe: true,
+        color: 0xffffff,
       })
     );
 

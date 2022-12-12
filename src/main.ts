@@ -9,5 +9,5 @@ const experience = new MatteredExperience(
 const size = 1000;
 const divisions = 10;
 
-// const gridHelper = new THREE.GridHelper(size, divisions);
-// experience?.scene?.add(gridHelper);
+const gridHelper = new THREE.GridHelper(size, divisions);
+experience?.scene?.add(gridHelper);
