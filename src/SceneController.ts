@@ -48,12 +48,6 @@ export default class SceneController {
 
   sceneSelect(currentPercent: number) {
     if (currentPercent >= 0 && currentPercent < 0.08) {
-      // if (
-      //   this.experience.spaceObjects.currentPlanet !== this.planets.venus &&
-      //   this.planets.venus
-      // ) {
-      //   this.experience.spaceObjects.currentPlanet = this.planets.venus;
-      // }
       this.planets.venus.init();
     }
     if (currentPercent >= 0.08 && currentPercent <= 0.22) {
@@ -61,23 +55,11 @@ export default class SceneController {
       this.planets.earth.init();
     }
     if (currentPercent >= 0.22 && currentPercent <= 0.41) {
-      // if (
-      //   this.experience.spaceObjects.currentPlanet !== this.planets.mars &&
-      //   this.planets.mars
-      // ) {
-      //   this.experience.spaceObjects.currentPlanet = this.planets.mars;
-      // }
       this.planets.earth.remove();
 
       this.planets.mars.init();
     }
     if (currentPercent >= 0.41 && currentPercent <= 0.8) {
-      // if (
-      //   this.experience.spaceObjects.currentPlanet !== this.planets.jupiter &&
-      //   this.planets.jupiter
-      // ) {
-      //   this.experience.spaceObjects.currentPlanet = this.planets.jupiter;
-      // }
       this.planets.mars.remove();
       this.planets.jupiter.init();
     }
