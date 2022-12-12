@@ -10,15 +10,9 @@ export default class Stars {
   particleVelocities: number[];
   particleAccelerations: number[];
   experience: MatteredExperience;
-  particles: {
-    positionsArray: number[];
-    velocity: number;
-    acceleration: number;
-  }[];
   pointsMesh: THREE.Points | null;
   constructor(particleCount: number) {
     this.geometry = new THREE.BufferGeometry();
-    this.particles = [];
     this.particleCount = particleCount;
     this.particleVelocities = [];
     this.particleAccelerations = [];
@@ -36,61 +30,33 @@ export default class Stars {
     array[vertexIndex * 3 + valueIndex] = value;
   }
 
-  private updateGeometry() {
+  private setGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
+    const pointRanges = [
+      [-750, 750, null],
+      [-250, 250, 25],
+      [-1000, 500, null],
+    ];
 
-    for (let i = 0; i < this.particles.length; i++) {
-      const { positionsArray } = this.particles[i];
-      positionsArray.forEach((value, valueIndex) =>
-        this.insertVertexValue(i, valueIndex, value, positionsBuffer)
-      );
+    for (let i = 0; i < this.particleCount; i++) {
+      for (let j = 0; j < 3; j++) {
+        this.insertVertexValue(
+          i,
+          j,
+          randomNumInRange(
+            pointRanges[j][0] as number,
+            pointRanges[j][1] as number,
+            pointRanges[j][2] as number
+          ),
+          positionsBuffer
+        );
+      }
     }
 
     this.geometry.setAttribute(
       "position",
       new THREE.Float32BufferAttribute(positionsBuffer, 3)
     );
-  }
-
-  updateParticles(isForward: boolean) {
-    const positionAttribute = this.geometry.getAttribute("position");
-    for (let i = 0; i < positionAttribute.count; i++) {
-      let z = positionAttribute.getZ(i);
-
-      if (isForward) {
-        this.particles[i].velocity += this.particles[i].acceleration;
-        z += this.particles[i].velocity;
-      } else {
-        this.particles[i].velocity -= this.particles[i].acceleration;
-        z -= this.particles[i].velocity;
-      }
-
-      positionAttribute.setZ(i, z);
-
-      if (positionAttribute.getZ(i) >= 200) {
-        positionAttribute.setZ(i, -1000);
-        console.log(this.particles[i].velocity);
-        this.particles[i].velocity = 0;
-      } else if (positionAttribute.getZ(i) <= -990 && !isForward) {
-        positionAttribute.setZ(i, 200);
-        this.particles[i].velocity = 13.425;
-      }
-    }
-    this.geometry.attributes.position.needsUpdate = true;
-  }
-
-  private setParticles() {
-    for (let i = 0; i < this.particleCount; i++) {
-      this.particles.push({
-        positionsArray: [
-          randomNumInRange(-500, 500, 10),
-          randomNumInRange(-500, 500, 10),
-          randomNumInRange(-1000, 200),
-        ],
-        velocity: 0,
-        acceleration: 0.075,
-      });
-    }
   }
 
   private async setPointsMesh() {
@@ -111,8 +77,7 @@ export default class Stars {
   }
 
   async init() {
-    this.setParticles();
-    this.updateGeometry();
+    this.setGeometry();
     this.pointsMesh = await this.setPointsMesh();
     this.experience.scene?.add(this.pointsMesh);
   }

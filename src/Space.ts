@@ -12,13 +12,11 @@ export default class Space {
   stars?: Stars;
   venus?: THREE.Group;
   currentPlanet!: Planet | null;
-  constructor() {}
+  constructor() {
+    this.stars = new Stars(1000);
+  }
   async init() {
-    // this.paperPlane = (await new Asset(
-    //   "paperPlane",
-    //   createAssetPath("/objects/PaperPlane.glb"),
-    //   0.1
-    // ).init()) as THREE.Group;
+    await this.stars?.init();
     this.currentPlanet = null;
   }
 }
