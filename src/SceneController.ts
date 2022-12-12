@@ -76,7 +76,7 @@ export default class SceneController {
     }
     console.log(currentPercent);
 
-    if (currentPercent >= 0 && currentPercent < 0.07) {
+    if (currentPercent >= 0 && currentPercent <= 0.07) {
       this.experience.spaceObjects.paperPlane.rotation.set(
         0,
         lerp(
@@ -84,7 +84,7 @@ export default class SceneController {
           Math.PI * 0.1,
           scalePercent(0, 0.07, currentPercent)
         ),
-        0
+        lerp(0, -Math.PI * 0.15, scalePercent(0, 0.07, currentPercent))
       );
     }
     if (currentPercent >= 0.07 && currentPercent < 0.13) {
@@ -95,7 +95,7 @@ export default class SceneController {
           -Math.PI * 0.36,
           scalePercent(0.07, 0.13, currentPercent)
         ),
-        0
+        lerp(-Math.PI * 0.15, 0, scalePercent(0.07, 0.13, currentPercent))
       );
     }
     if (currentPercent >= 0.16 && currentPercent < 0.27) {
@@ -106,7 +106,7 @@ export default class SceneController {
           Math.PI * 0.55,
           scalePercent(0.16, 0.27, currentPercent)
         ),
-        0
+        lerp(0, Math.PI * 0.2, scalePercent(0.16, 0.27, currentPercent))
       );
     }
   }
