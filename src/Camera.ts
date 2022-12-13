@@ -16,28 +16,27 @@ export default class Camera {
       2000
     );
     this.experience?.scene?.add(this.perspectiveCamera);
-    this.perspectiveCamera.position.setY(100);
-    this.perspectiveCamera.position.setZ(500);
-    this.perspectiveCamera.rotateX(Math.PI * 0.05 * -1);
-    const folder = this.experience.gui?.addFolder("camera");
-    folder?.add(
-      this.perspectiveCamera?.position as THREE.Vector3,
-      "x",
-      -500,
-      500
-    );
-    folder?.add(
-      this.perspectiveCamera?.position as THREE.Vector3,
-      "y",
-      -100,
-      100
-    );
-    folder?.add(
-      this.perspectiveCamera?.position as THREE.Vector3,
-      "z",
-      -400,
-      800
-    );
+    this.perspectiveCamera.position.set(75, 10, 500);
+    this.perspectiveCamera.rotation.y = Math.PI * 0.33;
+    // const folder = this.experience.gui?.addFolder("camera");
+    // folder?.add(
+    //   this.perspectiveCamera?.position as THREE.Vector3,
+    //   "x",
+    //   -500,
+    //   500
+    // );
+    // folder?.add(
+    //   this.perspectiveCamera?.position as THREE.Vector3,
+    //   "y",
+    //   -100,
+    //   100
+    // );
+    // folder?.add(
+    //   this.perspectiveCamera?.position as THREE.Vector3,
+    //   "z",
+    //   -400,
+    //   800
+    // );
   }
 
   resize() {
