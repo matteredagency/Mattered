@@ -29,21 +29,21 @@ export default class Track {
     //path.curveType = 'catmullrom';
 
     //Create a new geometry with a different radius
-    if (process.env.NODE_ENV === "development") {
-      const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
+    // if (process.env.NODE_ENV === "development") {
+    //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
-      const mesh = new THREE.Mesh(
-        geometry,
-        new THREE.MeshBasicMaterial({
-          wireframe: true,
-          // transparent: true,
-          // opacity: 0,
-          color: 0xffffff,
-        })
-      );
+    //   const mesh = new THREE.Mesh(
+    //     geometry,
+    //     new THREE.MeshBasicMaterial({
+    //       wireframe: true,
+    //       // transparent: true,
+    //       // opacity: 0,
+    //       color: 0xffffff,
+    //     })
+    //   );
 
-      this.experience.scene?.add(mesh);
-    }
+    //   this.experience.scene?.add(mesh);
+    // }
     return this;
   }
 
