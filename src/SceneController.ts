@@ -12,6 +12,7 @@ export default class SceneController {
     mars: Planet;
     jupiter: Planet;
     asteroids: Asteroids;
+    saturn: Planet;
   };
   constructor() {
     this.sceneSubjects = {
@@ -47,6 +48,13 @@ export default class SceneController {
         createAssetPath("/objects/AsteroidSet.glb"),
         new THREE.Vector3(100, 0, -435),
         0.1
+      ),
+      saturn: new Planet(
+        createAssetPath("/objects/Saturn.glb"),
+        true,
+        0.0005,
+        new THREE.Vector3(750, 0, -400),
+        2
       ),
     };
     this.sceneSubjects.venus.init();
@@ -94,6 +102,11 @@ export default class SceneController {
         this.sceneSubjects.jupiter.init();
       if (!this.sceneSubjects.asteroids.assetRendered) {
         this.sceneSubjects.asteroids.init();
+      }
+    }
+    if (currentPercent >= 0.68 && currentPercent < 1) {
+      if (!this.sceneSubjects.saturn.planetRendered) {
+        this.sceneSubjects.saturn.init();
       }
     }
   }
