@@ -38,11 +38,13 @@ export default class Planet {
       return;
     }
     this.planetRendered = true;
-    this.asset = (await new Asset("", this.file, 2).init()) as THREE.Group;
+    this.asset = (await new Asset(
+      "",
+      this.file,
+      this.size
+    ).init()) as THREE.Group;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
-    this.asset.scale.set(this.size, this.size, this.size);
     this.experience.spaceObjects.currentPlanet = this;
-    this.experience.scene.add(this.asset);
   }
   rotate() {
     this.asset.rotateY(Math.PI * this.rotationSpeed * this.rotationDirection);

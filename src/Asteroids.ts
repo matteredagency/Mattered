@@ -24,7 +24,7 @@ export default class Asteroids {
       return;
     }
     this.assetRendered = true;
-    this.asset = (await new Asset("", this.file, 2).init()) as THREE.Group;
+    this.asset = (await new Asset("", this.file, 0.05).init()) as THREE.Group;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.asset.scale.set(this.size, this.size, this.size);
     this.experience.scene.add(this.asset);

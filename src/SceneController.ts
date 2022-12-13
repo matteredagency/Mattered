@@ -47,8 +47,8 @@ export default class SceneController {
       ),
       asteroids: new Asteroids(
         createAssetPath("/objects/AsteroidSet.glb"),
-        new THREE.Vector3(0, 0, -500),
-        0.5
+        new THREE.Vector3(100, 0, -400),
+        0.25
       ),
     };
     this.sceneSubjects.venus.init();
@@ -57,20 +57,25 @@ export default class SceneController {
 
   sceneSelect(currentPercent: number) {
     if (currentPercent >= 0 && currentPercent < 0.08) {
-      if (!this.sceneSubjects.venus.planetRendered)
+      if (!this.sceneSubjects.venus.planetRendered) {
         this.sceneSubjects.venus.init();
+      }
     }
     if (currentPercent >= 0.08 && currentPercent <= 0.22) {
-      if (this.sceneSubjects.venus.planetRendered)
+      if (this.sceneSubjects.venus.planetRendered) {
         this.sceneSubjects.venus.remove();
-      if (!this.sceneSubjects.earth.planetRendered)
+      }
+      if (!this.sceneSubjects.earth.planetRendered) {
         this.sceneSubjects.earth.init();
+      }
     }
     if (currentPercent >= 0.22 && currentPercent <= 0.43) {
-      if (this.sceneSubjects.earth.planetRendered)
+      if (this.sceneSubjects.earth.planetRendered) {
         this.sceneSubjects.earth.remove();
-      if (!this.sceneSubjects.mars.planetRendered)
+      }
+      if (!this.sceneSubjects.mars.planetRendered) {
         this.sceneSubjects.mars.init();
+      }
     }
     if (currentPercent >= 0.43 && currentPercent <= 0.8) {
       if (this.sceneSubjects.mars.planetRendered)
@@ -89,12 +94,9 @@ export default class SceneController {
         this.sceneSubjects.mars.remove();
       if (!this.sceneSubjects.jupiter.planetRendered)
         this.sceneSubjects.jupiter.init();
-    }
-    if (currentPercent >= 0.65 && currentPercent <= 0.8) {
-      if (this.sceneSubjects.jupiter.planetRendered)
-        this.sceneSubjects.jupiter.remove();
-      if (!this.sceneSubjects.asteroids.assetRendered)
+      if (!this.sceneSubjects.asteroids.assetRendered) {
         this.sceneSubjects.asteroids.init();
+      }
     }
   }
 }
