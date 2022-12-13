@@ -8,7 +8,6 @@ export default class Planet {
   rotationSpeed!: number;
   experience!: MatteredExperience;
   rotationDirection!: number;
-  velocity!: number;
   planetRendered!: boolean;
   file!: string;
   size!: number;
@@ -27,7 +26,6 @@ export default class Planet {
     this.file = file;
     this.size = size;
     this.position = position;
-    this.velocity = 0;
   }
 
   async init() {
@@ -40,7 +38,7 @@ export default class Planet {
       return;
     }
     this.planetRendered = true;
-    this.asset = (await new Asset("venus", this.file, 2).init()) as THREE.Group;
+    this.asset = (await new Asset("", this.file, 2).init()) as THREE.Group;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.asset.scale.set(this.size, this.size, this.size);
     this.experience.spaceObjects.currentPlanet = this;

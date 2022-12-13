@@ -4,17 +4,19 @@ import Planet from "./Planet";
 import createAssetPath from "./utils/createAssetPath";
 import scalePercent from "./utils/scalePercent";
 import lerp from "./utils/lerp";
+import Asteroids from "./Asteroids";
 
 export default class SceneController {
   experience: MatteredExperience;
-  planets: {
+  sceneSubjects: {
     venus: Planet;
     earth: Planet;
     mars: Planet;
     jupiter: Planet;
+    asteroids: Asteroids;
   };
   constructor() {
-    this.planets = {
+    this.sceneSubjects = {
       venus: new Planet(
         createAssetPath("/objects/Venus.glb"),
         true,
@@ -43,26 +45,56 @@ export default class SceneController {
         new THREE.Vector3(-450, 0, -425),
         2
       ),
+      asteroids: new Asteroids(
+        createAssetPath("/objects/AsteroidSet.glb"),
+        new THREE.Vector3(0, 0, -500),
+        0.5
+      ),
     };
-    this.planets.venus.init();
+    this.sceneSubjects.venus.init();
     this.experience = new MatteredExperience();
   }
 
   sceneSelect(currentPercent: number) {
     if (currentPercent >= 0 && currentPercent < 0.08) {
-      if (!this.planets.venus.planetRendered) this.planets.venus.init();
+      if (!this.sceneSubjects.venus.planetRendered)
+        this.sceneSubjects.venus.init();
     }
     if (currentPercent >= 0.08 && currentPercent <= 0.22) {
-      if (this.planets.venus.planetRendered) this.planets.venus.remove();
-      if (!this.planets.earth.planetRendered) this.planets.earth.init();
+      if (this.sceneSubjects.venus.planetRendered)
+        this.sceneSubjects.venus.remove();
+      if (!this.sceneSubjects.earth.planetRendered)
+        this.sceneSubjects.earth.init();
     }
     if (currentPercent >= 0.22 && currentPercent <= 0.43) {
-      if (this.planets.earth.planetRendered) this.planets.earth.remove();
-      if (!this.planets.mars.planetRendered) this.planets.mars.init();
+      if (this.sceneSubjects.earth.planetRendered)
+        this.sceneSubjects.earth.remove();
+      if (!this.sceneSubjects.mars.planetRendered)
+        this.sceneSubjects.mars.init();
     }
     if (currentPercent >= 0.43 && currentPercent <= 0.8) {
-      if (this.planets.mars.planetRendered) this.planets.mars.remove();
-      if (!this.planets.jupiter.planetRendered) this.planets.jupiter.init();
+      if (this.sceneSubjects.mars.planetRendered)
+        this.sceneSubjects.mars.remove();
+      if (!this.sceneSubjects.jupiter.planetRendered)
+        this.sceneSubjects.jupiter.init();
+    }
+    if (currentPercent >= 0.43 && currentPercent <= 0.65) {
+      if (this.sceneSubjects.mars.planetRendered)
+        this.sceneSubjects.mars.remove();
+      if (!this.sceneSubjects.jupiter.planetRendered)
+        this.sceneSubjects.jupiter.init();
+    }
+    if (currentPercent >= 0.43 && currentPercent <= 0.65) {
+      if (this.sceneSubjects.mars.planetRendered)
+        this.sceneSubjects.mars.remove();
+      if (!this.sceneSubjects.jupiter.planetRendered)
+        this.sceneSubjects.jupiter.init();
+    }
+    if (currentPercent >= 0.65 && currentPercent <= 0.8) {
+      if (this.sceneSubjects.jupiter.planetRendered)
+        this.sceneSubjects.jupiter.remove();
+      if (!this.sceneSubjects.asteroids.assetRendered)
+        this.sceneSubjects.asteroids.init();
     }
   }
 }
