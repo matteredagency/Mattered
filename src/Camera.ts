@@ -18,25 +18,6 @@ export default class Camera {
     this.experience?.scene?.add(this.perspectiveCamera);
     this.perspectiveCamera.position.set(75, 10, 500);
     this.perspectiveCamera.rotation.y = Math.PI * 0.33;
-    // const folder = this.experience.gui?.addFolder("camera");
-    // folder?.add(
-    //   this.perspectiveCamera?.position as THREE.Vector3,
-    //   "x",
-    //   -500,
-    //   500
-    // );
-    // folder?.add(
-    //   this.perspectiveCamera?.position as THREE.Vector3,
-    //   "y",
-    //   -100,
-    //   100
-    // );
-    // folder?.add(
-    //   this.perspectiveCamera?.position as THREE.Vector3,
-    //   "z",
-    //   -400,
-    //   800
-    // );
   }
 
   resize() {
