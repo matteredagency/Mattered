@@ -13,7 +13,7 @@ export default class Camera {
       75,
       window.innerWidth / window.innerHeight,
       5,
-      2000
+      1000
     );
     this.experience?.scene?.add(this.perspectiveCamera);
     this.perspectiveCamera.position.set(75, 10, 500);
