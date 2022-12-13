@@ -2,8 +2,6 @@ import THREE from "./GlobalImports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
 import createAssetPath from "./utils/createAssetPath";
-import scalePercent from "./utils/scalePercent";
-import lerp from "./utils/lerp";
 import Asteroids from "./Asteroids";
 
 export default class SceneController {

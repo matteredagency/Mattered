@@ -9,7 +9,6 @@ export default class PlaneController {
   }
 
   updatePlaneRotation(currentPercent: number) {
-    console.log(currentPercent);
     if (currentPercent >= 0 && currentPercent <= 0.07) {
       this.experience.spaceObjects.paperPlane.rotation.set(
         0,

@@ -36,5 +36,9 @@ export default class Asteroids {
     folder?.add(this.asset.rotation, "y", -Math.PI, Math.PI);
     folder?.add(this.asset.rotation, "z", -Math.PI, Math.PI);
     folder?.add(this.asset.position, "z", -600, -200);
+    this.experience.spaceObjects.asteroids = this;
+  }
+  rotateAsteroids() {
+    this.asset.children.forEach((mesh) => mesh.rotateX(Math.PI * 0.0008));
   }
 }

@@ -80,6 +80,9 @@ export default class MatteredExperience {
     if (this.spaceObjects.currentPlanet) {
       this.spaceObjects.currentPlanet.rotate();
     }
+    if (this.spaceObjects.asteroids) {
+      this.spaceObjects.asteroids.rotateAsteroids();
+    }
     requestAnimationFrame(() => {
       this.update();
     });
