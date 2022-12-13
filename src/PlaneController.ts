@@ -61,15 +61,37 @@ export default class PlaneController {
         lerp(0, -Math.PI * 0.15, scalePercent(0.36, 0.44, currentPercent))
       );
     }
-    if (currentPercent >= 0.44 && currentPercent <= 0.54) {
+    if (currentPercent >= 0.44 && currentPercent <= 0.52) {
       this.experience.spaceObjects.paperPlane.rotation.set(
         0,
         lerp(
-          Math.PI * 0.26,
+          Math.PI * 0.29,
           -Math.PI * 0.28,
-          scalePercent(0.44, 0.54, currentPercent)
+          scalePercent(0.44, 0.52, currentPercent)
         ),
         -Math.PI * 0.15
+      );
+    }
+    if (currentPercent >= 0.52 && currentPercent <= 0.58) {
+      this.experience.spaceObjects.paperPlane.rotation.set(
+        0,
+        lerp(
+          -Math.PI * 0.28,
+          -Math.PI * 0.23,
+          scalePercent(0.52, 0.58, currentPercent)
+        ),
+        -Math.PI * 0.15
+      );
+    }
+    if (currentPercent >= 0.58 && currentPercent <= 0.81) {
+      this.experience.spaceObjects.paperPlane.rotation.set(
+        0,
+        lerp(
+          -Math.PI * 0.23,
+          -Math.PI * 0.47,
+          scalePercent(0.58, 0.72, currentPercent)
+        ),
+        lerp(-Math.PI * 0.15, 0, scalePercent(0.58, 0.81, currentPercent))
       );
     }
   }
