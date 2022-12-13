@@ -1,4 +1,4 @@
-// import { GUI } from "dat.gui";
+import { GUI } from "dat.gui";
 import THREE from "./GlobalImports";
 import Camera from "./Camera";
 import Controls from "./Controls";
@@ -22,7 +22,7 @@ export default class MatteredExperience {
   spaceObjects!: Space;
   controls?: Controls;
   light?: Light;
-  // gui?: GUI;
+  gui?: GUI;
   track!: Track;
   clock!: THREE.Clock;
   sceneController!: SceneController;
@@ -32,7 +32,7 @@ export default class MatteredExperience {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    // this.gui = new GUI();
+    this.gui = new GUI();
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();

@@ -47,8 +47,8 @@ export default class SceneController {
       ),
       asteroids: new Asteroids(
         createAssetPath("/objects/AsteroidSet.glb"),
-        new THREE.Vector3(100, 0, -400),
-        0.25
+        new THREE.Vector3(100, 0, -435),
+        0.1
       ),
     };
     this.sceneSubjects.venus.init();

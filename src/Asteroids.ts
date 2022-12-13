@@ -24,9 +24,17 @@ export default class Asteroids {
       return;
     }
     this.assetRendered = true;
-    this.asset = (await new Asset("", this.file, 0.05).init()) as THREE.Group;
+    this.asset = (await new Asset(
+      "",
+      this.file,
+      this.size
+    ).init()) as THREE.Group;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
-    this.asset.scale.set(this.size, this.size, this.size);
-    this.experience.scene.add(this.asset);
+    this.asset.rotateY(-Math.PI * 0.1);
+    const folder = this.experience.gui?.addFolder("asteroids");
+    folder?.add(this.asset.rotation, "x", -Math.PI, Math.PI);
+    folder?.add(this.asset.rotation, "y", -Math.PI, Math.PI);
+    folder?.add(this.asset.rotation, "z", -Math.PI, Math.PI);
+    folder?.add(this.asset.position, "z", -600, -200);
   }
 }
