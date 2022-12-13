@@ -39,6 +39,10 @@ export default class Asteroids {
     this.experience.spaceObjects.asteroids = this;
   }
   rotateAsteroids() {
-    this.asset.children.forEach((mesh) => mesh.rotateX(Math.PI * 0.0008));
+    this.asset.children.forEach((mesh, index) => {
+      let pi = Math.PI;
+      if (index % 2 === 0) pi *= -1;
+      mesh.rotateX(pi * 0.0008);
+    });
   }
 }
