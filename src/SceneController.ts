@@ -25,7 +25,7 @@ export default class SceneController {
       ),
       earth: new Planet(
         createAssetPath("/objects/Earth.glb"),
-        true,
+        false,
         0.0005,
         new THREE.Vector3(115, 0, 130),
         0.5
