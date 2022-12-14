@@ -7,7 +7,6 @@ import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
 import SceneController from "./SceneController";
-import createAssetPath from "./utils/createAssetPath";
 import Track from "./Track";
 import { Texture, TextureLoader } from "three";
 import PlaneController from "./PlaneController";
@@ -64,16 +63,15 @@ export default class MatteredExperience {
     this.rendererInstance?.resize();
   }
 
-  // timeControl() {
-  //   if (this.clock.getElapsedTime() < 10) {
-  //     this.spaceObjects?.stars?.updateParticles(true);
-  //     if (this.spaceScene.paperPlane.position.z > 0) {
-  //       this.spaceScene?.paperPlane.translateZ(-2);
-  //     }
-  //   } else {
-  //     this.clock?.stop();
-  //   }
-  // }
+  timeControl() {
+    if (this.clock.getElapsedTime() < 10) {
+      if (this.spaceObjects.paperPlane.position.z > 0) {
+        this.spaceObjects?.paperPlane.translateZ(-2);
+      }
+    } else {
+      this.clock?.stop();
+    }
+  }
 
   update() {
     // this.timeControl();

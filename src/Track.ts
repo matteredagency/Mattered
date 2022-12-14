@@ -52,7 +52,6 @@ export default class Track {
     const p2 = this.path.getPointAt(currentPercent + 0.01);
     this.experience.camera?.perspectiveCamera?.position.set(p1.x, 5, p1.z);
     this.experience.spaceObjects.paperPlane.position.set(p2.x, p2.y, p2.z);
-
     this.experience.camera?.perspectiveCamera?.lookAt(p2);
   }
 }

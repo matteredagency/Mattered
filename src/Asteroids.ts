@@ -31,18 +31,14 @@ export default class Asteroids {
     ).init()) as THREE.Group;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.asset.rotateY(-Math.PI * 0.1);
-    const folder = this.experience.gui?.addFolder("asteroids");
-    folder?.add(this.asset.rotation, "x", -Math.PI, Math.PI);
-    folder?.add(this.asset.rotation, "y", -Math.PI, Math.PI);
-    folder?.add(this.asset.rotation, "z", -Math.PI, Math.PI);
-    folder?.add(this.asset.position, "z", -600, -200);
+
     this.experience.spaceObjects.asteroids = this;
   }
   rotateAsteroids() {
     this.asset.children.forEach((mesh, index) => {
       let pi = Math.PI;
       if (index % 2 === 0) pi *= -1;
-      mesh.rotateX(pi * 0.0008);
+      mesh.rotateX(pi * 0.001);
     });
   }
 }

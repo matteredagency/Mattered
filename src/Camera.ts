@@ -16,7 +16,7 @@ export default class Camera {
       1000
     );
     this.experience?.scene?.add(this.perspectiveCamera);
-    this.perspectiveCamera.position.set(75, 10, 500);
+    this.perspectiveCamera.position.set(75, 5, 500);
     this.perspectiveCamera.rotation.y = Math.PI * 0.33;
   }
 
