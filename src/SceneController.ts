@@ -19,7 +19,7 @@ export default class SceneController {
       venus: new Planet(
         createAssetPath("/objects/Venus.glb"),
         true,
-        0.005,
+        0.0005,
         new THREE.Vector3(-150, 0, 400),
         0.5
       ),
@@ -57,10 +57,9 @@ export default class SceneController {
         2
       ),
     };
-    // (async () => {
-    //   await this.sceneSubjects.venus.init();
-    //   this.sceneSubjects.venus.asset.rotateX(Math.PI * 0.5);
-    // })();
+    (async () => {
+      await this.sceneSubjects.venus.init();
+    })();
 
     this.experience = new MatteredExperience();
   }
