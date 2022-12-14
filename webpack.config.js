@@ -46,9 +46,9 @@ module.exports = {
         use: ["file-loader"],
       },
       {
-        test: /\.(glsl)$/,
+        test: /\.glsl$/,
         exclude: [/node_modules/],
-        use: ["raw-loader"],
+        loader: "webpack-glsl-loader",
       },
     ],
   },
