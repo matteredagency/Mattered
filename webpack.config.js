@@ -42,7 +42,13 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg|glb|webp)$/,
+        exclude: [/node_modules/, /dist/],
         use: ["file-loader"],
+      },
+      {
+        test: /\.(glsl)$/,
+        exclude: [/node_modules/],
+        use: ["raw-loader"],
       },
     ],
   },
