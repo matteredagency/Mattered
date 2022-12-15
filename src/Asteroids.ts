@@ -1,6 +1,7 @@
-import Asset from "./Asset";
 import MatteredExperience from "./MatteredExperience";
 import THREE from "./GlobalImports";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class Asteroids {
   experience!: MatteredExperience;
@@ -24,11 +25,26 @@ export default class Asteroids {
       return;
     }
     this.assetRendered = true;
-    this.asset = (await new Asset(
-      "",
-      this.file,
-      this.size
-    ).init()) as THREE.Group;
+    const texture = new THREE.TextureLoader().load(
+      createAssetPath("/assets/textures/NicholasCage.webp")
+    );
+    texture.flipY = false;
+    console.log(texture);
+
+    this.asset = await new Promise((res) =>
+      new GLTFLoader().load(this.file, (gltf) => {
+        this.asset = gltf.scene;
+        gltf.scene.scale.set(0.5, 0.5, 0.5);
+        this.asset.traverse((o) => {
+          if (o.isMesh) {
+            console.log(o);
+            o.material.map = texture;
+          }
+        });
+        this.experience.scene?.add(this.asset);
+        res(this.asset);
+      })
+    );
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.asset.rotateY(-Math.PI * 0.1);
 
