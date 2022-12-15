@@ -34,13 +34,8 @@ export default class Asteroids {
     this.asset = await new Promise((res) =>
       new GLTFLoader().load(this.file, (gltf) => {
         this.asset = gltf.scene;
-        gltf.scene.scale.set(0.5, 0.5, 0.5);
-        this.asset.traverse((o) => {
-          if (o.isMesh) {
-            console.log(o);
-            o.material.map = texture;
-          }
-        });
+        gltf.scene.scale.set(0.2, 0.2, 0.2);
+
         this.experience.scene?.add(this.asset);
         res(this.asset);
       })
