@@ -20,7 +20,7 @@ export default class MatteredExperience {
   rendererInstance?: Renderer;
   spaceObjects!: Space;
   controls?: Controls;
-  light?: Lights;
+  lights?: Lights;
   gui?: GUI;
   track!: Track;
   clock!: THREE.Clock;
@@ -40,7 +40,7 @@ export default class MatteredExperience {
     this.rendererInstance = new Renderer();
     this.spaceObjects = new Space();
     this.controls = new Controls();
-    this.light = new Lights();
+    this.lights = new Lights();
     this.sizes.on("resize", () => {
       this.resize();
     });
