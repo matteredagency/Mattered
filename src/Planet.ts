@@ -66,6 +66,8 @@ export default class Planet {
         fragmentShader: atmosphereFragment,
         blending: THREE.AdditiveBlending,
         side: THREE.BackSide,
+        transparent: true,
+        opacity: 0.5,
       })
     );
 
