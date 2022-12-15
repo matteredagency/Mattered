@@ -2,7 +2,7 @@ import { GUI } from "dat.gui";
 import THREE from "./GlobalImports";
 import Camera from "./Camera";
 import Controls from "./Controls";
-import Light from "./Light";
+import Lights from "./Lights";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
 import Space from "./Space";
@@ -20,7 +20,7 @@ export default class MatteredExperience {
   rendererInstance?: Renderer;
   spaceObjects!: Space;
   controls?: Controls;
-  light?: Light;
+  light?: Lights;
   gui?: GUI;
   track!: Track;
   clock!: THREE.Clock;
@@ -40,7 +40,7 @@ export default class MatteredExperience {
     this.rendererInstance = new Renderer();
     this.spaceObjects = new Space();
     this.controls = new Controls();
-    this.light = new Light();
+    this.light = new Lights();
     this.sizes.on("resize", () => {
       this.resize();
     });
