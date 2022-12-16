@@ -8,15 +8,14 @@ const vertexShader = require("./shaders/vertex.glsl");
 const fragmentShader = require("./shaders/fragment.glsl");
 const atmosphereVertex = require("./shaders/atmosphereVertex.glsl");
 const atmosphereFragment = require("./shaders/atmosphereFragment.glsl");
-
 interface PlanetConstructorParameters {
-  texturePath: string;
   clockWiseRotation: boolean;
   rotationSpeed: number;
   position: THREE.Vector3;
   size: number;
   atmosphereColor: THREE.Vector3;
   atmosphereIntensity: THREE.Vector3;
+  modelPath: string;
 }
 export default class Planet {
   static instance: Planet | null;
@@ -30,23 +29,24 @@ export default class Planet {
   position!: THREE.Vector3;
   atmosphereColor: THREE.Vector3;
   atmosphereIntensity: THREE.Vector3;
+  modelPath: string;
   constructor({
-    texturePath,
     clockWiseRotation,
     rotationSpeed,
     position,
     size,
     atmosphereColor,
+    modelPath,
     atmosphereIntensity,
   }: PlanetConstructorParameters) {
     this.experience = new MatteredExperience();
     this.rotationSpeed = rotationSpeed;
     this.rotationDirection = clockWiseRotation ? -1 : 1;
-    this.texturePath = texturePath;
     this.size = size;
     this.position = position;
     this.atmosphereColor = atmosphereColor;
     this.atmosphereIntensity = atmosphereIntensity;
+    this.modelPath = modelPath;
   }
 
   async init() {
@@ -59,26 +59,15 @@ export default class Planet {
       return;
     }
 
-    // const sphere = new THREE.Mesh(
-    //   new THREE.SphereGeometry(100, 45, 45),
-    //   new THREE.ShaderMaterial({
-    //     vertexShader,
-    //     fragmentShader,
-    //     uniforms: {
-    //       globeTexture: {
-    //         value: new THREE.TextureLoader().load(this.texturePath),
-    //       },
-    //     },
-    //   })
-    // );
-
     this.asset = new THREE.Group();
 
     // change emissive property on glb too.
-    new GLTFLoader().load(createAssetPath("/objects/Earth.glb"), (gltf) => {
+    new GLTFLoader().load(this.modelPath, (gltf) => {
       gltf.scene.children.forEach((o) => {
-        if (o instanceof THREE.Mesh && o.isMesh) {
-          o.material.color.set(0xffdcb5);
+        if (o.isMesh) {
+          o.material.color.set(0xb0f7ff);
+          o.material.emissive = new THREE.Color(0xb0f7ff);
+          o.material.emissiveIntensity = 0.1;
         }
       });
 
@@ -87,7 +76,7 @@ export default class Planet {
 
     // create atmosphere
     const atmosphere = new THREE.Mesh(
-      new THREE.SphereGeometry(100, 30, 30),
+      new THREE.SphereGeometry(35, 30, 30),
       new THREE.ShaderMaterial({
         vertexShader: atmosphereVertex,
         fragmentShader: atmosphereFragment,
@@ -101,9 +90,9 @@ export default class Planet {
     this.asset.add(atmosphere);
 
     this.planetRendered = true;
-    this.experience.scene.add(this.asset);
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.experience.spaceObjects.currentPlanet = this;
+    this.experience.scene.add(this.asset);
   }
 
   rotate() {

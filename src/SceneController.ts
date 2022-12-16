@@ -17,7 +17,7 @@ export default class SceneController {
   constructor() {
     this.sceneSubjects = {
       venus: new Planet({
-        texturePath: createAssetPath("/textures/VenusTexture.jpg"),
+        modelPath: createAssetPath("/objects/Venus.glb"),
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-150, 0, 400),
@@ -26,7 +26,7 @@ export default class SceneController {
         atmosphereIntensity: new THREE.Vector3(),
       }),
       earth: new Planet({
-        texturePath: createAssetPath("/textures/EarthTexture.jpg"),
+        modelPath: createAssetPath("/objects/Earth.glb"),
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(115, 0, 130),
@@ -35,7 +35,7 @@ export default class SceneController {
         atmosphereIntensity: new THREE.Vector3(),
       }),
       mars: new Planet({
-        texturePath: createAssetPath("/textures/MarsTexture.jpg"),
+        modelPath: createAssetPath("/objects/Mars.glb"),
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-330, 0, 38),
@@ -44,7 +44,7 @@ export default class SceneController {
         atmosphereIntensity: new THREE.Vector3(),
       }),
       jupiter: new Planet({
-        texturePath: createAssetPath("/textures/JupiterTexture.jpg"),
+        modelPath: createAssetPath("/objects/Jupiter.glb"),
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-450, 0, -425),
@@ -58,7 +58,7 @@ export default class SceneController {
         0.1
       ),
       saturn: new Planet({
-        texturePath: createAssetPath("/textures/SaturnTexture.jpg"),
+        modelPath: createAssetPath("/objects/Saturn.glb"),
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(750, 0, -400),
