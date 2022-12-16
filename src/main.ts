@@ -8,4 +8,6 @@ new MatteredExperience(
 
 const audio = document.getElementById("ambient-sound") as HTMLAudioElement;
 
-if (audio) audio.play();
+if (audio) {
+  audio.play();
+}

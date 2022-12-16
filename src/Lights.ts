@@ -20,11 +20,11 @@ export default class Lights {
     this.experience.scene?.add(this.ambientLight);
     this.experience.scene.add(this.planeLight);
 
-    const folder = this.experience.gui?.addFolder("light");
-    folder?.add(this.planeLight, "intensity", -100, 100);
-    folder?.add(this.planeLight, "distance", -100, 100);
-    folder?.add(this.planeLight, "decay", -100, 100);
-    folder?.add(this.planeLight.position, "y", 0, 10);
+    // const folder = this.experience.gui?.addFolder("light");
+    // folder?.add(this.planeLight, "intensity", -100, 100);
+    // folder?.add(this.planeLight, "distance", -100, 100);
+    // folder?.add(this.planeLight, "decay", -100, 100);
+    // folder?.add(this.planeLight.position, "y", 0, 10);
 
     // this.sun.rotateY(Math.PI);
     return this;
