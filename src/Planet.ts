@@ -11,11 +11,12 @@ interface PlanetConstructorParameters {
   clockWiseRotation: boolean;
   rotationSpeed: number;
   position: THREE.Vector3;
-  size: number;
+  planetScale: number;
   atmosphereColor?: THREE.Color;
   atmosphereIntensity?: number;
   modelPath: string;
   emissiveColor?: THREE.Color;
+  atmosphereRadius?: number;
   emissiveIntensity?: number;
 }
 export default class Planet {
@@ -25,31 +26,34 @@ export default class Planet {
   rotationDirection!: number;
   planetRendered!: boolean;
   texturePath!: string;
-  size!: number;
+  planetScale!: number;
   position!: THREE.Vector3;
   atmosphereColor?: THREE.Color;
   atmosphereIntensity?: number;
   emissiveColor?: THREE.Color;
+  atmosphereRadius?: number;
   emissiveIntensity?: number;
   modelPath: string;
   constructor({
     clockWiseRotation,
     rotationSpeed,
     position,
-    size,
+    planetScale,
     atmosphereColor,
     modelPath,
     atmosphereIntensity,
+    atmosphereRadius,
     emissiveColor,
   }: PlanetConstructorParameters) {
     this.experience = new MatteredExperience();
     this.rotationSpeed = rotationSpeed;
     this.rotationDirection = clockWiseRotation ? -1 : 1;
-    this.size = size;
+    this.planetScale = planetScale;
     this.position = position;
     this.atmosphereColor = atmosphereColor;
     this.atmosphereIntensity = atmosphereIntensity;
     this.modelPath = modelPath;
+    this.atmosphereRadius = atmosphereRadius;
     this.emissiveColor = emissiveColor;
   }
 
@@ -69,6 +73,11 @@ export default class Planet {
 
     // change emissive property on glb too.
     new GLTFLoader().load(this.modelPath, (gltf) => {
+      gltf.scene.scale.set(
+        this.planetScale,
+        this.planetScale,
+        this.planetScale
+      );
       gltf.scene.children.forEach((o) => {
         if (o.isMesh && this.emissiveColor) {
           // o.material.color.set(this.emissiveColor.getHex);
@@ -80,9 +89,9 @@ export default class Planet {
       this.asset.add(gltf.scene);
     });
 
-    if (this.atmosphereColor) {
+    if (this.atmosphereColor && this.atmosphereRadius) {
       const atmosphere = new THREE.Mesh(
-        new THREE.SphereGeometry(35, 30, 30),
+        new THREE.SphereGeometry(this.atmosphereRadius, 30, 30),
         new THREE.ShaderMaterial({
           vertexShader: atmosphereVertex,
           fragmentShader: atmosphereFragment,
