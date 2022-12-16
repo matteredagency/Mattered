@@ -22,8 +22,8 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-150, 0, 400),
         size: 100,
-        atmosphereColor: new THREE.Vector3(),
-        atmosphereIntensity: new THREE.Vector3(),
+        // atmosphereColor: new THREE.Vector3(),
+        // atmosphereIntensity: new THREE.Vector3(),
       }),
       earth: new Planet({
         modelPath: createAssetPath("/objects/Earth.glb"),
@@ -31,7 +31,7 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(115, 0, 130),
         size: 100,
-        atmosphereColor: new THREE.Vector3(),
+        atmosphereColor: new THREE.Color(0x4c9aff),
         atmosphereIntensity: new THREE.Vector3(),
       }),
       mars: new Planet({
@@ -40,8 +40,8 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-330, 0, 38),
         size: 100,
-        atmosphereColor: new THREE.Vector3(),
-        atmosphereIntensity: new THREE.Vector3(),
+        // atmosphereColor: new THREE.Vector3(),
+        // atmosphereIntensity: new THREE.Vector3(),
       }),
       jupiter: new Planet({
         modelPath: createAssetPath("/objects/Jupiter.glb"),
@@ -49,8 +49,8 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-450, 0, -425),
         size: 100,
-        atmosphereColor: new THREE.Vector3(),
-        atmosphereIntensity: new THREE.Vector3(),
+        // atmosphereColor: new THREE.Vector3(),
+        // atmosphereIntensity: new THREE.Vector3(),
       }),
       asteroids: new Asteroids(
         createAssetPath("/objects/AsteroidSet.glb"),
@@ -63,8 +63,8 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(750, 0, -400),
         size: 100,
-        atmosphereColor: new THREE.Vector3(),
-        atmosphereIntensity: new THREE.Vector3(),
+        // atmosphereColor: new THREE.Vector3(),
+        // atmosphereIntensity: new THREE.Vector3(),
       }),
     };
 
