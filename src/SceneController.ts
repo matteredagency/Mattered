@@ -16,50 +16,59 @@ export default class SceneController {
   };
   constructor() {
     this.sceneSubjects = {
-      venus: new Planet(
-        createAssetPath("/objects/Venus.glb"),
-        true,
-        0.0005,
-        new THREE.Vector3(-150, 0, 400),
-        0.5
-      ),
-      earth: new Planet(
-        createAssetPath("/objects/EARTH_03.glb"),
-        false,
-        0.0005,
-        new THREE.Vector3(115, 0, 130),
-        0.5
-      ),
-      mars: new Planet(
-        createAssetPath("/objects/Mars.glb"),
-        true,
-        0.0005,
-        new THREE.Vector3(-330, 0, 38),
-        0.5
-      ),
-      jupiter: new Planet(
-        createAssetPath("/objects/Jupiter.glb"),
-        true,
-        0.0005,
-        new THREE.Vector3(-450, 0, -425),
-        2
-      ),
+      venus: new Planet({
+        texturePath: createAssetPath("/textures/VenusTexture.jpg"),
+        clockWiseRotation: true,
+        rotationSpeed: 0.0005,
+        position: new THREE.Vector3(-150, 0, 400),
+        size: 100,
+        atmosphereColor: new THREE.Vector3(),
+        atmosphereIntensity: new THREE.Vector3(),
+      }),
+      earth: new Planet({
+        texturePath: createAssetPath("/textures/EarthTexture.jpg"),
+        clockWiseRotation: true,
+        rotationSpeed: 0.0005,
+        position: new THREE.Vector3(115, 0, 130),
+        size: 100,
+        atmosphereColor: new THREE.Vector3(),
+        atmosphereIntensity: new THREE.Vector3(),
+      }),
+      mars: new Planet({
+        texturePath: createAssetPath("/textures/MarsTexture.jpg"),
+        clockWiseRotation: true,
+        rotationSpeed: 0.0005,
+        position: new THREE.Vector3(-330, 0, 38),
+        size: 100,
+        atmosphereColor: new THREE.Vector3(),
+        atmosphereIntensity: new THREE.Vector3(),
+      }),
+      jupiter: new Planet({
+        texturePath: createAssetPath("/textures/JupiterTexture.jpg"),
+        clockWiseRotation: true,
+        rotationSpeed: 0.0005,
+        position: new THREE.Vector3(-450, 0, -425),
+        size: 100,
+        atmosphereColor: new THREE.Vector3(),
+        atmosphereIntensity: new THREE.Vector3(),
+      }),
       asteroids: new Asteroids(
         createAssetPath("/objects/AsteroidSet.glb"),
         new THREE.Vector3(100, 0, -435),
         0.1
       ),
-      saturn: new Planet(
-        createAssetPath("/objects/Saturn.glb"),
-        true,
-        0.0005,
-        new THREE.Vector3(750, 0, -400),
-        2
-      ),
+      saturn: new Planet({
+        texturePath: createAssetPath("/textures/SaturnTexture.jpg"),
+        clockWiseRotation: true,
+        rotationSpeed: 0.0005,
+        position: new THREE.Vector3(750, 0, -400),
+        size: 100,
+        atmosphereColor: new THREE.Vector3(),
+        atmosphereIntensity: new THREE.Vector3(),
+      }),
     };
-    (async () => {
-      await this.sceneSubjects.venus.init();
-    })();
+
+    this.sceneSubjects.venus.init();
 
     this.experience = new MatteredExperience();
   }
