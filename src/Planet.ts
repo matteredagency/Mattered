@@ -77,10 +77,7 @@ export default class Planet {
     // change emissive property on glb too.
     new GLTFLoader().load(createAssetPath("/objects/Earth.glb"), (gltf) => {
       gltf.scene.children.forEach((o) => {
-        console.log(typeof o);
-        if (o.isMesh) {
-          //o.material = mtl;
-          console.log(o.material);
+        if (o instanceof THREE.Mesh && o.isMesh) {
           o.material.color.set(0xffdcb5);
         }
       });
