@@ -4,8 +4,7 @@ import MatteredExperience from "./MatteredExperience";
 import createAssetPath from "./utils/createAssetPath";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { MeshStandardMaterial } from "three";
-const vertexShader = require("./shaders/vertex.glsl");
-const fragmentShader = require("./shaders/fragment.glsl");
+
 const atmosphereVertex = require("./shaders/atmosphereVertex.glsl");
 const atmosphereFragment = require("./shaders/atmosphereFragment.glsl");
 interface PlanetConstructorParameters {
