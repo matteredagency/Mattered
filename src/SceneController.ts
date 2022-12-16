@@ -27,11 +27,11 @@ export default class SceneController {
       }),
       earth: new Planet({
         modelPath: createAssetPath("/objects/Earth.glb"),
-        clockWiseRotation: true,
+        clockWiseRotation: false,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(115, 0, 130),
         planetScale: 0.45,
-        atmosphereRadius: 16,
+        atmosphereRadius: 15.5,
         atmosphereColor: new THREE.Color(0x4c9aff),
       }),
       mars: new Planet({
