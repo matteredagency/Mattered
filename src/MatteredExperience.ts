@@ -10,6 +10,7 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import { Texture, TextureLoader } from "three";
 import PlaneController from "./PlaneController";
+import createAssetPath from "./utils/createAssetPath";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -50,6 +51,16 @@ export default class MatteredExperience {
     this.planeController = new PlaneController();
     this.track = new Track();
 
+    // this.scene.background = new THREE.CubeTextureLoader()
+    //   .setPath(createAssetPath("/textures/"))
+    //   .load([
+    //     "bkg1_left.jpg",
+    //     "bkg1_right.jpg",
+    //     "bkg1_top.jpg",
+    //     "bkg1_bot.jpg",
+    //     "bkg1_back.jpg",
+    //     "bkg1_front.jpg",
+    //   ]);
     this.init();
   }
 

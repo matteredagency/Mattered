@@ -18,6 +18,7 @@ interface PlanetConstructorParameters {
   emissiveColor?: THREE.Color;
   atmosphereRadius?: number;
   emissiveIntensity?: number;
+  tilt?: number;
 }
 export default class Planet {
   asset!: THREE.Group;
@@ -34,6 +35,7 @@ export default class Planet {
   atmosphereRadius?: number;
   emissiveIntensity?: number;
   modelPath: string;
+  tilt?: number;
   constructor({
     clockWiseRotation,
     rotationSpeed,
@@ -44,6 +46,8 @@ export default class Planet {
     atmosphereIntensity,
     atmosphereRadius,
     emissiveColor,
+    emissiveIntensity,
+    tilt,
   }: PlanetConstructorParameters) {
     this.experience = new MatteredExperience();
     this.rotationSpeed = rotationSpeed;
@@ -55,6 +59,8 @@ export default class Planet {
     this.modelPath = modelPath;
     this.atmosphereRadius = atmosphereRadius;
     this.emissiveColor = emissiveColor;
+    this.emissiveIntensity = emissiveIntensity;
+    this.tilt = tilt;
   }
 
   async init() {
@@ -69,22 +75,12 @@ export default class Planet {
 
     this.asset = new THREE.Group();
 
-    console.log(new THREE.Color(0xb0f7ff).convertLinearToSRGB());
-
-    // change emissive property on glb too.
     new GLTFLoader().load(this.modelPath, (gltf) => {
       gltf.scene.scale.set(
         this.planetScale,
         this.planetScale,
         this.planetScale
       );
-      gltf.scene.children.forEach((o) => {
-        if (o.isMesh && this.emissiveColor) {
-          // o.material.color.set(this.emissiveColor.getHex);
-          o.material.emissive = this.emissiveColor;
-          o.material.emissiveIntensity = this.emissiveIntensity;
-        }
-      });
 
       this.asset.add(gltf.scene);
     });
@@ -122,7 +118,12 @@ export default class Planet {
   }
 
   rotate() {
-    this.asset.rotateY(Math.PI * this.rotationSpeed * this.rotationDirection);
+    this.asset.rotation.y +=
+      Math.PI * this.rotationSpeed * this.rotationDirection;
+    if (this.tilt) {
+      // this.asset.rotation.x = this.tilt;
+      this.asset.rotation.x = this.tilt;
+    }
   }
   remove() {
     if (!this.planetRendered) return;

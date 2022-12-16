@@ -19,7 +19,7 @@ export default class SceneController {
       venus: new Planet({
         modelPath: createAssetPath("/objects/Venus.glb"),
         clockWiseRotation: true,
-        rotationSpeed: 0.0005,
+        rotationSpeed: 0.0003,
         position: new THREE.Vector3(-150, 0, 400),
         planetScale: 0.45,
         atmosphereColor: new THREE.Color(0xffd494),
@@ -28,7 +28,7 @@ export default class SceneController {
       earth: new Planet({
         modelPath: createAssetPath("/objects/Earth.glb"),
         clockWiseRotation: false,
-        rotationSpeed: 0.0005,
+        rotationSpeed: 0.0003,
         position: new THREE.Vector3(115, 0, 130),
         planetScale: 0.45,
         atmosphereRadius: 15.5,
@@ -42,7 +42,6 @@ export default class SceneController {
         planetScale: 0.45,
         atmosphereColor: new THREE.Color(0xbab19e),
         atmosphereRadius: 15.25,
-        // atmosphereIntensity: new THREE.Vector3(),
       }),
       jupiter: new Planet({
         modelPath: createAssetPath("/objects/Jupiter.glb"),
@@ -50,8 +49,6 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-450, 0, -425),
         planetScale: 2,
-        // atmosphereColor: new THREE.Vector3(),
-        // atmosphereIntensity: new THREE.Vector3(),
       }),
       asteroids: new Asteroids(
         createAssetPath("/objects/AsteroidSet.glb"),
@@ -64,6 +61,7 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(750, 0, -400),
         planetScale: 2,
+        tilt: Math.PI * 1.15,
         // atmosphereColor: new THREE.Vector3(),
         // atmosphereIntensity: new THREE.Vector3(),
       }),
