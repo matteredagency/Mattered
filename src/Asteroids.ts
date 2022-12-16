@@ -25,11 +25,6 @@ export default class Asteroids {
       return;
     }
     this.assetRendered = true;
-    const texture = new THREE.TextureLoader().load(
-      createAssetPath("/assets/textures/NicholasCage.webp")
-    );
-    texture.flipY = false;
-    console.log(texture);
 
     this.asset = await new Promise((res) =>
       new GLTFLoader().load(this.file, (gltf) => {
