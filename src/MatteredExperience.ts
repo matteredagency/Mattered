@@ -53,12 +53,12 @@ export default class MatteredExperience {
     this.scene.background = new THREE.CubeTextureLoader()
       .setPath(createAssetPath("/textures/"))
       .load([
-        "bkg2_left.jpg",
-        "bkg2_right.jpg",
-        "bkg2_top.jpg",
-        "bkg2_bot.jpg",
-        "bkg2_back.jpg",
-        "bkg2_front.jpg",
+        "bkg4_left.jpg",
+        "bkg4_right.jpg",
+        "bkg4_top.jpg",
+        "bkg4_bot.jpg",
+        "bkg4_front.jpg",
+        "bkg4_back.jpg",
       ]);
     this.init();
   }
