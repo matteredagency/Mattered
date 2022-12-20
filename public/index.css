@@ -4,6 +4,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   width: 100%;
+  background: black;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -31,8 +32,10 @@ html {
 }
 
 #canvas-scene {
+  opacity: 0;
   height: 100%;
   width: 100%;
+  transition: opacity 2.5s ease;
   position: absolute;
 }
 
@@ -42,7 +45,7 @@ svg {
   left: 50%;
   transform: translate(-50%, -50%) scale3d(1, 1, 1);
   z-index: 3;
-  transition: transform 2s ease-in;
+  transition: transform 2s ease;
 }
 
 .cls-1 {
@@ -50,12 +53,17 @@ svg {
 }
 
 #mattered-triangle {
+  transition: fill 2s ease-out;
   fill: transparent;
   cursor: pointer;
 }
 
 .pass-through {
-  transform: translate(-300%, -50%) scale3d(100, 100, 1);
+  transform: translate(-300%, 20%) scale3d(100, 100, 1);
+}
+
+.fade-in {
+  opacity: 1 !important;
 }
 
 @media (orientation: portrait) {
