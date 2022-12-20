@@ -11,7 +11,7 @@ if (triangle) {
       svgElement.classList.add("pass-through");
       setTimeout(() => {
         svgElement.remove();
-      }, 3000);
+      }, 2000);
     }
   });
 }
