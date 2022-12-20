@@ -1,4 +1,4 @@
-import { GUI } from "dat.gui";
+// import { GUI } from "dat.gui";
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
@@ -10,7 +10,6 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
 import createAssetPath from "../../utils/createAssetPath";
-import { DataTextureLoader } from "three";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -21,7 +20,7 @@ export default class MatteredExperience {
   spaceObjects!: Space;
   controls?: Controls;
   lights?: Lights;
-  gui?: GUI;
+  // gui?: GUI;
   track!: Track;
   clock!: THREE.Clock;
   sceneController!: SceneController;
@@ -32,7 +31,7 @@ export default class MatteredExperience {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    this.gui = new GUI();
+    // this.gui = new GUI();
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();

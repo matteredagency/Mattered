@@ -1,7 +1,6 @@
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
+import { GLTFLoader } from "../globalmports";
 const atmosphereVertex = require("../shaders/atmosphereVertex.glsl");
 const atmosphereFragment = require("../shaders/atmosphereFragment.glsl");
 interface PlanetConstructorParameters {

@@ -1,5 +1,5 @@
 import THREE from "../globalmports";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 
 export default class Asset {
