@@ -48,12 +48,12 @@ svg {
   fill: #fff;
 }
 
-.cls-2 {
+#mattered-triangle {
   fill: transparent;
   cursor: pointer;
 }
 
-@media (orientation: portrait) {
+@media (max-width: 900px) {
   svg {
     height: 100%;
     width: auto;
