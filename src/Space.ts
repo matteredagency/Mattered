@@ -20,7 +20,7 @@ export default class Space {
   async init() {
     this.paperPlane = (await new Asset(
       "paperplane",
-      createAssetPath("/objects/PaperPlane2.glb"),
+      createAssetPath("/objects/PaperPlane3.glb"),
       0.125
     ).init()) as Group;
     await this.stars?.init();
