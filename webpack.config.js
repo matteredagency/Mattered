@@ -11,7 +11,10 @@ const environment = process.env.NODE_ENV || "development";
 const isDevelopment = environment === "development";
 
 module.exports = {
-  entry: "./src/main.ts",
+  entry: {
+    main: "./src/main.ts",
+    intro: "./src/intro.ts",
+  },
   mode: environment,
   context: __dirname,
   resolve: {
