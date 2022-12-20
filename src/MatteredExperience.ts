@@ -1,4 +1,4 @@
-// import { GUI } from "dat.gui";
+import { GUI } from "dat.gui";
 import THREE from "./GlobalImports";
 import Camera from "./Camera";
 import Controls from "./Controls";
@@ -10,7 +10,7 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
 import createAssetPath from "./utils/createAssetPath";
-
+import { DataTextureLoader } from "three";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -21,17 +21,18 @@ export default class MatteredExperience {
   spaceObjects!: Space;
   controls?: Controls;
   lights?: Lights;
-  // gui?: GUI;
+  gui?: GUI;
   track!: Track;
   clock!: THREE.Clock;
   sceneController!: SceneController;
   planeController!: PlaneController;
+
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    // this.gui = new GUI();
+    this.gui = new GUI();
 
     this.canvas = canvas;
     this.scene = new THREE.Scene();
@@ -45,8 +46,10 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock(true);
+
     this.clock.start();
     this.sceneController = new SceneController();
+
     this.planeController = new PlaneController();
     this.track = new Track();
 
@@ -55,11 +58,12 @@ export default class MatteredExperience {
       .load([
         "bkg4_left.jpg",
         "bkg4_right.jpg",
-        "bkg4_top.jpg",
-        "bkg4_bot.jpg",
+        "bkg4_bot_turned.jpg",
+        "bkg4_top_turned.jpg",
         "bkg4_front.jpg",
         "bkg4_back.jpg",
       ]);
+
     this.init();
   }
 

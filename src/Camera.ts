@@ -15,6 +15,11 @@ export default class Camera {
       5,
       1000
     );
+
+    const folder = this.experience.gui?.addFolder("camera");
+
+    folder?.add(this.perspectiveCamera.rotation, "x", 0, Math.PI * 2);
+
     this.experience?.scene?.add(this.perspectiveCamera);
     this.perspectiveCamera.position.set(75, 5, 500);
     this.perspectiveCamera.rotation.y = Math.PI * 0.33;
