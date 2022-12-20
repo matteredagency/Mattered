@@ -9,7 +9,7 @@ import Space from "./Space";
 import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
-import createAssetPath from "./utils/createAssetPath";
+import createAssetPath from "../../utils/createAssetPath";
 import { DataTextureLoader } from "three";
 export default class MatteredExperience {
   static instance: MatteredExperience;

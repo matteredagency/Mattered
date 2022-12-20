@@ -1,7 +1,7 @@
 import MatteredExperience from "./MatteredExperience";
 import THREE from "../globalmports";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import createAssetPath from "./utils/createAssetPath";
+import createAssetPath from "../../utils/createAssetPath";
 
 export default class Asteroids {
   experience!: MatteredExperience;

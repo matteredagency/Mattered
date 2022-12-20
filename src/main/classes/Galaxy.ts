@@ -1,6 +1,6 @@
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
-import createAssetPath from "./utils/createAssetPath";
+import createAssetPath from "../../utils/createAssetPath";
 
 export default class Galaxy {
   geometry?: THREE.SphereGeometry;
