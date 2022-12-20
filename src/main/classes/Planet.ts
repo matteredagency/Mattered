@@ -1,12 +1,9 @@
-import THREE from "./GlobalImports";
-import Asset from "./Asset";
+import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
-import createAssetPath from "./utils/createAssetPath";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { MeshStandardMaterial } from "three";
 
-const atmosphereVertex = require("./shaders/atmosphereVertex.glsl");
-const atmosphereFragment = require("./shaders/atmosphereFragment.glsl");
+const atmosphereVertex = require("../shaders/atmosphereVertex.glsl");
+const atmosphereFragment = require("../shaders/atmosphereFragment.glsl");
 interface PlanetConstructorParameters {
   clockWiseRotation: boolean;
   rotationSpeed: number;

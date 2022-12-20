@@ -12,8 +12,8 @@ const isDevelopment = environment === "development";
 
 module.exports = {
   entry: {
-    main: "./src/main.ts",
-    intro: "./src/intro.ts",
+    main: "./src/main/main.ts",
+    intro: "./src/intro/intro.ts",
   },
   mode: environment,
   context: __dirname,

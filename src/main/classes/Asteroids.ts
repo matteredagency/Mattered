@@ -1,5 +1,5 @@
 import MatteredExperience from "./MatteredExperience";
-import THREE from "./GlobalImports";
+import THREE from "../globalmports";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import createAssetPath from "./utils/createAssetPath";
 

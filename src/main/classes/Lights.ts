@@ -1,4 +1,4 @@
-import THREE from "./GlobalImports";
+import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 
 export default class Lights {

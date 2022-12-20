@@ -1,7 +1,7 @@
-import THREE from "./GlobalImports";
+import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
-import createAssetPath from "./utils/createAssetPath";
+import createAssetPath from "../../utils/createAssetPath";
 import Asteroids from "./Asteroids";
 
 export default class SceneController {

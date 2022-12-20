@@ -1,8 +1,8 @@
 import { Color, PointLight, Vector3 } from "three";
-import THREE from "./GlobalImports";
+import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
-import createAssetPath from "./utils/createAssetPath";
+import createAssetPath from "../../utils/createAssetPath";
 
 export default class Track {
   experience: MatteredExperience;

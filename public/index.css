@@ -48,6 +48,11 @@ svg {
   fill: #fff;
 }
 
+.cls-2 {
+  fill: transparent;
+  cursor: pointer;
+}
+
 @media (orientation: portrait) {
   svg {
     height: 100%;

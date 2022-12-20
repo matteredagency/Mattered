@@ -5,7 +5,7 @@ import Asteroids from "./Asteroids";
 import Galaxy from "./Galaxy";
 import Planet from "./Planet";
 import Stars from "./Stars";
-import createAssetPath from "./utils/createAssetPath";
+import createAssetPath from "../../utils/createAssetPath";
 
 export default class Space {
   galaxy?: Galaxy;

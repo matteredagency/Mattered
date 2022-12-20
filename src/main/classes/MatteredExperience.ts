@@ -1,5 +1,5 @@
 import { GUI } from "dat.gui";
-import THREE from "./GlobalImports";
+import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
 import Lights from "./Lights";

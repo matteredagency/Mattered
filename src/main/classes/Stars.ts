@@ -1,8 +1,8 @@
-import THREE from "./GlobalImports";
+import THREE from "../globalmports";
 import { PointsMaterial } from "three";
 import MatteredExperience from "./MatteredExperience";
-import randomNumInRange from "./utils/randomNumInRange";
-import createAssetPath from "./utils/createAssetPath";
+import randomNumInRange from "../../utils/randomNumInRange";
+import createAssetPath from "../../utils/createAssetPath";
 
 export default class Stars {
   geometry: THREE.BufferGeometry;

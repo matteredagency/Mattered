@@ -1,6 +1,5 @@
-import MatteredExperience from "./MatteredExperience";
-import THREE from "./GlobalImports";
-import "../public/index.css";
+import MatteredExperience from "./classes/MatteredExperience";
+import THREE from "./globalmports";
 
 new MatteredExperience(
   document.getElementById("canvas-scene") as HTMLCanvasElement

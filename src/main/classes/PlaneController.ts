@@ -1,6 +1,6 @@
 import MatteredExperience from "./MatteredExperience";
-import lerp from "./utils/lerp";
-import scalePercent from "./utils/scalePercent";
+import lerp from "../../utils/lerp";
+import scalePercent from "../../utils/scalePercent";
 
 export default class PlaneController {
   experience: MatteredExperience;
