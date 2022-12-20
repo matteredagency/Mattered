@@ -1,7 +1,17 @@
 import "../../public/index.css";
 
-const triangle = document.querySelector(".cls-2");
+const triangle = document.getElementById("mattered-triangle");
+const svgElement = document.querySelector("svg");
 
 if (triangle) {
-  triangle.addEventListener("click", () => {});
+  triangle.addEventListener("click", () => {
+    console.log("clicked on svgEleem");
+
+    if (svgElement) {
+      svgElement.classList.add("pass-through");
+      setTimeout(() => {
+        svgElement.remove();
+      }, 3000);
+    }
+  });
 }

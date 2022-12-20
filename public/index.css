@@ -40,8 +40,11 @@ svg {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   z-index: 3;
+  transition-property: transform;
+  transition-duration: 3s;
+  transform-origin: center;
 }
 
 .cls-1 {
@@ -53,7 +56,11 @@ svg {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+.pass-through {
+  transform: translate(-150%, -50%) scale(100);
+}
+
+@media (orientation: portrait) {
   svg {
     height: 100%;
     width: auto;
