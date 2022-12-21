@@ -6,8 +6,6 @@ const audio = document.getElementById("ambient-sound") as HTMLAudioElement;
 const canvasElement = document.getElementById("canvas-scene");
 if (triangle) {
   triangle.addEventListener("click", () => {
-    console.log("clicked on svgEleem");
-
     if (svgElement) {
       svgElement.classList.add("pass-through");
 

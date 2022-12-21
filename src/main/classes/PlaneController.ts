@@ -4,8 +4,19 @@ import scalePercent from "../../utils/scalePercent";
 
 export default class PlaneController {
   experience: MatteredExperience;
+  floatPlane: boolean;
+  currentPercent: number;
   constructor() {
     this.experience = new MatteredExperience();
+    this.floatPlane = false;
+    this.currentPercent = 0;
+  }
+
+  float(timePassed: number) {
+    if (this.floatPlane) {
+      this.experience.spaceObjects.paperPlane.position.y =
+        Math.cos(timePassed) * 0.5;
+    }
   }
 
   updatePlaneRotation(currentPercent: number) {

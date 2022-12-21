@@ -77,17 +77,11 @@ export default class MatteredExperience {
   }
 
   timeControl() {
-    if (this.clock.getElapsedTime() < 10) {
-      if (this.spaceObjects.paperPlane.position.z > 0) {
-        this.spaceObjects?.paperPlane.translateZ(-2);
-      }
-    } else {
-      this.clock?.stop();
-    }
+    this.planeController.float(this.clock.getElapsedTime());
   }
 
   update() {
-    // this.timeControl();
+    this.timeControl();
     if (this.spaceObjects.currentPlanet) {
       this.spaceObjects.currentPlanet.rotate();
     }
