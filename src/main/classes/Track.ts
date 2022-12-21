@@ -7,6 +7,8 @@ import createAssetPath from "../../utils/createAssetPath";
 export default class Track {
   experience: MatteredExperience;
   path: THREE.CatmullRomCurve3;
+  currentCameraPosition: THREE.Vector3;
+  currentPlanePosition: THREE.Vector3;
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
@@ -22,13 +24,10 @@ export default class Track {
       new THREE.Vector3(-200, 0, -500),
       new THREE.Vector3(500, 0, -300),
     ];
-    //C
-    //Create a path from the points
+
     this.path = new THREE.CatmullRomCurve3(points);
-
-    //path.curveType = 'catmullrom';
-
-    //Create a new geometry with a different radius
+    this.currentCameraPosition = this.path.getPointAt(0);
+    this.currentPlanePosition = this.path.getPointAt(0.01);
     // if (process.env.NODE_ENV === "development") {
     //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
@@ -47,12 +46,33 @@ export default class Track {
     return this;
   }
 
-  updateCameraPosition(currentPercent: number) {
-    const p1 = this.path.getPointAt(currentPercent);
-    const p2 = this.path.getPointAt(currentPercent + 0.01);
-    this.experience.camera?.perspectiveCamera?.position.set(p1.x, 5, p1.z);
-    this.experience.spaceObjects.paperPlane.position.set(p2.x, 0, p2.z);
-    this.experience.lights?.planeLight.position.set(p2.x, 5, p2.z);
-    this.experience.camera?.perspectiveCamera?.lookAt(p2);
+  updatePlanePosition(currentPercent: number) {
+    this.currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
+    this.experience.spaceObjects.paperPlane.position.set(
+      this.currentPlanePosition.x,
+      0,
+      this.currentPlanePosition.z
+    );
+    this.experience.lights?.planeLight.position.set(
+      this.currentPlanePosition.x,
+      5,
+      this.currentPlanePosition.z
+    );
+    this.experience.camera?.perspectiveCamera?.lookAt(
+      this.currentPlanePosition
+    );
+  }
+
+  updateCameraPosition(
+    currentPercent: number,
+    startTime: number,
+    elapsedTime: number
+  ) {
+    this.currentCameraPosition = this.path.getPointAt(currentPercent);
+    this.experience.camera?.perspectiveCamera?.position.set(
+      this.currentCameraPosition.x,
+      5,
+      this.currentCameraPosition.z
+    );
   }
 }
