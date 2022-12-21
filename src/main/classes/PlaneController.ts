@@ -13,10 +13,8 @@ export default class PlaneController {
   }
 
   float(timePassed: number) {
-    if (this.floatPlane) {
-      this.experience.spaceObjects.paperPlane.position.y =
-        Math.cos(timePassed) * 0.5;
-    }
+    this.experience.spaceObjects.paperPlane.position.y =
+      Math.cos(timePassed) * 0.5;
   }
 
   updatePlaneRotation(currentPercent: number) {
