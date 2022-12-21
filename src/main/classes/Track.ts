@@ -73,8 +73,24 @@ export default class Track {
     startTime: number,
     elapsedTime: number
   ) {
-    console.log(currentPercent);
-    this.currentCameraPosition = this.path.getPointAt(currentPercent);
+    this.currentCameraPosition = this.path.getPointAt(
+      Math.max(
+        0,
+        currentPercent -
+          Math.min(
+            lerp(
+              0,
+              0.005,
+              scalePercent(
+                oldScrollPercent,
+                oldScrollPercent + 0.05,
+                currentPercent
+              )
+            ),
+            0.005
+          )
+      )
+    );
 
     this.experience.camera?.perspectiveCamera?.position.set(
       this.currentCameraPosition.x,
