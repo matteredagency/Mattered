@@ -67,30 +67,29 @@ export default class Track {
     );
   }
 
-  updateCameraPosition(
-    currentPercent: number,
-    oldScrollPercent: number,
-    startTime: number,
-    elapsedTime: number
-  ) {
-    this.currentCameraPosition = this.path.getPointAt(
-      Math.max(
-        0,
-        currentPercent -
-          Math.min(
-            lerp(
-              0,
-              0.005,
-              scalePercent(
-                oldScrollPercent,
-                oldScrollPercent + 0.05,
-                currentPercent
-              )
-            ),
-            0.005
+  updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
+    const cameraDistance =
+      currentPercent -
+      Math.min(
+        lerp(
+          0,
+          0.005,
+          scalePercent(
+            oldScrollPercent,
+            oldScrollPercent + 0.05,
+            currentPercent
           )
-      )
-    );
+        ),
+        0.005
+      );
+
+    if (currentPercent > oldScrollPercent) {
+      this.currentCameraPosition = this.path.getPointAt(
+        Math.max(0, cameraDistance)
+      );
+    } else {
+      this.currentCameraPosition = this.path.getPointAt(currentPercent);
+    }
 
     this.experience.camera?.perspectiveCamera?.position.set(
       this.currentCameraPosition.x,
