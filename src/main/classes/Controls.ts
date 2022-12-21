@@ -17,26 +17,26 @@ export default class Controls {
     this.scrollContainer?.addEventListener(
       "scroll",
       () => {
-        if (this.scrollContainer) {
-          const { scrollHeight, scrollTop } = this.scrollContainer;
+        const { scrollHeight, scrollTop } = this.scrollContainer as HTMLElement;
 
-          this.scrollPercent = scrollTop / scrollHeight;
-          this.experience.sceneController.sceneSelect(this.scrollPercent);
-          this.experience.planeController.updatePlaneRotation(
-            this.scrollPercent
-          );
-          this.experience.track.updateCameraPosition(
-            this.scrollPercent,
-            this.oldScrollPercent
-          );
-          this.experience.track.updatePlanePosition(this.scrollPercent);
+        this.scrollPercent = scrollTop / scrollHeight;
+        this.experience.sceneController.sceneSelect(this.scrollPercent);
+        this.experience.planeController.updatePlaneRotation(this.scrollPercent);
+        this.experience.track.updateCameraPosition(
+          this.scrollPercent,
+          this.oldScrollPercent
+        );
+        this.experience.track.updatePlanePosition(this.scrollPercent);
 
-          window.clearTimeout(cameraLags);
-          cameraLags = setTimeout(() => {
-            this.oldScrollPercent = this.scrollPercent;
-          }, 300);
-          this.oldScrollTop = scrollTop;
-        }
+        window.clearTimeout(cameraLags);
+        cameraLags = setTimeout(() => {
+          this.oldScrollPercent = this.scrollPercent;
+
+          this.experience.track.planeMovedTime =
+            this.experience.clock.elapsedTime;
+          this.experience.track.planeMoved = true;
+        }, 200);
+        this.oldScrollTop = scrollTop;
       },
       { passive: true }
     );

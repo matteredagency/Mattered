@@ -12,6 +12,8 @@ export default class Track {
   currentCameraPosition: THREE.Vector3;
   currentPlanePosition: THREE.Vector3;
   startScrollPercent: number;
+  oldScrollEndPercent: number;
+  planeMovedTime: number;
   planeMoved: boolean;
   constructor() {
     this.experience = new MatteredExperience();
@@ -33,6 +35,8 @@ export default class Track {
     this.currentCameraPosition = this.path.getPointAt(0);
     this.currentPlanePosition = this.path.getPointAt(0.01);
     this.startScrollPercent = 0;
+    this.planeMovedTime = 0;
+    this.oldScrollEndPercent = 0;
     this.planeMoved = false;
     // if (process.env.NODE_ENV === "development") {
     //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
@@ -92,6 +96,31 @@ export default class Track {
     } else {
       this.currentCameraPosition = this.path.getPointAt(currentPercent);
     }
+
+    this.experience.camera?.perspectiveCamera?.position.set(
+      this.currentCameraPosition.x,
+      5,
+      this.currentCameraPosition.z
+    );
+
+    this.oldScrollEndPercent = cameraDistance;
+  }
+
+  returnCameraToOriginalSpot(passedTime: number) {
+    this.currentCameraPosition = this.path.getPointAt(
+      Math.min(
+        this.experience.controls.oldScrollPercent,
+        lerp(
+          this.oldScrollEndPercent,
+          this.experience.controls.oldScrollPercent,
+          scalePercent(
+            this.planeMovedTime,
+            this.planeMovedTime + 1.5,
+            passedTime
+          )
+        )
+      )
+    );
 
     this.experience.camera?.perspectiveCamera?.position.set(
       this.currentCameraPosition.x,

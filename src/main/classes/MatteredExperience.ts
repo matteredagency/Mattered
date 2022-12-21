@@ -18,7 +18,7 @@ export default class MatteredExperience {
   sizes?: Sizes;
   rendererInstance?: Renderer;
   spaceObjects!: Space;
-  controls?: Controls;
+  controls!: Controls;
   lights?: Lights;
   // gui?: GUI;
   track!: Track;
@@ -78,6 +78,13 @@ export default class MatteredExperience {
 
   timeControl() {
     this.planeController.float(this.clock.getElapsedTime());
+    if (this.track.planeMoved) {
+      if (this.clock.elapsedTime >= this.track.planeMovedTime + 1.5) {
+        this.track.planeMoved = false;
+      } else {
+        this.track.returnCameraToOriginalSpot(this.clock.elapsedTime);
+      }
+    }
   }
 
   update() {
