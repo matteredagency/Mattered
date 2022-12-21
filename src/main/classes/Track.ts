@@ -12,6 +12,7 @@ export default class Track {
   currentCameraPosition: THREE.Vector3;
   currentPlanePosition: THREE.Vector3;
   startScrollPercent: number;
+  planeMoved: boolean;
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
@@ -32,6 +33,7 @@ export default class Track {
     this.currentCameraPosition = this.path.getPointAt(0);
     this.currentPlanePosition = this.path.getPointAt(0.01);
     this.startScrollPercent = 0;
+    this.planeMoved = false;
     // if (process.env.NODE_ENV === "development") {
     //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 

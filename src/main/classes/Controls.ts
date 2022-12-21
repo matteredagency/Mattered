@@ -27,17 +27,9 @@ export default class Controls {
           );
           this.experience.track.updateCameraPosition(
             this.scrollPercent,
-            -0.002,
-            0,
-            0
+            this.oldScrollPercent
           );
           this.experience.track.updatePlanePosition(this.scrollPercent);
-          this.experience.track.updateCameraPosition(
-            this.scrollPercent,
-            this.oldScrollPercent,
-            0,
-            0
-          );
 
           window.clearTimeout(cameraLags);
           cameraLags = setTimeout(() => {
