@@ -65,10 +65,13 @@ export default class Track {
 
   updateCameraPosition(
     currentPercent: number,
+    addOnPercentage: number,
     startTime: number,
     elapsedTime: number
   ) {
-    this.currentCameraPosition = this.path.getPointAt(currentPercent);
+    this.currentCameraPosition = this.path.getPointAt(
+      currentPercent + addOnPercentage
+    );
     this.experience.camera?.perspectiveCamera?.position.set(
       this.currentCameraPosition.x,
       5,

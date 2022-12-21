@@ -13,23 +13,40 @@ export default class Controls {
     this.oldScrollTop = 0;
 
     let cameraLags: NodeJS.Timeout;
-    this.scrollContainer?.addEventListener("scroll", (event) => {
-      event.preventDefault();
-      if (this.scrollContainer) {
-        const { scrollHeight, scrollTop } = this.scrollContainer;
-        window.clearTimeout(cameraLags);
-        cameraLags = setTimeout(
-          () => console.log(this.experience.clock.elapsedTime),
-          100
-        );
-        this.scrollPercent = scrollTop / scrollHeight;
-        this.experience.sceneController.sceneSelect(this.scrollPercent);
-        this.experience.planeController.updatePlaneRotation(this.scrollPercent);
-        this.experience.track.updateCameraPosition(this.scrollPercent, 0, 0);
-        this.experience.track.updatePlanePosition(this.scrollPercent);
-        this.oldScrollTop = scrollTop;
-      }
-    });
+    this.scrollContainer?.addEventListener(
+      "scroll",
+      () => {
+        if (this.scrollContainer) {
+          const { scrollHeight, scrollTop } = this.scrollContainer;
+
+          this.scrollPercent = scrollTop / scrollHeight;
+          this.experience.sceneController.sceneSelect(this.scrollPercent);
+          this.experience.planeController.updatePlaneRotation(
+            this.scrollPercent
+          );
+          this.experience.track.updateCameraPosition(
+            this.scrollPercent,
+            -0.002,
+            0,
+            0
+          );
+          this.experience.track.updatePlanePosition(this.scrollPercent);
+          this.oldScrollTop = scrollTop;
+          window.clearTimeout(cameraLags);
+          cameraLags = setTimeout(
+            () =>
+              this.experience.track.updateCameraPosition(
+                this.scrollPercent,
+                0,
+                0,
+                0
+              ),
+            100
+          );
+        }
+      },
+      { passive: true }
+    );
   }
 
   resetScroll() {
