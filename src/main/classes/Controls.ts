@@ -5,13 +5,14 @@ export default class Controls {
   scrollContainer?: HTMLElement | null;
   scrollPercent: number;
   oldScrollTop: number;
+  oldScrollPercent: number;
   constructor() {
     this.experience = new MatteredExperience();
     this.scrollPercent = 0;
     this.scrollContainer = document.getElementById("scroll-container");
     window.scroll({ behavior: "smooth" });
     this.oldScrollTop = 0;
-
+    this.oldScrollPercent = 0;
     let cameraLags: NodeJS.Timeout;
     this.scrollContainer?.addEventListener(
       "scroll",
@@ -31,18 +32,18 @@ export default class Controls {
             0
           );
           this.experience.track.updatePlanePosition(this.scrollPercent);
-          this.oldScrollTop = scrollTop;
-          window.clearTimeout(cameraLags);
-          cameraLags = setTimeout(
-            () =>
-              this.experience.track.updateCameraPosition(
-                this.scrollPercent,
-                0,
-                0,
-                0
-              ),
-            100
+          this.experience.track.updateCameraPosition(
+            this.scrollPercent,
+            this.oldScrollPercent,
+            0,
+            0
           );
+
+          window.clearTimeout(cameraLags);
+          cameraLags = setTimeout(() => {
+            this.oldScrollPercent = this.scrollPercent;
+          }, 300);
+          this.oldScrollTop = scrollTop;
         }
       },
       { passive: true }

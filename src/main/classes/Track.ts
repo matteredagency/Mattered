@@ -3,12 +3,15 @@ import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
 import createAssetPath from "../../utils/createAssetPath";
+import { lerp } from "three/src/math/MathUtils";
+import scalePercent from "../../utils/scalePercent";
 
 export default class Track {
   experience: MatteredExperience;
   path: THREE.CatmullRomCurve3;
   currentCameraPosition: THREE.Vector3;
   currentPlanePosition: THREE.Vector3;
+  startScrollPercent: number;
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
@@ -28,6 +31,7 @@ export default class Track {
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPosition = this.path.getPointAt(0);
     this.currentPlanePosition = this.path.getPointAt(0.01);
+    this.startScrollPercent = 0;
     // if (process.env.NODE_ENV === "development") {
     //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
@@ -65,13 +69,13 @@ export default class Track {
 
   updateCameraPosition(
     currentPercent: number,
-    addOnPercentage: number,
+    oldScrollPercent: number,
     startTime: number,
     elapsedTime: number
   ) {
-    this.currentCameraPosition = this.path.getPointAt(
-      currentPercent + addOnPercentage
-    );
+    console.log(currentPercent);
+    this.currentCameraPosition = this.path.getPointAt(currentPercent);
+
     this.experience.camera?.perspectiveCamera?.position.set(
       this.currentCameraPosition.x,
       5,
