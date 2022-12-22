@@ -10,7 +10,7 @@ interface PlanetConstructorParameters {
   planetScale: number;
   atmosphereColor?: THREE.Color;
   atmosphereIntensity?: number;
-  modelPath: string;
+  name: string;
   emissiveColor?: THREE.Color;
   atmosphereRadius?: number;
   emissiveIntensity?: number;
@@ -30,7 +30,7 @@ export default class Planet {
   emissiveColor?: THREE.Color;
   atmosphereRadius?: number;
   emissiveIntensity?: number;
-  modelPath: string;
+  name: string;
   tilt?: number;
   constructor({
     clockWiseRotation,
@@ -38,7 +38,7 @@ export default class Planet {
     position,
     planetScale,
     atmosphereColor,
-    modelPath,
+    name,
     atmosphereIntensity,
     atmosphereRadius,
     emissiveColor,
@@ -52,7 +52,7 @@ export default class Planet {
     this.position = position;
     this.atmosphereColor = atmosphereColor;
     this.atmosphereIntensity = atmosphereIntensity;
-    this.modelPath = modelPath;
+    this.name = name;
     this.atmosphereRadius = atmosphereRadius;
     this.emissiveColor = emissiveColor;
     this.emissiveIntensity = emissiveIntensity;
@@ -71,15 +71,7 @@ export default class Planet {
 
     this.asset = new THREE.Group();
 
-    new GLTFLoader().load(this.modelPath, (gltf) => {
-      gltf.scene.scale.set(
-        this.planetScale,
-        this.planetScale,
-        this.planetScale
-      );
-
-      this.asset.add(gltf.scene);
-    });
+    this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
 
     if (this.atmosphereColor && this.atmosphereRadius) {
       const atmosphere = new THREE.Mesh(

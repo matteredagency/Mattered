@@ -17,7 +17,7 @@ export default class SceneController {
   constructor() {
     this.sceneSubjects = {
       venus: new Planet({
-        modelPath: createAssetPath("/objects/Venus.glb"),
+        name: "Venus",
         clockWiseRotation: true,
         rotationSpeed: 0.0003,
         position: new THREE.Vector3(-150, 0, 400),
@@ -26,7 +26,7 @@ export default class SceneController {
         atmosphereRadius: 43,
       }),
       earth: new Planet({
-        modelPath: createAssetPath("/objects/Earth.glb"),
+        name: "Earth",
         clockWiseRotation: false,
         rotationSpeed: 0.0003,
         position: new THREE.Vector3(115, 0, 130),
@@ -35,7 +35,7 @@ export default class SceneController {
         atmosphereColor: new THREE.Color(0x4c9aff),
       }),
       mars: new Planet({
-        modelPath: createAssetPath("/objects/Mars.glb"),
+        name: "Mars",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-330, 0, 38),
@@ -44,19 +44,19 @@ export default class SceneController {
         atmosphereRadius: 15.25,
       }),
       jupiter: new Planet({
-        modelPath: createAssetPath("/objects/Jupiter.glb"),
+        name: "Jupiter",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-450, 0, -425),
         planetScale: 2,
       }),
       asteroids: new Asteroids(
-        createAssetPath("/objects/AsteroidSet.glb"),
+        "AsteroidSet",
         new THREE.Vector3(100, 0, -435),
         0.1
       ),
       saturn: new Planet({
-        modelPath: createAssetPath("/objects/Saturn.glb"),
+        name: "Saturn",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(750, 0, -400),
