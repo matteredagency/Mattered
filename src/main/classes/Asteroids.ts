@@ -20,9 +20,7 @@ export default class Asteroids {
       return;
     } else if (this.assetRendered === false) {
       this.assetRendered = true;
-      this.experience.scene.add(
-        this.experience.assets.assetsDirectory.objects[this.name]
-      );
+      this.experience.scene.add(this.asteroids);
       return;
     }
     this.assetRendered = true;
