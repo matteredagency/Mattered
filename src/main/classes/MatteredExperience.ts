@@ -77,13 +77,10 @@ export default class MatteredExperience {
   }
 
   timeControl() {
-    this.planeController.float(this.clock.getElapsedTime());
+    const elapsedTime = this.clock.getElapsedTime();
+    this.planeController.float(elapsedTime);
     if (this.track.planeMoved) {
-      if (this.clock.elapsedTime >= this.track.planeMovedTime + 1) {
-        this.track.planeMoved = false;
-      } else {
-        // this.track.returnCameraToOriginalSpot(this.clock.elapsedTime);
-      }
+      this.track.returnCameraToOriginalSpot(elapsedTime);
     }
   }
 

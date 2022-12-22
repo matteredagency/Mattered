@@ -1,4 +1,4 @@
-import { Color, PointLight, Vector3 } from "three";
+import { ArcCurve, Color, PointLight, Vector3 } from "three";
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
@@ -9,7 +9,7 @@ import scalePercent from "../../utils/scalePercent";
 export default class Track {
   experience: MatteredExperience;
   path: THREE.CatmullRomCurve3;
-  currentCameraPosition: THREE.Vector3;
+  currentCameraPercent: number;
   currentPlanePercent: number;
   planeMovedTime: number;
   planeMoved: boolean;
@@ -30,7 +30,7 @@ export default class Track {
     ];
 
     this.path = new THREE.CatmullRomCurve3(points);
-    this.currentCameraPosition = this.path.getPointAt(0);
+    this.currentCameraPercent = 0;
     this.currentPlanePercent = 0.01;
     this.planeMovedTime = 0;
     this.planeMoved = false;
@@ -54,7 +54,7 @@ export default class Track {
 
   updatePlanePosition(currentPercent: number) {
     const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
-    this.currentPlanePercent = currentPercent + 0.01;
+    this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
       currentPlanePosition.x,
       0,
@@ -69,7 +69,7 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
-    const cameraDistance =
+    const cameraPercent =
       currentPercent -
       Math.min(
         lerp(
@@ -83,39 +83,42 @@ export default class Track {
         ),
         0.005
       );
-
+    this.currentCameraPercent = cameraPercent
+    let currentCameraPosition: Vector3;
     if (currentPercent > oldScrollPercent) {
-      this.currentCameraPosition = this.path.getPointAt(
-        Math.max(0, cameraDistance)
-      );
+      currentCameraPosition = this.path.getPointAt(Math.max(0, cameraPercent));
     } else {
-      this.currentCameraPosition = this.path.getPointAt(currentPercent);
+      currentCameraPosition = this.path.getPointAt(currentPercent);
     }
     this.experience.camera?.perspectiveCamera?.position.set(
-      this.currentCameraPosition.x,
+      currentCameraPosition.x,
       5,
-      this.currentCameraPosition.z
+      currentCameraPosition.z
     );
   }
 
-  // returnCameraToOriginalSpot(passedTime: number) {
+  returnCameraToOriginalSpot(passedTime: number) {
+    const currentCameraPercent = Math.max(
+      0,
+      Math.min(
+        this.currentPlanePercent,
+        Math.max()
+        this.experience.controls.oldScrollPercent + passedTime * 0.01
+      )
+    );
 
-  //   const currentCameraPercent =
-  //   this.currentCameraPosition = this.path.getPointAt(
-  //     Math.min(
-  //       this.experience.controls.oldScrollPercent,
-  //       lerp(
-  //         this.oldScrollEndPercent,
-  //         this.experience.controls.oldScrollPercent,
-  //         scalePercent(this.planeMovedTime, this.planeMovedTime + 2, passedTime)
-  //       )
-  //     )
-  //   );
+    console.log(this.currentPlanePercent, currentCameraPercent);
 
-  //   this.experience.camera?.perspectiveCamera?.position.set(
-  //     this.currentCameraPosition.x,
-  //     5,
-  //     this.currentCameraPosition.z
-  //   );
-  // }
+    if (currentCameraPercent >= this.currentPlanePercent) {
+      this.planeMoved = false;
+    }
+
+    const returnTrack = this.path.getPointAt(currentCameraPercent);
+
+    // this.experience.camera?.perspectiveCamera?.position.set(
+    //   returnTrack.x,
+    //   5,
+    //   returnTrack.z
+    // );
+  }
 }

@@ -16,7 +16,7 @@ export default class Controls {
 
     this.scrollContainer?.addEventListener("scroll", () => {
       const { scrollHeight, scrollTop } = this.scrollContainer as HTMLElement;
-
+      this.experience.track.planeMoved = true;
       this.scrollPercent = scrollTop / scrollHeight;
       this.experience.sceneController.sceneSelect(this.scrollPercent);
       this.experience.planeController.updatePlaneRotation(this.scrollPercent);
