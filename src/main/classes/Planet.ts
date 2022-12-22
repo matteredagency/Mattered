@@ -70,7 +70,11 @@ export default class Planet {
     }
 
     this.asset = new THREE.Group();
-
+    this.experience.assets.assetsDirectory.objects[this.name].scale.set(
+      this.planetScale,
+      this.planetScale,
+      this.planetScale
+    );
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
 
     if (this.atmosphereColor && this.atmosphereRadius) {
