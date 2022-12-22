@@ -94,7 +94,6 @@ export default class Track {
         Math.max(0, cameraDistance)
       );
     } else {
-      console.log("backwards.");
       this.currentCameraPosition = this.path.getPointAt(currentPercent);
     }
     this.experience.camera?.perspectiveCamera?.position.set(
