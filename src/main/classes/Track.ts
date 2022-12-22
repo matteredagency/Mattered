@@ -10,9 +10,7 @@ export default class Track {
   experience: MatteredExperience;
   path: THREE.CatmullRomCurve3;
   currentCameraPosition: THREE.Vector3;
-  currentPlanePosition: THREE.Vector3;
-  startScrollPercent: number;
-  oldScrollEndPercent: number;
+  currentPlanePercent: number;
   planeMovedTime: number;
   planeMoved: boolean;
   constructor() {
@@ -33,10 +31,8 @@ export default class Track {
 
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPosition = this.path.getPointAt(0);
-    this.currentPlanePosition = this.path.getPointAt(0.01);
-    this.startScrollPercent = 0;
+    this.currentPlanePercent = 0.01;
     this.planeMovedTime = 0;
-    this.oldScrollEndPercent = 0;
     this.planeMoved = false;
     // if (process.env.NODE_ENV === "development") {
     //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
@@ -57,20 +53,19 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    this.currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
+    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
+    this.currentPlanePercent = currentPercent + 0.01;
     this.experience.spaceObjects.paperPlane.position.set(
-      this.currentPlanePosition.x,
+      currentPlanePosition.x,
       0,
-      this.currentPlanePosition.z
+      currentPlanePosition.z
     );
     this.experience.lights?.planeLight.position.set(
-      this.currentPlanePosition.x,
+      currentPlanePosition.x,
       5,
-      this.currentPlanePosition.z
+      currentPlanePosition.z
     );
-    this.experience.camera?.perspectiveCamera?.lookAt(
-      this.currentPlanePosition
-    );
+    this.experience.camera?.perspectiveCamera?.lookAt(currentPlanePosition);
   }
 
   updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
@@ -101,26 +96,26 @@ export default class Track {
       5,
       this.currentCameraPosition.z
     );
-
-    this.oldScrollEndPercent = cameraDistance;
   }
 
-  returnCameraToOriginalSpot(passedTime: number) {
-    this.currentCameraPosition = this.path.getPointAt(
-      Math.min(
-        this.experience.controls.oldScrollPercent,
-        lerp(
-          this.oldScrollEndPercent,
-          this.experience.controls.oldScrollPercent,
-          scalePercent(this.planeMovedTime, this.planeMovedTime + 2, passedTime)
-        )
-      )
-    );
+  // returnCameraToOriginalSpot(passedTime: number) {
 
-    this.experience.camera?.perspectiveCamera?.position.set(
-      this.currentCameraPosition.x,
-      5,
-      this.currentCameraPosition.z
-    );
-  }
+  //   const currentCameraPercent =
+  //   this.currentCameraPosition = this.path.getPointAt(
+  //     Math.min(
+  //       this.experience.controls.oldScrollPercent,
+  //       lerp(
+  //         this.oldScrollEndPercent,
+  //         this.experience.controls.oldScrollPercent,
+  //         scalePercent(this.planeMovedTime, this.planeMovedTime + 2, passedTime)
+  //       )
+  //     )
+  //   );
+
+  //   this.experience.camera?.perspectiveCamera?.position.set(
+  //     this.currentCameraPosition.x,
+  //     5,
+  //     this.currentCameraPosition.z
+  //   );
+  // }
 }
