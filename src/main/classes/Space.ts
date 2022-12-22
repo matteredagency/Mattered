@@ -1,11 +1,7 @@
-import { Group } from "three";
 import THREE = require("three");
-import Asset from "./Asset";
 import Asteroids from "./Asteroids";
-import Galaxy from "./Galaxy";
 import Planet from "./Planet";
 import Stars from "./Stars";
-import createAssetPath from "../../utils/createAssetPath";
 import MatteredExperience from "./MatteredExperience";
 
 export default class Space {

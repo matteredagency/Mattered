@@ -3,44 +3,46 @@ import THREE from "../globalmports";
 import { GLTFLoader } from "../globalmports";
 
 export default class Asteroids {
-  experience!: MatteredExperience;
-  asset!: THREE.Group;
+  experience: MatteredExperience;
   assetRendered!: boolean;
-  file!: string;
-  size!: number;
-  position!: THREE.Vector3;
-  constructor(file: string, position: THREE.Vector3, size: number) {
+  name: string;
+  size: number;
+  position: THREE.Vector3;
+  asteroids!: THREE.Group;
+  constructor(name: string, position: THREE.Vector3, size: number) {
     this.experience = new MatteredExperience();
     this.position = position;
     this.size = size;
-    this.file = file;
+    this.name = name;
   }
-  async init() {
+  init() {
     if (this.assetRendered === true) {
       return;
     } else if (this.assetRendered === false) {
       this.assetRendered = true;
-      this.experience.scene.add(this.asset);
+      this.experience.scene.add(
+        this.experience.assets.assetsDirectory.objects[this.name]
+      );
       return;
     }
     this.assetRendered = true;
 
-    this.asset = await new Promise((res) =>
-      new GLTFLoader().load(this.file, (gltf) => {
-        this.asset = gltf.scene;
-        gltf.scene.scale.set(0.2, 0.2, 0.2);
+    this.asteroids = this.experience.assets.assetsDirectory.objects[this.name];
 
-        this.experience.scene?.add(this.asset);
-        res(this.asset);
-      })
+    this.asteroids.scale.set(0.2, 0.2, 0.2);
+
+    this.asteroids.position.set(
+      this.position.x,
+      this.position.y,
+      this.position.z
     );
-    this.asset.position.set(this.position.x, this.position.y, this.position.z);
-    this.asset.rotateY(-Math.PI * 0.1);
+    this.asteroids.rotateY(-Math.PI * 0.1);
 
     this.experience.spaceObjects.asteroids = this;
+    this.experience.scene?.add(this.asteroids);
   }
   rotateAsteroids() {
-    this.asset.children.forEach((mesh, index) => {
+    this.asteroids.children.forEach((mesh, index) => {
       let pi = Math.PI;
       if (index % 2 === 0) pi *= -1;
       mesh.rotateX(pi * 0.001);
