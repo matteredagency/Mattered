@@ -66,7 +66,7 @@ module.exports = {
     host: "localhost",
     open: { app: { name: "chrome" } },
     liveReload: true,
-    watchFiles: ["src/*", "public/*"],
+    watchFiles: ["src/*", "public/*", "src/main/*", "src/intro/*"],
     static: {
       directory: path.join(__dirname, "public"),
     },

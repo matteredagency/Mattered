@@ -98,23 +98,18 @@ export default class Track {
     );
   }
 
-  returnCameraToOriginalSpot(passedTime: number) {
-    // console.log(this.currentPlanePercent, this.currentCameraPercent);
-    const currentCameraPercent = Math.max(
+  returnCameraToOriginalSpot() {
+    this.currentCameraPercent = Math.max(
       0,
-      Math.min(
-        this.currentPlanePercent,
-        this.currentPlanePercent - 0.05 + passedTime * 0.007
-      )
+      Math.min(this.currentPlanePercent, this.currentCameraPercent + 0.001)
     );
 
-    console.log(this.currentPlanePercent, currentCameraPercent);
-
-    if (currentCameraPercent >= this.currentPlanePercent) {
+    console.log(this.currentCameraPercent, this.currentPlanePercent);
+    if (this.currentCameraPercent >= this.currentPlanePercent) {
       this.planeMoved = false;
     }
 
-    const returnTrack = this.path.getPointAt(currentCameraPercent);
+    const returnTrack = this.path.getPointAt(this.currentCameraPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       returnTrack.x,

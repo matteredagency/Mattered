@@ -10,7 +10,7 @@ export default class Controls {
     this.experience = new MatteredExperience();
     this.scrollPercent = 0;
     this.scrollContainer = document.getElementById("scroll-container");
-    window.scroll({ behavior: "smooth" });
+    // window.scroll({ behavior: "smooth" });
     this.oldScrollTop = 0;
     this.oldScrollPercent = 0;
 

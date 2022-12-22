@@ -79,9 +79,6 @@ export default class MatteredExperience {
   timeControl() {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
-    if (this.track.planeMoved) {
-      this.track.returnCameraToOriginalSpot(elapsedTime);
-    }
   }
 
   update() {
