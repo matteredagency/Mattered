@@ -1,4 +1,3 @@
-// import { GUI } from "dat.gui";
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
@@ -10,6 +9,7 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
 import createAssetPath from "../../utils/createAssetPath";
+import Assets from "./Assets";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -20,12 +20,11 @@ export default class MatteredExperience {
   spaceObjects!: Space;
   controls!: Controls;
   lights?: Lights;
-  // gui?: GUI;
   track!: Track;
   clock!: THREE.Clock;
   sceneController!: SceneController;
   planeController!: PlaneController;
-
+  assets!: Assets;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -33,8 +32,16 @@ export default class MatteredExperience {
     MatteredExperience.instance = this;
     // this.gui = new GUI();
 
+    this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
+
+    this.init();
+  }
+
+  async init() {
+    await this.assets.loadAssets();
+
     this.sizes = new Sizes();
     this.camera = new Camera();
     this.rendererInstance = new Renderer();
@@ -52,22 +59,8 @@ export default class MatteredExperience {
     this.planeController = new PlaneController();
     this.track = new Track();
 
-    this.scene.background = new THREE.CubeTextureLoader()
-      .setPath(createAssetPath("/textures/"))
-      .load([
-        "bkg4_left.jpg",
-        "bkg4_right.jpg",
-        "bkg4_bot_turned.jpg",
-        "bkg4_top_turned.jpg",
-        "bkg4_front.jpg",
-        "bkg4_back.jpg",
-      ]);
-
-    this.init();
-  }
-
-  async init() {
-    await this.spaceObjects?.init();
+    this.scene.background =
+      this.assets.assetsDirectory.textures["backgroundTexture"];
     this.update();
   }
 

@@ -59,26 +59,21 @@ export default class Stars {
     );
   }
 
-  private async setPointsMesh() {
-    const texture = (await new Promise((res) =>
-      res(
-        new THREE.TextureLoader().load(createAssetPath("/textures/star.webp"))
-      )
-    )) as THREE.Texture;
+  private setPointsMesh() {
     return new THREE.Points(
       this.geometry,
       new PointsMaterial({
         size: 2.5,
-        map: texture,
+        map: this.experience.assets.assetsDirectory.textures["Star"],
         transparent: true,
         alphaTest: 0.05,
       })
     );
   }
 
-  async init() {
+  init() {
     this.setGeometry();
-    this.pointsMesh = await this.setPointsMesh();
+    this.pointsMesh = this.setPointsMesh();
     this.experience.scene?.add(this.pointsMesh);
   }
 }

@@ -21,7 +21,7 @@ export default class Assets {
       Saturn: "Saturn.glb",
       Venus: "Venus.glb",
     };
-    const textures = { star: "star.webp" };
+    const textures = { Star: "star.webp" };
 
     this.objectPaths = Object.entries(objects).map(([name, path]) => [
       name,
@@ -93,7 +93,6 @@ export default class Assets {
   }
 
   updateLoadingBar(name: string) {
-    console.log(this.assetsDirectory);
     this.loadedAssets += 1;
     console.log(`loaded ${name}`, this.loadedAssets / this.totalAssets);
   }
