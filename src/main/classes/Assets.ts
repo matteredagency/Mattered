@@ -21,7 +21,7 @@ export default class Assets {
       Saturn: "Saturn.glb",
       Venus: "Venus.glb",
     };
-    const textures = { star: "star.web" };
+    const textures = { star: "star.webp" };
 
     this.objectPaths = Object.entries(objects).map(([name, path]) => [
       name,
@@ -39,26 +39,24 @@ export default class Assets {
     this.loadedAssets = 0;
 
     this.totalAssets =
-      Object.keys(objects).length + Object.keys(textures).length + 6;
+      Object.keys(objects).length + Object.keys(textures).length + 1;
 
     this.assetsDirectory = { objects: {}, textures: {} };
   }
 
   async loadAssets() {
-    //@ts-ignore
-    new Promise.allSettled(
+    await Promise.allSettled(
       this.objectPaths.map(
         ([name, path]) =>
           new Promise((res) => {
             new GLTFLoader().load(path, (gltf) => {
               res((this.assetsDirectory.objects[name] = gltf.scene));
-              this.updateLoadingBar();
+              this.updateLoadingBar(name);
             });
           })
       )
     );
-    //@ts-ignore
-    new Promise.allSettled(
+    await Promise.allSettled(
       this.texturePaths.map(
         ([name, path]) =>
           new Promise((res) => {
@@ -67,14 +65,36 @@ export default class Assets {
                 path
               ))
             );
-            this.updateLoadingBar();
+            this.updateLoadingBar(name);
           })
       )
     );
+
+    await new Promise((res) =>
+      new THREE.CubeTextureLoader()
+        .setPath(createAssetPath("/textures/"))
+        .load(
+          [
+            "bkg4_left.jpg",
+            "bkg4_right.jpg",
+            "bkg4_bot_turned.jpg",
+            "bkg4_top_turned.jpg",
+            "bkg4_front.jpg",
+            "bkg4_back.jpg",
+          ],
+          (cubeTexture) => {
+            res(
+              (this.assetsDirectory.textures["backgroundTexture"] = cubeTexture)
+            );
+            this.updateLoadingBar("sceneBackground");
+          }
+        )
+    );
   }
 
-  updateLoadingBar() {
+  updateLoadingBar(name: string) {
+    console.log(this.assetsDirectory);
     this.loadedAssets += 1;
-    console.log("loaded asset", this.loadedAssets / this.totalAssets);
+    console.log(`loaded ${name}`, this.loadedAssets / this.totalAssets);
   }
 }
