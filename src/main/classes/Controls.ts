@@ -10,7 +10,7 @@ export default class Controls {
     this.experience = new MatteredExperience();
     this.scrollPercent = 0;
     this.scrollContainer = document.getElementById("scroll-container");
-    window.scroll({ behavior: "smooth" });
+    scroll({ behavior: "smooth" });
     this.oldScrollTop = 0;
     this.oldScrollPercent = 0;
     let cameraLags: NodeJS.Timeout;
@@ -27,16 +27,17 @@ export default class Controls {
           this.oldScrollPercent
         );
         this.experience.track.updatePlanePosition(this.scrollPercent);
-
-        window.clearTimeout(cameraLags);
-        cameraLags = setTimeout(() => {
-          this.oldScrollPercent = this.scrollPercent;
-
-          this.experience.track.planeMovedTime =
-            this.experience.clock.elapsedTime;
-          this.experience.track.planeMoved = true;
-        }, 200);
         this.oldScrollTop = scrollTop;
+
+        clearTimeout(cameraLags);
+        // cameraLags = setTimeout(() => {
+        //   console.log("scroll stopped");
+        //   this.oldScrollPercent = this.scrollPercent;
+
+        //   this.experience.track.planeMovedTime =
+        //     this.experience.clock.elapsedTime;
+        //   this.experience.track.planeMoved = true;
+        // }, 100);
       },
       { passive: true }
     );

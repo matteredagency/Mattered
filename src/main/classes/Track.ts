@@ -94,9 +94,9 @@ export default class Track {
         Math.max(0, cameraDistance)
       );
     } else {
+      console.log("backwards.");
       this.currentCameraPosition = this.path.getPointAt(currentPercent);
     }
-
     this.experience.camera?.perspectiveCamera?.position.set(
       this.currentCameraPosition.x,
       5,
@@ -113,11 +113,7 @@ export default class Track {
         lerp(
           this.oldScrollEndPercent,
           this.experience.controls.oldScrollPercent,
-          scalePercent(
-            this.planeMovedTime,
-            this.planeMovedTime + 1.5,
-            passedTime
-          )
+          scalePercent(this.planeMovedTime, this.planeMovedTime + 2, passedTime)
         )
       )
     );
