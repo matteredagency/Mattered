@@ -69,28 +69,8 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
-    this.currentCameraPercent =
-      currentPercent -
-      Math.min(
-        lerp(
-          0,
-          0.005,
-          scalePercent(
-            oldScrollPercent,
-            oldScrollPercent + 0.05,
-            currentPercent
-          )
-        ),
-        0.005
-      );
-    let currentCameraPosition: Vector3;
-    if (currentPercent > oldScrollPercent) {
-      currentCameraPosition = this.path.getPointAt(
-        Math.max(0, this.currentCameraPercent)
-      );
-    } else {
-      currentCameraPosition = this.path.getPointAt(currentPercent);
-    }
+    const currentCameraPosition = this.path.getPointAt(currentPercent);
+
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
       5,
