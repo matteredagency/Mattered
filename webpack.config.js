@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const environment = process.env.NODE_ENV || "development";
 const isDevelopment = environment === "development";
@@ -61,14 +62,15 @@ module.exports = {
     new CopyPlugin({
       patterns: ["./public/assets"],
     }),
+    new CleanWebpackPlugin(),
   ],
   devServer: {
     host: "localhost",
     open: { app: { name: "chrome" } },
     liveReload: true,
-    watchFiles: ["src/*", "public/*", "src/main/*", "src/intro/*"],
+    watchFiles: ["src/*", "public/*"],
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, "dist"),
     },
     port: 3000,
   },
