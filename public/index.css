@@ -39,6 +39,11 @@ html {
   position: absolute;
 }
 
+#loading-message {
+  z-index: 10;
+  position: absolute;
+}
+
 svg {
   position: absolute;
   top: 50%;
@@ -50,6 +55,15 @@ svg {
 
 .cls-1 {
   fill: #fff;
+}
+
+#loading-bar-parent {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  background: #ececec;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
 }
 
 #mattered-triangle {
@@ -65,10 +79,24 @@ svg {
   opacity: 1 !important;
 }
 
+#loading-bar {
+  background: black;
+  margin: 0;
+  width: 50%;
+  height: 100%;
+  transition: width;
+}
+
 @media (orientation: portrait) {
   svg {
     height: 100%;
     width: auto;
+  }
+
+  #loading-bar-parent {
+    top: 62.5%;
+    height: 7.5px;
+    width: 40%;
   }
 }
 
@@ -76,5 +104,11 @@ svg {
   svg {
     height: auto;
     width: 150%;
+  }
+  #loading-bar-parent {
+    top: 70%;
+    height: 10px;
+    width: 40%;
+    max-width: 600px;
   }
 }
