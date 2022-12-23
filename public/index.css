@@ -70,6 +70,7 @@ svg {
   fill: transparent;
   cursor: pointer;
   pointer-events: none;
+  outline: none;
 }
 
 .pass-through {
