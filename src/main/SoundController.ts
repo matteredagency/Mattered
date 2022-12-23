@@ -6,7 +6,6 @@ export default class SoundController {
   amplitude: number;
   frequency: number;
   flatLine: boolean;
-  amplitudeInterval: NodeJS.Timeout | null;
   constructor() {
     this.controllerElement = document.getElementById(
       "sound-controller"
@@ -19,7 +18,6 @@ export default class SoundController {
     this.step = 0;
     this.amplitude = 40;
     this.frequency = 20;
-    this.amplitudeInterval = null;
 
     const audioElement = document.getElementById(
       "ambient-sound"
@@ -30,6 +28,7 @@ export default class SoundController {
         this.reduceAmplitude();
         audioElement.pause();
       } else {
+        this.flatLine = false;
         this.increaseAmplitude();
         audioElement.play();
       }
@@ -37,25 +36,22 @@ export default class SoundController {
   }
 
   reduceAmplitude() {
-    this.amplitudeInterval = setInterval(() => {
-      if (this.amplitude === 1) {
-        clearInterval(this.amplitudeInterval as NodeJS.Timeout);
-        this.flatLine = true;
-      }
-
-      this.amplitude -= this.amplitude > 1 ? 1 : 0;
-    }, 5);
+    if (this.amplitude <= 1) {
+      this.amplitude = 1;
+      this.flatLine = true;
+      return;
+    }
+    this.amplitude -= 1.5;
+    window.requestAnimationFrame(() => this.reduceAmplitude());
   }
 
   increaseAmplitude() {
-    this.flatLine = false;
-    this.amplitudeInterval = setInterval(() => {
-      if (this.amplitude === 40) {
-        clearInterval(this.amplitudeInterval as NodeJS.Timeout);
-      }
-
-      this.amplitude += this.amplitude < 40 ? 1 : 0;
-    });
+    if (this.amplitude >= 40) {
+      this.amplitude = 40;
+      return;
+    }
+    this.amplitude += 1.5;
+    window.requestAnimationFrame(() => this.increaseAmplitude());
   }
 
   horizontalSine() {
