@@ -106,6 +106,10 @@ svg {
     height: 7.5px;
     width: 40%;
   }
+  #sound-controller {
+    height: 75px;
+    width: 150px;
+  }
 }
 
 @media (orientation: landscape) {
