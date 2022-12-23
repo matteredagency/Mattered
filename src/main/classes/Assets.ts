@@ -51,7 +51,7 @@ export default class Assets {
           new Promise((res) => {
             new GLTFLoader().load(path, (gltf) => {
               res((this.assetsDirectory.objects[name] = gltf.scene));
-              this.updateLoadingBar(name);
+              this.updateLoadingBar();
             });
           })
       )
@@ -65,7 +65,7 @@ export default class Assets {
                 path
               ))
             );
-            this.updateLoadingBar(name);
+            this.updateLoadingBar();
           })
       )
     );
@@ -86,14 +86,28 @@ export default class Assets {
             res(
               (this.assetsDirectory.textures["backgroundTexture"] = cubeTexture)
             );
-            this.updateLoadingBar("sceneBackground");
+            this.updateLoadingBar();
           }
         )
     );
   }
 
-  updateLoadingBar(name: string) {
+  updateLoadingBar() {
     this.loadedAssets += 1;
-    console.log(`loaded ${name}`, this.loadedAssets / this.totalAssets);
+    const loadingBar = document.getElementById("loading-bar") as HTMLElement;
+    const loadedPercent = this.loadedAssets / this.totalAssets;
+
+    loadingBar.style.width = `${loadedPercent * 100}%`;
+
+    if (loadedPercent >= 1) {
+      setTimeout(() => {
+        (loadingBar.parentElement as HTMLElement).remove();
+        (
+          document.getElementById("mattered-triangle") as HTMLElement
+        ).style.pointerEvents = "auto";
+      }, 2500);
+    }
   }
+
+  activateTriangle() {}
 }

@@ -69,6 +69,7 @@ svg {
 #mattered-triangle {
   fill: transparent;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .pass-through {
@@ -82,9 +83,9 @@ svg {
 #loading-bar {
   background: black;
   margin: 0;
-  width: 50%;
   height: 100%;
-  transition: width;
+  width: 0;
+  transition: width 1s ease-in;
 }
 
 @media (orientation: portrait) {
