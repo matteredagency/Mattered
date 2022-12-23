@@ -20,7 +20,7 @@ export default class Space {
       this.experience.assets.assetsDirectory.objects["PaperPlane"];
 
     this.experience.scene.add(this.paperPlane);
-    this.paperPlane.scale.set(0.2, 0.2, 0.2);
+    this.paperPlane.scale.set(0.15, 0.15, 0.15);
   }
   init() {
     this.currentPlanet = null;
