@@ -20,12 +20,18 @@ export default class SoundController {
     this.amplitude = 40;
     this.frequency = 20;
     this.amplitudeInterval = null;
+
+    const audioElement = document.getElementById(
+      "ambient-sound"
+    ) as HTMLAudioElement;
     this.controllerElement.addEventListener("click", () => {
       this.soundOn = !this.soundOn;
       if (!this.soundOn) {
         this.reduceAmplitude();
+        audioElement.pause();
       } else {
         this.increaseAmplitude();
+        audioElement.play();
       }
     });
   }
