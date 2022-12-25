@@ -11,12 +11,14 @@ export default class Stars {
   particleAccelerations: number[];
   experience: MatteredExperience;
   pointsMesh: THREE.Points | null;
+  colorAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
   constructor(particleCount: number) {
     this.geometry = new THREE.BufferGeometry();
     this.particleCount = particleCount;
     this.particleVelocities = [];
     this.particleAccelerations = [];
     this.experience = new MatteredExperience();
+    this.starColors = [];
     this.pointsMesh = null;
     return this;
   }
@@ -32,6 +34,7 @@ export default class Stars {
 
   private setGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
+    const colorBuffer = new Float32Array(this.particleCount * 4);
     const pointRanges = [
       [-1000, 1000, null],
       [-250, 250, 25],
@@ -50,6 +53,8 @@ export default class Stars {
           ),
           positionsBuffer
         );
+
+        this.insertVertexValue(i, j, 1, colorBuffer);
       }
     }
 
@@ -57,6 +62,13 @@ export default class Stars {
       "position",
       new THREE.Float32BufferAttribute(positionsBuffer, 3)
     );
+
+    this.geometry.setAttribute(
+      "color",
+      new THREE.Float32BufferAttribute(colorBuffer, 4)
+    );
+
+    this.colorAttribute = this.geometry.getAttribute("color");
   }
 
   private setPointsMesh() {
@@ -69,6 +81,12 @@ export default class Stars {
         alphaTest: 0.05,
       })
     );
+  }
+
+  twinkleStars(timePassed: number) {
+    for (let i = 0; i < this.colorAttribute.count; i++) {
+      this.colorAttribute.setW(i, 0.5 + Math.sin(timePassed) * 0.5);
+    }
   }
 
   init() {
