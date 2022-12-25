@@ -58,7 +58,14 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: "[name].css" }),
-    new HtmlWebpackPlugin({ template: "./public/index.html", inject: "body" }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      inject: "body",
+      meta: {
+        viewport:
+          "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no",
+      },
+    }),
     new CopyPlugin({
       patterns: ["./public/assets"],
     }),

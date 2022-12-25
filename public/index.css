@@ -5,8 +5,7 @@ body {
   box-sizing: border-box;
   width: 100%;
   background: black;
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 html {

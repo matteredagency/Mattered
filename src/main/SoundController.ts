@@ -46,7 +46,7 @@ export default class SoundController {
       this.changeInProgress = false;
       return;
     }
-    this.amplitude -= 2;
+    this.amplitude -= 2.5;
     window.requestAnimationFrame(() => this.reduceAmplitude());
   }
 
@@ -56,13 +56,13 @@ export default class SoundController {
       this.changeInProgress = false;
       return;
     }
-    this.amplitude += 2;
+    this.amplitude += 2.5;
     window.requestAnimationFrame(() => this.increaseAmplitude());
   }
 
   horizontalSine() {
     this.controllerContext.beginPath();
-    this.controllerContext.lineWidth = 2;
+    this.controllerContext.lineWidth = 3.5;
     this.controllerContext.strokeStyle = "white";
 
     let x = 0;
