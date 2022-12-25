@@ -18,7 +18,6 @@ export default class Stars {
     this.particleVelocities = [];
     this.particleAccelerations = [];
     this.experience = new MatteredExperience();
-    this.starColors = [];
     this.pointsMesh = null;
     return this;
   }
@@ -87,6 +86,7 @@ export default class Stars {
     for (let i = 0; i < this.colorAttribute.count; i++) {
       this.colorAttribute.setW(i, 0.5 + Math.sin(timePassed) * 0.5);
     }
+    this.geometry.attributes.color.needsUpdate = true;
   }
 
   init() {
