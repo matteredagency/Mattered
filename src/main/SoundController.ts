@@ -6,6 +6,7 @@ export default class SoundController {
   amplitude: number;
   frequency: number;
   flatLine: boolean;
+  changeInProgress: boolean;
   constructor() {
     this.controllerElement = document.getElementById(
       "sound-controller"
@@ -15,6 +16,7 @@ export default class SoundController {
     ) as CanvasRenderingContext2D;
     this.soundOn = true;
     this.flatLine = false;
+    this.changeInProgress = false;
     this.step = 0;
     this.amplitude = 40;
     this.frequency = 20;
@@ -23,6 +25,8 @@ export default class SoundController {
       "ambient-sound"
     ) as HTMLAudioElement;
     this.controllerElement.addEventListener("click", () => {
+      if (this.changeInProgress) return;
+      this.changeInProgress = true;
       this.soundOn = !this.soundOn;
       if (!this.soundOn) {
         this.reduceAmplitude();
@@ -39,18 +43,20 @@ export default class SoundController {
     if (this.amplitude <= 1) {
       this.amplitude = 1;
       this.flatLine = true;
+      this.changeInProgress = false;
       return;
     }
-    this.amplitude -= 1.5;
+    this.amplitude -= 2;
     window.requestAnimationFrame(() => this.reduceAmplitude());
   }
 
   increaseAmplitude() {
     if (this.amplitude >= 40) {
       this.amplitude = 40;
+      this.changeInProgress = false;
       return;
     }
-    this.amplitude += 1.5;
+    this.amplitude += 2;
     window.requestAnimationFrame(() => this.increaseAmplitude());
   }
 
