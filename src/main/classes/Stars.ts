@@ -42,7 +42,7 @@ export default class Stars {
     ];
 
     for (let i = 0; i < this.particleCount; i++) {
-      const randomColor = Math.random();
+      const randomColor = Math.random() * 0.8 + 0.2;
       for (let j = 0; j < 3; j++) {
         this.insertVertexValue(
           i,
@@ -90,8 +90,9 @@ export default class Stars {
 
     for (let i = 0; i < colorAttribute.count; i++) {
       const sineLevel =
-        Math.sin(timePassed * this.colorBufferArray[Math.floor(i / 3)]) * 0.5 +
-        0.5;
+        Math.sin(timePassed * 4 * this.colorBufferArray[Math.floor(i / 3)]) *
+          0.5 +
+        0.6;
       this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
     }
     this.geometry.attributes.color.needsUpdate = true;
