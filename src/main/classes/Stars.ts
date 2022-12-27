@@ -11,8 +11,8 @@ export default class Stars {
   particleAccelerations: number[];
   experience: MatteredExperience;
   pointsMesh: THREE.Points | null;
-  colorAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
   colorBufferArray: Float32Array;
+  colorAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
   constructor(particleCount: number) {
     this.geometry = new THREE.BufferGeometry();
     this.particleCount = particleCount;
@@ -91,7 +91,7 @@ export default class Stars {
     for (let i = 0; i < colorAttribute.count; i++) {
       const sineLevel =
         Math.sin(timePassed * 4 * this.colorBufferArray[Math.floor(i / 3)]) *
-          0.5 +
+          0.4 +
         0.6;
       this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
     }
