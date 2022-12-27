@@ -41,6 +41,7 @@ export default class Stars {
     ];
 
     for (let i = 0; i < this.particleCount; i++) {
+      const randomColor = Math.random();
       for (let j = 0; j < 3; j++) {
         this.insertVertexValue(
           i,
@@ -53,11 +54,9 @@ export default class Stars {
           positionsBuffer
         );
 
-        this.insertVertexValue(i, j, Math.random(), colorBuffer);
+        this.insertVertexValue(i, j, randomColor, colorBuffer);
       }
     }
-
-    console.log(colorBuffer);
 
     this.geometry.setAttribute(
       "position",
@@ -79,6 +78,7 @@ export default class Stars {
         size: 2.5,
         map: this.experience.assets.assetsDirectory.textures["Star"],
         transparent: true,
+        vertexColors: true,
         alphaTest: 0.05,
       })
     );
