@@ -72,7 +72,7 @@ export default class MatteredExperience {
   timeControl() {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
-    // this.spaceObjects.stars.twinkleStars(elapsedTime);
+    this.spaceObjects.stars.twinkleStars(elapsedTime);
   }
 
   update() {

@@ -12,6 +12,7 @@ export default class Stars {
   experience: MatteredExperience;
   pointsMesh: THREE.Points | null;
   colorAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
+  colorBufferArray: Float32Array;
   constructor(particleCount: number) {
     this.geometry = new THREE.BufferGeometry();
     this.particleCount = particleCount;
@@ -19,6 +20,7 @@ export default class Stars {
     this.particleAccelerations = [];
     this.experience = new MatteredExperience();
     this.pointsMesh = null;
+    this.colorBufferArray = new Float32Array(particleCount * 3);
     return this;
   }
 
@@ -33,7 +35,6 @@ export default class Stars {
 
   private setGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
-    const colorBuffer = new Float32Array(this.particleCount * 3);
     const pointRanges = [
       [-1000, 1000, null],
       [-250, 250, 25],
@@ -54,7 +55,7 @@ export default class Stars {
           positionsBuffer
         );
 
-        this.insertVertexValue(i, j, randomColor, colorBuffer);
+        this.insertVertexValue(i, j, randomColor, this.colorBufferArray);
       }
     }
 
@@ -65,7 +66,7 @@ export default class Stars {
 
     this.geometry.setAttribute(
       "color",
-      new THREE.Float32BufferAttribute(colorBuffer, 3)
+      new THREE.Float32BufferAttribute(this.colorBufferArray, 3)
     );
 
     this.colorAttribute = this.geometry.getAttribute("color");
@@ -86,8 +87,12 @@ export default class Stars {
 
   twinkleStars(timePassed: number) {
     const colorAttribute = this.geometry.attributes.color;
+
     for (let i = 0; i < colorAttribute.count; i++) {
-      this.colorAttribute.setXYZ(i, 0.5, 1, 0.5);
+      const sineLevel =
+        Math.sin(timePassed * this.colorBufferArray[Math.floor(i / 3)]) * 0.5 +
+        0.5;
+      this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
     }
     this.geometry.attributes.color.needsUpdate = true;
   }
