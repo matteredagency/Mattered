@@ -33,7 +33,7 @@ export default class Stars {
 
   private setGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
-    const colorBuffer = new Float32Array(this.particleCount * 4);
+    const colorBuffer = new Float32Array(this.particleCount * 3);
     const pointRanges = [
       [-1000, 1000, null],
       [-250, 250, 25],
@@ -53,9 +53,11 @@ export default class Stars {
           positionsBuffer
         );
 
-        this.insertVertexValue(i, j, 1, colorBuffer);
+        this.insertVertexValue(i, j, Math.random(), colorBuffer);
       }
     }
+
+    console.log(colorBuffer);
 
     this.geometry.setAttribute(
       "position",
@@ -64,7 +66,7 @@ export default class Stars {
 
     this.geometry.setAttribute(
       "color",
-      new THREE.Float32BufferAttribute(colorBuffer, 4)
+      new THREE.Float32BufferAttribute(colorBuffer, 3)
     );
 
     this.colorAttribute = this.geometry.getAttribute("color");
@@ -83,8 +85,9 @@ export default class Stars {
   }
 
   twinkleStars(timePassed: number) {
-    for (let i = 0; i < this.colorAttribute.count; i++) {
-      this.colorAttribute.setW(i, 0.5 + Math.sin(timePassed) * 0.5);
+    const colorAttribute = this.geometry.attributes.color;
+    for (let i = 0; i < colorAttribute.count; i++) {
+      this.colorAttribute.setXYZ(i, 0.5, 1, 0.5);
     }
     this.geometry.attributes.color.needsUpdate = true;
   }
