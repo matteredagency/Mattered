@@ -90,16 +90,20 @@ export default class Stars {
   twinkleStars(timePassed: number) {
     for (let i = 0; i < this.colorAttribute.count; i++) {
       const xPosition = this.positionAttribute.getX(i);
-      const yPosition = this.positionAttribute.getY(i);
       const zPosition = this.positionAttribute.getZ(i);
 
       if (
-        xPosition > this.experience.camera.perspectiveCamera.position.x + 300 ||
-        xPosition < this.experience.camera.perspectiveCamera.position.x - 300 ||
-        zPosition > this.experience.camera.perspectiveCamera.position.z + 300 ||
-        zPosition < this.experience.camera.perspectiveCamera.position.z - 300
+        (xPosition >
+          this.experience.camera.perspectiveCamera.position.x + 300 ||
+          xPosition <
+            this.experience.camera.perspectiveCamera.position.x - 300 ||
+          zPosition >
+            this.experience.camera.perspectiveCamera.position.z + 300 ||
+          zPosition <
+            this.experience.camera.perspectiveCamera.position.z - 300) &&
+        i % 3 === 0
       ) {
-        const sineLevel = Math.sin(timePassed * 11 + i) * 0.5 + 0.5;
+        const sineLevel = Math.sin(timePassed * 5 + i) * 0.5 + 0.5;
         this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
       } else {
         this.colorAttribute.setXYZ(i, 1, 1, 1);
