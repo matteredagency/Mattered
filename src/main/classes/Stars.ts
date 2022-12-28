@@ -101,7 +101,7 @@ export default class Stars {
             this.experience.camera.perspectiveCamera.position.z + 300 ||
           zPosition <
             this.experience.camera.perspectiveCamera.position.z - 300) &&
-        i % 10 === 0
+        i % 12 === 0
       ) {
         const sineLevel = Math.sin(timePassed * 5 + i) * 0.5 + 0.5;
         this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
