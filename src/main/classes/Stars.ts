@@ -13,6 +13,8 @@ export default class Stars {
   pointsMesh: THREE.Points | null;
   colorBufferArray: Float32Array;
   colorAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
+  positionAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
+
   constructor(particleCount: number) {
     this.geometry = new THREE.BufferGeometry();
     this.particleCount = particleCount;
@@ -42,7 +44,6 @@ export default class Stars {
     ];
 
     for (let i = 0; i < this.particleCount; i++) {
-      const randomColor = Math.random() * 0.8 + 0.2;
       for (let j = 0; j < 3; j++) {
         this.insertVertexValue(
           i,
@@ -55,7 +56,7 @@ export default class Stars {
           positionsBuffer
         );
 
-        this.insertVertexValue(i, j, randomColor, this.colorBufferArray);
+        this.insertVertexValue(i, j, 1, this.colorBufferArray);
       }
     }
 
@@ -70,6 +71,7 @@ export default class Stars {
     );
 
     this.colorAttribute = this.geometry.getAttribute("color");
+    this.positionAttribute = this.geometry.getAttribute("position");
   }
 
   private setPointsMesh() {
@@ -86,14 +88,22 @@ export default class Stars {
   }
 
   twinkleStars(timePassed: number) {
-    const colorAttribute = this.geometry.attributes.color;
+    for (let i = 0; i < this.colorAttribute.count; i++) {
+      const xPosition = this.positionAttribute.getX(i);
+      const yPosition = this.positionAttribute.getY(i);
+      const zPosition = this.positionAttribute.getZ(i);
 
-    for (let i = 0; i < colorAttribute.count; i++) {
-      const sineLevel =
-        Math.sin(timePassed * 4 * this.colorBufferArray[Math.floor(i / 3)]) *
-          0.4 +
-        0.6;
-      this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
+      if (
+        xPosition > this.experience.camera.perspectiveCamera.position.x + 300 ||
+        xPosition < this.experience.camera.perspectiveCamera.position.x - 300 ||
+        zPosition > this.experience.camera.perspectiveCamera.position.z + 300 ||
+        zPosition < this.experience.camera.perspectiveCamera.position.z - 300
+      ) {
+        const sineLevel = Math.sin(timePassed * 11 + i) * 0.5 + 0.5;
+        this.colorAttribute.setXYZ(i, sineLevel, sineLevel, sineLevel);
+      } else {
+        this.colorAttribute.setXYZ(i, 1, 1, 1);
+      }
     }
     this.geometry.attributes.color.needsUpdate = true;
   }

@@ -2,7 +2,7 @@ import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 export default class Camera {
   experience: MatteredExperience;
-  perspectiveCamera?: THREE.PerspectiveCamera;
+  perspectiveCamera!: THREE.PerspectiveCamera;
   constructor() {
     this.experience = new MatteredExperience();
     this.createPerspectiveCamera();
@@ -21,7 +21,7 @@ export default class Camera {
     folder?.add(this.perspectiveCamera.rotation, "x", 0, Math.PI * 2);
 
     this.experience?.scene?.add(this.perspectiveCamera);
-    this.perspectiveCamera.position.set(75, 5, 500);
+    this.perspectiveCamera.position.set(75, 5, 1000);
     this.perspectiveCamera.rotation.y = Math.PI * 0.33;
   }
 

@@ -14,7 +14,7 @@ export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
   canvas?: HTMLCanvasElement;
-  camera?: Camera;
+  camera!: Camera;
   sizes?: Sizes;
   rendererInstance?: Renderer;
   spaceObjects!: Space;
