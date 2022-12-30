@@ -58,7 +58,6 @@ export default class MatteredExperience {
     });
     this.clock = new THREE.Clock(true);
 
-    this.clock.start();
     this.sceneController = new SceneController();
 
     this.planeController = new PlaneController();
@@ -81,7 +80,11 @@ export default class MatteredExperience {
   }
 
   update() {
-    this.timeControl();
+    if (this.introScript.triangleClicked) {
+      this.clock.start();
+    }
+
+    if (this.clock.running) this.timeControl();
 
     if (this.spaceObjects.currentPlanet) {
       this.spaceObjects.currentPlanet.rotate();
