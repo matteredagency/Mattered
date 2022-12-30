@@ -1,10 +1,5 @@
-import { ArcCurve, Color, PointLight, Vector3 } from "three";
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
-import Planet from "./Planet";
-import createAssetPath from "../../utils/createAssetPath";
-import { lerp } from "three/src/math/MathUtils";
-import scalePercent from "../../utils/scalePercent";
 
 export default class Track {
   experience: MatteredExperience;
@@ -34,21 +29,18 @@ export default class Track {
     this.currentPlanePercent = 0.01;
     this.planeMovedTime = 0;
     this.planeMoved = false;
-    // if (process.env.NODE_ENV === "development") {
-    //   const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
+    const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
-    //   const mesh = new THREE.Mesh(
-    //     geometry,
-    //     new THREE.MeshBasicMaterial({
-    //       wireframe: true,
-    //       // transparent: true,
-    //       // opacity: 0,
-    //       color: 0xffffff,
-    //     })
-    //   );
+    const mesh = new THREE.Mesh(
+      geometry,
+      new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xffffff,
+      })
+    );
 
-    //   this.experience.scene?.add(mesh);
-    // }
+    this.experience.scene?.add(mesh);
+
     return this;
   }
 

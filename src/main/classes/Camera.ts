@@ -13,16 +13,17 @@ export default class Camera {
       75,
       window.innerWidth / window.innerHeight,
       5,
-      1000
+      1500
     );
 
-    const folder = this.experience.gui?.addFolder("camera");
+    const folder = this.experience.gui.addFolder("camera");
 
-    folder?.add(this.perspectiveCamera.rotation, "x", 0, Math.PI * 2);
+    folder.add(this.perspectiveCamera.rotation, "y", 0, Math.PI * 2);
+    folder.add(this.perspectiveCamera.position, "x", -1000, 1000);
+    folder.add(this.perspectiveCamera.position, "z", -1000, 1000);
 
     this.experience?.scene?.add(this.perspectiveCamera);
-    this.perspectiveCamera.position.set(75, 5, 1000);
-    this.perspectiveCamera.rotation.y = Math.PI * 0.33;
+    this.perspectiveCamera.position.set(800, 5, 700);
   }
 
   resize() {

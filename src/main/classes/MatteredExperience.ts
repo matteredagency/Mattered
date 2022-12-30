@@ -10,6 +10,8 @@ import Track from "./Track";
 import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import Intro from "../../intro/intro";
+import { GUI } from "dat.gui";
+import IntroTrack from "./IntroTrack";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -21,7 +23,9 @@ export default class MatteredExperience {
   controls!: Controls;
   lights?: Lights;
   track!: Track;
+  introTrack!: IntroTrack;
   clock!: THREE.Clock;
+  gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   introScript!: Intro;
@@ -31,12 +35,12 @@ export default class MatteredExperience {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    // this.gui = new GUI();
-
+    this.gui = new GUI();
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
     this.introScript = new Intro();
+    this.introTrack = new IntroTrack();
     this.init();
   }
 
