@@ -11,7 +11,8 @@ export default class IntroTrack {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(1000, 0, 1000),
+      new THREE.Vector3(500, 0, 400),
+      new THREE.Vector3(225, 0, 600),
       new THREE.Vector3(75, 0, 500),
     ];
 
@@ -35,49 +36,29 @@ export default class IntroTrack {
     return this;
   }
 
-  //   updatePlanePosition(currentPercent: number) {
-  //     const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
-  //     this.currentPlanePercent = currentPercent;
-  //     this.experience.spaceObjects.paperPlane.position.set(
-  //       currentPlanePosition.x,
-  //       0,
-  //       currentPlanePosition.z
-  //     );
-  //     this.experience.lights?.planeLight.position.set(
-  //       currentPlanePosition.x,
-  //       5,
-  //       currentPlanePosition.z
-  //     );
-  //     this.experience.camera?.perspectiveCamera?.lookAt(currentPlanePosition);
-  //   }
+  updatePlanePosition(currentPercent: number) {
+    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
+    this.currentPlanePercent = currentPercent;
+    this.experience.spaceObjects.paperPlane.position.set(
+      currentPlanePosition.x,
+      0,
+      currentPlanePosition.z
+    );
+    this.experience.lights?.planeLight.position.set(
+      currentPlanePosition.x,
+      5,
+      currentPlanePosition.z
+    );
+    this.experience.camera?.perspectiveCamera?.lookAt(currentPlanePosition);
+  }
 
-  //   updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
-  //     const currentCameraPosition = this.path.getPointAt(currentPercent);
+  updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
+    const currentCameraPosition = this.path.getPointAt(currentPercent);
 
-  //     this.experience.camera?.perspectiveCamera?.position.set(
-  //       currentCameraPosition.x,
-  //       5,
-  //       currentCameraPosition.z
-  //     );
-  //   }
-
-  //   returnCameraToOriginalSpot() {
-  //     this.currentCameraPercent = Math.max(
-  //       0,
-  //       Math.min(this.currentPlanePercent, this.currentCameraPercent + 0.001)
-  //     );
-
-  //     console.log(this.currentCameraPercent, this.currentPlanePercent);
-  //     if (this.currentCameraPercent >= this.currentPlanePercent) {
-  //       this.planeMoved = false;
-  //     }
-
-  //     const returnTrack = this.path.getPointAt(this.currentCameraPercent);
-
-  //     this.experience.camera?.perspectiveCamera?.position.set(
-  //       returnTrack.x,
-  //       5,
-  //       returnTrack.z
-  //     );
-  //   }
+    this.experience.camera?.perspectiveCamera?.position.set(
+      currentCameraPosition.x,
+      5,
+      currentCameraPosition.z
+    );
+  }
 }
