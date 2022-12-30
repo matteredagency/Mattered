@@ -1,24 +1,40 @@
 import "../../public/index.css";
 
-const triangle = document.getElementById("mattered-triangle");
-const svgElement = document.querySelector("svg");
-const audio = document.getElementById("ambient-sound") as HTMLAudioElement;
-const canvasElement = document.getElementById("canvas-scene");
-if (triangle) {
-  triangle.addEventListener("click", () => {
-    if (svgElement) {
-      svgElement.classList.add("pass-through");
+export default class Intro {
+  static instance: Intro;
+  triangleClicked!: boolean;
+  constructor() {
+    if (Intro.instance) return Intro.instance;
+    Intro.instance = this;
 
-      if (audio) {
-        audio.play();
-      }
+    this.triangleClicked = false;
+    const triangle = document.getElementById(
+      "mattered-triangle"
+    ) as HTMLElement;
+    const svgElement = document.querySelector("svg");
+    const audio = document.getElementById("ambient-sound") as HTMLAudioElement;
+    const canvasElement = document.getElementById("canvas-scene");
 
-      if (canvasElement) {
-        canvasElement.classList.add("fade-in");
+    triangle.addEventListener("click", () => {
+      if (svgElement) {
+        svgElement.classList.add("pass-through");
+
+        if (audio) {
+          audio.play();
+        }
+
+        if (canvasElement) {
+          canvasElement.classList.add("fade-in");
+        }
+
+        this.triangleClicked = true;
+
+        setTimeout(() => {
+          svgElement.remove();
+        }, 2000);
       }
-      setTimeout(() => {
-        svgElement.remove();
-      }, 2000);
-    }
-  });
+    });
+  }
 }
+
+new Intro();

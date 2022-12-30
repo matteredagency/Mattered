@@ -62,8 +62,6 @@ export default class SceneController {
         position: new THREE.Vector3(750, 0, -400),
         planetScale: 2,
         tilt: Math.PI * 1.15,
-        // atmosphereColor: new THREE.Vector3(),
-        // atmosphereIntensity: new THREE.Vector3(),
       }),
     };
 

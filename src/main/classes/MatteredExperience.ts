@@ -8,8 +8,8 @@ import Space from "./Space";
 import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
-import createAssetPath from "../../utils/createAssetPath";
 import Assets from "./Assets";
+import Intro from "../../intro/intro";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -24,6 +24,7 @@ export default class MatteredExperience {
   clock!: THREE.Clock;
   sceneController!: SceneController;
   planeController!: PlaneController;
+  introScript!: Intro;
   assets!: Assets;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
@@ -35,7 +36,7 @@ export default class MatteredExperience {
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
-
+    this.introScript = new Intro();
     this.init();
   }
 
@@ -77,6 +78,7 @@ export default class MatteredExperience {
 
   update() {
     this.timeControl();
+
     if (this.spaceObjects.currentPlanet) {
       this.spaceObjects.currentPlanet.rotate();
     }
