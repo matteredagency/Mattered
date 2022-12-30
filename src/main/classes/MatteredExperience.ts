@@ -11,7 +11,6 @@ import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import Intro from "../../intro/intro";
 import { GUI } from "dat.gui";
-import IntroTrack from "./IntroTrack";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -21,9 +20,8 @@ export default class MatteredExperience {
   rendererInstance?: Renderer;
   spaceObjects!: Space;
   controls!: Controls;
-  lights?: Lights;
+  lights!: Lights;
   track!: Track;
-  introTrack!: IntroTrack;
   clock!: THREE.Clock;
   gui!: GUI;
   sceneController!: SceneController;
@@ -40,7 +38,6 @@ export default class MatteredExperience {
     this.canvas = canvas;
     this.scene = new THREE.Scene();
     this.introScript = new Intro();
-    this.introTrack = new IntroTrack();
     this.init();
   }
 
@@ -77,8 +74,11 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
-    if (elapsedTime <= 3) {
-      this.track.introPlaneMove((elapsedTime / 3) * 0.01);
+    if (elapsedTime <= 1.5) {
+      this.track.introPlaneMove((elapsedTime / 1.5) * 0.01);
+    }
+    if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
+      this.controls.activateControls();
     }
   }
 

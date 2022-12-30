@@ -21,6 +21,7 @@ export default class Space {
 
     this.experience.scene.add(this.paperPlane);
     this.paperPlane.scale.set(0.15, 0.15, 0.15);
+    this.paperPlane.rotateY(Math.PI * 0.33);
   }
   init() {
     this.currentPlanet = null;
