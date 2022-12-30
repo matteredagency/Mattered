@@ -52,7 +52,7 @@ export default class IntroTrack {
     this.experience.camera?.perspectiveCamera?.lookAt(currentPlanePosition);
   }
 
-  updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
+  updateCameraPosition(currentPercent: number) {
     const currentCameraPosition = this.path.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(

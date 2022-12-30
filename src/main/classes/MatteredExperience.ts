@@ -48,10 +48,10 @@ export default class MatteredExperience {
     await this.assets.loadAssets();
 
     this.sizes = new Sizes();
-    this.camera = new Camera();
     this.rendererInstance = new Renderer();
     this.spaceObjects = new Space();
     this.controls = new Controls();
+    this.track = new Track();
     this.lights = new Lights();
     this.sizes.on("resize", () => {
       this.resize();
@@ -59,9 +59,9 @@ export default class MatteredExperience {
     this.clock = new THREE.Clock(true);
 
     this.sceneController = new SceneController();
+    this.camera = new Camera();
 
     this.planeController = new PlaneController();
-    this.track = new Track();
 
     this.scene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
@@ -77,6 +77,9 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
+    if (elapsedTime <= 3) {
+      this.track.introPlaneMove((elapsedTime / 3) * 0.01);
+    }
   }
 
   update() {

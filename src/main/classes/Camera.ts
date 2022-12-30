@@ -24,8 +24,10 @@ export default class Camera {
     folder.add(this.perspectiveCamera.position, "z", -1000, 1000);
 
     this.experience?.scene?.add(this.perspectiveCamera);
-    this.perspectiveCamera.position.set(400, 5, 400);
-    this.perspectiveCamera.rotateY(Math.PI * 1.25);
+
+    const startPath = this.experience.track.path.getPointAt(0);
+    this.perspectiveCamera.position.set(startPath.x, 5, startPath.z);
+    this.perspectiveCamera.lookAt(this.experience.track.path.getPointAt(0.01));
   }
 
   resize() {

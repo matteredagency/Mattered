@@ -26,7 +26,7 @@ export default class Track {
 
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPercent = 0;
-    this.currentPlanePercent = 0.01;
+    this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
     this.planeMoved = false;
     const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
@@ -70,23 +70,17 @@ export default class Track {
     );
   }
 
-  returnCameraToOriginalSpot() {
-    this.currentCameraPercent = Math.max(
+  introPlaneMove(currentPercent: number, elapsedTime: number) {
+    const currentPlanePosition = this.path.getPointAt(currentPercent);
+    this.experience.spaceObjects.paperPlane.position.set(
+      currentPlanePosition.x,
       0,
-      Math.min(this.currentPlanePercent, this.currentCameraPercent + 0.001)
+      currentPlanePosition.z
     );
-
-    console.log(this.currentCameraPercent, this.currentPlanePercent);
-    if (this.currentCameraPercent >= this.currentPlanePercent) {
-      this.planeMoved = false;
-    }
-
-    const returnTrack = this.path.getPointAt(this.currentCameraPercent);
-
-    this.experience.camera?.perspectiveCamera?.position.set(
-      returnTrack.x,
+    this.experience.lights?.planeLight.position.set(
+      currentPlanePosition.x,
       5,
-      returnTrack.z
+      currentPlanePosition.z
     );
   }
 }
