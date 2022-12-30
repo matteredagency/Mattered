@@ -45,6 +45,8 @@ html {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
 }
 
 #sound-controller {
@@ -93,6 +95,10 @@ svg {
 
 .fade-in {
   opacity: 1 !important;
+}
+
+.fade-out {
+  opacity: 0 !important;
 }
 
 #loading-bar {

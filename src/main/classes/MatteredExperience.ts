@@ -11,6 +11,7 @@ import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import Intro from "../../intro/intro";
 import { GUI } from "dat.gui";
+import ScrollInstructionsController from "./ScrollInstructions";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -22,6 +23,7 @@ export default class MatteredExperience {
   controls!: Controls;
   lights!: Lights;
   track!: Track;
+  scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
   gui!: GUI;
   sceneController!: SceneController;
@@ -47,6 +49,7 @@ export default class MatteredExperience {
     this.sizes = new Sizes();
     this.rendererInstance = new Renderer();
     this.spaceObjects = new Space();
+    this.scrollInstructions = new ScrollInstructionsController();
     this.controls = new Controls();
     this.track = new Track();
     this.lights = new Lights();
@@ -79,6 +82,7 @@ export default class MatteredExperience {
     }
     if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
       this.controls.activateControls();
+      this.scrollInstructions.fadeIn();
     }
   }
 
