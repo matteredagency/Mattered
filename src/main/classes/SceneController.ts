@@ -14,6 +14,16 @@ export default class SceneController {
     asteroids: Asteroids;
     saturn: Planet;
   };
+
+  sceneTime: {
+    venus: number;
+    earth: number;
+    mars: number;
+    jupiter: number;
+    asteroids: number;
+    saturn: number;
+  };
+  currentTrackPercent: number;
   constructor() {
     this.sceneSubjects = {
       venus: new Planet({
@@ -64,9 +74,16 @@ export default class SceneController {
         tilt: Math.PI * 1.15,
       }),
     };
-
+    this.sceneTime = {
+      earth: 0,
+      venus: 0,
+      mars: 0,
+      jupiter: 0,
+      asteroids: 0,
+      saturn: 0,
+    };
     this.sceneSubjects.venus.init();
-
+    this.currentTrackPercent = 0;
     this.experience = new MatteredExperience();
   }
 

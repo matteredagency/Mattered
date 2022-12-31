@@ -23,7 +23,8 @@ export default class Controls {
     this.scrollContainer?.addEventListener("scroll", () => {
       const { scrollHeight, scrollTop } = this.scrollContainer as HTMLElement;
       this.experience.track.planeMoved = true;
-      if (this.experience.scrollInstructions.elementVisible) {
+      console.log(this.experience.scrollInstructions.element);
+      if (this.experience.scrollInstructions.element) {
         this.experience.scrollInstructions.fadeOut();
       }
       this.scrollPercent = scrollTop / scrollHeight;

@@ -1,23 +1,20 @@
 export default class ScrollInstructionsController {
-  element: HTMLSpanElement;
-  elementVisible: boolean;
+  element: HTMLSpanElement | null;
   constructor() {
     this.element = document.getElementById(
       "scroll-instructions"
     ) as HTMLSpanElement;
-
-    this.elementVisible = false;
   }
 
   fadeIn() {
-    this.elementVisible = true;
-    this.element.classList.add("fade-in");
+    this.element?.classList.add("fade-in");
   }
 
   fadeOut() {
-    this.element.classList.add("fade-out");
+    this.element?.classList.add("fade-out");
     setTimeout(() => {
-      this.element.remove();
+      this.element?.remove();
+      this.element = null;
     }, 250);
   }
 }

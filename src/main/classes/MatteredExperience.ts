@@ -52,7 +52,7 @@ export default class MatteredExperience {
     this.sizes.on("resize", () => {
       this.resize();
     });
-    this.clock = new THREE.Clock(true);
+    this.clock = new THREE.Clock();
 
     this.sceneController = new SceneController();
     this.camera = new Camera();
