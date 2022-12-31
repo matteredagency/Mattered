@@ -1,6 +1,5 @@
 import MatteredExperience from "./MatteredExperience";
 import THREE from "../globalmports";
-import { GLTFLoader } from "../globalmports";
 
 export default class Asteroids {
   experience: MatteredExperience;

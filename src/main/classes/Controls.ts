@@ -2,7 +2,7 @@ import MatteredExperience from "./MatteredExperience";
 
 export default class Controls {
   experience: MatteredExperience;
-  scrollContainer?: HTMLElement | null;
+  scrollContainer: HTMLElement | null;
   scrollPercent: number;
   oldScrollTop: number;
   oldScrollPercent: number;

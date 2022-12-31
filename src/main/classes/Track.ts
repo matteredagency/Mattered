@@ -70,7 +70,7 @@ export default class Track {
     );
   }
 
-  introPlaneMove(currentPercent: number) {
+  autoPlaneMove(currentPercent: number) {
     const currentPlanePosition = this.path.getPointAt(currentPercent);
 
     this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;

@@ -85,6 +85,9 @@ export default class SceneController {
   }
 
   updateSceneData(currentPercent: number) {
+    if (currentPercent >= 0.9 && this.experience.controls.scrollContainer) {
+      this.experience.controls.scrollContainer.style.overflowY = "hidden";
+    }
     this.sceneSelect(currentPercent);
     this.trackSceneTime(currentPercent);
   }

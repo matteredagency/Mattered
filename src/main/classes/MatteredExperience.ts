@@ -74,7 +74,7 @@ export default class MatteredExperience {
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
     if (elapsedTime <= 1.5) {
-      this.track.introPlaneMove((elapsedTime / 1.5) * 0.01);
+      this.track.autoPlaneMove((elapsedTime / 1.5) * 0.01);
     }
     if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
       this.controls.activateControls();
