@@ -16,14 +16,10 @@ export default class SceneController {
   };
 
   sceneTime: {
-    venus: number;
-    earth: number;
-    mars: number;
-    jupiter: number;
-    asteroids: number;
-    saturn: number;
+    [key: string]: number;
   };
-  currentTrackPercent: number;
+  sceneClock: THREE.Clock;
+  currentSubject: string | null;
   constructor() {
     this.sceneSubjects = {
       venus: new Planet({
@@ -82,9 +78,44 @@ export default class SceneController {
       asteroids: 0,
       saturn: 0,
     };
-    this.sceneSubjects.venus.init();
-    this.currentTrackPercent = 0;
     this.experience = new MatteredExperience();
+    this.sceneClock = new THREE.Clock();
+    this.sceneSubjects.venus.init();
+    this.currentSubject = null;
+  }
+
+  updateSceneData(currentPercent: number) {
+    this.sceneSelect(currentPercent);
+    this.trackSceneTime(currentPercent);
+  }
+
+  trackSceneSubject(subject: string) {
+    if (this.sceneClock.running) return;
+    this.sceneClock.start();
+    this.currentSubject = subject;
+  }
+
+  trackSceneTime(currentPercent: number) {
+    if (currentPercent >= 0 && currentPercent < 0.08) {
+      this.trackSceneSubject("venus");
+    } else if (currentPercent >= 0.15 && currentPercent < 0.21) {
+      this.trackSceneSubject("earth");
+    } else if (currentPercent >= 0.33 && currentPercent < 0.41) {
+      this.trackSceneSubject("mars");
+    } else if (currentPercent >= 0.5 && currentPercent < 0.63) {
+      this.trackSceneSubject("jupiter");
+    } else if (currentPercent >= 0.66 && currentPercent < 0.9) {
+      this.trackSceneSubject("asteroids");
+    } else {
+      if (this.currentSubject) {
+        this.sceneClock.stop();
+        this.sceneTime[this.currentSubject as string] +=
+          this.sceneClock.getElapsedTime();
+        this.sceneClock.elapsedTime = 0;
+        this.currentSubject = null;
+        console.log(this.sceneTime);
+      }
+    }
   }
 
   sceneSelect(currentPercent: number) {
