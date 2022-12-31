@@ -113,7 +113,6 @@ export default class SceneController {
           this.sceneClock.getElapsedTime();
         this.sceneClock.elapsedTime = 0;
         this.currentSubject = null;
-        console.log(this.sceneTime);
       }
     }
   }
