@@ -73,15 +73,27 @@ p {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   row-gap: 5px;
+  border-top: solid 1px white;
+  padding-top: 10px;
 }
 
 .space-section {
   border-left: solid white 2px;
   background: linear-gradient(90deg, rgb(100, 100, 100) 0%, transparent 75%);
   display: flex;
-  justify-content: space-between;
-  padding: 5px;
+  padding: 5px 20px 5px 5px;
+  flex-flow: row nowrap;
+}
+
+.space-section > .title-time {
+  display: flex;
   flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.space-section > p {
+  font-size: 25px;
+  margin: auto;
 }
 
 #scroll-container::-webkit-scrollbar {
