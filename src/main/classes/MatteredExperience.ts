@@ -11,6 +11,8 @@ import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import { GUI } from "dat.gui";
 import ScrollInstructionsController from "./ScrollInstructions";
+import "../../../public/index.css";
+
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
