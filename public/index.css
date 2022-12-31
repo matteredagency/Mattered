@@ -21,8 +21,67 @@ html {
   overflow-x: hidden;
 }
 
-.stats {
+#stats-backdrop {
+  z-index: 3;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#stats {
+  height: 70%;
+  color: white;
+  width: 80%;
+  max-width: 800px;
   background: black;
+  box-shadow: 0 0 20px 5px white;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+h2,
+h3,
+h4 {
+  margin: 0;
+  text-align: center;
+}
+
+h5 {
+  margin: 0;
+  text-align: left;
+}
+
+p {
+  margin: 0;
+  text-align: left;
+}
+
+#overview-grid {
+  display: grid;
+  width: 100%;
+  height: 25%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 5px;
+}
+
+.space-section {
+  border-left: solid white 2px;
+  background: linear-gradient(90deg, rgb(100, 100, 100) 0%, transparent 75%);
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  flex-flow: column nowrap;
 }
 
 #scroll-container::-webkit-scrollbar {
@@ -61,7 +120,7 @@ html {
   top: 50px;
   left: 50px;
   cursor: pointer;
-  z-index: 3;
+  z-index: 4;
 }
 
 svg {
@@ -69,7 +128,7 @@ svg {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4;
+  z-index: 5;
 }
 
 .cls-1 {
@@ -78,7 +137,7 @@ svg {
 
 #loading-bar-parent {
   position: absolute;
-  z-index: 5;
+  z-index: 6;
   left: 50%;
   background: #ececec;
   transform: translate(-50%, -50%);
