@@ -11,6 +11,8 @@ export default class Assets {
     objects: { [key: string]: THREE.Group };
     textures: { [key: string]: THREE.Texture };
   };
+  loadingBar: HTMLElement;
+  experienceStarted: boolean;
   constructor() {
     const objects = {
       AsteroidSet: "AsteroidSet.glb",
@@ -22,7 +24,7 @@ export default class Assets {
       Venus: "Venus.glb",
     };
     const textures = { Star: "star.webp" };
-
+    this.experienceStarted = false;
     this.objectPaths = Object.entries(objects).map(([name, path]) => [
       name,
       createAssetPath(`/objects/${path}`),
@@ -42,6 +44,7 @@ export default class Assets {
       Object.keys(objects).length + Object.keys(textures).length + 1;
 
     this.assetsDirectory = { objects: {}, textures: {} };
+    this.loadingBar = document.getElementById("loading-bar") as HTMLElement;
   }
 
   async loadAssets() {
@@ -94,20 +97,32 @@ export default class Assets {
 
   updateLoadingBar() {
     this.loadedAssets += 1;
-    const loadingBar = document.getElementById("loading-bar") as HTMLElement;
     const loadedPercent = this.loadedAssets / this.totalAssets;
 
-    loadingBar.style.width = `${loadedPercent * 100}%`;
+    this.loadingBar.style.width = `${loadedPercent * 100}%`;
 
     if (loadedPercent >= 1) {
-      setTimeout(() => {
-        (loadingBar.parentElement as HTMLElement).remove();
-        (
-          document.getElementById("mattered-triangle") as HTMLElement
-        ).style.pointerEvents = "auto";
-      }, 2500);
+      this.startExperience();
     }
   }
 
-  activateTriangle() {}
+  startExperience() {
+    setTimeout(() => {
+      (this.loadingBar.parentElement as HTMLElement).remove();
+      setTimeout(() => {
+        const svgElement = document.querySelector("svg") as SVGSVGElement;
+        const audio = document.getElementById(
+          "ambient-sound"
+        ) as HTMLAudioElement;
+        const canvasElement = document.getElementById("canvas-scene");
+        svgElement.classList.add("pass-through");
+        audio.play();
+        canvasElement?.classList.add("fade-in");
+        this.experienceStarted = true;
+        setTimeout(() => {
+          svgElement.remove();
+        }, 2000);
+      }, 500);
+    }, 2500);
+  }
 }

@@ -9,7 +9,6 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
 import Assets from "./Assets";
-import Intro from "../../intro/intro";
 import { GUI } from "dat.gui";
 import ScrollInstructionsController from "./ScrollInstructions";
 export default class MatteredExperience {
@@ -28,7 +27,6 @@ export default class MatteredExperience {
   gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
-  introScript!: Intro;
   assets!: Assets;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
@@ -39,7 +37,6 @@ export default class MatteredExperience {
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
-    this.introScript = new Intro();
     this.init();
   }
 
@@ -87,7 +84,7 @@ export default class MatteredExperience {
   }
 
   update() {
-    if (this.introScript.triangleClicked && !this.clock.running) {
+    if (this.assets.experienceStarted && !this.clock.running) {
       this.clock.start();
     }
     if (this.clock.running) this.timeControl();
