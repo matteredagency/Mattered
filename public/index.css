@@ -38,6 +38,17 @@ html {
   position: absolute;
 }
 
+#scroll-instructions {
+  z-index: 3;
+  color: white;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
+}
+
 #sound-controller {
   background-color: transparent;
   height: 50px;
@@ -84,6 +95,10 @@ svg {
 
 .fade-in {
   opacity: 1 !important;
+}
+
+.fade-out {
+  opacity: 0 !important;
 }
 
 #loading-bar {

@@ -9,9 +9,10 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
 import Assets from "./Assets";
-import Intro from "../../intro/intro";
 import { GUI } from "dat.gui";
-import IntroTrack from "./IntroTrack";
+import ScrollInstructionsController from "./ScrollInstructions";
+import "../../../public/index.css";
+
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
@@ -21,14 +22,13 @@ export default class MatteredExperience {
   rendererInstance?: Renderer;
   spaceObjects!: Space;
   controls!: Controls;
-  lights?: Lights;
+  lights!: Lights;
   track!: Track;
-  introTrack!: IntroTrack;
+  scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
   gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
-  introScript!: Intro;
   assets!: Assets;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
@@ -39,8 +39,6 @@ export default class MatteredExperience {
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
-    this.introScript = new Intro();
-    this.introTrack = new IntroTrack();
     this.init();
   }
 
@@ -48,10 +46,11 @@ export default class MatteredExperience {
     await this.assets.loadAssets();
 
     this.sizes = new Sizes();
-    this.camera = new Camera();
     this.rendererInstance = new Renderer();
     this.spaceObjects = new Space();
+    this.scrollInstructions = new ScrollInstructionsController();
     this.controls = new Controls();
+    this.track = new Track();
     this.lights = new Lights();
     this.sizes.on("resize", () => {
       this.resize();
@@ -59,9 +58,9 @@ export default class MatteredExperience {
     this.clock = new THREE.Clock(true);
 
     this.sceneController = new SceneController();
+    this.camera = new Camera();
 
     this.planeController = new PlaneController();
-    this.track = new Track();
 
     this.scene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
@@ -77,13 +76,19 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
+    if (elapsedTime <= 1.5) {
+      this.track.introPlaneMove((elapsedTime / 1.5) * 0.01);
+    }
+    if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
+      this.controls.activateControls();
+      this.scrollInstructions.fadeIn();
+    }
   }
 
   update() {
-    if (this.introScript.triangleClicked) {
+    if (this.assets.experienceStarted && !this.clock.running) {
       this.clock.start();
     }
-
     if (this.clock.running) this.timeControl();
 
     if (this.spaceObjects.currentPlanet) {

@@ -26,20 +26,20 @@ export default class Track {
 
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPercent = 0;
-    this.currentPlanePercent = 0.01;
+    this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
     this.planeMoved = false;
-    const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
+    // const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
-    const mesh = new THREE.Mesh(
-      geometry,
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0xffffff,
-      })
-    );
+    // const mesh = new THREE.Mesh(
+    //   geometry,
+    //   new THREE.MeshBasicMaterial({
+    //     wireframe: true,
+    //     color: 0xffffff,
+    //   })
+    // );
 
-    this.experience.scene?.add(mesh);
+    // this.experience.scene?.add(mesh);
 
     return this;
   }
@@ -70,23 +70,12 @@ export default class Track {
     );
   }
 
-  returnCameraToOriginalSpot() {
-    this.currentCameraPercent = Math.max(
-      0,
-      Math.min(this.currentPlanePercent, this.currentCameraPercent + 0.001)
-    );
+  introPlaneMove(currentPercent: number) {
+    const currentPlanePosition = this.path.getPointAt(currentPercent);
 
-    console.log(this.currentCameraPercent, this.currentPlanePercent);
-    if (this.currentCameraPercent >= this.currentPlanePercent) {
-      this.planeMoved = false;
-    }
-
-    const returnTrack = this.path.getPointAt(this.currentCameraPercent);
-
-    this.experience.camera?.perspectiveCamera?.position.set(
-      returnTrack.x,
-      5,
-      returnTrack.z
-    );
+    this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;
+    this.experience.spaceObjects.paperPlane.position.z = currentPlanePosition.z;
+    this.experience.lights.planeLight.position.x = currentPlanePosition.x;
+    this.experience.lights.planeLight.position.z = currentPlanePosition.z;
   }
 }

@@ -6,17 +6,26 @@ export default class Controls {
   scrollPercent: number;
   oldScrollTop: number;
   oldScrollPercent: number;
+  controlsActivated: boolean;
   constructor() {
     this.experience = new MatteredExperience();
     this.scrollPercent = 0;
-    this.scrollContainer = document.getElementById("scroll-container");
-    // window.scroll({ behavior: "smooth" });
+    this.controlsActivated = false;
+    this.scrollContainer = document.getElementById(
+      "scroll-container"
+    ) as HTMLElement;
     this.oldScrollTop = 0;
     this.oldScrollPercent = 0;
+  }
 
+  activateControls() {
+    this.controlsActivated = true;
     this.scrollContainer?.addEventListener("scroll", () => {
       const { scrollHeight, scrollTop } = this.scrollContainer as HTMLElement;
       this.experience.track.planeMoved = true;
+      if (this.experience.scrollInstructions.elementVisible) {
+        this.experience.scrollInstructions.fadeOut();
+      }
       this.scrollPercent = scrollTop / scrollHeight;
       this.experience.sceneController.sceneSelect(this.scrollPercent);
       this.experience.planeController.updatePlaneRotation(this.scrollPercent);
