@@ -21,6 +21,10 @@ html {
   overflow-x: hidden;
 }
 
+.stats {
+  background: black;
+}
+
 #scroll-container::-webkit-scrollbar {
   display: none;
 }
@@ -64,9 +68,8 @@ svg {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale3d(1, 1, 1);
+  transform: translate(-50%, -50%);
   z-index: 4;
-  transition: transform 3s ease;
 }
 
 .cls-1 {
@@ -90,6 +93,7 @@ svg {
 }
 
 .pass-through {
+  transition: transform 3s ease;
   transform: translate(-300%, 20%) scale3d(100, 100, 1);
 }
 
