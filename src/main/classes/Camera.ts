@@ -16,15 +16,6 @@ export default class Camera {
       1500
     );
 
-    const folder = this.experience.gui.addFolder("camera");
-
-    folder.add(this.perspectiveCamera.rotation, "y", 0, Math.PI * 2);
-    folder.add(this.perspectiveCamera.position, "x", -1000, 1000);
-    folder.add(this.perspectiveCamera.position, "y", 0, 50);
-    folder.add(this.perspectiveCamera.position, "z", -1000, 1000);
-
-    this.experience?.scene?.add(this.perspectiveCamera);
-
     const startPath = this.experience.track.path.getPointAt(0);
     this.perspectiveCamera.position.set(startPath.x, 5, startPath.z);
     this.perspectiveCamera.lookAt(this.experience.track.path.getPointAt(0.01));

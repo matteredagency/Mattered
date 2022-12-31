@@ -9,7 +9,6 @@ import SceneController from "./SceneController";
 import Track from "./Track";
 import PlaneController from "./PlaneController";
 import Assets from "./Assets";
-import { GUI } from "dat.gui";
 import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
 
@@ -26,7 +25,6 @@ export default class MatteredExperience {
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
-  gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   assets!: Assets;
@@ -35,7 +33,6 @@ export default class MatteredExperience {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
-    this.gui = new GUI();
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
