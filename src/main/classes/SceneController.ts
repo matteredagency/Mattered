@@ -181,30 +181,53 @@ export default class SceneController {
     statsScreenElement.classList.add("fade-in-stats-screen");
     const { clock } = this.experience;
     clock.stop();
-    const totalSeconds = Math.round(clock.getElapsedTime());
-    const minutes = Math.floor(totalSeconds / 60);
-    const remainingSeconds = totalSeconds % 60;
 
     const statsTimeElement = document.getElementById(
       "travel-time"
     ) as HTMLHeadElement;
 
-    let travelTime = "You traveled for ";
+    statsTimeElement.innerText = this.formatTimeStatement(
+      Math.round(clock.getElapsedTime()),
+      true
+    );
+
+    console.log(
+      this.formatTimeStatement(Math.floor(this.sceneTime.venus), false)
+    );
+  }
+
+  formatTimeStatement(totalSeconds: number, isStatement: boolean) {
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+    let travelTimeStatement = "";
+
+    if (isStatement) {
+      travelTimeStatement += "You traveled for ";
+    }
 
     if (minutes > 0) {
-      travelTime += `${minutes} minute${minutes > 1 ? "s" : ""}`;
+      let minuteDisplay = isStatement ? `minute${minutes > 1 ? "s" : ""}` : "m";
+      travelTimeStatement += `${minutes} ${minuteDisplay}`;
     }
 
-    if (minutes > 0 && remainingSeconds > 0) {
-      travelTime += `and ${remainingSeconds} second${
-        remainingSeconds > 1 ? "s" : ""
-      }!`;
-    } else if (remainingSeconds > 0) {
-      travelTime += `${remainingSeconds} second${
-        remainingSeconds > 1 ? "s" : ""
-      }!`;
+    if (isStatement && remainingSeconds > 0 && minutes > 0) {
+      travelTimeStatement += " and";
+    } else if (!isStatement && remainingSeconds > 0) {
+      travelTimeStatement += ", ";
     }
 
-    statsTimeElement.innerText = travelTime;
+    if (remainingSeconds > 0 && isStatement) {
+      travelTimeStatement += `${remainingSeconds} second${
+        remainingSeconds > 1 ? "s" : ""
+      }`;
+    } else if (!isStatement) {
+      travelTimeStatement += `${remainingSeconds} s`;
+    }
+
+    if (isStatement) {
+      travelTimeStatement += "!";
+    }
+
+    return travelTimeStatement;
   }
 }
