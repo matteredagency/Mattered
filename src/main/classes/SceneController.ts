@@ -192,8 +192,12 @@ export default class SceneController {
     );
 
     console.log(
-      this.formatTimeStatement(Math.floor(this.sceneTime.venus), false)
+      this.getSubjectPercentage(this.sceneTime.venus, clock.getElapsedTime())
     );
+  }
+
+  getSubjectPercentage(subjectTime: number, totalSeconds: number) {
+    return Math.round((subjectTime / totalSeconds) * 100);
   }
 
   formatTimeStatement(totalSeconds: number, isStatement: boolean) {
@@ -210,10 +214,10 @@ export default class SceneController {
       travelTimeStatement += `${minutes} ${minuteDisplay}`;
     }
 
-    if (isStatement && remainingSeconds > 0 && minutes > 0) {
-      travelTimeStatement += " and";
-    } else if (!isStatement && remainingSeconds > 0) {
-      travelTimeStatement += ", ";
+    if (remainingSeconds > 0 && minutes > 0) {
+      travelTimeStatement += `${!isStatement ? ", " : ""}${
+        isStatement ? " and" : ""
+      }`;
     }
 
     if (remainingSeconds > 0 && isStatement) {
