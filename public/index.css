@@ -24,14 +24,15 @@ html {
 #stats-backdrop {
   z-index: 3;
   position: absolute;
-  background: rgba(0, 0, 0, 0.5);
   height: 100%;
   width: 100%;
   left: 50%;
-  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
   align-items: center;
   justify-content: center;
   top: 50%;
+  opacity: 0;
   transform: translate(-50%, -50%);
 }
 
@@ -202,6 +203,11 @@ svg {
   height: 100%;
   width: 0;
   transition: width 1s ease-in;
+}
+
+.fade-in-stats-screen {
+  opacity: 1 !important;
+  transition: opacity 3s ease-in;
 }
 
 @media (orientation: portrait) {

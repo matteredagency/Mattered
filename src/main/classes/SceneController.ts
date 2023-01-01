@@ -85,9 +85,7 @@ export default class SceneController {
   }
 
   updateSceneData(currentPercent: number) {
-    if (currentPercent >= 0.9 && this.experience.controls.scrollContainer) {
-      this.experience.controls.scrollContainer.style.overflowY = "hidden";
-    }
+    if (currentPercent >= 0.9) this.endExperience();
     this.sceneSelect(currentPercent);
     this.trackSceneTime(currentPercent);
   }
@@ -168,5 +166,35 @@ export default class SceneController {
         this.sceneSubjects.saturn.init();
       }
     }
+  }
+
+  endExperience() {
+    if (this.experience.controls.scrollContainer) {
+      this.experience.controls.scrollContainer.style.overflowY = "hidden";
+    }
+
+    const statsScreenElement = document.getElementById(
+      "stats-backdrop"
+    ) as HTMLElement;
+
+    statsScreenElement.style.display = "flex";
+    statsScreenElement.classList.add("fade-in-stats-screen");
+    const { clock } = this.experience;
+    clock.stop();
+    const totalSeconds = Math.round(clock.getElapsedTime());
+    const minutes = Math.floor(totalSeconds / 60);
+    const remainingSeconds = totalSeconds % 60;
+
+    const statsTimeElement = document.getElementById(
+      "travel-time"
+    ) as HTMLHeadElement;
+
+    let travelTime = "You traveled for ";
+
+    if (minutes > 0) travelTime += `${minutes} minutes and `;
+
+    travelTime += `${remainingSeconds} seconds!`;
+
+    statsTimeElement.innerText = travelTime;
   }
 }
