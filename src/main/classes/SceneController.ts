@@ -192,9 +192,18 @@ export default class SceneController {
     let travelTime = "You traveled for ";
 
     if (minutes > 0) {
-      travelTime += `${minutes} minute${minutes > 1 ? "s" : ""} and `;
+      travelTime += `${minutes} minute${minutes > 1 ? "s" : ""}`;
     }
-    travelTime += `${remainingSeconds} seconds!`;
+
+    if (minutes > 0 && remainingSeconds > 0) {
+      travelTime += `and ${remainingSeconds} second${
+        remainingSeconds > 1 ? "s" : ""
+      }!`;
+    } else if (remainingSeconds > 0) {
+      travelTime += `${remainingSeconds} second${
+        remainingSeconds > 1 ? "s" : ""
+      }!`;
+    }
 
     statsTimeElement.innerText = travelTime;
   }
