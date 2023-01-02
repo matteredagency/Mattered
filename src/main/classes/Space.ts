@@ -22,9 +22,9 @@ export default class Space {
     this.experience.scene.add(this.paperPlane);
     this.paperPlane.scale.set(0.15, 0.15, 0.15);
     this.paperPlane.rotateY(Math.PI * 0.33);
-    const folder = this.experience.gui.addFolder("plane");
+    // const folder = this.experience.gui.addFolder("plane");
 
-    folder.add(this.paperPlane.rotation, "y", 0, Math.PI * 2);
+    // folder.add(this.paperPlane.rotation, "y", 0, Math.PI * 2);
   }
   init() {
     this.currentPlanet = null;
