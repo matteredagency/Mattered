@@ -173,8 +173,6 @@ export default class SceneController {
       this.experience.controls.scrollContainer.style.overflowY = "hidden";
     }
 
-    const { clock } = this.experience;
-    const totalExperienceSeconds = clock.getElapsedTime();
     this.setEndStats();
     this.endSceneElementTransitions();
   }
@@ -182,6 +180,7 @@ export default class SceneController {
   setEndStats() {
     const { clock } = this.experience;
     const totalExperienceSeconds = Math.round(clock.getElapsedTime());
+
     const tableBody = document.querySelector("tbody") as HTMLElement;
     const totalTimeColumn = document.getElementById(
       "total-time"

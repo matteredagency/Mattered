@@ -26,7 +26,7 @@ export default class MatteredExperience {
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
-  gui!: GUI;
+  // gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   assets!: Assets;
@@ -38,7 +38,7 @@ export default class MatteredExperience {
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
-    this.gui = new GUI();
+    // this.gui = new GUI();
     this.init();
   }
 
