@@ -53,6 +53,7 @@ export default class Assets {
         ([name, path]) =>
           new Promise((res) => {
             new GLTFLoader().load(path, (gltf) => {
+              gltf.scene.uuid = name;
               res((this.assetsDirectory.objects[name] = gltf.scene));
               this.updateLoadingBar();
             });
