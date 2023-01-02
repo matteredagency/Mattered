@@ -206,7 +206,7 @@ svg {
 
 .fade-in-stats-screen {
   opacity: 1 !important;
-  transition: opacity 3s ease-in;
+  transition: opacity 1s ease-in;
 }
 
 @media (orientation: portrait) {

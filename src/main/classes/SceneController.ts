@@ -232,7 +232,9 @@ export default class SceneController {
     statsModal.appendChild(scrollContainer);
     statsBackdrop.appendChild(statsModal);
     document.body.appendChild(statsBackdrop);
-    statsBackdrop.classList.add("fade-in-stats-screen");
+    setTimeout(() => {
+      statsBackdrop.classList.add("fade-in-stats-screen");
+    }, 500);
   }
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
