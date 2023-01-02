@@ -105,7 +105,7 @@ export default class SceneController {
       this.trackSceneSubject("mars");
     } else if (currentPercent >= 0.5 && currentPercent < 0.63) {
       this.trackSceneSubject("jupiter");
-    } else if (currentPercent >= 0.66 && currentPercent < 0.9) {
+    } else if (currentPercent >= 0.66 && currentPercent < 0.8) {
       this.trackSceneSubject("asteroids");
     } else {
       if (this.currentSubject) {
@@ -173,9 +173,9 @@ export default class SceneController {
       this.experience.controls.scrollContainer.style.overflowY = "hidden";
     }
 
+    console.log(this.experience.spaceObjects.paperPlane.position);
     const { clock } = this.experience;
-
-    clock.stop();
+    const totalExperienceSeconds = clock.getElapsedTime();
 
     const canvas = document.getElementById("canvas-scene") as HTMLElement;
     canvas.classList.add("fade-out");
@@ -186,7 +186,16 @@ export default class SceneController {
           (child) => child.type === "Group" && child.uuid !== "PaperPlane"
         )
       );
-      console.log(this.experience.scene.children);
+
+      const { planeLight } = this.experience.lights;
+      const { paperPlane } = this.experience.spaceObjects;
+      paperPlane.scale.set(0.3, 0.3, 0.3);
+      paperPlane.rotateY(Math.PI * 0.7);
+      planeLight.intensity = 10.5;
+      planeLight.distance = 38;
+      planeLight.decay = 5;
+
+      planeLight.position.setY(15);
 
       canvas.classList.remove("fade-out");
     }, 2500);

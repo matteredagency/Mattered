@@ -1,6 +1,7 @@
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
+import { GUI } from "dat.gui";
 import Lights from "./Lights";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
@@ -25,6 +26,7 @@ export default class MatteredExperience {
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
+  gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   assets!: Assets;
@@ -36,6 +38,7 @@ export default class MatteredExperience {
     this.assets = new Assets();
     this.canvas = canvas;
     this.scene = new THREE.Scene();
+    this.gui = new GUI();
     this.init();
   }
 

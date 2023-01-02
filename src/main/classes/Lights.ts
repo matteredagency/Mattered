@@ -12,6 +12,12 @@ export default class Lights {
     this.planeLight = new THREE.PointLight(0xffffff, 5, 30, 10);
     this.ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
 
+    const folder = this.experience.gui.addFolder("planeLight");
+
+    folder.add(this.planeLight, "intensity", 0, 20);
+    folder.add(this.planeLight, "distance", 0, 40);
+    folder.add(this.planeLight, "decay", 0, 40);
+
     this.sun.position.set(0, 0, 500);
     this.sun.castShadow = true;
     this.planeLight.castShadow = true;
