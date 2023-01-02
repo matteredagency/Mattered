@@ -22,7 +22,7 @@ html {
 }
 
 #stats-table {
-  display: table;
+  display: none;
   position: absolute;
   top: 75px;
   left: 50%;
@@ -171,17 +171,6 @@ p {
   left: 25px;
   cursor: pointer;
   z-index: 4;
-}
-
-#stats-table > colgroup > col:nth-child(1) {
-  width: 50%;
-}
-
-#stats-table > colgroup > col:nth-child(2) {
-  width: 25%;
-}
-#stats-table > colgroup > col:nth-child(3) {
-  width: 25%;
 }
 
 svg {

@@ -173,10 +173,48 @@ export default class SceneController {
       this.experience.controls.scrollContainer.style.overflowY = "hidden";
     }
 
-    console.log(this.experience.spaceObjects.paperPlane.position);
     const { clock } = this.experience;
     const totalExperienceSeconds = clock.getElapsedTime();
+    this.setEndStats();
+    this.endSceneElementTransitions();
+  }
 
+  setEndStats() {
+    const { clock } = this.experience;
+    const totalExperienceSeconds = Math.round(clock.getElapsedTime());
+    const tableBody = document.querySelector("tbody") as HTMLElement;
+    const totalTimeColumn = document.getElementById(
+      "total-time"
+    ) as HTMLElement;
+
+    Object.entries(this.sceneTime).forEach(([name, time]) => {
+      time = Math.round(time);
+      const newRow = document.createElement("tr");
+
+      const nameData = document.createElement("td");
+      const timeData = document.createElement("td");
+      const percentData = document.createElement("td");
+
+      nameData.innerText = name[0].toUpperCase() + name.substring(1);
+      timeData.innerText = this.formatTimeStatement(time, false);
+      percentData.innerText = Math.round(
+        (time / totalExperienceSeconds) * 100
+      ).toString();
+
+      newRow.appendChild(nameData);
+      newRow.appendChild(timeData);
+      newRow.appendChild(percentData);
+
+      tableBody.appendChild(newRow);
+    });
+
+    totalTimeColumn.innerText = this.formatTimeStatement(
+      totalExperienceSeconds,
+      true
+    );
+  }
+
+  endSceneElementTransitions() {
     const canvas = document.getElementById("canvas-scene") as HTMLElement;
     canvas.classList.add("fade-out");
     setTimeout(() => {
