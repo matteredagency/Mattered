@@ -217,6 +217,10 @@ export default class SceneController {
   endSceneElementTransitions() {
     const canvas = document.getElementById("canvas-scene") as HTMLElement;
     canvas.classList.add("fade-out");
+    const statsTable = document.getElementById(
+      "stats-table"
+    ) as HTMLTableElement;
+    statsTable.style.display = "table";
     setTimeout(() => {
       this.experience.scene.remove.apply(
         this.experience.scene,
@@ -236,10 +240,7 @@ export default class SceneController {
       this.experience.lights.sun.position.setX(229);
       this.experience.lights.ambientLight.intensity = 0.5;
 
-      const statsTable = document.getElementById(
-        "stats-table"
-      ) as HTMLTableElement;
-      statsTable.style.display = "table";
+      statsTable.classList.add("fade-in");
 
       planeLight.position.setY(15);
 
