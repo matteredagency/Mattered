@@ -198,6 +198,11 @@ export default class SceneController {
       this.experience.lights.sun.position.setX(229);
       this.experience.lights.ambientLight.intensity = 0.5;
 
+      const statsTable = document.getElementById(
+        "stats-table"
+      ) as HTMLTableElement;
+      statsTable.style.display = "block";
+
       planeLight.position.setY(15);
 
       canvas.classList.remove("fade-out");

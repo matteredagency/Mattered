@@ -21,6 +21,21 @@ html {
   overflow-x: hidden;
 }
 
+#stats-table {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 90%;
+  height: 35%;
+  max-height: 300px;
+  max-width: 500px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+
 #stats-backdrop {
   z-index: 3;
   position: absolute;
@@ -240,6 +255,12 @@ svg {
 }
 
 @media (max-width: 768px) {
+  #sound-controller {
+    top: 1.5%;
+    left: 5%;
+    height: 50px;
+    width: 100px;
+  }
   #overview-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
