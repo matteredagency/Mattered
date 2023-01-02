@@ -201,7 +201,7 @@ export default class SceneController {
       const statsTable = document.getElementById(
         "stats-table"
       ) as HTMLTableElement;
-      statsTable.style.display = "block";
+      statsTable.style.display = "table";
 
       planeLight.position.setY(15);
 
