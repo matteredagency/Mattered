@@ -189,12 +189,14 @@ export default class SceneController {
 
       const { planeLight } = this.experience.lights;
       const { paperPlane } = this.experience.spaceObjects;
-      this.experience.camera.perspectiveCamera.position.setY(7);
+      this.experience.camera.perspectiveCamera.position.setY(5.6);
       paperPlane.scale.set(0.3, 0.3, 0.3);
-      paperPlane.rotateY(Math.PI * 0.7);
+      paperPlane.rotateY(Math.PI * 1.2);
       planeLight.intensity = 10.5;
       planeLight.distance = 38;
       planeLight.decay = 5;
+      this.experience.lights.sun.position.setX(229);
+      this.experience.lights.ambientLight.intensity = 0.5;
 
       planeLight.position.setY(15);
 
