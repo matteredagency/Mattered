@@ -174,68 +174,14 @@ export default class SceneController {
     }
 
     const { clock } = this.experience;
+
     clock.stop();
 
-    const statsBackdrop = document.createElement("div");
-    const statsModal = document.createElement("div");
-    const subjectsGrid = document.createElement("div");
-    const h2 = document.createElement("h2");
-    const h4 = document.createElement("h4");
-    const statsTimeElement = document.createElement("h3");
-    const scrollContainer = document.createElement("div");
-
-    scrollContainer.setAttribute("id", "overview-scroll-wrapper");
-    subjectsGrid.setAttribute("id", "overview-grid");
-    statsModal.setAttribute("id", "stats");
-    subjectsGrid.setAttribute("id", "overview-grid");
-
-    statsBackdrop.setAttribute("id", "stats-backdrop");
-
-    statsTimeElement.innerText = this.formatTimeStatement(
-      Math.round(clock.getElapsedTime()),
-      true
-    );
-
-    h2.innerText = "Thanks for visiting";
-
-    h4.innerText = "Time Overview";
-
-    Object.entries(this.sceneTime).forEach(([key, value]) => {
-      const spaceSection = document.createElement("div");
-      const textSection = document.createElement("div");
-      const title = document.createElement("h5");
-      const time = document.createElement("span");
-      const percentageSection = document.createElement("p");
-
-      textSection.appendChild(title);
-      textSection.append(time);
-
-      spaceSection.classList.add("space-section");
-      textSection.classList.add("title-time");
-
-      title.innerText = key[0].toUpperCase() + key.substring(1);
-
-      time.innerText = this.formatTimeStatement(Math.round(value), false);
-
-      percentageSection.innerText = `${Math.round(
-        (Math.round(value) / Math.round(clock.getElapsedTime())) * 100
-      )}%`;
-
-      spaceSection.appendChild(textSection);
-      spaceSection.appendChild(percentageSection);
-      subjectsGrid.appendChild(spaceSection);
-    });
-
-    statsModal.appendChild(h2);
-    statsModal.appendChild(statsTimeElement);
-    scrollContainer.appendChild(subjectsGrid);
-    statsModal.appendChild(scrollContainer);
-    statsBackdrop.appendChild(statsModal);
-    document.body.appendChild(statsBackdrop);
-
+    const canvas = document.getElementById("canvas-scene") as HTMLElement;
+    canvas.classList.add("fade-out");
     setTimeout(() => {
-      statsBackdrop.style.opacity = "1";
-    }, 500);
+      canvas.classList.remove("fade-out");
+    }, 2500);
   }
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
