@@ -33,6 +33,7 @@ html {
   justify-content: center;
   top: 0;
   opacity: 0;
+  transition: opacity 1s ease-in;
 }
 
 #stats {
@@ -206,7 +207,6 @@ svg {
 
 .fade-in-stats-screen {
   opacity: 1 !important;
-  transition: opacity 1s ease-in;
 }
 
 @media (orientation: portrait) {

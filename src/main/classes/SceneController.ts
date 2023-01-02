@@ -232,8 +232,9 @@ export default class SceneController {
     statsModal.appendChild(scrollContainer);
     statsBackdrop.appendChild(statsModal);
     document.body.appendChild(statsBackdrop);
+
     setTimeout(() => {
-      statsBackdrop.classList.add("fade-in-stats-screen");
+      statsBackdrop.style.opacity = "1";
     }, 500);
   }
 
