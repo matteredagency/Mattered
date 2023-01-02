@@ -180,7 +180,14 @@ export default class SceneController {
     const canvas = document.getElementById("canvas-scene") as HTMLElement;
     canvas.classList.add("fade-out");
     setTimeout(() => {
+      this.experience.scene.remove.apply(
+        this.experience.scene,
+        this.experience.scene.children.filter(
+          (child) => child.type === "Group" && child.uuid !== "PaperPlane"
+        )
+      );
       console.log(this.experience.scene.children);
+
       canvas.classList.remove("fade-out");
     }, 2500);
   }
