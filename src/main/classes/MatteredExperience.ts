@@ -41,6 +41,10 @@ export default class MatteredExperience {
     this.restartButton = document.getElementById(
       "restart-button"
     ) as HTMLButtonElement;
+
+    this.restartButton.addEventListener("click", () => {
+      console.log("reset");
+    });
     this.scene = new THREE.Scene();
     // this.gui = new GUI();
     this.init();
@@ -123,7 +127,7 @@ export default class MatteredExperience {
     ) as HTMLTableElement;
 
     statsTable.style.display = "table";
-    this.restartButton.style.display = "table";
+    this.restartButton.style.display = "block";
     setTimeout(() => {
       this.scene.remove.apply(
         this.scene,
@@ -144,7 +148,7 @@ export default class MatteredExperience {
       this.lights.ambientLight.intensity = 0.5;
       this.restartButton.classList.add("fade-in");
       statsTable.classList.add("fade-in");
-      this.restartButton.setAttribute("disabled", false);
+      this.restartButton.removeAttribute("disabled");
 
       planeLight.position.setY(15);
 
