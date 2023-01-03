@@ -166,7 +166,7 @@ export default class MatteredExperience {
       this.statsTable.children[1].innerHTML =
         "<tr><th>Name</th><th>Time</th><th>%</th></tr>";
       this.canvas.classList.add("fade-in");
-      this.sceneController.resetSceneTime();
+      this.sceneController.resetSceneController();
       this.spaceObjects.resetPlaneSize();
       this.lights.resetLights();
       this.controls.resetScroll();

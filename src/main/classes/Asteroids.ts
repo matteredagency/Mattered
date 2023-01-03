@@ -3,7 +3,7 @@ import THREE from "../globalmports";
 
 export default class Asteroids {
   experience: MatteredExperience;
-  assetRendered!: boolean;
+  rendered!: boolean;
   name: string;
   size: number;
   position: THREE.Vector3;
@@ -15,14 +15,14 @@ export default class Asteroids {
     this.name = name;
   }
   init() {
-    if (this.assetRendered === true) {
+    if (this.rendered === true) {
       return;
-    } else if (this.assetRendered === false) {
-      this.assetRendered = true;
+    } else if (this.rendered === false) {
+      this.rendered = true;
       this.experience.scene.add(this.asteroids);
       return;
     }
-    this.assetRendered = true;
+    this.rendered = true;
 
     this.asteroids = this.experience.assets.assetsDirectory.objects[this.name];
 
@@ -44,5 +44,12 @@ export default class Asteroids {
       if (index % 2 === 0) pi *= -1;
       mesh.rotateX(pi * 0.001);
     });
+  }
+
+  remove() {
+    if (!this.rendered) return;
+
+    this.rendered = false;
+    this.experience.scene?.remove(this.asteroids);
   }
 }

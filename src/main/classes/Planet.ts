@@ -20,7 +20,7 @@ export default class Planet {
   rotationSpeed!: number;
   experience!: MatteredExperience;
   rotationDirection!: number;
-  planetRendered!: boolean;
+  rendered!: boolean;
   texturePath!: string;
   planetScale!: number;
   position!: THREE.Vector3;
@@ -59,10 +59,10 @@ export default class Planet {
   }
 
   async init() {
-    if (this.planetRendered === true) {
+    if (this.rendered === true) {
       return;
-    } else if (this.planetRendered === false) {
-      this.planetRendered = true;
+    } else if (this.rendered === false) {
+      this.rendered = true;
       this.experience.scene.add(this.asset);
       this.experience.spaceObjects.currentPlanet = this;
       return;
@@ -102,7 +102,7 @@ export default class Planet {
       this.asset.add(atmosphere);
     }
 
-    this.planetRendered = true;
+    this.rendered = true;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
     this.experience.spaceObjects.currentPlanet = this;
     this.experience.scene.add(this.asset);
@@ -117,9 +117,9 @@ export default class Planet {
     }
   }
   remove() {
-    if (!this.planetRendered) return;
+    if (!this.rendered) return;
 
-    this.planetRendered = false;
+    this.rendered = false;
     this.experience.scene?.remove(this.asset);
     this.experience.spaceObjects.currentPlanet = null;
   }
