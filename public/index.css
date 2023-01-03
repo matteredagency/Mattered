@@ -78,11 +78,16 @@ tbody > tr:nth-child(even) {
   left: 50%;
   transform: translate(-50%);
   bottom: 10%;
-  background: red;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  border: none;
   color: white;
+  display: none;
   height: 100px;
   width: 200px;
   z-index: 3;
+  transition: opacity 1s ease-in;
 }
 
 h2,

@@ -85,7 +85,7 @@ export default class SceneController {
   }
 
   updateSceneData(currentPercent: number) {
-    if (currentPercent >= 0.89) this.endExperience();
+    if (currentPercent >= 0.89) this.experience.endExperience();
     this.sceneSelect(currentPercent);
     this.trackSceneTime(currentPercent);
   }
@@ -166,111 +166,5 @@ export default class SceneController {
         this.sceneSubjects.saturn.init();
       }
     }
-  }
-
-  endExperience() {
-    if (this.experience.controls.scrollContainer) {
-      this.experience.controls.scrollContainer.style.overflowY = "hidden";
-    }
-
-    this.setEndStats();
-    this.endSceneElementTransitions();
-  }
-
-  setEndStats() {
-    const { clock } = this.experience;
-    const totalExperienceSeconds = Math.round(clock.getElapsedTime());
-
-    const tableBody = document.querySelector("tbody") as HTMLElement;
-    const totalTimeColumn = document.getElementById(
-      "total-time"
-    ) as HTMLElement;
-
-    Object.entries(this.sceneTime).forEach(([name, time]) => {
-      time = Math.round(time);
-      const newRow = document.createElement("tr");
-
-      const nameData = document.createElement("td");
-      const timeData = document.createElement("td");
-      const percentData = document.createElement("td");
-
-      nameData.innerText = name[0].toUpperCase() + name.substring(1);
-      timeData.innerText = this.formatTimeStatement(time, true);
-      percentData.innerText = Math.round(
-        (time / totalExperienceSeconds) * 100
-      ).toString();
-
-      newRow.appendChild(nameData);
-      newRow.appendChild(timeData);
-      newRow.appendChild(percentData);
-
-      tableBody.appendChild(newRow);
-    });
-
-    totalTimeColumn.innerText = this.formatTimeStatement(
-      totalExperienceSeconds,
-      false
-    );
-  }
-
-  endSceneElementTransitions() {
-    const canvas = document.getElementById("canvas-scene") as HTMLElement;
-    canvas.classList.add("fade-out");
-    const statsTable = document.getElementById(
-      "stats-table"
-    ) as HTMLTableElement;
-
-    statsTable.style.display = "table";
-    setTimeout(() => {
-      this.experience.scene.remove.apply(
-        this.experience.scene,
-        this.experience.scene.children.filter(
-          (child) => child.type === "Group" && child.uuid !== "PaperPlane"
-        )
-      );
-
-      const { planeLight } = this.experience.lights;
-      const { paperPlane } = this.experience.spaceObjects;
-      this.experience.camera.perspectiveCamera.position.setY(5.6);
-      paperPlane.scale.set(0.3, 0.3, 0.3);
-      paperPlane.rotateY(Math.PI * 1.2);
-      planeLight.intensity = 10.5;
-      planeLight.distance = 38;
-      planeLight.decay = 5;
-      this.experience.lights.sun.position.setX(229);
-      this.experience.lights.ambientLight.intensity = 0.5;
-
-      statsTable.classList.add("fade-in");
-
-      planeLight.position.setY(15);
-
-      canvas.classList.remove("fade-out");
-    }, 2500);
-  }
-
-  getSubjectPercentage(subjectTime: number, totalSeconds: number) {
-    return Math.round((subjectTime / totalSeconds) * 100);
-  }
-
-  formatTimeStatement(totalSeconds: number, shortened: boolean) {
-    const minutes = Math.floor(totalSeconds / 60);
-    const remainingSeconds = totalSeconds % 60;
-    let timeString = "";
-
-    if (minutes > 0) {
-      const minuteDenominator = shortened
-        ? "m"
-        : `minute${minutes > 1 ? "s" : ""}`;
-
-      timeString += `${minutes} ${minuteDenominator}, `;
-    }
-
-    const secondDenominator = shortened
-      ? "s"
-      : `second${remainingSeconds > 1 ? "s" : ""}`;
-
-    timeString += `${remainingSeconds} ${secondDenominator}`;
-
-    return timeString;
   }
 }
