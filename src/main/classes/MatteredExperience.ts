@@ -29,6 +29,7 @@ export default class MatteredExperience {
   // gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
+  restartButton!: HTMLButtonElement;
   assets!: Assets;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
@@ -37,6 +38,9 @@ export default class MatteredExperience {
     MatteredExperience.instance = this;
     this.assets = new Assets();
     if (canvas) this.canvas = canvas;
+    this.restartButton = document.getElementById(
+      "restart-button"
+    ) as HTMLButtonElement;
     this.scene = new THREE.Scene();
     // this.gui = new GUI();
     this.init();
@@ -119,6 +123,7 @@ export default class MatteredExperience {
     ) as HTMLTableElement;
 
     statsTable.style.display = "table";
+    this.restartButton.style.display = "table";
     setTimeout(() => {
       this.scene.remove.apply(
         this.scene,
@@ -137,8 +142,9 @@ export default class MatteredExperience {
       planeLight.decay = 5;
       this.lights.sun.position.setX(229);
       this.lights.ambientLight.intensity = 0.5;
-
+      this.restartButton.classList.add("fade-in");
       statsTable.classList.add("fade-in");
+      this.restartButton.setAttribute("disabled", false);
 
       planeLight.position.setY(15);
 
