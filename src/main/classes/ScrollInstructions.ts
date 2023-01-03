@@ -7,14 +7,14 @@ export default class ScrollInstructionsController {
   }
 
   fadeIn() {
-    this.element?.classList.add("fade-in");
+    if (this.element) this.element.style.opacity = "1";
   }
 
   fadeOut() {
-    this.element?.classList.add("fade-out");
+    if (this.element) this.element.style.opacity = "0";
     setTimeout(() => {
       this.element?.remove();
       this.element = null;
-    }, 250);
+    }, 500);
   }
 }
