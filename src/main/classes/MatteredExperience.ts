@@ -30,6 +30,7 @@ export default class MatteredExperience {
   sceneController!: SceneController;
   planeController!: PlaneController;
   restartButton!: HTMLButtonElement;
+  statsTable!: HTMLTableElement;
   assets!: Assets;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
@@ -42,9 +43,11 @@ export default class MatteredExperience {
       "restart-button"
     ) as HTMLButtonElement;
 
-    this.restartButton.addEventListener("click", () => {
-      console.log("reset");
-    });
+    this.statsTable = document.getElementById(
+      "stats-table"
+    ) as HTMLTableElement;
+
+    this.restartButton.addEventListener("click", () => this.resetExperience());
     this.scene = new THREE.Scene();
     // this.gui = new GUI();
     this.init();
@@ -122,11 +125,8 @@ export default class MatteredExperience {
 
   endSceneTransitions() {
     this.canvas.classList.add("fade-out");
-    const statsTable = document.getElementById(
-      "stats-table"
-    ) as HTMLTableElement;
 
-    statsTable.style.display = "table";
+    this.statsTable.style.display = "table";
     this.restartButton.style.display = "block";
     setTimeout(() => {
       this.scene.remove.apply(
@@ -147,13 +147,34 @@ export default class MatteredExperience {
       this.lights.sun.position.setX(229);
       this.lights.ambientLight.intensity = 0.5;
       this.restartButton.classList.add("fade-in");
-      statsTable.classList.add("fade-in");
+      this.statsTable.classList.add("fade-in");
       this.restartButton.removeAttribute("disabled");
 
       planeLight.position.setY(15);
 
       this.canvas.classList.remove("fade-out");
     }, 2500);
+  }
+
+  resetExperience() {
+    this.restartButton.classList.remove("fade-in");
+    this.canvas.classList.remove("fade-in");
+    this.statsTable.classList.remove("fade-in");
+
+    setTimeout(() => {
+      this.clock.elapsedTime = 0;
+      this.statsTable.children[1].innerHTML =
+        "<tr><th>Name</th><th>Time</th><th>%</th></tr>";
+      this.canvas.classList.add("fade-in");
+      this.sceneController.resetSceneTime();
+      this.spaceObjects.resetPlaneSize();
+      this.lights.resetLights();
+      this.controls.resetScroll();
+      this.camera.setCameraAtStart();
+      setTimeout(() => {
+        this.controls.scrollContainer.style.overflowY = "scroll";
+      }, 1000);
+    }, 1000);
   }
 
   setEndStats() {

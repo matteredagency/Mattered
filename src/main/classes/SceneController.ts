@@ -84,6 +84,10 @@ export default class SceneController {
     this.currentSubject = null;
   }
 
+  resetSceneTime() {
+    Object.keys(this.sceneTime).forEach((key) => (this.sceneTime[key] = 0));
+  }
+
   updateSceneData(currentPercent: number) {
     if (currentPercent >= 0.89) this.experience.endExperience();
     this.sceneSelect(currentPercent);

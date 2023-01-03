@@ -16,9 +16,7 @@ export default class Camera {
       1500
     );
 
-    const startPath = this.experience.track.path.getPointAt(0);
-    this.perspectiveCamera.position.set(startPath.x, 5, startPath.z);
-    this.perspectiveCamera.lookAt(this.experience.track.path.getPointAt(0.01));
+    this.setCameraAtStart();
 
     // const folder = this.experience.gui.addFolder("camera");
 
@@ -30,5 +28,11 @@ export default class Camera {
       this.perspectiveCamera.aspect = this.experience.sizes.aspect;
       this.perspectiveCamera.updateProjectionMatrix();
     }
+  }
+
+  setCameraAtStart() {
+    const startPath = this.experience.track.path.getPointAt(0);
+    this.perspectiveCamera.position.set(startPath.x, 5, startPath.z);
+    this.perspectiveCamera.lookAt(this.experience.track.path.getPointAt(0.01));
   }
 }

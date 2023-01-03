@@ -31,4 +31,12 @@ export default class Lights {
 
     return this;
   }
+
+  resetLights() {
+    this.ambientLight.intensity = 0.05;
+    this.planeLight.intensity = 5;
+    this.planeLight.distance = 30;
+    this.planeLight.decay = 10;
+    this.planeLight.position.setY(5);
+  }
 }
