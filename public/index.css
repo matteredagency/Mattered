@@ -24,7 +24,7 @@ html {
 #stats-table {
   display: none;
   position: absolute;
-  top: 75px;
+  top: 60px;
   left: 50%;
   transform: translate(-50%);
   width: 90%;
@@ -38,36 +38,6 @@ html {
   min-height: 300px;
   opacity: 0;
   transition: opacity 1s ease-in;
-}
-
-#stats-backdrop {
-  z-index: 3;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in;
-}
-
-#stats {
-  height: 70%;
-  color: white;
-  width: 80%;
-  max-width: 800px;
-  overflow: hidden;
-  background: black;
-  box-shadow: 0 0 20px 5px white;
-  border-radius: 10px;
-  padding: 15px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
 }
 
 h2,
@@ -165,7 +135,7 @@ p {
 }
 
 #sound-controller {
-  margin-left: 20px;
+  margin-left: 17px;
   background-color: transparent;
   height: 100%;
   width: 100px;
@@ -196,7 +166,7 @@ p {
 }
 
 nav {
-  height: 75px;
+  height: 60px;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -217,7 +187,7 @@ nav > a {
   justify-content: center;
   cursor: pointer;
   align-items: center;
-  margin-right: 13px;
+  margin-right: 9px;
 }
 
 #mattered-logo {

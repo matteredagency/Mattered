@@ -85,7 +85,7 @@ export default class SceneController {
   }
 
   updateSceneData(currentPercent: number) {
-    if (currentPercent >= 0.9) this.endExperience();
+    if (currentPercent >= 0.89) this.endExperience();
     this.sceneSelect(currentPercent);
     this.trackSceneTime(currentPercent);
   }
@@ -195,7 +195,7 @@ export default class SceneController {
       const percentData = document.createElement("td");
 
       nameData.innerText = name[0].toUpperCase() + name.substring(1);
-      timeData.innerText = this.formatTimeStatement(time, false);
+      timeData.innerText = this.formatTimeStatement(time, true);
       percentData.innerText = Math.round(
         (time / totalExperienceSeconds) * 100
       ).toString();
@@ -209,7 +209,7 @@ export default class SceneController {
 
     totalTimeColumn.innerText = this.formatTimeStatement(
       totalExperienceSeconds,
-      true
+      false
     );
   }
 
@@ -251,38 +251,25 @@ export default class SceneController {
     return Math.round((subjectTime / totalSeconds) * 100);
   }
 
-  formatTimeStatement(totalSeconds: number, isStatement: boolean) {
+  formatTimeStatement(totalSeconds: number, shortened: boolean) {
     const minutes = Math.floor(totalSeconds / 60);
     const remainingSeconds = totalSeconds % 60;
-    let travelTimeStatement = "";
-
-    if (isStatement) {
-      travelTimeStatement += "You traveled for ";
-    }
+    let timeString = "";
 
     if (minutes > 0) {
-      let minuteDisplay = isStatement ? `minute${minutes > 1 ? "s" : ""}` : "m";
-      travelTimeStatement += `${minutes} ${minuteDisplay}`;
+      const minuteDenominator = shortened
+        ? "m"
+        : `minute${minutes > 1 ? "s" : ""}`;
+
+      timeString += `${minutes} ${minuteDenominator}, `;
     }
 
-    if (remainingSeconds > 0 && minutes > 0) {
-      travelTimeStatement += `${!isStatement ? ", " : ""}${
-        isStatement ? " and " : ""
-      }`;
-    }
+    const secondDenominator = shortened
+      ? "s"
+      : `second${remainingSeconds > 1 ? "s" : ""}`;
 
-    if (remainingSeconds > 0 && isStatement) {
-      travelTimeStatement += `${remainingSeconds} second${
-        remainingSeconds > 1 ? "s" : ""
-      }`;
-    } else if (!isStatement) {
-      travelTimeStatement += `${remainingSeconds} s`;
-    }
+    timeString += `${remainingSeconds} ${secondDenominator}`;
 
-    if (isStatement) {
-      travelTimeStatement += "!";
-    }
-
-    return travelTimeStatement;
+    return timeString;
   }
 }
