@@ -111,17 +111,21 @@ export default class Assets {
     setTimeout(() => {
       (this.loadingBar.parentElement as HTMLElement).remove();
       setTimeout(() => {
-        const svgElement = document.querySelector("svg") as SVGSVGElement;
+        const flyThroughTriangle = document.getElementById(
+          "fly-through"
+        ) as HTMLElement;
         const audio = document.getElementById(
           "ambient-sound"
         ) as HTMLAudioElement;
         const canvasElement = document.getElementById("canvas-scene");
-        svgElement.classList.add("pass-through");
+        flyThroughTriangle.classList.add("pass-through");
+        flyThroughTriangle.style.transform =
+          "translate(-300%, 20%) scale3d(100, 100, 1)";
         audio.play();
         canvasElement?.classList.add("fade-in");
         this.experienceStarted = true;
         setTimeout(() => {
-          svgElement.remove();
+          flyThroughTriangle.remove();
         }, 2000);
       }, 500);
     }, 2500);
