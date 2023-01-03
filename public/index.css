@@ -73,6 +73,18 @@ tbody > tr:nth-child(even) {
   background: rgba(50, 50, 50, 0.5);
 }
 
+#restart-button {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 10%;
+  background: red;
+  color: white;
+  height: 100px;
+  width: 200px;
+  z-index: 3;
+}
+
 h2,
 h3,
 h4 {

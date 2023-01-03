@@ -219,6 +219,7 @@ export default class SceneController {
     const statsTable = document.getElementById(
       "stats-table"
     ) as HTMLTableElement;
+
     statsTable.style.display = "table";
     setTimeout(() => {
       this.experience.scene.remove.apply(
