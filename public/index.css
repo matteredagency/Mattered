@@ -125,11 +125,22 @@ tbody > tr:nth-child(even) {
 
 .received {
   background: #2a292c;
-  color: #f7f7f7;
+  align-self: flex-start;
   border-radius: 0 10px 10px 10px;
+}
+
+.message {
+  color: #f7f7f7;
   height: fit-content;
   width: fit-content;
   padding: 14px;
+  margin: 4px 0 4px 0;
+}
+
+.sent {
+  background-color: #5a5e66;
+  align-self: flex-end;
+  border-radius: 10px 0px 10px 10px;
 }
 
 #messages {
@@ -140,7 +151,7 @@ tbody > tr:nth-child(even) {
   flex: auto;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 18px;
+  padding: 18px 18px 14px 18px;
 }
 
 #chat-logo > svg {
@@ -153,6 +164,7 @@ tbody > tr:nth-child(even) {
   height: 35%;
   width: 100%;
   overflow: hidden;
+  min-height: 200px;
 }
 
 h2,
