@@ -99,8 +99,10 @@ tbody > tr:nth-child(even) {
 #chat-window {
   position: absolute;
   height: 100%;
+  font-family: Inter;
   width: 100%;
   z-index: 4;
+  color: #2a292c;
   display: flex;
   flex-flow: column nowrap;
   background: linear-gradient(
@@ -124,13 +126,12 @@ tbody > tr:nth-child(even) {
 }
 
 .received {
-  background: #2a292c;
+  background: #f2f2f2;
   align-self: flex-start;
   border-radius: 0 10px 10px 10px;
 }
 
 .message {
-  color: #f7f7f7;
   height: fit-content;
   width: fit-content;
   padding: 14px;
@@ -138,7 +139,7 @@ tbody > tr:nth-child(even) {
 }
 
 .sent {
-  background-color: #5a5e66;
+  background-color: #f3f2ff;
   align-self: flex-end;
   border-radius: 10px 0px 10px 10px;
 }
@@ -172,6 +173,72 @@ tbody > tr:nth-child(even) {
   width: 100%;
   overflow: hidden;
   min-height: 200px;
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 70px 40px;
+  gap: 8px;
+}
+
+.text-option {
+  width: fit-content;
+  background-color: #f3f2ff;
+  padding: 24px;
+  align-items: center;
+  display: flex;
+  outline: none;
+  width: 100%;
+  border: none;
+  border-radius: 22px;
+  height: fit-content;
+  flex: row nowrap;
+  justify-content: center;
+}
+
+#text > .text-option:nth-child(2) {
+  grid-column: span 2;
+}
+
+.text-option > svg {
+  margin-right: 15px;
+  stroke: #333333;
+  position: relative;
+}
+
+#text-box {
+  grid-column: span 2;
+  outline: none;
+  height: 40px;
+  border-radius: 40px;
+  background: transparent;
+  display: flex;
+  flex-flow: row nowrap;
+  border: solid #e4e4e5 1px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#text-box > input {
+  width: auto;
+  background: transparent;
+  height: 100%;
+  border: none;
+  text-indent: 14px;
+}
+
+#text-box > div {
+  border-radius: 50%;
+  padding: 5px;
+  background: #f2f2f2;
+  height: 28px;
+  width: 28px;
+  margin-right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#text-box > div > svg {
+  fill: white;
 }
 
 h2,
