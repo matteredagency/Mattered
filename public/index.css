@@ -2,10 +2,13 @@ html,
 body {
   margin: 0;
   height: 100%;
-  box-sizing: border-box;
   width: 100%;
   background: black;
   overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -91,6 +94,59 @@ tbody > tr:nth-child(even) {
   opacity: 0;
   z-index: 3;
   transition: opacity 1s ease-in;
+}
+
+#chat-window {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 4;
+  display: flex;
+  flex-flow: column nowrap;
+  background: linear-gradient(
+    360deg,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.7),
+    rgba(255, 255, 255, 0.65)
+  );
+
+  align-items: center;
+}
+
+.received {
+  background: #2a292c;
+  color: #f7f7f7;
+  border-radius: 0 10px 10px 10px;
+  height: fit-content;
+  width: fit-content;
+  padding: 14px;
+}
+
+#messages {
+  display: flex;
+  justify-content: end;
+  flex-flow: column nowrap;
+  height: 70%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px;
+}
+
+#chat-window > svg {
+  margin-top: 10%;
+  margin-bottom: 10%;
+  width: 80%;
+  max-width: 500px;
+}
+
+#text {
+  border-top: solid 1px #c5cddc;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
 }
 
 h2,
