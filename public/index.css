@@ -197,25 +197,8 @@ p {
   z-index: 4;
 }
 
-#fly-through {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-}
-
 .cls-1 {
   fill: #fff;
-}
-
-#loading-bar-parent {
-  position: absolute;
-  z-index: 6;
-  left: 50%;
-  background: #ececec;
-  transform: translate(-50%, -50%);
-  overflow: hidden;
 }
 
 nav {
@@ -248,17 +231,6 @@ nav > a {
   width: auto;
 }
 
-#mattered-triangle {
-  fill: transparent;
-  cursor: pointer;
-  pointer-events: none;
-  outline: none;
-}
-
-.pass-through {
-  transition: transform 3s ease;
-}
-
 .fade-in {
   opacity: 1 !important;
 }
@@ -267,42 +239,8 @@ nav > a {
   opacity: 0 !important;
 }
 
-#loading-bar {
-  background: black;
-  margin: 0;
-  height: 100%;
-  width: 0;
-  transition: width 1s ease-in;
-}
-
 .fade-in-stats-screen {
   opacity: 1 !important;
-}
-
-@media (orientation: portrait) {
-  #fly-through {
-    height: 100%;
-    width: auto;
-  }
-
-  #loading-bar-parent {
-    top: 62.5%;
-    height: 7.5px;
-    width: 40%;
-  }
-}
-
-@media (orientation: landscape) {
-  #fly-through {
-    height: auto;
-    width: 150%;
-  }
-  #loading-bar-parent {
-    top: 70%;
-    height: 10px;
-    width: 40%;
-    max-width: 600px;
-  }
 }
 
 @media (max-width: 768px) {
