@@ -1,7 +1,7 @@
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
-import { GUI } from "dat.gui";
+// import { GUI } from "dat.gui";
 import Lights from "./Lights";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";

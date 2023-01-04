@@ -100,34 +100,12 @@ export default class Assets {
     this.loadedAssets += 1;
     const loadedPercent = this.loadedAssets / this.totalAssets;
 
-    this.loadingBar.style.width = `${loadedPercent * 100}%`;
-
     if (loadedPercent >= 1) {
       this.startExperience();
     }
   }
 
   startExperience() {
-    setTimeout(() => {
-      (this.loadingBar.parentElement as HTMLElement).remove();
-      setTimeout(() => {
-        const flyThroughTriangle = document.getElementById(
-          "fly-through"
-        ) as HTMLElement;
-        const audio = document.getElementById(
-          "ambient-sound"
-        ) as HTMLAudioElement;
-        const canvasElement = document.getElementById("canvas-scene");
-        flyThroughTriangle.classList.add("pass-through");
-        flyThroughTriangle.style.transform =
-          "translate(-300%, 20%) scale3d(100, 100, 1)";
-        audio.play();
-        canvasElement?.classList.add("fade-in");
-        this.experienceStarted = true;
-        setTimeout(() => {
-          flyThroughTriangle.remove();
-        }, 2000);
-      }, 500);
-    }, 2500);
+    this.experienceStarted = true;
   }
 }
