@@ -144,14 +144,21 @@ tbody > tr:nth-child(even) {
 }
 
 #messages {
-  display: flex;
-  justify-content: end;
-  flex-flow: column nowrap;
   width: 100%;
   flex: auto;
   overflow-y: auto;
   overflow-x: hidden;
+  display: flex;
+  flex-flow: column-reverse;
   padding: 18px 18px 14px 18px;
+  justify-content: end;
+}
+
+#messages-scroll {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 #chat-logo > svg {
