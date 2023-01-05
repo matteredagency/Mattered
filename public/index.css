@@ -163,7 +163,9 @@ tbody > tr:nth-child(even) {
 .message {
   height: fit-content;
   width: fit-content;
+  max-width: 60%;
   padding: 14px;
+  font-size: 12px;
   font-family: "Inter", sans-serif;
   margin: 4px 0 4px 0;
 }
@@ -235,13 +237,17 @@ tbody > tr:nth-child(even) {
   font-family: "Poppins", sans-serif;
   display: flex;
   cursor: pointer;
+  font-size: 16px;
   outline: none;
   width: 100%;
   border: none;
+  outline: none;
   border-radius: 22px;
   flex-flow: row nowrap;
   justify-content: center;
-  height: 100%;
+  height: 0%;
+  transition: height 0.5s ease-in, opacity 0.5s ease-in;
+  opacity: 0;
 }
 
 #text > .text-option:nth-child(2) {
@@ -281,6 +287,7 @@ tbody > tr:nth-child(even) {
   width: 100%;
   background: transparent;
   height: 100%;
+  font-size: 12px;
   font-family: "Inter", sans-serif;
   border: none;
   text-indent: 14px;

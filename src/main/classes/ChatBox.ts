@@ -22,15 +22,6 @@ export default class ChatBox {
       "#text-box > button"
     ) as HTMLButtonElement;
 
-    this.textOptionSpanElements.forEach((element) =>
-      element.parentElement?.addEventListener("click", () => {
-        this.addMessageToResponseBox(element.textContent ?? "");
-        if (this.sendButton.attributes.getNamedItem("disabled")) {
-          this.activateSend();
-        }
-      })
-    );
-
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
     this.typingElement.classList.add("typing");
@@ -39,6 +30,31 @@ export default class ChatBox {
     for (let i = 0; i < 3; i++) {
       this.typingElement.appendChild(document.createElement("div"));
     }
+  }
+
+  setUpTextOptions() {
+    this.textOptionSpanElements.forEach((element) => {
+      if (element.parentElement) {
+        element.parentElement.style.height = "100%";
+      }
+    });
+
+    setTimeout(() => {
+      this.textOptionSpanElements.forEach((element) => {
+        if (element.parentElement) {
+          element.parentElement.removeAttribute("disabled");
+          element.parentElement.style.opacity = "1";
+        }
+        this.textOptionSpanElements.forEach((element) =>
+          element.parentElement?.addEventListener("click", () => {
+            this.addMessageToResponseBox(element.textContent ?? "");
+            if (this.sendButton.attributes.getNamedItem("disabled")) {
+              this.activateSend();
+            }
+          })
+        );
+      });
+    }, 1000);
   }
 
   init() {
@@ -59,6 +75,7 @@ export default class ChatBox {
               this.messagesElement.lastChild as Node
             );
             this.addMessageToMessages("Shall we begin?", true);
+            this.setUpTextOptions();
           }, 1000);
         }, 1000);
       }, 1000);
