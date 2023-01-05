@@ -2,6 +2,8 @@ export default class ChatBox {
   messagesElement: HTMLElement;
   textOptionSpanElements: NodeListOf<Element>;
   responseBox: HTMLInputElement;
+  sendButton: HTMLButtonElement;
+
   constructor() {
     this.messagesElement = document.getElementById(
       "messages-scroll"
@@ -15,11 +17,31 @@ export default class ChatBox {
       "#text-box > input"
     ) as HTMLInputElement;
 
+    this.sendButton = document.querySelector(
+      "#text-box > button"
+    ) as HTMLButtonElement;
+
     this.textOptionSpanElements.forEach((element) =>
       element.parentElement?.addEventListener("click", () => {
         this.addMessageToResponseBox(element.textContent ?? "");
+        if (this.sendButton.attributes.getNamedItem("disabled")) {
+          this.activateSend();
+        }
       })
     );
+  }
+
+  activateSend() {
+    this.sendButton.removeAttribute("disabled");
+    this.sendButton.style.backgroundColor = "#583475";
+    this.sendButton.addEventListener("click", () => {
+      if (this.responseBox.value) {
+        this.addMessageToMessages(this.responseBox.value, false);
+      }
+      this.responseBox.value = "";
+      this.sendButton.style.background = "#f2f2f2";
+      this.sendButton.setAttribute("disabled", "true");
+    });
   }
 
   respondMessage() {}
