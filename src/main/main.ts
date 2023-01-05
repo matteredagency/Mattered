@@ -13,4 +13,4 @@ const experience = new MatteredExperience(
 // experience.scene.add(gridHelper);
 
 new SoundController().animate();
-new ChatBox();
+new ChatBox().introMessages();

@@ -3,6 +3,7 @@ export default class ChatBox {
   textOptionSpanElements: NodeListOf<Element>;
   responseBox: HTMLInputElement;
   sendButton: HTMLButtonElement;
+  typingElement: HTMLDivElement;
 
   constructor() {
     this.messagesElement = document.getElementById(
@@ -29,6 +30,39 @@ export default class ChatBox {
         }
       })
     );
+
+    this.typingElement = document.createElement("div");
+    this.typingElement.classList.add("message");
+    this.typingElement.classList.add("typing");
+    this.typingElement.classList.add("received");
+
+    for (let i = 0; i < 3; i++) {
+      this.typingElement.appendChild(document.createElement("div"));
+    }
+  }
+
+  introMessages() {
+    setTimeout(() => {
+      this.messagesElement.appendChild(this.typingElement);
+      setTimeout(() => {
+        this.messagesElement.removeChild(
+          this.messagesElement.lastChild as Node
+        );
+        this.addMessageToMessages(
+          "Welcome to Mattered! Please let tell you more about us.",
+          true
+        );
+        setTimeout(() => {
+          this.messagesElement.appendChild(this.typingElement);
+          setTimeout(() => {
+            this.messagesElement.removeChild(
+              this.messagesElement.lastChild as Node
+            );
+            this.addMessageToMessages("Shall we begin?", true);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }, 1000);
   }
 
   activateSend() {
@@ -39,18 +73,10 @@ export default class ChatBox {
         this.addMessageToMessages(this.responseBox.value, false);
       }
       this.responseBox.value = "";
-      this.sendButton.style.background = "#f2f2f2";
+      this.sendButton.style.backgroundColor = "#f2f2f2";
       this.sendButton.setAttribute("disabled", "true");
     });
   }
-
-  respondMessage() {}
-  introMessages() {}
-  // addOptions() {
-  //   for (let i = 0; i < responseOptions.length; i++) {
-  //     responseOptions[i].classList.add("display-option");
-  //   }
-  // }
 
   addMessageToResponseBox(message: string) {
     this.responseBox.value = message;

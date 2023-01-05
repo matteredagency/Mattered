@@ -165,7 +165,7 @@ tbody > tr:nth-child(even) {
 .sent {
   background-color: #f3f2ff;
   align-self: flex-end;
-  border-radius: 10px 0px 10px 10px;
+  border-radius: 10px 10px 0px 10px;
 }
 
 #messages {
