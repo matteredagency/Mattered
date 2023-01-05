@@ -131,6 +131,30 @@ tbody > tr:nth-child(even) {
   border-radius: 0 10px 10px 10px;
 }
 
+.typing {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 5px;
+}
+
+.typing > div {
+  height: 10px;
+  width: 10px;
+  background: black;
+  border-radius: 50%;
+  animation: 1s infinite linear typing;
+}
+
+.typing > div:nth-child(1) {
+  animation-delay: 0.25s;
+}
+.typing > div:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.typing > div:nth-child(3) {
+  animation-delay: 0.75s;
+}
+
 .message {
   height: fit-content;
   width: fit-content;
@@ -436,5 +460,19 @@ nav > a {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     min-width: 375px;
+  }
+}
+
+@keyframes typing {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
