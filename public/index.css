@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 html,
 body {
   margin: 0;
@@ -220,11 +222,17 @@ tbody > tr:nth-child(even) {
   gap: 12px;
 }
 
+#privacy-terms > a {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
 .text-option {
   background-color: #f3f2ff;
   padding: 24px;
   align-items: center;
-  font-family: "Gilroy-Medium", sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   cursor: pointer;
   outline: none;
@@ -273,6 +281,7 @@ tbody > tr:nth-child(even) {
   width: 100%;
   background: transparent;
   height: 100%;
+  font-family: "Inter", sans-serif;
   border: none;
   text-indent: 14px;
 }
