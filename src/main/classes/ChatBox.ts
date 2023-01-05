@@ -41,7 +41,7 @@ export default class ChatBox {
     }
   }
 
-  introMessages() {
+  init() {
     setTimeout(() => {
       this.messagesElement.appendChild(this.typingElement);
       setTimeout(() => {
@@ -49,7 +49,7 @@ export default class ChatBox {
           this.messagesElement.lastChild as Node
         );
         this.addMessageToMessages(
-          "Welcome to Mattered! Please let tell you more about us.",
+          "Welcome to Mattered! Please let us tell you more about us.",
           true
         );
         setTimeout(() => {

@@ -221,6 +221,7 @@ tbody > tr:nth-child(even) {
   padding: 24px;
   align-items: center;
   display: flex;
+  cursor: pointer;
   outline: none;
   width: 100%;
   border: none;
@@ -256,6 +257,7 @@ tbody > tr:nth-child(even) {
   border-radius: 40px;
   background: transparent;
   display: flex;
+  max-height: 40px;
   flex-flow: row nowrap;
   border: solid #e4e4e5 1px;
   align-items: center;
@@ -480,5 +482,38 @@ nav > a {
 
   100% {
     opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  #text {
+    display: grid;
+    flex-flow: column nowrap;
+    grid-template-columns: auto auto auto 1fr;
+    grid-template-rows: 40px 70px auto;
+  }
+  .text-option {
+    height: 70px;
+    width: fit-content;
+    grid-row: 2;
+    grid-column: 1;
+  }
+  #text-box {
+    grid-column: span 4;
+  }
+  #privacy-terms {
+    grid-row: 3;
+    grid-column: span 4;
+    align-items: flex-start;
+    padding-top: 30px;
+  }
+  .text-option:nth-child(1) {
+    grid-column: 1 !important;
+  }
+  .text-option:nth-child(2) {
+    grid-column: 2 !important;
+  }
+  .text-option:nth-child(3) {
+    grid-column: 3 !important;
   }
 }
