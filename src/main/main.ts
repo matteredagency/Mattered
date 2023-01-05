@@ -12,5 +12,5 @@ const experience = new MatteredExperience(
 // const gridHelper = new THREE.GridHelper(size, divisions);
 // experience.scene.add(gridHelper);
 
-new SoundController().animate();
+// new SoundController().animate();
 new ChatBox().init();

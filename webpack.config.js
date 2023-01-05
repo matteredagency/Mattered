@@ -49,8 +49,18 @@ module.exports = {
         use: ["file-loader"],
       },
       {
+        test: /\.(ttf)$/,
+        exclude: [/node_modules/, /dist/],
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "/fonts",
+          publicPath: "../public/fonts",
+        },
+      },
+      {
         test: /\.glsl$/,
-        exclude: [/node_modules/],
+        exclude: [/node_modules/, /dist/],
         loader: "webpack-glsl-loader",
       },
     ],
