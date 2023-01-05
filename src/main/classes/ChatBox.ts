@@ -1,6 +1,7 @@
 export default class ChatBox {
   messagesElement: HTMLElement;
   textOptionSpanElements: NodeListOf<Element>;
+  responseBox: HTMLInputElement;
   constructor() {
     this.messagesElement = document.getElementById(
       "messages-scroll"
@@ -10,9 +11,13 @@ export default class ChatBox {
       "button.text-option > span"
     );
 
+    this.responseBox = document.querySelector(
+      "#text-box > input"
+    ) as HTMLInputElement;
+
     this.textOptionSpanElements.forEach((element) =>
       element.parentElement?.addEventListener("click", () => {
-        this.addMessage(element.textContent ?? "", false);
+        this.addMessageToResponseBox(element.textContent ?? "");
       })
     );
   }
@@ -25,7 +30,11 @@ export default class ChatBox {
   //   }
   // }
 
-  addMessage(message: string, received: boolean) {
+  addMessageToResponseBox(message: string) {
+    this.responseBox.value = message;
+  }
+
+  addMessageToMessages(message: string, received: boolean) {
     const newMessage = document.createElement("div");
     newMessage.classList.add("message");
     newMessage.classList.add(received ? "received" : "sent");

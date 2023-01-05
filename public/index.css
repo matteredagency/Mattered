@@ -263,7 +263,7 @@ tbody > tr:nth-child(even) {
 }
 
 #text-box > input {
-  width: auto;
+  width: 100%;
   background: transparent;
   height: 100%;
   border: none;
