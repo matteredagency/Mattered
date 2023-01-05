@@ -435,6 +435,10 @@ nav > a {
   opacity: 1 !important;
 }
 
+.display-option {
+  display: flex !important;
+}
+
 @media (max-width: 768px) {
   nav {
     height: 60px;
