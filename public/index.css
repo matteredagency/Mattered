@@ -238,6 +238,7 @@ tbody > tr:nth-child(even) {
   display: flex;
   cursor: pointer;
   font-size: 16px;
+  color: #2a292c;
   outline: none;
   width: 100%;
   border: none;
@@ -290,6 +291,7 @@ tbody > tr:nth-child(even) {
   font-size: 12px;
   font-family: "Inter", sans-serif;
   border: none;
+  color: #2a292c;
   text-indent: 14px;
 }
 
