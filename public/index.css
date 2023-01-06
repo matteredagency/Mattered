@@ -168,8 +168,12 @@ tbody > tr:nth-child(even) {
   font-size: 12px;
   font-family: "Inter", sans-serif;
   margin: 4px 0 4px 0;
+  transition: transform 0.5s ease-in;
 }
 
+.messages-fall {
+  overflow: visible !important;
+}
 .sent {
   background-color: #f3f2ff;
   align-self: flex-end;
@@ -185,6 +189,8 @@ tbody > tr:nth-child(even) {
   flex-flow: column-reverse;
   padding: 18px 18px 14px 18px;
   justify-content: end;
+  z-index: 10;
+  transition: transform 1s ease-in;
 }
 
 #messages-scroll {
@@ -210,6 +216,7 @@ tbody > tr:nth-child(even) {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 40px 70px 40px auto;
   gap: 8px;
+  transition: transform 0.75s ease-in;
 }
 
 #privacy-terms {
@@ -246,8 +253,8 @@ tbody > tr:nth-child(even) {
   border-radius: 22px;
   flex-flow: row nowrap;
   justify-content: center;
-  height: 0%;
-  transition: height 0.5s ease-in, opacity 0.5s ease-in;
+  height: 100%;
+  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
   opacity: 0;
 }
 
@@ -280,8 +287,10 @@ tbody > tr:nth-child(even) {
   max-height: 40px;
   flex-flow: row nowrap;
   border: solid #e4e4e5 1px;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
+  transition: transform 0.5s ease-in;
 }
 
 #text-box > input {
