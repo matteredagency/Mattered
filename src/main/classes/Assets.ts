@@ -97,8 +97,19 @@ export default class Assets {
   updateLoadingBar() {
     this.loadedAssets += 1;
     const loadedPercent = this.loadedAssets / this.totalAssets;
-
+    console.log(this.loadingBar.style.width);
+    this.loadingBar.style.width = `${loadedPercent * 100}%`;
     if (loadedPercent >= 1) {
+      const firstTextOption = document.querySelector(".text-option");
+      firstTextOption?.attributes.removeNamedItem("disabled");
+      const spanFromFirstTextOption = document.querySelector(
+        ".text-option > span"
+      );
+      //@ts-ignore
+      firstTextOption.style.backgroundColor = "#f3f2ff";
+      //@ts-ignore
+      spanFromFirstTextOption.textContent = "Show me what you can do";
+      // this.loadingBar.remove();
     }
   }
 }

@@ -41,9 +41,9 @@ export default class ChatBox {
 
   setUpTextOptions() {
     setTimeout(() => {
-      this.textOptionSpanElements.forEach((element) => {
+      this.textOptionSpanElements.forEach((element, index) => {
         if (element.parentElement) {
-          element.parentElement.removeAttribute("disabled");
+          if (index !== 0) element.parentElement.removeAttribute("disabled");
           element.parentElement.style.opacity = "1";
         }
         this.textOptionSpanElements.forEach((element, selectedIndex) => {
@@ -137,8 +137,10 @@ export default class ChatBox {
   }
   start3DExperience() {
     this.chatFall();
+
+    this.chatWindow!.style.opacity = "0";
+
     setTimeout(() => {
-      this.chatWindow!.style.opacity = "0";
       this.experience.startExperience();
       setTimeout(() => {
         this.chatWindow!.remove();
@@ -152,7 +154,6 @@ export default class ChatBox {
     const messagesArea = document.getElementById("messages");
     const messages = document.querySelectorAll("div.message");
     const mattteredLogo = document.querySelector("#chat-logo > svg");
-    const chatWindow = document.getElementById("chat-window");
 
     //@ts-ignore
     mattteredLogo!.style.transform = `translate(0, ${

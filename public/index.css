@@ -110,14 +110,7 @@ tbody > tr:nth-child(even) {
   color: #2a292c;
   display: flex;
   flex-flow: column nowrap;
-  background: linear-gradient(
-    360deg,
-    rgba(255, 255, 255, 1) 80%,
-    rgba(255, 255, 255, 0.9),
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.65)
-  );
+  background: white;
   align-items: center;
   justify-content: space-between;
   opacity: 1;
@@ -262,14 +255,29 @@ tbody > tr:nth-child(even) {
   opacity: 0;
 }
 
+#loading-bar {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  width: 0%;
+  background: #f3f2ff;
+  transition: width 1s ease-in;
+}
+
 #text > .text-option:nth-child(2) {
   grid-column: span 2;
+  background: #fafafa;
+  overflow: hidden;
+  position: relative;
 }
 
 .text-option > svg {
   margin-right: 15px;
   stroke: #333333;
   position: relative;
+}
+.text-option > span {
+  z-index: 1;
 }
 
 .selected-text-option > svg {
