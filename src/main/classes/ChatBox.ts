@@ -101,6 +101,9 @@ export default class ChatBox {
       if (this.responseBox.value) {
         this.addMessageToMessages(this.responseBox.value, false);
       }
+      this.textOptionSpanElements.forEach((element) => {
+        element.parentElement?.classList.remove("selected-text-option");
+      });
       this.responseBox.value = "";
       this.sendButton.style.backgroundColor = "#f2f2f2";
       this.sendButton.setAttribute("disabled", "true");
