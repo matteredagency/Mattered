@@ -261,13 +261,13 @@ tbody > tr:nth-child(even) {
   position: relative;
 }
 
-.text-option:active {
-  background: #583475;
-  color: white;
+.selected-text-option > svg {
+  stroke: white;
 }
 
-.text-option:active > svg {
-  stroke: white;
+.selected-text-option {
+  background-color: #583475;
+  color: white;
 }
 
 #text-box {

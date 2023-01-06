@@ -45,14 +45,24 @@ export default class ChatBox {
           element.parentElement.removeAttribute("disabled");
           element.parentElement.style.opacity = "1";
         }
-        this.textOptionSpanElements.forEach((element) =>
-          element.parentElement?.addEventListener("click", () => {
-            this.addMessageToResponseBox(element.textContent ?? "");
-            if (this.sendButton.attributes.getNamedItem("disabled")) {
-              this.activateSend();
-            }
-          })
-        );
+        this.textOptionSpanElements.forEach((element, selectedIndex) => {
+          if (element.parentElement) {
+            element.parentElement.addEventListener("click", () => {
+              element.parentElement?.classList.add("selected-text-option");
+              this.textOptionSpanElements.forEach((element, index) => {
+                if (selectedIndex !== index) {
+                  element.parentElement?.classList.remove(
+                    "selected-text-option"
+                  );
+                }
+              });
+              this.addMessageToResponseBox(element.textContent ?? "");
+              if (this.sendButton.attributes.getNamedItem("disabled")) {
+                this.activateSend();
+              }
+            });
+          }
+        });
       });
     }, 1000);
   }
