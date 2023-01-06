@@ -294,11 +294,6 @@ tbody > tr:nth-child(even) {
   color: #2a292c;
   text-indent: 14px;
 }
-#text-box > input:disabled {
-  color: #2a292c;
-  opacity: 1;
-  -webkit-text-fill-color: #2a292c;
-}
 
 #text-box > button {
   border-radius: 50%;
