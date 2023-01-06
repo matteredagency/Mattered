@@ -123,15 +123,19 @@ export default class ChatBox {
   }
 
   startExperience() {
+    const currentWindowHeight = window.screen.height;
     const textArea = document.getElementById("text");
 
-    textArea!.style.transform = `translate(0, ${textArea!.clientHeight}px)`;
+    textArea!.style.transform = `translate(0, ${
+      currentWindowHeight - textArea!.getBoundingClientRect().top
+    }px)`;
     textArea!.style.overflow = "inherit";
 
     const messagesArea = document.getElementById("messages");
     messagesArea!.classList.add("messages-fall");
+
     messagesArea!.style.transform = `translate(0, ${
-      messagesArea!.clientHeight + 200
+      currentWindowHeight - messagesArea!.getBoundingClientRect().top
     }px)`;
     this.textOptionSpanElements.forEach((element, index) => {
       let rotation = Math.round(Math.random() * 33);
