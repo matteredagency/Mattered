@@ -128,11 +128,14 @@ export default class ChatBox {
     const messagesArea = document.getElementById("messages");
     const messages = document.querySelectorAll("div.message");
     const mattteredLogo = document.querySelector("#chat-logo > svg");
+    const chatWindow = document.getElementById("chat-window");
 
     //@ts-ignore
     mattteredLogo!.style.transform = `translate(0, ${
-      currentWindowHeight - mattteredLogo!.getBoundingClientRect().top + 50
-    }px) rotate(${-Math.random() * 33}deg)`;
+      -mattteredLogo!.getBoundingClientRect().top - 50
+    }px)`;
+    //@ts-ignore
+    mattteredLogo!.style.opacity = "0";
     textArea!.style.transform = `translate(0, ${
       currentWindowHeight - textArea!.getBoundingClientRect().top
     }px)`;
@@ -141,10 +144,10 @@ export default class ChatBox {
     messagesArea!.classList.add("messages-fall");
 
     messagesArea!.style.transform = `translate(0, ${
-      currentWindowHeight - messagesArea!.getBoundingClientRect().top + 50
+      currentWindowHeight - messagesArea!.getBoundingClientRect().top + 75
     }px)`;
     this.textOptionSpanElements.forEach((element, index) => {
-      let rotation = Math.random() * 33;
+      let rotation = Math.random() * 30;
       if (index % 2 === 0) rotation *= -1;
       element.parentElement!.style.transform = `rotate(${rotation}deg)`;
     });
@@ -158,5 +161,12 @@ export default class ChatBox {
       //@ts-ignore
       element.style.transform = `rotate(${rotation}deg)`;
     });
+
+    setTimeout(() => {
+      chatWindow!.style.opacity = "0";
+      setTimeout(() => {
+        chatWindow!.remove();
+      }, 1000);
+    }, 1000);
   }
 }
