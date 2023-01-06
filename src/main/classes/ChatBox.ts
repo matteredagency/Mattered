@@ -94,6 +94,7 @@ export default class ChatBox {
       this.responseBox.value = "";
       this.sendButton.style.backgroundColor = "#f2f2f2";
       this.sendButton.setAttribute("disabled", "true");
+      this.responseBox.style.opacity = "0.5";
     });
   }
 
