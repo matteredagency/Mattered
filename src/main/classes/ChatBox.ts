@@ -1,9 +1,13 @@
+import MatteredExperience from "./MatteredExperience";
+
 export default class ChatBox {
   messagesElement: HTMLElement;
   textOptionSpanElements: NodeListOf<Element>;
   responseBox: HTMLInputElement;
   sendButton: HTMLButtonElement;
   typingElement: HTMLDivElement;
+  experience: MatteredExperience;
+  chatWindow: HTMLDivElement;
 
   constructor() {
     this.messagesElement = document.getElementById(
@@ -22,6 +26,9 @@ export default class ChatBox {
       "#text-box > button"
     ) as HTMLButtonElement;
 
+    this.chatWindow = document.getElementById("chat-window") as HTMLDivElement;
+
+    this.experience = new MatteredExperience();
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
     this.typingElement.classList.add("typing");
@@ -100,7 +107,7 @@ export default class ChatBox {
       });
       if (this.responseBox.value === "Show me what you can do") {
         setTimeout(() => {
-          this.chatFall();
+          this.start3DExperience();
         }, 500);
       }
       this.responseBox.value = "";
@@ -120,6 +127,16 @@ export default class ChatBox {
     newMessage.classList.add(received ? "received" : "sent");
     newMessage.innerText = message;
     this.messagesElement.appendChild(newMessage);
+  }
+  start3DExperience() {
+    this.chatFall();
+    setTimeout(() => {
+      this.chatWindow!.style.opacity = "0";
+      this.experience.startExperience();
+      setTimeout(() => {
+        this.chatWindow!.remove();
+      }, 1000);
+    }, 1000);
   }
 
   chatFall() {
@@ -161,12 +178,5 @@ export default class ChatBox {
       //@ts-ignore
       element.style.transform = `rotate(${rotation}deg)`;
     });
-
-    setTimeout(() => {
-      chatWindow!.style.opacity = "0";
-      setTimeout(() => {
-        chatWindow!.remove();
-      }, 1000);
-    }, 1000);
   }
 }

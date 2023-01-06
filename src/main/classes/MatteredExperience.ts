@@ -32,12 +32,14 @@ export default class MatteredExperience {
   restartButton!: HTMLButtonElement;
   statsTable!: HTMLTableElement;
   assets!: Assets;
+  experienceStarted!: boolean;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
     this.assets = new Assets();
+    this.experienceStarted = false;
     if (canvas) this.canvas = canvas;
     this.restartButton = document.getElementById(
       "restart-button"
@@ -97,7 +99,7 @@ export default class MatteredExperience {
   }
 
   update() {
-    if (this.assets.experienceStarted && !this.clock.running) {
+    if (this.experienceStarted && !this.clock.running) {
       this.clock.start();
     }
     if (this.clock.running) this.timeControl();
@@ -236,5 +238,8 @@ export default class MatteredExperience {
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
     return Math.round((subjectTime / totalSeconds) * 100);
+  }
+  startExperience() {
+    this.experienceStarted = true;
   }
 }

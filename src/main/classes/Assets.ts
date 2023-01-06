@@ -12,7 +12,6 @@ export default class Assets {
     textures: { [key: string]: THREE.Texture };
   };
   loadingBar: HTMLElement;
-  experienceStarted: boolean;
   constructor() {
     const objects = {
       AsteroidSet: "AsteroidSet.glb",
@@ -24,7 +23,6 @@ export default class Assets {
       Venus: "Venus.glb",
     };
     const textures = { Star: "star.webp" };
-    this.experienceStarted = false;
     this.objectPaths = Object.entries(objects).map(([name, path]) => [
       name,
       createAssetPath(`/objects/${path}`),
@@ -101,11 +99,6 @@ export default class Assets {
     const loadedPercent = this.loadedAssets / this.totalAssets;
 
     if (loadedPercent >= 1) {
-      this.startExperience();
     }
-  }
-
-  startExperience() {
-    this.experienceStarted = true;
   }
 }
