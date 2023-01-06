@@ -100,7 +100,7 @@ export default class ChatBox {
       });
       if (this.responseBox.value === "Show me what you can do") {
         setTimeout(() => {
-          this.startExperience();
+          this.chatFall();
         }, 500);
       }
       this.responseBox.value = "";
@@ -122,40 +122,41 @@ export default class ChatBox {
     this.messagesElement.appendChild(newMessage);
   }
 
-  startExperience() {
+  chatFall() {
     const currentWindowHeight = window.screen.height;
     const textArea = document.getElementById("text");
+    const messagesArea = document.getElementById("messages");
+    const messages = document.querySelectorAll("div.message");
+    const mattteredLogo = document.querySelector("#chat-logo > svg");
 
+    //@ts-ignore
+    mattteredLogo!.style.transform = `translate(0, ${
+      currentWindowHeight - mattteredLogo!.getBoundingClientRect().top + 50
+    }px) rotate(${-Math.random() * 33}deg)`;
     textArea!.style.transform = `translate(0, ${
       currentWindowHeight - textArea!.getBoundingClientRect().top
     }px)`;
     textArea!.style.overflow = "inherit";
 
-    const messagesArea = document.getElementById("messages");
     messagesArea!.classList.add("messages-fall");
 
     messagesArea!.style.transform = `translate(0, ${
-      currentWindowHeight - messagesArea!.getBoundingClientRect().top
+      currentWindowHeight - messagesArea!.getBoundingClientRect().top + 50
     }px)`;
     this.textOptionSpanElements.forEach((element, index) => {
-      let rotation = Math.round(Math.random() * 33);
+      let rotation = Math.random() * 33;
       if (index % 2 === 0) rotation *= -1;
       element.parentElement!.style.transform = `rotate(${rotation}deg)`;
     });
 
-    const messages = document.querySelectorAll("div.message");
     messages[0].parentElement?.parentElement?.style.removeProperty(
       "overflow-y"
     );
     messages.forEach((element, index) => {
-      let rotation = Math.round(Math.random() * 33);
+      let rotation = Math.random() * 33;
       if (index % 2 === 0) rotation *= -1;
       //@ts-ignore
       element.style.transform = `rotate(${rotation}deg)`;
     });
-
-    // this.responseBox.style.position = "absolute";
-    // this.responseBox.style.removeProperty("grid-column");
-    // this.responseBox.style.transform = `translate(0, 200px) rotate(-10deg)`;
   }
 }

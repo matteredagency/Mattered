@@ -203,6 +203,7 @@ tbody > tr:nth-child(even) {
 #chat-logo > svg {
   width: 80%;
   max-width: 300px;
+  transition: transform 1.5s ease-in;
 }
 
 #text {
