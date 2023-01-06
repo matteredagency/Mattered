@@ -85,6 +85,8 @@ export default class ChatBox {
   activateSend() {
     this.sendButton.removeAttribute("disabled");
     this.sendButton.style.backgroundColor = "#583475";
+    this.responseBox.style.webkitTextFillColor = "#2a292c";
+    this.responseBox.style.opacity = "1";
     this.sendButton.addEventListener("click", () => {
       if (this.responseBox.value) {
         this.addMessageToMessages(this.responseBox.value, false);
@@ -92,8 +94,6 @@ export default class ChatBox {
       this.responseBox.value = "";
       this.sendButton.style.backgroundColor = "#f2f2f2";
       this.sendButton.setAttribute("disabled", "true");
-      this.responseBox.style.webkitTextFillColor = "#2a292c";
-      this.responseBox.style.opacity = "1";
     });
   }
 
