@@ -106,12 +106,17 @@ export default class ChatBox {
         element.parentElement?.classList.remove("selected-text-option");
       });
       if (this.responseBox.value === "Show me what you can do") {
+        this.sendButton.style.animation = "1s 1 ease-in-out launchplane";
+        setTimeout(() => {
+          this.sendButton.style.display = "none";
+        }, 1000);
         setTimeout(() => {
           this.start3DExperience();
-        }, 500);
+        }, 1500);
+      } else {
+        this.sendButton.style.backgroundColor = "#f2f2f2";
       }
       this.responseBox.value = "";
-      this.sendButton.style.backgroundColor = "#f2f2f2";
       this.sendButton.setAttribute("disabled", "true");
       this.responseBox.style.opacity = "0.5";
     });

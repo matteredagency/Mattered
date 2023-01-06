@@ -320,6 +320,9 @@ tbody > tr:nth-child(even) {
   align-items: center;
   justify-content: center;
   transition: background-color 0.25s ease-in;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
 }
 #text-box > button > svg {
   fill: white;
@@ -522,6 +525,18 @@ nav > a {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes launchplane {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(-30%);
+  }
+  100% {
+    transform: translate(500%);
   }
 }
 
