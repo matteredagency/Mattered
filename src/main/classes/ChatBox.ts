@@ -113,6 +113,7 @@ export default class ChatBox {
         }, 1000);
         setTimeout(() => {
           this.start3DExperience();
+          this.experience.audio.play();
         }, 1500);
       } else {
         this.sendButton.style.backgroundColor = "#f2f2f2";

@@ -33,6 +33,7 @@ export default class MatteredExperience {
   statsTable!: HTMLTableElement;
   assets!: Assets;
   experienceStarted!: boolean;
+  audio!: HTMLAudioElement;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -40,6 +41,7 @@ export default class MatteredExperience {
     MatteredExperience.instance = this;
     this.assets = new Assets();
     this.experienceStarted = false;
+    this.audio = document.getElementById("ambient-sound") as HTMLAudioElement;
     if (canvas) this.canvas = canvas;
     this.restartButton = document.getElementById(
       "restart-button"

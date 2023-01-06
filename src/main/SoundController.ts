@@ -1,3 +1,5 @@
+import MatteredExperience from "./classes/MatteredExperience";
+
 export default class SoundController {
   controllerElement: HTMLCanvasElement;
   controllerContext: CanvasRenderingContext2D;
@@ -7,6 +9,7 @@ export default class SoundController {
   frequency: number;
   flatLine: boolean;
   changeInProgress: boolean;
+  experience: MatteredExperience;
   constructor() {
     this.controllerElement = document.getElementById(
       "sound-controller"
@@ -20,21 +23,19 @@ export default class SoundController {
     this.step = 0;
     this.amplitude = 40;
     this.frequency = 20;
+    this.experience = new MatteredExperience();
 
-    const audioElement = document.getElementById(
-      "ambient-sound"
-    ) as HTMLAudioElement;
     this.controllerElement.addEventListener("click", () => {
       if (this.changeInProgress) return;
       this.changeInProgress = true;
       this.soundOn = !this.soundOn;
       if (!this.soundOn) {
         this.reduceAmplitude();
-        audioElement.pause();
+        this.experience.audio.pause();
       } else {
         this.flatLine = false;
         this.increaseAmplitude();
-        audioElement.play();
+        this.experience.audio.play();
       }
     });
   }
