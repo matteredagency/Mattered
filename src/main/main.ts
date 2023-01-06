@@ -14,3 +14,4 @@ const experience = new MatteredExperience(
 
 // new SoundController().animate();
 new ChatBox().init();
+new SoundController().animate();

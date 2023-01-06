@@ -7,7 +7,11 @@ export default class ScrollInstructionsController {
   }
 
   fadeIn() {
-    if (this.element) this.element.style.opacity = "1";
+    document.querySelector("nav")!.style.opacity = "1";
+
+    setTimeout(() => {
+      if (this.element) this.element.style.opacity = "1";
+    }, 1000);
   }
 
   fadeOut() {

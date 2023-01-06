@@ -109,6 +109,7 @@ export default class ChatBox {
         this.sendButton.style.animation = "1s 1 ease-in-out launchplane";
         setTimeout(() => {
           this.sendButton.style.display = "none";
+          this.sendButton.style.opacity = "0";
         }, 1000);
         setTimeout(() => {
           this.start3DExperience();
