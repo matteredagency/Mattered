@@ -33,6 +33,7 @@ export default class Lights {
   }
 
   resetLights() {
+    this.sun.position.set(0, 0, 500);
     this.ambientLight.intensity = 0.05;
     this.planeLight.intensity = 5;
     this.planeLight.distance = 30;
