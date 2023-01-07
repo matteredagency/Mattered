@@ -331,6 +331,7 @@ tbody > tr:nth-child(even) {
   align-items: center;
   justify-content: center;
   transition: background-color 0.25s ease-in;
+  cursor: pointer;
   animation-timing-function: ease-in-out;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
