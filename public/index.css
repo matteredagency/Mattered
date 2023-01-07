@@ -288,7 +288,7 @@ tbody > tr:nth-child(even) {
 }
 
 .selected-text-option {
-  background-color: #583475;
+  background-color: #583475 !important;
   color: white;
 }
 

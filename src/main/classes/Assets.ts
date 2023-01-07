@@ -105,6 +105,7 @@ export default class Assets {
       const spanFromFirstTextOption = document.querySelector(
         ".text-option > span"
       );
+      this.loadingBar.remove();
       //@ts-ignore
       firstTextOption.style.backgroundColor = "#f3f2ff";
       //@ts-ignore
