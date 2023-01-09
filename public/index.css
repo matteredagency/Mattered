@@ -335,6 +335,7 @@ tbody > tr:nth-child(even) {
   animation-timing-function: ease-in-out;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 #text-box > button > svg {
   fill: white;
