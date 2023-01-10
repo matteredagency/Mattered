@@ -92,7 +92,7 @@ tbody > tr:nth-child(even) {
   border: none;
   font-size: 50px;
   color: white;
-  display: none;
+  display: block;
   height: fit-content;
   width: fit-content;
   white-space: nowrap;

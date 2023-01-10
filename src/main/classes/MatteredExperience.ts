@@ -43,9 +43,9 @@ export default class MatteredExperience {
     this.experienceStarted = false;
     this.audio = document.getElementById("ambient-sound") as HTMLAudioElement;
     if (canvas) this.canvas = canvas;
-    this.restartButton = document.getElementById(
-      "restart-button"
-    ) as HTMLButtonElement;
+    this.restartButton = document.createElement("button") as HTMLButtonElement;
+    this.restartButton.setAttribute("id", "restart-button");
+    this.restartButton.innerText = "Travel Again";
 
     this.statsTable = document.getElementById(
       "stats-table"
@@ -131,7 +131,7 @@ export default class MatteredExperience {
     this.canvas.classList.add("fade-out");
 
     this.statsTable.style.display = "table";
-    this.restartButton.style.display = "block";
+    document.body.appendChild(this.restartButton);
     setTimeout(() => {
       this.scene.remove.apply(
         this.scene,
@@ -152,7 +152,6 @@ export default class MatteredExperience {
       this.lights.ambientLight.intensity = 0.5;
       this.restartButton.classList.add("fade-in");
       this.statsTable.classList.add("fade-in");
-      this.restartButton.removeAttribute("disabled");
 
       planeLight.position.setY(15);
 
@@ -175,6 +174,7 @@ export default class MatteredExperience {
       this.lights.resetLights();
       this.controls.resetScroll();
       this.camera.setCameraAtStart();
+      this.restartButton.remove();
       setTimeout(() => {
         this.controls.scrollContainer.style.overflowY = "scroll";
       }, 1000);
