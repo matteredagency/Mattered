@@ -77,12 +77,12 @@ export default class Assets {
         .setPath(createAssetPath("/textures/"))
         .load(
           [
-            "bkg4_left.jpg",
-            "bkg4_right.jpg",
-            "bkg4_bot_turned.jpg",
-            "bkg4_top_turned.jpg",
-            "bkg4_front.jpg",
-            "bkg4_back.jpg",
+            "bkg7_left.png",
+            "bkg7_right.png",
+            "bkg7_up.png",
+            "bkg7_down.png",
+            "bkg7_front.png",
+            "bkg7_back.png",
           ],
           (cubeTexture) => {
             res(

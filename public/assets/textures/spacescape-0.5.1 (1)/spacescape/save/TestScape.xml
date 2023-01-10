@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<spacescapelayers>
+    <layer>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>0.211765 0.12549 0.290196 1</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType>fbm</maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <name>StarsClose</name>
+        <nearColor>0.333333 0.333333 0.333333 1</nearColor>
+        <numPoints>5000</numPoints>
+        <pointSize>2</pointSize>
+        <seed>0</seed>
+        <sourceBlendFactor>one</sourceBlendFactor>
+        <type>points</type>
+    </layer>
+    <layer>
+        <dataFile></dataFile>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>0.94902 0.768628 1 0.0392157</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType>fbm</maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <maxSize>2</maxSize>
+        <minSize>1</minSize>
+        <name>GalaxyClouds</name>
+        <nearColor>0.345098 0.203922 0.458824 0.196078</nearColor>
+        <numBillboards>3</numBillboards>
+        <seed>10</seed>
+        <sourceBlendFactor>src_alpha</sourceBlendFactor>
+        <texture>C:/Users/gmont/Downloads/toppng.com-smoke-particle-texture-399x385.png</texture>
+        <type>billboards</type>
+    </layer>
+    <layer>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>0.952941 0.772549 1 1</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType>fbm</maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <name>StarsFar</name>
+        <nearColor>1 1 1 1</nearColor>
+        <numPoints>5000</numPoints>
+        <pointSize>1</pointSize>
+        <seed>100</seed>
+        <sourceBlendFactor>one</sourceBlendFactor>
+        <type>points</type>
+    </layer>
+    <layer>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>1 1 1 0.392157</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType>fbm</maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <name>StarsVeryFar</name>
+        <nearColor>0.952941 0.768628 1 1</nearColor>
+        <numPoints>150</numPoints>
+        <pointSize>3</pointSize>
+        <seed>500</seed>
+        <sourceBlendFactor>one</sourceBlendFactor>
+        <type>points</type>
+    </layer>
+    <layer>
+        <dataFile></dataFile>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>0.94902 0.768628 1 0.0392157</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType></maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <maxSize>1</maxSize>
+        <minSize>1</minSize>
+        <name>GalaxyClouds2</name>
+        <nearColor>0.0666667 0 1 0.0392157</nearColor>
+        <numBillboards>100</numBillboards>
+        <seed>19</seed>
+        <sourceBlendFactor>src_alpha</sourceBlendFactor>
+        <texture>C:/Users/gmont/Downloads/pngfind.com-dust-cloud-png-66085.png</texture>
+        <type>billboards</type>
+    </layer>
+    <layer>
+        <dataFile></dataFile>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>0.137255 0 0.137255 0.215686</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType></maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <maxSize>10</maxSize>
+        <minSize>0.5</minSize>
+        <name>NebulaClouds</name>
+        <nearColor>0 0.00784314 0.192157 0.196078</nearColor>
+        <numBillboards>100</numBillboards>
+        <seed>50</seed>
+        <sourceBlendFactor>src_alpha</sourceBlendFactor>
+        <texture>C:/Users/gmont/Downloads/NicePng_red-particles-png_1601814.png</texture>
+        <type>billboards</type>
+    </layer>
+    <layer>
+        <dataFile></dataFile>
+        <destBlendFactor>one</destBlendFactor>
+        <farColor>0.282353 0 0.282353 1</farColor>
+        <hdrMultiplier>1</hdrMultiplier>
+        <hdrPower>1</hdrPower>
+        <maskEnabled>false</maskEnabled>
+        <maskGain>0.5</maskGain>
+        <maskLacunarity>2</maskLacunarity>
+        <maskNoiseType></maskNoiseType>
+        <maskOctaves>1</maskOctaves>
+        <maskOffset>1</maskOffset>
+        <maskPower>1</maskPower>
+        <maskScale>1</maskScale>
+        <maskSeed>1</maskSeed>
+        <maskThreshold>0</maskThreshold>
+        <maxSize>1</maxSize>
+        <minSize>0.2</minSize>
+        <name>SpacescapeLayer6</name>
+        <nearColor>0.152941 0.152941 0.152941 1</nearColor>
+        <numBillboards>10</numBillboards>
+        <seed>0</seed>
+        <sourceBlendFactor>src_alpha</sourceBlendFactor>
+        <texture>C:/Users/gmont/Downloads/NicePng_red-particles-png_1601814.png</texture>
+        <type>billboards</type>
+    </layer>
+</spacescapelayers>
