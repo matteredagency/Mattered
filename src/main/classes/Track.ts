@@ -4,6 +4,7 @@ import MatteredExperience from "./MatteredExperience";
 export default class Track {
   experience: MatteredExperience;
   path: THREE.CatmullRomCurve3;
+  cameraPath: THREE.CatmullRomCurve3;
   currentCameraPercent: number;
   currentPlanePercent: number;
   planeMovedTime: number;
@@ -11,7 +12,9 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(75, 0, 500),
+      new THREE.Vector3(75, 0, 900),
+      new THREE.Vector3(-75, 0, 600),
+      new THREE.Vector3(-75, 0, 600),
       new THREE.Vector3(-75, 0, 400),
       new THREE.Vector3(-100, 0, 325),
       new THREE.Vector3(-75, 0, 250),
@@ -23,6 +26,13 @@ export default class Track {
       new THREE.Vector3(-200, 0, -500),
       new THREE.Vector3(500, 0, -300),
     ];
+
+    const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
+      new THREE.Vector3(-75, 0, 950),
+      ...points.slice(2),
+    ];
+
+    this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
 
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPercent = 0;
@@ -39,7 +49,24 @@ export default class Track {
       })
     );
 
+    const cameraGeometry = new THREE.TubeGeometry(
+      this.cameraPath,
+      300,
+      5,
+      32,
+      false
+    );
+
+    const cameraMesh = new THREE.Mesh(
+      cameraGeometry,
+      new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xff0000,
+      })
+    );
+
     this.experience.scene?.add(mesh);
+    this.experience.scene?.add(cameraMesh);
 
     return this;
   }
@@ -60,8 +87,8 @@ export default class Track {
     this.experience.camera?.perspectiveCamera?.lookAt(currentPlanePosition);
   }
 
-  updateCameraPosition(currentPercent: number, oldScrollPercent: number) {
-    const currentCameraPosition = this.path.getPointAt(currentPercent);
+  updateCameraPosition(currentPercent: number) {
+    const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
