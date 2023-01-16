@@ -6,5 +6,5 @@ const experience = new MatteredExperience(
   document.getElementById("canvas-scene") as HTMLCanvasElement
 );
 
-new ChatBox().init();
+// new ChatBox().init();
 new SoundController().animate();

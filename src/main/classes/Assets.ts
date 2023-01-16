@@ -53,7 +53,7 @@ export default class Assets {
             new GLTFLoader().load(path, (gltf) => {
               gltf.scene.uuid = name;
               res((this.assetsDirectory.objects[name] = gltf.scene));
-              this.updateLoadingBar();
+              // this.updateLoadingBar();
             });
           })
       )
@@ -67,7 +67,7 @@ export default class Assets {
                 path
               ))
             );
-            this.updateLoadingBar();
+            // this.updateLoadingBar();
           })
       )
     );
@@ -88,29 +88,29 @@ export default class Assets {
             res(
               (this.assetsDirectory.textures["backgroundTexture"] = cubeTexture)
             );
-            this.updateLoadingBar();
+            // this.updateLoadingBar();
           }
         )
     );
   }
 
-  updateLoadingBar() {
-    this.loadedAssets += 1;
-    const loadedPercent = this.loadedAssets / this.totalAssets;
-    console.log(this.loadingBar.style.width);
-    this.loadingBar.style.width = `${loadedPercent * 100}%`;
-    if (loadedPercent >= 1) {
-      const firstTextOption = document.querySelector(".text-option");
-      firstTextOption?.attributes.removeNamedItem("disabled");
-      const spanFromFirstTextOption = document.querySelector(
-        ".text-option > span"
-      );
-      this.loadingBar.remove();
-      //@ts-ignore
-      firstTextOption.style.backgroundColor = "#f3f2ff";
-      //@ts-ignore
-      spanFromFirstTextOption.textContent = "Show me what you can do";
-      // this.loadingBar.remove();
-    }
-  }
+  // updateLoadingBar() {
+  //   this.loadedAssets += 1;
+  //   const loadedPercent = this.loadedAssets / this.totalAssets;
+  //   console.log(this.loadingBar.style.width);
+  //   this.loadingBar.style.width = `${loadedPercent * 100}%`;
+  //   if (loadedPercent >= 1) {
+  //     const firstTextOption = document.querySelector(".text-option");
+  //     firstTextOption?.attributes.removeNamedItem("disabled");
+  //     const spanFromFirstTextOption = document.querySelector(
+  //       ".text-option > span"
+  //     );
+  //     this.loadingBar.remove();
+  //     //@ts-ignore
+  //     firstTextOption.style.backgroundColor = "#f3f2ff";
+  //     //@ts-ignore
+  //     spanFromFirstTextOption.textContent = "Show me what you can do";
+  //     // this.loadingBar.remove();
+  //   }
+  // }
 }

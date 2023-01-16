@@ -29,17 +29,17 @@ export default class Track {
     this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
     this.planeMoved = false;
-    // const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
+    const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
-    // const mesh = new THREE.Mesh(
-    //   geometry,
-    //   new THREE.MeshBasicMaterial({
-    //     wireframe: true,
-    //     color: 0xffffff,
-    //   })
-    // );
+    const mesh = new THREE.Mesh(
+      geometry,
+      new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xffffff,
+      })
+    );
 
-    // this.experience.scene?.add(mesh);
+    this.experience.scene?.add(mesh);
 
     return this;
   }
