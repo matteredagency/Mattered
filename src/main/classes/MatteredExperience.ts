@@ -1,7 +1,7 @@
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
-// import { GUI } from "dat.gui";
+import { GUI } from "dat.gui";
 import Lights from "./Lights";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
@@ -26,7 +26,7 @@ export default class MatteredExperience {
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
-  // gui!: GUI;
+  gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   restartButton!: HTMLButtonElement;
@@ -53,7 +53,9 @@ export default class MatteredExperience {
 
     this.restartButton.addEventListener("click", () => this.resetExperience());
     this.scene = new THREE.Scene();
-    // this.gui = new GUI();
+    this.gui = new GUI();
+
+    this.gui.domElement.parentElement?.style.zIndex = "100";
     this.init();
   }
 
@@ -79,6 +81,8 @@ export default class MatteredExperience {
 
     this.scene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
+    this.controls.activateControls();
+
     this.update();
   }
 
@@ -91,13 +95,13 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
-    if (elapsedTime <= 1.5) {
-      this.track.autoPlaneMove((elapsedTime / 1.5) * 0.01);
-    }
-    if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
-      this.controls.activateControls();
-      this.scrollInstructions.fadeIn();
-    }
+    // if (elapsedTime <= 1.5) {
+    //   this.track.autoPlaneMove((elapsedTime / 1.5) * 0.01);
+    // }
+    // if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
+    //   this.controls.activateControls();
+    //   this.scrollInstructions.fadeIn();
+    // }
   }
 
   update() {
