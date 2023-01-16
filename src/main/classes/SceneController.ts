@@ -92,7 +92,7 @@ export default class SceneController {
   }
 
   updateSceneData(currentPercent: number) {
-    if (currentPercent >= 0.89) this.experience.endExperience();
+    // if (currentPercent >= 0.89) this.experience.endExperience();
     this.sceneSelect(currentPercent);
     this.trackSceneTime(currentPercent);
   }

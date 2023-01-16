@@ -12,23 +12,21 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(75, 0, 900),
-      new THREE.Vector3(-75, 0, 600),
-      new THREE.Vector3(-75, 0, 600),
-      new THREE.Vector3(-75, 0, 400),
-      new THREE.Vector3(-100, 0, 325),
-      new THREE.Vector3(-75, 0, 250),
-      new THREE.Vector3(75, 0, 150),
-      new THREE.Vector3(100, 0, 75),
-      new THREE.Vector3(75, 0, 0),
-      new THREE.Vector3(-400, 0, 0),
-      new THREE.Vector3(-500, 0, -150),
-      new THREE.Vector3(-200, 0, -500),
-      new THREE.Vector3(500, 0, -300),
+      new THREE.Vector3(475, 0, 900),
+      new THREE.Vector3(375, 0, 600),
+      new THREE.Vector3(375, 0, 600),
+      new THREE.Vector3(375, 0, 400),
+      new THREE.Vector3(325, 0, 325),
+      new THREE.Vector3(375, 0, 250),
+      new THREE.Vector3(375, 0, 0),
+      new THREE.Vector3(-100, 0, 0),
+      new THREE.Vector3(-100, 0, -150),
+      new THREE.Vector3(200, 0, -500),
+      new THREE.Vector3(900, 0, -300),
     ];
 
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(-75, 0, 950),
+      new THREE.Vector3(375, 0, 950),
       ...points.slice(2),
     ];
 
