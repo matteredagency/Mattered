@@ -110,9 +110,9 @@ export default class MatteredExperience {
     }
     this.timeControl();
 
-    if (this.spaceObjects.currentPlanet) {
-      this.spaceObjects.currentPlanet.rotate();
-    }
+    // if (this.spaceObjects.currentPlanet) {
+    //   this.spaceObjects.currentPlanet.rotate();
+    // }
     if (this.spaceObjects.asteroids) {
       this.spaceObjects.asteroids.rotateAsteroids();
     }

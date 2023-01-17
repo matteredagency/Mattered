@@ -65,7 +65,7 @@ export default class SceneController {
         name: "Saturn",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
-        position: new THREE.Vector3(-200, 0, 600),
+        position: new THREE.Vector3(-115, 0, 825),
         planetScale: 2,
         tilt: Math.PI * 1.15,
       }),

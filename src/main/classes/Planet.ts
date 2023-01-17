@@ -58,7 +58,7 @@ export default class Planet {
     this.tilt = tilt;
   }
 
-  async init() {
+  init() {
     if (this.rendered === true) {
       return;
     } else if (this.rendered === false) {
@@ -75,6 +75,17 @@ export default class Planet {
       this.planetScale
     );
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
+
+    if (this.name === "Saturn") {
+      this.asset.children[0].children[0].scale.y = 0.1;
+      this.asset.children[0].children[1].scale.y = 0.1;
+      this.asset.rotateZ(Math.PI * 0.15);
+      const folder = this.experience.gui.addFolder("saturn");
+
+      folder.add(this.asset.rotation, "x", 0, Math.PI * 2);
+      folder.add(this.asset.rotation, "y", 0, Math.PI * 2);
+      folder.add(this.asset.rotation, "z", 0, Math.PI * 2);
+    }
 
     if (this.atmosphereColor && this.atmosphereRadius) {
       const atmosphere = new THREE.Mesh(
