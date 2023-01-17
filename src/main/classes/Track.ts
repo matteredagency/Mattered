@@ -105,7 +105,7 @@ export default class Track {
   lerpPlaneDistance(currentPercent: number) {
     let lerpValue = 0;
     if (currentPercent < 0.15) {
-      lerpValue = lerp(-0.015, -0.02, scalePercent(0, 0.15, currentPercent));
+      lerpValue = lerp(0, -0.02, scalePercent(0, 0.15, currentPercent));
     } else if (currentPercent >= 0.15 && currentPercent < 0.25) {
       lerpValue = lerp(
         -0.02,
@@ -132,8 +132,10 @@ export default class Track {
       );
     } else if (currentPercent >= 0.625 && currentPercent < 0.8) {
       lerpValue = lerp(-0.03, -0.05, scalePercent(0.625, 0.8, currentPercent));
-    } else if (currentPercent >= 0.8) {
-      lerpValue = lerp(-0.05, -0.09, scalePercent(0.8, 1, currentPercent));
+    } else if (currentPercent >= 0.8 && currentPercent < 0.95) {
+      lerpValue = lerp(-0.05, -0.06, scalePercent(0.8, 0.95, currentPercent));
+    } else if (currentPercent >= 0.95) {
+      lerpValue = lerp(-0.06, -0.05, scalePercent(0.95, 1, currentPercent));
     }
     return lerpValue;
   }
