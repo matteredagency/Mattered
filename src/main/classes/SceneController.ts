@@ -26,7 +26,7 @@ export default class SceneController {
         name: "Venus",
         clockWiseRotation: true,
         rotationSpeed: 0.0003,
-        position: new THREE.Vector3(-150, 0, 400),
+        position: new THREE.Vector3(325, 0, 200),
         planetScale: 0.45,
         atmosphereColor: new THREE.Color(0xffd494),
         atmosphereRadius: 43,
@@ -35,7 +35,7 @@ export default class SceneController {
         name: "Earth",
         clockWiseRotation: false,
         rotationSpeed: 0.0003,
-        position: new THREE.Vector3(115, 0, 130),
+        position: new THREE.Vector3(800, 0, 100),
         planetScale: 0.45,
         atmosphereRadius: 15.5,
         atmosphereColor: new THREE.Color(0x4c9aff),
@@ -44,7 +44,7 @@ export default class SceneController {
         name: "Mars",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
-        position: new THREE.Vector3(-330, 0, 38),
+        position: new THREE.Vector3(600, 0, -450),
         planetScale: 0.45,
         atmosphereColor: new THREE.Color(0xbab19e),
         atmosphereRadius: 15.25,
@@ -53,12 +53,12 @@ export default class SceneController {
         name: "Jupiter",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
-        position: new THREE.Vector3(-450, 0, -425),
+        position: new THREE.Vector3(-150, 0, -600),
         planetScale: 2,
       }),
       asteroids: new Asteroids(
         "AsteroidSet",
-        new THREE.Vector3(100, 0, -435),
+        new THREE.Vector3(-350, 0, 200),
         0.1
       ),
       saturn: new Planet({
@@ -78,6 +78,10 @@ export default class SceneController {
       asteroids: 0,
       saturn: 0,
     };
+
+    Object.keys(this.sceneSubjects).forEach((key) => {
+      this.sceneSubjects[key as SubjectKeys].init();
+    });
     this.experience = new MatteredExperience();
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init();
