@@ -29,7 +29,7 @@ export default class SceneController {
         position: new THREE.Vector3(300, 0, 75),
         planetScale: 1,
         atmosphereColor: new THREE.Color(0xffd494),
-        atmosphereRadius: 43,
+        atmosphereRadius: 95,
       }),
       earth: new Planet({
         name: "Earth",
@@ -37,7 +37,7 @@ export default class SceneController {
         rotationSpeed: 0.0003,
         position: new THREE.Vector3(820, 0, 80),
         planetScale: 1,
-        atmosphereRadius: 15.5,
+        atmosphereRadius: 35,
         atmosphereColor: new THREE.Color(0x4c9aff),
       }),
       mars: new Planet({
@@ -47,7 +47,7 @@ export default class SceneController {
         position: new THREE.Vector3(600, 0, -400),
         planetScale: 1,
         atmosphereColor: new THREE.Color(0xbab19e),
-        atmosphereRadius: 15.25,
+        atmosphereRadius: 34.5,
       }),
       jupiter: new Planet({
         name: "Jupiter",

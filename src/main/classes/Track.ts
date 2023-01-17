@@ -96,8 +96,8 @@ export default class Track {
       })
     );
 
-    this.experience.scene?.add(mesh);
-    this.experience.scene?.add(cameraMesh);
+    // this.experience.scene?.add(mesh);
+    // this.experience.scene?.add(cameraMesh);
 
     return this;
   }
