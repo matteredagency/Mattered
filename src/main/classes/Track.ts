@@ -22,8 +22,8 @@ export default class Track {
       new THREE.Vector3(600, 0, 25),
       new THREE.Vector3(575, 0, -50),
       new THREE.Vector3(500, 0, -125),
-      new THREE.Vector3(-200, 0, -200),
-      new THREE.Vector3(-350, 0, -275),
+      // new THREE.Vector3(-225, 0, -275),
+      // new THREE.Vector3(-250, 0, -350),
 
       // new THREE.Vector3(-350, 0, -200),
 
