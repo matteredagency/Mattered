@@ -103,7 +103,7 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    const currentPlanePosition = this.path.getPointAt(currentPercent - 0.01);
+    const currentPlanePosition = this.path.getPointAt(currentPercent - 0.015);
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
       currentPlanePosition.x,
@@ -133,7 +133,10 @@ export default class Track {
       lerp(0, 0.075, scalePercent(0, 1, currentTime / 3))
     );
     const currentPlanePosition = this.path.getPointAt(
-      lerp(0, 0.065, scalePercent(0, 1, currentTime / 3))
+      lerp(0, 0.06, scalePercent(0, 1, currentTime / 3))
+    );
+    this.experience.camera.perspectiveCamera.lookAt(
+      this.experience.track.path.getPointAt(0.06)
     );
 
     this.experience.camera.perspectiveCamera.position.x =
