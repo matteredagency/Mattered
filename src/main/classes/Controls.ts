@@ -26,14 +26,11 @@ export default class Controls {
       if (this.experience.scrollInstructions.element) {
         this.experience.scrollInstructions.fadeOut();
       }
-      this.scrollPercent = scrollTop / scrollHeight;
+      this.scrollPercent = Math.max(scrollTop / scrollHeight, 0.075);
 
       this.experience.sceneController.updateSceneData(this.scrollPercent);
       this.experience.planeController.updatePlaneRotation(this.scrollPercent);
-      this.experience.track.updateCameraPosition(
-        this.scrollPercent,
-        this.oldScrollPercent
-      );
+      this.experience.track.updateCameraPosition(this.scrollPercent);
       this.experience.track.updatePlanePosition(this.scrollPercent);
       this.oldScrollTop = scrollTop;
     });

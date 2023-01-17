@@ -82,7 +82,7 @@ export default class MatteredExperience {
     this.scene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
     this.controls.activateControls();
-
+    this.clock.start();
     this.update();
   }
 
@@ -95,9 +95,9 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
-    // if (elapsedTime <= 1.5) {
-    //   this.track.autoPlaneMove((elapsedTime / 1.5) * 0.01);
-    // }
+    if (elapsedTime <= 3) {
+      this.track.autoStart(elapsedTime);
+    }
     // if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
     //   this.controls.activateControls();
     //   this.scrollInstructions.fadeIn();
