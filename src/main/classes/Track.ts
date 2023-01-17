@@ -11,15 +11,10 @@ export default class Track {
   planeMoved: boolean;
   constructor() {
     this.experience = new MatteredExperience();
-    const points: THREE.Vector3[] | [number, number, number][] = [
+    const commonPoints1: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(375, 0, 600),
       new THREE.Vector3(375, 0, 400),
       new THREE.Vector3(375, 0, 250),
-      new THREE.Vector3(875, 0, 100),
-      new THREE.Vector3(875, 0, -50),
-      new THREE.Vector3(-250, 0, -750),
-      new THREE.Vector3(-700, 0, -250),
-      new THREE.Vector3(-950, 0, 0),
 
       // new THREE.Vector3(-225, 0, -275),
       // new THREE.Vector3(-250, 0, -350),
@@ -38,15 +33,26 @@ export default class Track {
       // new THREE.Vector3(900, 0, -300),
     ];
 
+    const commonPoints2 = [new THREE.Vector3(-250, 0, -750)];
+
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(375, 0, 950),
-      ...points,
+      ...commonPoints1,
+      new THREE.Vector3(910, 0, 110),
+      new THREE.Vector3(875, 0, -60),
+      new THREE.Vector3(250, 0, -500),
+      new THREE.Vector3(-650, 0, -300),
     ];
 
     const planePoints = [
       new THREE.Vector3(475, 0, 900),
       new THREE.Vector3(375, 0, 600),
-      ...points,
+      ...commonPoints1,
+      new THREE.Vector3(875, 0, 100),
+      new THREE.Vector3(875, 0, -50),
+      ...commonPoints2,
+      new THREE.Vector3(-700, 0, -250),
+      new THREE.Vector3(-950, 0, 0),
     ];
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
