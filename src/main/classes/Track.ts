@@ -18,11 +18,25 @@ export default class Track {
       new THREE.Vector3(375, 0, 400),
       new THREE.Vector3(325, 0, 325),
       new THREE.Vector3(375, 0, 250),
-      new THREE.Vector3(375, 0, 0),
-      new THREE.Vector3(-100, 0, 0),
-      new THREE.Vector3(-100, 0, -150),
-      new THREE.Vector3(200, 0, -500),
-      new THREE.Vector3(900, 0, -300),
+      new THREE.Vector3(575, 0, 100),
+      new THREE.Vector3(600, 0, 25),
+      new THREE.Vector3(575, 0, -50),
+      new THREE.Vector3(500, 0, -125),
+      new THREE.Vector3(-200, 0, -200),
+      new THREE.Vector3(-350, 0, -275),
+
+      // new THREE.Vector3(-350, 0, -200),
+
+      // new THREE.Vector3(-375, 0, -325),
+
+      // new THREE.Vector3(-375, 0, -275),
+      // new THREE.Vector3(-350, 0, -200),
+
+      // new THREE.Vector3(475, 0, 0),
+      // new THREE.Vector3(-100, 0, 0),
+      // new THREE.Vector3(-100, 0, -150),
+      // new THREE.Vector3(200, 0, -500),
+      // new THREE.Vector3(900, 0, -300),
     ];
 
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
