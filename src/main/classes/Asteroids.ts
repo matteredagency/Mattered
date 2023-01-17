@@ -33,10 +33,15 @@ export default class Asteroids {
       this.position.y,
       this.position.z
     );
-    this.asteroids.rotateY(-Math.PI * 0.1);
+    this.asteroids.rotateY(Math.PI * 1.65);
 
     this.experience.spaceObjects.asteroids = this;
     this.experience.scene?.add(this.asteroids);
+
+    const folder = this.experience.gui.addFolder("asteroids");
+    folder.add(this.asteroids.position, "x", -1000, 1000);
+    folder.add(this.asteroids.position, "z", -1000, 1000);
+    folder.add(this.asteroids.rotation, "y", 0, Math.PI * 2);
   }
   rotateAsteroids() {
     this.asteroids.children.forEach((mesh, index) => {

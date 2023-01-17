@@ -35,7 +35,7 @@ export default class SceneController {
         name: "Earth",
         clockWiseRotation: false,
         rotationSpeed: 0.0003,
-        position: new THREE.Vector3(800, 0, 100),
+        position: new THREE.Vector3(820, 0, 80),
         planetScale: 0.45,
         atmosphereRadius: 15.5,
         atmosphereColor: new THREE.Color(0x4c9aff),
@@ -58,14 +58,14 @@ export default class SceneController {
       }),
       asteroids: new Asteroids(
         "AsteroidSet",
-        new THREE.Vector3(-350, 0, 200),
-        0.1
+        new THREE.Vector3(-430, 0, 25),
+        0.075
       ),
       saturn: new Planet({
         name: "Saturn",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
-        position: new THREE.Vector3(750, 0, -400),
+        position: new THREE.Vector3(-200, 0, 600),
         planetScale: 2,
         tilt: Math.PI * 1.15,
       }),
