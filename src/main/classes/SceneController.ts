@@ -26,7 +26,7 @@ export default class SceneController {
         name: "Venus",
         clockWiseRotation: true,
         rotationSpeed: 0.0003,
-        position: new THREE.Vector3(325, 0, 200),
+        position: new THREE.Vector3(300, 0, 75),
         planetScale: 1,
         atmosphereColor: new THREE.Color(0xffd494),
         atmosphereRadius: 43,
