@@ -12,15 +12,12 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
     const points: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(475, 0, 900),
-      new THREE.Vector3(375, 0, 600),
       new THREE.Vector3(375, 0, 600),
       new THREE.Vector3(375, 0, 400),
       new THREE.Vector3(375, 0, 250),
       new THREE.Vector3(875, 0, 100),
       new THREE.Vector3(875, 0, -50),
       new THREE.Vector3(-250, 0, -750),
-      // new THREE.Vector3(-500, 0, -500),
       new THREE.Vector3(-700, 0, -250),
       new THREE.Vector3(-950, 0, 0),
 
@@ -43,12 +40,18 @@ export default class Track {
 
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(375, 0, 950),
-      ...points.slice(2),
+      ...points,
+    ];
+
+    const planePoints = [
+      new THREE.Vector3(475, 0, 900),
+      new THREE.Vector3(375, 0, 600),
+      ...points,
     ];
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
 
-    this.path = new THREE.CatmullRomCurve3(points);
+    this.path = new THREE.CatmullRomCurve3(planePoints);
     this.currentCameraPercent = 0;
     this.currentPlanePercent = 0;
     this.planeMovedTime = 0;

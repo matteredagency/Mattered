@@ -108,7 +108,7 @@ export default class MatteredExperience {
     if (this.experienceStarted && !this.clock.running) {
       this.clock.start();
     }
-    if (this.clock.running) this.timeControl();
+    this.timeControl();
 
     if (this.spaceObjects.currentPlanet) {
       this.spaceObjects.currentPlanet.rotate();
