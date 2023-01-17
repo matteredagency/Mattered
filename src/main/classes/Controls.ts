@@ -26,7 +26,7 @@ export default class Controls {
       if (this.experience.scrollInstructions.element) {
         this.experience.scrollInstructions.fadeOut();
       }
-      this.scrollPercent = Math.max(scrollTop / scrollHeight, 0.075);
+      this.scrollPercent = scrollTop / scrollHeight + 0.075;
 
       // this.experience.sceneController.updateSceneData(this.scrollPercent);
       this.experience.planeController.updatePlaneRotation(this.scrollPercent);
