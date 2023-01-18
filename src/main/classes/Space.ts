@@ -13,7 +13,7 @@ export default class Space {
   experience: MatteredExperience;
   constructor() {
     this.experience = new MatteredExperience();
-    this.stars = new Stars(1500);
+    this.stars = new Stars(6000);
     this.stars.init();
 
     this.paperPlane =

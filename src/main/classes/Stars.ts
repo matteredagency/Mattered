@@ -38,9 +38,9 @@ export default class Stars {
   private setGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
     const pointRanges = [
-      [-1000, 1000, null],
-      [-250, 250, 25],
-      [-1000, 750, null],
+      [-1500, 1500, null],
+      [-500, 500, 25],
+      [-1500, 2500, null],
     ];
 
     for (let i = 0; i < this.particleCount; i++) {
