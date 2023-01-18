@@ -22,7 +22,7 @@ export default class Track {
 
     const commonPoints2 = [new THREE.Vector3(-250, 0, -750)];
 
-    const commonPoints3 = [new THREE.Vector3(-150, 0, 2000)];
+    const commonPoints3 = [new THREE.Vector3(-250, 0, 2500)];
 
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(375, 0, 950),
@@ -33,7 +33,7 @@ export default class Track {
       new THREE.Vector3(-300, 0, -300),
       new THREE.Vector3(-350, 0, -100),
       new THREE.Vector3(-350, 0, 100),
-      new THREE.Vector3(-250, 0, 1500),
+      new THREE.Vector3(-250, 0, 2000),
     ];
 
     const planePoints = [
@@ -85,8 +85,8 @@ export default class Track {
       })
     );
 
-    // this.experience.scene?.add(mesh);
-    // this.experience.scene?.add(cameraMesh);
+    this.experience.scene?.add(mesh);
+    this.experience.scene?.add(cameraMesh);
 
     return this;
   }
@@ -104,27 +104,23 @@ export default class Track {
     } else if (currentPercent >= 0.25 && currentPercent < 0.35) {
       lerpValue = lerp(
         -0.0425,
-        -0.065,
+        -0.055,
         scalePercent(0.25, 0.35, currentPercent)
       );
     } else if (currentPercent >= 0.35 && currentPercent < 0.575) {
       lerpValue = lerp(
-        -0.065,
-        -0.07,
+        -0.055,
+        -0.015,
         scalePercent(0.35, 0.575, currentPercent)
       );
     } else if (currentPercent >= 0.575 && currentPercent < 0.625) {
-      lerpValue = lerp(
-        -0.07,
-        -0.03,
-        scalePercent(0.575, 0.625, currentPercent)
-      );
+      lerpValue = lerp(-0.015, 0, scalePercent(0.575, 0.625, currentPercent));
     } else if (currentPercent >= 0.625 && currentPercent < 0.8) {
-      lerpValue = lerp(-0.03, -0.05, scalePercent(0.625, 0.8, currentPercent));
+      lerpValue = lerp(0, -0.05, scalePercent(0.625, 0.8, currentPercent));
     } else if (currentPercent >= 0.8 && currentPercent < 0.95) {
       lerpValue = lerp(-0.05, -0.06, scalePercent(0.8, 0.95, currentPercent));
     } else if (currentPercent >= 0.95) {
-      lerpValue = lerp(-0.06, -0.05, scalePercent(0.95, 1, currentPercent));
+      lerpValue = lerp(-0.06, -0.03, scalePercent(0.95, 1, currentPercent));
     }
     return lerpValue;
   }

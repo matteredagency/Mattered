@@ -58,14 +58,14 @@ export default class SceneController {
       }),
       asteroids: new Asteroids(
         "AsteroidSet",
-        new THREE.Vector3(-430, 0, 25),
+        new THREE.Vector3(-418, 0, 685),
         0.075
       ),
       saturn: new Planet({
         name: "Saturn",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
-        position: new THREE.Vector3(25, 50, 1000),
+        position: new THREE.Vector3(-650, 50, 1500),
         planetScale: 3.5,
         tilt: Math.PI * 1.15,
       }),

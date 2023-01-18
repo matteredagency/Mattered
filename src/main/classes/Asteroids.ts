@@ -33,7 +33,7 @@ export default class Asteroids {
       this.position.y,
       this.position.z
     );
-    this.asteroids.rotateY(Math.PI * 1.65);
+    this.asteroids.rotateY(Math.PI * 1.5);
 
     this.experience.spaceObjects.asteroids = this;
     this.experience.scene?.add(this.asteroids);

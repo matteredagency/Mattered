@@ -79,7 +79,7 @@ export default class Planet {
     if (this.name === "Saturn") {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
-      this.asset.rotateZ(Math.PI * 0.15);
+      this.asset.rotateZ(-Math.PI * 0.15);
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {
