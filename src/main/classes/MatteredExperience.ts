@@ -12,6 +12,7 @@ import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
+import scalePercent from "../../utils/scalePercent";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -64,10 +65,10 @@ export default class MatteredExperience {
 
     this.sizes = new Sizes();
     this.rendererInstance = new Renderer();
+    this.track = new Track();
     this.spaceObjects = new Space();
     this.scrollInstructions = new ScrollInstructionsController();
     this.controls = new Controls();
-    this.track = new Track();
     this.lights = new Lights();
     this.sizes.on("resize", () => {
       this.resize();
@@ -97,6 +98,7 @@ export default class MatteredExperience {
     this.spaceObjects.stars.twinkleStars(elapsedTime);
     if (elapsedTime <= 3) {
       this.track.autoStart(elapsedTime);
+      this.planeController.updateAutoPlaneRotation(elapsedTime / 3);
     }
     // if (elapsedTime >= 1.5 && !this.controls.controlsActivated) {
     //   this.controls.activateControls();

@@ -45,8 +45,66 @@ export default class PlaneController {
     );
   }
 
+  updateAutoPlaneRotation(currentPercent: number) {
+    if (currentPercent >= 0 && currentPercent < 0.75) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0,
+        endPercent: 0.75,
+        startY: Math.PI * 0.1,
+        endY: Math.PI * 0.1,
+        startZ: 0,
+        endZ: -Math.PI * 0.2,
+      });
+    }
+
+    if (currentPercent >= 0.75 && currentPercent < 0.95) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0.75,
+        endPercent: 0.95,
+        startY: Math.PI * 0.1,
+        endY: Math.PI * 0.0005,
+        startZ: -Math.PI * 0.2,
+        endZ: 0,
+      });
+    }
+
+    if (currentPercent >= 0.95 && currentPercent <= 1) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0.95,
+        endPercent: 1,
+        startY: Math.PI * 0.0005,
+        endY: 0,
+        startZ: 0,
+        endZ: 0,
+      });
+    }
+  }
+
   updatePlaneRotation(currentPercent: number) {
-    if (currentPercent >= 0.075 && currentPercent < 0.09) {
+    if (currentPercent >= 0 && currentPercent < 0.065) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0,
+        endPercent: 0.065,
+        startY: Math.PI * 0.1,
+        endY: Math.PI * 0.1,
+        startZ: 0,
+        endZ: -Math.PI * 0.2,
+      });
+    } else if (currentPercent >= 0.065 && currentPercent < 0.075) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0.05,
+        endPercent: 0.075,
+        startY: Math.PI * 0.1,
+        endY: 0,
+        startZ: -Math.PI * 0.2,
+        endZ: 0,
+      });
+    } else if (currentPercent >= 0.075 && currentPercent < 0.09) {
       this.lerpPlaneRotations({
         currentPercent,
         startPercent: 0.075,
@@ -182,6 +240,16 @@ export default class PlaneController {
         startPercent: 0.6,
         endPercent: 0.75,
         startY: Math.PI * 1.01,
+        endY: Math.PI * 1.021,
+        startZ: 0,
+        endZ: 0,
+      });
+    } else if (currentPercent >= 0.75 && currentPercent <= 1) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0.75,
+        endPercent: 1,
+        startY: Math.PI * 1.021,
         endY: Math.PI * 1.015,
         startZ: 0,
         endZ: 0,

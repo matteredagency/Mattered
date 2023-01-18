@@ -19,9 +19,11 @@ export default class Space {
     this.paperPlane =
       this.experience.assets.assetsDirectory.objects["PaperPlane"];
 
+    const startPath = this.experience.track.path.getPointAt(0);
+    this.paperPlane.position.set(startPath.x, 0, startPath.z);
     this.experience.scene.add(this.paperPlane);
     this.paperPlane.scale.set(0.15, 0.15, 0.15);
-    this.paperPlane.rotateY(Math.PI * 0.33);
+    this.paperPlane.rotateY(Math.PI * 0.1);
   }
   init() {
     this.currentPlanet = null;

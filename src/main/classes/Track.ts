@@ -69,24 +69,7 @@ export default class Track {
       })
     );
 
-    const cameraGeometry = new THREE.TubeGeometry(
-      this.cameraPath,
-      300,
-      5,
-      32,
-      false
-    );
-
-    const cameraMesh = new THREE.Mesh(
-      cameraGeometry,
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0xff0000,
-      })
-    );
-
-    this.experience.scene?.add(mesh);
-    // this.experience.scene?.add(cameraMesh);
+    // this.experience.scene?.add(mesh);
 
     return this;
   }
@@ -159,10 +142,10 @@ export default class Track {
       lerp(0, 0.075, scalePercent(0, 1, currentTime / 3))
     );
     const currentPlanePosition = this.path.getPointAt(
-      lerp(0, 0.06, scalePercent(0, 1, currentTime / 3))
+      lerp(0, 0.065, scalePercent(0, 1, currentTime / 3))
     );
     this.experience.camera.perspectiveCamera.lookAt(
-      this.experience.track.path.getPointAt(0.06)
+      this.experience.track.path.getPointAt(0.075)
     );
 
     this.experience.camera.perspectiveCamera.position.x =
