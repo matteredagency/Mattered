@@ -2,6 +2,7 @@ import { lerp } from "three/src/math/MathUtils";
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import scalePercent from "../../utils/scalePercent";
+import NorthernLightPath from "./NorthernLightPath";
 
 export default class Track {
   experience: MatteredExperience;
@@ -17,22 +18,6 @@ export default class Track {
       new THREE.Vector3(375, 0, 600),
       new THREE.Vector3(375, 0, 400),
       new THREE.Vector3(375, 0, 250),
-
-      // new THREE.Vector3(-225, 0, -275),
-      // new THREE.Vector3(-250, 0, -350),
-
-      // new THREE.Vector3(-350, 0, -200),
-
-      // new THREE.Vector3(-375, 0, -325),
-
-      // new THREE.Vector3(-375, 0, -275),
-      // new THREE.Vector3(-350, 0, -200),
-
-      // new THREE.Vector3(475, 0, 0),
-      // new THREE.Vector3(-100, 0, 0),
-      // new THREE.Vector3(-100, 0, -150),
-      // new THREE.Vector3(200, 0, -500),
-      // new THREE.Vector3(900, 0, -300),
     ];
 
     const commonPoints2 = [new THREE.Vector3(-250, 0, -750)];
@@ -49,7 +34,6 @@ export default class Track {
       new THREE.Vector3(-350, 0, -100),
       new THREE.Vector3(-350, 0, 100),
       new THREE.Vector3(-250, 0, 1500),
-      // ...commonPoints3,
     ];
 
     const planePoints = [
@@ -59,9 +43,14 @@ export default class Track {
       new THREE.Vector3(875, 0, 100),
       new THREE.Vector3(875, 0, -50),
       ...commonPoints2,
-      // new THREE.Vector3(-700, 0, -250),
       ...commonPoints3,
     ];
+
+    new NorthernLightPath({
+      vectorPath: [...planePoints].reverse(),
+      particleCount: 9000,
+      speed: 1 / 10000,
+    }).animatePoints();
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
 
