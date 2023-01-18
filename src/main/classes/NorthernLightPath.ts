@@ -1,7 +1,6 @@
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import createAssetPath from "../../utils/createAssetPath";
-
 interface NorthernLightConstructor {
   vectorPath: THREE.Vector3[];
   particleCount: number;
@@ -59,7 +58,7 @@ export default class NorthernLightPath {
             new THREE.PointsMaterial({
               size: 12,
               map: texture,
-              side: THREE.DoubleSide,
+              side: THREE.FrontSide,
               transparent: true,
               opacity: 0.75,
               alphaTest: 0.01,
