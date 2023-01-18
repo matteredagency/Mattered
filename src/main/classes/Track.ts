@@ -85,8 +85,8 @@ export default class Track {
       })
     );
 
-    this.experience.scene?.add(mesh);
-    this.experience.scene?.add(cameraMesh);
+    // this.experience.scene?.add(mesh);
+    // this.experience.scene?.add(cameraMesh);
 
     return this;
   }
@@ -144,7 +144,7 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number) {
-    const currentCameraPosition = this.path.getPointAt(currentPercent);
+    const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
