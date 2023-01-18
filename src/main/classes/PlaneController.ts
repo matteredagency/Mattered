@@ -136,6 +136,26 @@ export default class PlaneController {
         startZ: 0,
         endZ: Math.PI * 0.1,
       });
+    } else if (currentPercent >= 0.4 && currentPercent < 0.45) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0.4,
+        endPercent: 0.45,
+        startY: Math.PI * 0.35,
+        endY: Math.PI * 0.55,
+        startZ: Math.PI * 0.1,
+        endZ: Math.PI * 0.009,
+      });
+    } else if (currentPercent >= 0.45 && currentPercent < 0.5) {
+      this.lerpPlaneRotations({
+        currentPercent,
+        startPercent: 0.45,
+        endPercent: 0.5,
+        startY: Math.PI * 0.55,
+        endY: Math.PI * 0.95,
+        startZ: Math.PI * 0.009,
+        endZ: Math.PI * 0.009,
+      });
     } else if (currentPercent >= 0.5 && currentPercent < 0.55) {
       this.lerpPlaneRotations({
         currentPercent,

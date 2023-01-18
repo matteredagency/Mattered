@@ -1,7 +1,6 @@
 import MatteredExperience from "./classes/MatteredExperience";
 import SoundController from "./SoundController";
 import ChatBox from "./classes/ChatBox";
-import THREE = require("three");
 new MatteredExperience(
   document.getElementById("canvas-scene") as HTMLCanvasElement
 );
