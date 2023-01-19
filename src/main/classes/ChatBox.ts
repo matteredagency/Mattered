@@ -95,7 +95,7 @@ export default class ChatBox {
 
   activateSend() {
     this.sendButton.removeAttribute("disabled");
-    this.sendButton.style.backgroundColor = "#583475";
+    this.sendButton.style.backgroundColor = "black";
     this.responseBox.style.webkitTextFillColor = "#2a292c";
     this.responseBox.style.opacity = "1";
     this.sendButton.addEventListener("click", () => {
@@ -129,11 +129,13 @@ export default class ChatBox {
   }
 
   addMessageToMessages(message: string, received: boolean) {
-    const newMessage = document.createElement("div");
-    newMessage.classList.add("message");
-    newMessage.classList.add(received ? "received" : "sent");
-    newMessage.innerText = message;
-    this.messagesElement.appendChild(newMessage);
+    const newMessageParent = document.createElement("div");
+    const newMessageSpan = document.createElement("span");
+    newMessageParent.classList.add("message");
+    newMessageParent.classList.add(received ? "received" : "sent");
+    newMessageSpan.innerText = message;
+    newMessageParent.appendChild(newMessageSpan);
+    this.messagesElement.appendChild(newMessageParent);
   }
   start3DExperience() {
     this.chatFall();
