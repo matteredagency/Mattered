@@ -126,16 +126,15 @@ tbody > tr:nth-child(even) {
 }
 
 .received {
-  background: #f2f2f2;
+  background: black;
   align-self: flex-start;
-  border-radius: 0 10px 10px 10px;
+  color: white;
 }
 
 .typing {
   display: flex;
   flex-flow: row nowrap;
   gap: 13px;
-  border-radius: 20px;
   align-items: center;
   height: 40px !important;
 }
@@ -169,13 +168,24 @@ tbody > tr:nth-child(even) {
   transition: transform 0.5s ease-in;
 }
 
+.message::before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 9px solid transparent;
+  border-right: 11px solid black;
+  border-top: 14px solid transparent;
+  border-bottom: 15px solid black;
+  left: 10px;
+}
+
 .messages-fall {
   overflow: visible !important;
 }
 .sent {
   background-color: #f3f2ff;
   align-self: flex-end;
-  border-radius: 10px 10px 0px 10px;
 }
 
 #messages {
@@ -296,16 +306,17 @@ tbody > tr:nth-child(even) {
   grid-column: span 2;
   outline: none;
   height: 100%;
-  border-radius: 40px;
   background: transparent;
   display: flex;
   max-height: 40px;
+  border: solid 1px #f3f3f3;
   flex-flow: row nowrap;
   border: solid #e4e4e5 1px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
   transition: transform 0.5s ease-in;
+  padding: 4px;
 }
 
 #text-box > input {
@@ -320,13 +331,12 @@ tbody > tr:nth-child(even) {
 }
 
 #text-box > button {
-  border-radius: 50%;
   padding: 5px;
   background: #f2f2f2;
-  height: 28px;
+  height: 100%;
   border: none;
-  width: 28px;
-  margin-right: 6px;
+  width: 10%;
+  max-width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
