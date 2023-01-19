@@ -286,7 +286,7 @@ tbody > tr:nth-child(even) {
 }
 
 .text-option {
-  background-color: #f3f2ff;
+  background-color: white;
   padding: 24px;
   align-items: center;
   font-family: "Poppins", sans-serif;
@@ -296,7 +296,7 @@ tbody > tr:nth-child(even) {
   color: #2a292c;
   outline: none;
   width: 100%;
-  border: none;
+  border: solid 1px #f3f3f3;
   outline: none;
   border-radius: 22px;
   flex-flow: row nowrap;
@@ -311,7 +311,7 @@ tbody > tr:nth-child(even) {
   height: 100%;
   left: 0;
   width: 0%;
-  background: #f3f2ff;
+  background: #f0f4f8;
   transition: width 1s ease-in;
 }
 
@@ -336,8 +336,9 @@ tbody > tr:nth-child(even) {
 }
 
 .selected-text-option {
-  background-color: #583475 !important;
+  background-color: black !important;
   color: white;
+  border: solid 1px black !important;
 }
 
 #text-box {
