@@ -58,7 +58,7 @@ export default class NorthernLightPath {
             new THREE.PointsMaterial({
               size: 12,
               map: texture,
-              side: THREE.FrontSide,
+              side: THREE.DoubleSide,
               transparent: true,
               opacity: 0.75,
               alphaTest: 0.01,

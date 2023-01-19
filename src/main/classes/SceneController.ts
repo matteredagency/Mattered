@@ -79,9 +79,6 @@ export default class SceneController {
       saturn: 0,
     };
 
-    Object.keys(this.sceneSubjects).forEach((key) => {
-      this.sceneSubjects[key as SubjectKeys].init();
-    });
     this.experience = new MatteredExperience();
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init();
@@ -135,26 +132,42 @@ export default class SceneController {
         this.sceneSubjects.venus.init();
       }
     }
-    if (currentPercent >= 0.08 && currentPercent <= 0.22) {
-      if (this.sceneSubjects.venus.rendered) {
-        this.sceneSubjects.venus.remove();
-      }
+    if (currentPercent >= 0.12 && currentPercent <= 0.25) {
       if (!this.sceneSubjects.earth.rendered) {
         this.sceneSubjects.earth.init();
       }
     }
-    if (currentPercent >= 0.22 && currentPercent <= 0.43) {
-      if (this.sceneSubjects.earth.rendered) {
+    if (currentPercent >= 0.25 && currentPercent <= 0.52) {
+      if (
+        this.sceneSubjects.earth.rendered &&
+        this.sceneSubjects.venus.rendered
+      ) {
         this.sceneSubjects.earth.remove();
+        this.sceneSubjects.venus.remove();
       }
-      if (!this.sceneSubjects.mars.rendered) {
+      if (
+        !this.sceneSubjects.mars.rendered &&
+        !this.sceneSubjects.jupiter.rendered
+      ) {
         this.sceneSubjects.mars.init();
+        this.sceneSubjects.jupiter.init();
       }
     }
-    if (currentPercent >= 0.43 && currentPercent <= 0.8) {
-      if (this.sceneSubjects.mars.rendered) this.sceneSubjects.mars.remove();
-      if (!this.sceneSubjects.jupiter.rendered)
-        this.sceneSubjects.jupiter.init();
+    if (currentPercent >= 0.52 && currentPercent <= 0.8) {
+      if (
+        this.sceneSubjects.mars.rendered &&
+        this.sceneSubjects.jupiter.rendered
+      ) {
+        this.sceneSubjects.mars.remove();
+        this.sceneSubjects.jupiter.remove();
+      }
+      if (
+        !this.sceneSubjects.asteroids.rendered &&
+        !this.sceneSubjects.saturn.rendered
+      ) {
+        this.sceneSubjects.asteroids.init();
+        this.sceneSubjects.saturn.init();
+      }
     }
     if (currentPercent >= 0.43 && currentPercent <= 0.65) {
       if (this.sceneSubjects.mars.rendered) this.sceneSubjects.mars.remove();
