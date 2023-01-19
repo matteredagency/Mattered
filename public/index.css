@@ -110,7 +110,7 @@ tbody > tr:nth-child(even) {
   color: #2a292c;
   display: flex;
   flex-flow: column nowrap;
-  background: white;
+  background: #e1e1e1;
   align-items: center;
   justify-content: space-between;
   opacity: 1;
@@ -167,7 +167,7 @@ tbody > tr:nth-child(even) {
   height: fit-content;
   width: fit-content;
   max-width: 60%;
-  font-size: 12px;
+  font-size: 13spx;
   font-family: "Inter", sans-serif;
   margin: 4px 0 4px 0;
   transition: transform 0.5s ease-in;
@@ -232,8 +232,9 @@ tbody > tr:nth-child(even) {
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
+  background: white;
   flex-flow: column-reverse;
-  padding: 18px 18px 14px 18px;
+  padding: 18px 8px 8px;
   justify-content: end;
   z-index: 10;
   transition: transform 1s ease-in;
@@ -254,15 +255,15 @@ tbody > tr:nth-child(even) {
 }
 
 #text {
-  border-top: solid 1px #c5cddc;
   height: 35%;
   width: 100%;
   overflow: hidden;
   min-height: 250px;
+  background: white;
   padding: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 48px 70px 40px auto;
+  grid-template-rows: 48px 1fr 1fr;
   gap: 8px;
   transition: transform 0.75s ease-in;
 }
@@ -270,7 +271,7 @@ tbody > tr:nth-child(even) {
 #privacy-terms {
   display: flex;
   flex-flow: row nowrap;
-  height: 100%;
+  height: fit-content;
   justify-content: center;
   width: 100%;
   grid-column: span 2;
@@ -549,6 +550,9 @@ nav > a {
 }
 
 @media (max-width: 768px) {
+  #chat-window {
+    padding: 0 16px 84px 16px;
+  }
   nav {
     height: 60px;
     padding: 0;
