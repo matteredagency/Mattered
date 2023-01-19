@@ -112,17 +112,8 @@ tbody > tr:nth-child(even) {
   flex-flow: column nowrap;
   background: #e1e1e1;
   align-items: center;
-  justify-content: space-between;
   opacity: 1;
   transition: opacity 1s ease-in;
-}
-
-#chat-logo {
-  height: 20%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .received {
@@ -167,7 +158,7 @@ tbody > tr:nth-child(even) {
   height: fit-content;
   width: fit-content;
   max-width: 60%;
-  font-size: 13spx;
+  font-size: 13px;
   font-family: "Inter", sans-serif;
   margin: 4px 0 4px 0;
   transition: transform 0.5s ease-in;
@@ -228,12 +219,13 @@ tbody > tr:nth-child(even) {
 
 #messages-wrapper {
   width: 100%;
+  height: 35%;
   overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   background: white;
   flex-flow: column-reverse;
   padding: 1px 1px 0px 1px;
+  flex: 1;
   justify-content: end;
   z-index: 10;
   transition: transform 1s ease-in;
@@ -246,6 +238,8 @@ tbody > tr:nth-child(even) {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
   display: flex;
   background: white;
   flex-flow: column-reverse;
@@ -262,22 +256,22 @@ tbody > tr:nth-child(even) {
   flex-flow: column nowrap;
 }
 
-#chat-logo > svg {
+#chat-window > svg {
   width: 80%;
   max-width: 300px;
+  margin-bottom: 30px;
   transition: opacity 0.25s ease-in, transform 0.5s ease-in;
   opacity: 1;
 }
 
 #text {
-  height: 35%;
+  height: fit-content;
   width: 100%;
-  min-height: 250px;
   background: white;
-  padding: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 48px 1fr 1fr;
+  grid-template-rows: 48px 43px 43px;
+  padding: 16px;
   border-left: 1px solid #f3f3f3;
   border-right: 1px solid #f3f3f3;
   border-bottom: 1px solid #f3f3f3;
@@ -286,14 +280,15 @@ tbody > tr:nth-child(even) {
 }
 
 #privacy-terms {
+  margin-top: 13px;
   display: flex;
   flex-flow: row nowrap;
   height: fit-content;
   justify-content: center;
   width: 100%;
-  grid-column: span 2;
-  align-items: flex-end;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 60px;
 }
 
 #privacy-terms > a {
@@ -303,14 +298,20 @@ tbody > tr:nth-child(even) {
   font-size: 11px;
 }
 
+#privacy-terms > div {
+  height: 3px;
+  width: 3px;
+  border-radius: 3px;
+  background-color: #b2b5b9;
+}
+
 .text-option {
   background-color: white;
-  padding: 24px;
   align-items: center;
   font-family: "Poppins", sans-serif;
   display: flex;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 13px;
   color: #2a292c;
   outline: none;
   width: 100%;
@@ -343,6 +344,7 @@ tbody > tr:nth-child(even) {
 .text-option > svg {
   margin-right: 15px;
   stroke: #333333;
+  stroke-width: 0.25px;
   position: relative;
 }
 .text-option > span {
@@ -568,7 +570,7 @@ nav > a {
 
 @media (max-width: 768px) {
   #chat-window {
-    padding: 0 16px 84px 16px;
+    padding: 30px 16px 0 16px;
   }
   nav {
     height: 60px;
@@ -595,7 +597,7 @@ nav > a {
     grid-template-rows: 1fr 1fr 1fr;
     min-width: 375px;
   }
-  #chat-logo > svg {
+  #chat-window > svg {
     width: 180px;
     max-width: 500px;
   }
@@ -632,7 +634,8 @@ nav > a {
     display: grid;
     flex-flow: column nowrap;
     grid-template-columns: auto auto auto 1fr;
-    grid-template-rows: 48px 70px auto;
+    grid-template-rows: 48px 43px auto;
+    height: fit-content;
   }
   .text-option {
     height: 70px;
