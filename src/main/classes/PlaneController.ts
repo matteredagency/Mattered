@@ -46,36 +46,32 @@ export default class PlaneController {
   }
 
   updateAutoPlaneRotation(currentPercent: number) {
-    if (currentPercent >= 0 && currentPercent < 0.75) {
+    if (currentPercent >= 0 && currentPercent < 0.8) {
       this.lerpPlaneRotations({
         currentPercent,
         startPercent: 0,
-        endPercent: 0.75,
+        endPercent: 0.8,
         startY: Math.PI * 0.1,
         endY: Math.PI * 0.1,
-        startZ: 0,
+        startZ: -Math.PI * 0.2,
         endZ: -Math.PI * 0.2,
       });
-    }
-
-    if (currentPercent >= 0.75 && currentPercent < 0.95) {
+    } else if (currentPercent >= 0.8 && currentPercent <= 0.9) {
       this.lerpPlaneRotations({
         currentPercent,
-        startPercent: 0.75,
-        endPercent: 0.95,
+        startPercent: 0.8,
+        endPercent: 0.9,
         startY: Math.PI * 0.1,
-        endY: Math.PI * 0.0005,
-        startZ: -Math.PI * 0.2,
+        endY: 0,
+        startZ: -Math.PI * 0.02,
         endZ: 0,
       });
-    }
-
-    if (currentPercent >= 0.95 && currentPercent <= 1) {
+    } else if (currentPercent >= 0.9 && currentPercent <= 1) {
       this.lerpPlaneRotations({
         currentPercent,
-        startPercent: 0.95,
+        startPercent: 0.9,
         endPercent: 1,
-        startY: Math.PI * 0.0005,
+        startY: 0,
         endY: 0,
         startZ: 0,
         endZ: 0,
