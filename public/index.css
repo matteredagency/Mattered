@@ -226,17 +226,32 @@ tbody > tr:nth-child(even) {
   );
 }
 
-#messages {
+#messages-wrapper {
   width: 100%;
-  flex: auto;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   background: white;
   flex-flow: column-reverse;
-  padding: 18px 8px 8px;
+  padding: 1px 1px 0px 1px;
   justify-content: end;
   z-index: 10;
+  transition: transform 1s ease-in;
+  clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%);
+  background-color: #f3f3f3;
+}
+
+#messages {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  background: white;
+  flex-flow: column-reverse;
+  justify-content: end;
+  z-index: 10;
+  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
   transition: transform 1s ease-in;
 }
 
@@ -257,13 +272,15 @@ tbody > tr:nth-child(even) {
 #text {
   height: 35%;
   width: 100%;
-  overflow: hidden;
   min-height: 250px;
   background: white;
   padding: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 48px 1fr 1fr;
+  border-left: 1px solid #f3f3f3;
+  border-right: 1px solid #f3f3f3;
+  border-bottom: 1px solid #f3f3f3;
   gap: 8px;
   transition: transform 0.75s ease-in;
 }
@@ -528,7 +545,7 @@ nav > a {
   margin-right: 9px;
 }
 
-#mattered-logo {
+#matte#F3F3F3-logo {
   height: 70%;
   width: auto;
 }
