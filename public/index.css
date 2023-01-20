@@ -627,7 +627,7 @@ nav > a {
     transform: translate(-50%);
   }
   100% {
-    transform: translate(500%);
+    transform: translate(1000%);
   }
 }
 
