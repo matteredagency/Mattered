@@ -36,7 +36,7 @@ export default class NorthernLightPath {
       const currentIndex = i * 3;
       for (let j = 0; j < 3; j++) {
         this.positionBuffer[currentIndex + j] =
-          j === 1 ? -20 + Math.random() * 2 : vectorPosition[j];
+          j === 1 ? -10 + Math.random() * 2 : vectorPosition[j];
       }
     }
 

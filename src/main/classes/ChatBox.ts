@@ -166,7 +166,7 @@ export default class ChatBox {
     newMessageSpan.innerText = message;
     newMessageParent.appendChild(newMessageSpan);
     this.messagesElement.appendChild(newMessageParent);
-    this.messagesElement.scrollTo({ top: this.messagesElement.scrollHeight });
+    this.messagesElement.scrollTop = this.messagesElement.scrollHeight;
   }
   start3DExperience() {
     this.chatFall();
