@@ -140,7 +140,7 @@ export default class ChatBox {
             }, 1000);
           }, 1000);
         }, 1000);
-      } else {
+      } else if (this.responseBox.value) {
         this.addMessageToMessages(this.responseBox.value, false);
         this.sendButton.style.backgroundColor = "#f2f2f2";
       }
