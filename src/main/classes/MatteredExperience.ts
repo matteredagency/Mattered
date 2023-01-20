@@ -110,6 +110,8 @@ export default class MatteredExperience {
       this.clock.start();
     }
 
+    if (this.clock.running) this.timeControl();
+
     if (this.spaceObjects.asteroids) {
       this.spaceObjects.asteroids.rotateAsteroids();
     }
