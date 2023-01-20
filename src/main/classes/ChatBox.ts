@@ -74,18 +74,29 @@ export default class ChatBox {
         this.messagesElement.removeChild(
           this.messagesElement.lastChild as Node
         );
-        this.addMessageToMessages(
-          "Welcome to Mattered! Please let us tell you more about us.",
-          true
-        );
+        this.addMessageToMessages("Welcome to Mattered!", true);
+
         setTimeout(() => {
           this.messagesElement.appendChild(this.typingElement);
+
           setTimeout(() => {
             this.messagesElement.removeChild(
               this.messagesElement.lastChild as Node
             );
-            this.addMessageToMessages("Shall we begin?", true);
-            this.setUpTextOptions();
+            this.addMessageToMessages(
+              "Please let us tell you more about us.",
+              true
+            );
+            setTimeout(() => {
+              this.messagesElement.appendChild(this.typingElement);
+              setTimeout(() => {
+                this.messagesElement.removeChild(
+                  this.messagesElement.lastChild as Node
+                );
+                this.addMessageToMessages("Shall we begin?", true);
+                this.setUpTextOptions();
+              }, 1000);
+            }, 1000);
           }, 1000);
         }, 1000);
       }, 1000);
@@ -152,9 +163,9 @@ export default class ChatBox {
   chatFall() {
     const currentWindowHeight = window.screen.height;
     const textArea = document.getElementById("text");
-    const messagesArea = document.getElementById("messages");
+    const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
-    const mattteredLogo = document.querySelector("#chat-logo > svg");
+    const mattteredLogo = document.getElementById("mattered-logo");
 
     //@ts-ignore
     mattteredLogo!.style.transform = `translate(0, ${
