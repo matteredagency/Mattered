@@ -115,14 +115,7 @@ tbody > tr:nth-child(even) {
 
 .received {
   align-self: flex-start;
-  clip-path: polygon(
-    10px 0,
-    100% 0,
-    100% 100%,
-    20% 100%,
-    0 100%,
-    10px calc(100% - 10px)
-  );
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%);
 }
 
 .typing {
@@ -190,15 +183,8 @@ tbody > tr:nth-child(even) {
 
 .received > span {
   background: #faf9f7;
-  padding: 16px 16px 16px 30px;
-  clip-path: polygon(
-    10px 0,
-    100% 0,
-    100% 100%,
-    20% 100%,
-    0 100%,
-    10px calc(100% - 6px)
-  );
+  padding: 13px 13px 13px 30px;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%);
 }
 
 .message > span {
@@ -207,7 +193,7 @@ tbody > tr:nth-child(even) {
 
 .sent > span {
   background: white;
-  padding: 16px 30px 16px 16px;
+  padding: 13px 30px 13px 13px;
   clip-path: polygon(
     calc(100% - 10px) 0,
     calc(100% - 10px) calc(100% - 6px),
@@ -285,6 +271,50 @@ tbody > tr:nth-child(even) {
   gap: 16px;
   height: 100px;
   padding: 13px 0 84px 0;
+}
+
+.received:last-child {
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% 100%,
+    20% 100%,
+    0 100%,
+    10px calc(100% - 10px)
+  );
+}
+
+.received:last-child > span {
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% 100%,
+    20% 100%,
+    0 100%,
+    10px calc(100% - 6px)
+  );
+}
+
+.received:nth-child(3) {
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% 100%,
+    20% 100%,
+    0 100%,
+    10px calc(100% - 10px)
+  );
+}
+
+.received:nth-child(3) > span {
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% 100%,
+    20% 100%,
+    0 100%,
+    10px calc(100% - 6px)
+  );
 }
 
 #privacy-terms > a {
