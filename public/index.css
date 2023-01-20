@@ -176,7 +176,7 @@ tbody > tr:nth-child(even) {
   clip-path: polygon(0 0, calc(100% - 10px) 0, calc(100% - 10px) 100%, 0% 100%);
 }
 
-.sent:last-child {
+.sent:last-of-type {
   clip-path: polygon(
     calc(100% - 10px) 0,
     calc(100% - 10px) calc(100% - 10px),
@@ -186,27 +186,7 @@ tbody > tr:nth-child(even) {
   );
 }
 
-.sent:nth-child(5) {
-  clip-path: polygon(
-    calc(100% - 10px) 0,
-    calc(100% - 10px) calc(100% - 10px),
-    100% 100%,
-    0 100%,
-    0 0
-  );
-}
-
-.sent:nth-child(5) > span {
-  clip-path: polygon(
-    calc(100% - 10px) 0,
-    calc(100% - 10px) calc(100% - 6px),
-    100% 100%,
-    0 100%,
-    0 0
-  );
-}
-
-.sent:last-child > span {
+.sent:last-of-type > span {
   clip-path: polygon(
     calc(100% - 10px) 0,
     calc(100% - 10px) calc(100% - 6px),
@@ -301,7 +281,7 @@ tbody > tr:nth-child(even) {
   padding: 13px 0 84px 0;
 }
 
-.received:last-child {
+.received:last-of-type {
   clip-path: polygon(
     10px 0,
     100% 0,
@@ -312,7 +292,7 @@ tbody > tr:nth-child(even) {
   );
 }
 
-.received:last-child > span {
+.received:last-of-type > span {
   clip-path: polygon(
     10px 0,
     100% 0,
@@ -323,7 +303,7 @@ tbody > tr:nth-child(even) {
   );
 }
 
-.received:nth-child(3) {
+.received:nth-of-type(3) {
   clip-path: polygon(
     10px 0,
     100% 0,
