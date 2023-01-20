@@ -174,7 +174,6 @@ tbody > tr:nth-child(even) {
 }
 .sent {
   align-self: flex-end;
-  padding: 16px 23px 16px 23px;
   clip-path: polygon(
     calc(100% - 10px) 0,
     calc(100% - 10px) calc(100% - 10px),
@@ -184,11 +183,14 @@ tbody > tr:nth-child(even) {
   );
 }
 
+.message > span {
+  height: calc(100% - 3px);
+  width: calc(100% - 4px);
+}
+
 .received > span {
   background: #faf9f7;
-  padding: 16px 23px 16px 23px;
-  height: calc(100% - 3px);
-  width: calc(100% - 3px);
+  padding: 16px 16px 16px 30px;
   clip-path: polygon(
     10px 0,
     100% 0,
@@ -205,9 +207,7 @@ tbody > tr:nth-child(even) {
 
 .sent > span {
   background: white;
-  padding: 16px 23px 16px 18px;
-  height: calc(100% - 3px);
-  width: calc(100% - 3px);
+  padding: 16px 30px 16px 16px;
   clip-path: polygon(
     calc(100% - 10px) 0,
     calc(100% - 10px) calc(100% - 6px),
@@ -218,10 +218,11 @@ tbody > tr:nth-child(even) {
 }
 
 #messages-wrapper {
-  width: 100%;
+  width: 80%;
   height: 35%;
   overflow-y: auto;
   display: flex;
+  max-width: 970px;
   background: white;
   flex-flow: column-reverse;
   padding: 1px 1px 0px 1px;
@@ -265,7 +266,8 @@ tbody > tr:nth-child(even) {
 
 #text {
   height: fit-content;
-  width: 100%;
+  width: 80%;
+  max-width: 970px;
   background: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -628,18 +630,23 @@ nav > a {
 }
 
 @media (min-width: 768px) {
+  #messages {
+    padding: 0 100px 0 100px;
+  }
   #text {
     display: grid;
     flex-flow: column nowrap;
     grid-template-columns: auto auto auto 1fr;
-    grid-template-rows: 48px 43px auto;
+    grid-template-rows: 48px 43px 40px;
+    padding: 20px 100px 0 100px;
     height: fit-content;
   }
   .text-option {
-    height: 70px;
+    height: 100%;
     width: fit-content;
     grid-row: 2;
     grid-column: 1;
+    padding: 13px 20px 13px 30px;
   }
   #text-box {
     grid-column: span 4;
