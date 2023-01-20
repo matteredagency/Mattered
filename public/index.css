@@ -634,7 +634,7 @@ nav > a > svg {
 
 @media (min-width: 768px) {
   #chat-window > svg {
-    margin: 100px 0 60px 0;
+    margin: 2% 0 2% 0;
   }
   #messages {
     padding: 0 100px 0 100px;
@@ -660,7 +660,7 @@ nav > a > svg {
   }
   #privacy-terms {
     align-items: center;
-    height: 150px;
+    height: 10%;
     padding: 0;
   }
 
