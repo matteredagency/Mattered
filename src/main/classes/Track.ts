@@ -49,7 +49,7 @@ export default class Track {
     new NorthernLightPath({
       vectorPath: [...planePoints].reverse(),
       particleCount: 9000,
-      speed: 1 / 10000,
+      speed: 1 / 20000,
     }).animatePoints();
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
