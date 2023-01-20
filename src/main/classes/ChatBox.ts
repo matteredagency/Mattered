@@ -133,7 +133,7 @@ export default class ChatBox {
                   this.sendButton.style.opacity = "0";
                 }, 1000);
                 setTimeout(() => {
-                  this.start3DExperience();
+                  // this.start3DExperience();
                   this.experience.audio.play();
                 }, 1500);
               }, 500);
