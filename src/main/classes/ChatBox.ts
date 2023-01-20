@@ -109,25 +109,41 @@ export default class ChatBox {
     this.responseBox.style.webkitTextFillColor = "#2a292c";
     this.responseBox.style.opacity = "1";
     this.sendButton.addEventListener("click", () => {
-      if (this.responseBox.value) {
+      if (this.responseBox.value === "Show me what you can do") {
+        this.addMessageToMessages("Hi Mattered!", false);
+        setTimeout(() => {
+          this.addMessageToMessages("Show me what you can do", false);
+
+          setTimeout(() => {
+            this.messagesElement.appendChild(this.typingElement);
+            setTimeout(() => {
+              this.messagesElement.removeChild(
+                this.messagesElement.lastChild as Node
+              );
+              this.addMessageToMessages("Yes! Just sit tight", true);
+              setTimeout(() => {
+                this.sendButton.style.animation =
+                  "1s 1 ease-in-out launchplane";
+                setTimeout(() => {
+                  this.sendButton.style.display = "none";
+                  this.sendButton.style.opacity = "0";
+                }, 1000);
+                setTimeout(() => {
+                  this.start3DExperience();
+                  this.experience.audio.play();
+                }, 1500);
+              }, 500);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      } else {
         this.addMessageToMessages(this.responseBox.value, false);
+        this.sendButton.style.backgroundColor = "#f2f2f2";
       }
       this.textOptionSpanElements.forEach((element) => {
         element.parentElement?.classList.remove("selected-text-option");
       });
-      if (this.responseBox.value === "Show me what you can do") {
-        this.sendButton.style.animation = "1s 1 ease-in-out launchplane";
-        setTimeout(() => {
-          this.sendButton.style.display = "none";
-          this.sendButton.style.opacity = "0";
-        }, 1000);
-        setTimeout(() => {
-          this.start3DExperience();
-          this.experience.audio.play();
-        }, 1500);
-      } else {
-        this.sendButton.style.backgroundColor = "#f2f2f2";
-      }
+
       this.responseBox.value = "";
       this.sendButton.setAttribute("disabled", "true");
       this.responseBox.style.opacity = "0.5";
