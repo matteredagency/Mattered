@@ -259,7 +259,7 @@ tbody > tr:nth-child(even) {
 
 #chat-window > svg {
   width: 200px;
-  margin-bottom: 30px;
+  margin: 70px 0 20px 0;
   transition: opacity 0.25s ease-in, transform 0.5s ease-in;
   opacity: 1;
 }
@@ -281,7 +281,6 @@ tbody > tr:nth-child(even) {
 }
 
 #privacy-terms {
-  margin-top: 13px;
   display: flex;
   flex-flow: row nowrap;
   height: fit-content;
@@ -289,7 +288,8 @@ tbody > tr:nth-child(even) {
   width: 100%;
   align-items: center;
   gap: 16px;
-  margin-bottom: 60px;
+  height: 100px;
+  padding: 13px 0 84px 0;
 }
 
 #privacy-terms > a {
@@ -570,7 +570,7 @@ nav > a {
 
 @media (max-width: 768px) {
   #chat-window {
-    padding: 30px 16px 0 16px;
+    padding: 0 16px 0 16px;
   }
   nav {
     height: 60px;
@@ -601,6 +601,13 @@ nav > a {
     width: 180px;
     max-width: 500px;
   }
+
+  #messages-wrapper {
+    width: 100%;
+  }
+  #text {
+    width: 100%;
+  }
 }
 
 @keyframes typing {
@@ -630,9 +637,13 @@ nav > a {
 }
 
 @media (min-width: 768px) {
+  #chat-window > svg {
+    margin: 100px 0 60px 0;
+  }
   #messages {
     padding: 0 100px 0 100px;
   }
+
   #text {
     display: grid;
     flex-flow: column nowrap;
@@ -652,10 +663,9 @@ nav > a {
     grid-column: span 4;
   }
   #privacy-terms {
-    grid-row: 3;
-    grid-column: span 4;
-    align-items: flex-start;
-    padding-top: 30px;
+    align-items: center;
+    height: 150px;
+    padding: 0;
   }
 
   #text > .text-option:nth-child(2) {
