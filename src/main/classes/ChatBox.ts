@@ -32,7 +32,6 @@ export default class ChatBox {
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
     this.typingElement.classList.add("typing");
-    this.typingElement.classList.add("received");
 
     for (let i = 0; i < 3; i++) {
       this.typingElement.appendChild(document.createElement("div"));
