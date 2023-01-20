@@ -533,13 +533,17 @@ nav {
 }
 
 nav > a {
-  height: 100%;
+  height: 40px;
   width: fit-content;
   display: flex;
   justify-content: center;
   cursor: pointer;
   align-items: center;
-  margin-right: 9px;
+  margin-right: 10px;
+}
+
+nav > a > svg {
+  height: 100%;
 }
 
 #matte#F3F3F3-logo {
@@ -581,9 +585,6 @@ nav > a {
     margin-left: 5%;
   }
 
-  nav > a {
-    margin-right: 5%;
-  }
   #stats-table {
     top: 60px;
   }

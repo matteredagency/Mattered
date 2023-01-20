@@ -54,9 +54,9 @@ export default class MatteredExperience {
 
     this.restartButton.addEventListener("click", () => this.resetExperience());
     this.scene = new THREE.Scene();
-    this.gui = new GUI();
+    // this.gui = new GUI();
 
-    this.gui.domElement.parentElement?.style.zIndex = "100";
+    // this.gui.domElement.parentElement?.style.zIndex = "100";
     this.init();
   }
 
