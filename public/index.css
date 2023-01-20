@@ -150,7 +150,6 @@ tbody > tr:nth-child(even) {
 .message {
   height: fit-content;
   width: max-content;
-  max-width: 60%;
   font-size: 13px;
   margin: 4px 0 4px 0;
   transition: transform 0.5s ease-in;
@@ -172,7 +171,7 @@ tbody > tr:nth-child(even) {
 
 .sent > span {
   background: white;
-  padding: 13px 30px 13px 13px;
+  padding: 13px 27px 13px 13px;
   clip-path: polygon(0 0, calc(100% - 10px) 0, calc(100% - 10px) 100%, 0% 100%);
 }
 
@@ -217,16 +216,15 @@ tbody > tr:nth-child(even) {
 .message > span {
   height: calc(100% - 3px);
   width: calc(100% - 4px);
+  display: inline-block;
+  color: black;
+  white-space: nowrap;
 }
 
 .received > span {
   background: #faf9f7;
-  padding: 13px 13px 13px 30px;
+  padding: 13px 13px 13px 20px;
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%);
-}
-
-.message > span {
-  color: black;
 }
 
 #messages-wrapper {
