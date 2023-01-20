@@ -400,7 +400,7 @@ tbody > tr:nth-child(even) {
   cursor: pointer;
   animation-timing-function: ease-in-out;
   animation-duration: 1.5s;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
 #text-box > button > svg {
@@ -628,7 +628,7 @@ nav > a > svg {
     transform: translate(-50%);
   }
   100% {
-    transform: translate(1000%);
+    transform: translate(50vw);
   }
 }
 
