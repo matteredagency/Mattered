@@ -6,6 +6,7 @@ export default class ChatBox {
   responseBox: HTMLInputElement;
   sendButton: HTMLButtonElement;
   typingElement: HTMLDivElement;
+  messagesWrapper: HTMLDivElement;
   experience: MatteredExperience;
   chatWindow: HTMLDivElement;
 
@@ -27,12 +28,14 @@ export default class ChatBox {
     ) as HTMLButtonElement;
 
     this.chatWindow = document.getElementById("chat-window") as HTMLDivElement;
+    this.messagesWrapper = document.getElementById(
+      "messages-wrapper"
+    ) as HTMLDivElement;
 
     this.experience = new MatteredExperience();
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
     this.typingElement.classList.add("typing");
-
     for (let i = 0; i < 3; i++) {
       this.typingElement.appendChild(document.createElement("div"));
     }
@@ -163,6 +166,7 @@ export default class ChatBox {
     newMessageSpan.innerText = message;
     newMessageParent.appendChild(newMessageSpan);
     this.messagesElement.appendChild(newMessageParent);
+    this.messagesWrapper.scrollTo({ top: this.messagesWrapper.scrollHeight });
   }
   start3DExperience() {
     this.chatFall();
