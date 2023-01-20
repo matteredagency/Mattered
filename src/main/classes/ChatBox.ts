@@ -110,6 +110,7 @@ export default class ChatBox {
     this.responseBox.style.opacity = "1";
     this.sendButton.addEventListener("click", () => {
       if (this.responseBox.value === "Show me what you can do") {
+        this.sendButton.setAttribute("disabled", "true");
         this.addMessageToMessages("Hi Mattered!", false);
         setTimeout(() => {
           this.addMessageToMessages("Show me what you can do", false);
