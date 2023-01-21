@@ -109,7 +109,7 @@ tbody > tr:nth-child(even) {
   flex-flow: column nowrap;
   background-color: rgba(225, 225, 225, 1);
   align-items: center;
-  transition: background 1s ease-in;
+  transition: background 0.25s ease-in;
 }
 
 .received {
