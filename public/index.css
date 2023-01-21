@@ -107,10 +107,9 @@ tbody > tr:nth-child(even) {
   color: #2a292c;
   display: flex;
   flex-flow: column nowrap;
-  background: #e1e1e1;
+  background-color: rgba(225, 225, 225, 1);
   align-items: center;
-  opacity: 1;
-  transition: opacity 1s ease-in;
+  transition: background 1s ease-in;
 }
 
 .received {
@@ -295,6 +294,7 @@ tbody > tr:nth-child(even) {
   gap: 16px;
   height: 100px;
   padding: 13px 0 84px 0;
+  transition: transform 0.5s ease-in;
 }
 
 .received:last-of-type {

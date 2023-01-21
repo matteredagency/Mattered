@@ -170,7 +170,7 @@ export default class ChatBox {
   start3DExperience() {
     this.chatFall();
 
-    this.chatWindow!.style.opacity = "0";
+    this.chatWindow!.style.backgroundColor = "rgba(225, 225, 225, 0)";
 
     setTimeout(() => {
       this.experience.startExperience();
@@ -186,6 +186,7 @@ export default class ChatBox {
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
     const mattteredLogo = document.getElementById("mattered-logo");
+    const privacyTerms = document.getElementById("privacy-terms");
 
     //@ts-ignore
     mattteredLogo!.style.transform = `translate(0, ${
@@ -202,6 +203,10 @@ export default class ChatBox {
 
     messagesArea!.style.transform = `translate(0, ${
       currentWindowHeight - messagesArea!.getBoundingClientRect().top + 75
+    }px)`;
+
+    privacyTerms!.style.transform = `translate(0, ${
+      currentWindowHeight - privacyTerms!.getBoundingClientRect().top + 75
     }px)`;
     this.textOptionSpanElements.forEach((element, index) => {
       let rotation = Math.random() * 30;
