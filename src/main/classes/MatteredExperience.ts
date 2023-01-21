@@ -98,7 +98,7 @@ export default class MatteredExperience {
       this.track.autoStart(elapsedTime);
       this.planeController.updateAutoPlaneRotation(elapsedTime / 3);
     }
-    if (elapsedTime >= 4 && !this.controls.controlsActivated) {
+    if (elapsedTime >= 3.5 && !this.controls.controlsActivated) {
       this.controls.activateControls();
       this.scrollInstructions.fadeIn();
     }
