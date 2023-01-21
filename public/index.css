@@ -228,7 +228,7 @@ tbody > tr:nth-child(even) {
 }
 
 #messages-wrapper {
-  width: 80%;
+  width: 90%;
   height: 35%;
   max-width: 970px;
   background: white;
@@ -271,7 +271,7 @@ tbody > tr:nth-child(even) {
 
 #text {
   height: fit-content;
-  width: 80%;
+  width: 90%;
   max-width: 970px;
   background: white;
   display: grid;
