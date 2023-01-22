@@ -73,7 +73,7 @@ module.exports = {
       meta: {
         viewport:
           "width=device-width, minimum-scale=1.0, maximum-scale = 1.0, user-scalable = no",
-        ["theme-color"]: "#ffffff",
+        ["theme-color"]: "#E1E1E1",
       },
     }),
     new CopyPlugin({
