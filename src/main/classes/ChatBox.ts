@@ -187,6 +187,9 @@ export default class ChatBox {
     const messages = document.querySelectorAll("div.message");
     const mattteredLogo = document.getElementById("mattered-logo");
     const privacyTerms = document.getElementById("privacy-terms");
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", "#000000");
 
     //@ts-ignore
     mattteredLogo!.style.transform = `translate(0, ${
