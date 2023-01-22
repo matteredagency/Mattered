@@ -397,16 +397,14 @@ tbody > tr:nth-child(even) {
   z-index: 1;
 }
 
-.text-option,
-.selected-text-option > svg {
-  stroke: white;
-  stroke-width: 0.75px !important;
-}
-
 .selected-text-option {
   background-color: black !important;
   color: white;
   border: solid 1px black !important;
+}
+
+.selected-text-option > svg > g > path {
+  fill: white;
 }
 
 #text-box {
