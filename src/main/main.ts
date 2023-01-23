@@ -36,7 +36,7 @@ loader.load(createAssetPath("/fonts/Outfit.json"), (font) => {
   folder.add(mesh.rotation, "y", 0, Math.PI * 2);
 
   mesh.rotateY(Math.PI * 0.25);
-  mesh.position.set(830, 0, 0);
+  mesh.position.set(830, 0, 30);
 
   experience.scene.add(mesh);
 });
