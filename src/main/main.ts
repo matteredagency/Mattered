@@ -15,31 +15,31 @@ experience.scene.add(new THREE.GridHelper(2000, 10));
 
 const loader = new FontLoader();
 
-loader.load(createAssetPath("/fonts/Outfit.json"), (font) => {
-  const geometry = new TextGeometry("Hello world!", {
-    font,
-    size: 7.5,
-    height: 3,
-    curveSegments: 12,
-  });
+// loader.load(createAssetPath("/fonts/Outfit.json"), (font) => {
+//   const geometry = new TextGeometry("Hello world!", {
+//     font,
+//     size: 7.5,
+//     height: 3,
+//     curveSegments: 12,
+//   });
 
-  const folder = experience.gui.addFolder("text");
+//   const folder = experience.gui.addFolder("text");
 
-  const mesh = new THREE.Mesh(
-    geometry,
-    new THREE.MeshBasicMaterial({ color: "white" })
-  );
+//   const mesh = new THREE.Mesh(
+//     geometry,
+//     new THREE.MeshBasicMaterial({ color: "white" })
+//   );
 
-  folder.add(mesh.position, "x", -100, 100);
-  folder.add(mesh.position, "y", -10, 10);
-  folder.add(mesh.position, "z", -100, 100);
-  folder.add(mesh.rotation, "y", 0, Math.PI * 2);
+//   folder.add(mesh.position, "x", -100, 100);
+//   folder.add(mesh.position, "y", -10, 10);
+//   folder.add(mesh.position, "z", -100, 100);
+//   folder.add(mesh.rotation, "y", 0, Math.PI * 2);
 
-  mesh.rotateY(Math.PI * 0.25);
-  mesh.position.set(830, 0, 30);
+//   mesh.rotateY(Math.PI * 0.25);
+//   mesh.position.set(830, 0, 30);
 
-  experience.scene.add(mesh);
-});
+//   experience.scene.add(mesh);
+// });
 
 new ChatBox().init();
 new SoundController().animate();

@@ -1,15 +1,18 @@
 import { TextureLoader } from "three";
 import createAssetPath from "../../utils/createAssetPath";
 import THREE, { GLTFLoader } from "../globalmports";
+import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
 export default class Assets {
   objectPaths: string[][];
   texturePaths: string[][];
+  fontPaths: string[][];
   backgroundTextures: THREE.CubeTextureLoader;
   loadedAssets: number;
   totalAssets: number;
   assetsDirectory: {
     objects: { [key: string]: THREE.Group };
     textures: { [key: string]: THREE.Texture };
+    fonts: { [key: string]: Font };
   };
   loadingBar: HTMLElement;
   constructor() {
@@ -23,6 +26,8 @@ export default class Assets {
       Venus: "Venus.glb",
     };
     const textures = { Star: "star.webp" };
+
+    const fonts = { Outfit: "Outfit.json" };
     this.objectPaths = Object.entries(objects).map(([name, path]) => [
       name,
       createAssetPath(`/objects/${path}`),
@@ -32,6 +37,11 @@ export default class Assets {
       createAssetPath(`/textures/${path}`),
     ]);
 
+    this.fontPaths = Object.entries(fonts).map(([name, path]) => [
+      name,
+      createAssetPath(`/fonts/${path}`),
+    ]) as string[][];
+
     this.backgroundTextures = new THREE.CubeTextureLoader().setPath(
       createAssetPath("/textures/")
     );
@@ -39,13 +49,26 @@ export default class Assets {
     this.loadedAssets = 0;
 
     this.totalAssets =
-      Object.keys(objects).length + Object.keys(textures).length + 1;
+      Object.keys(objects).length +
+      Object.keys(textures).length +
+      1 +
+      Object.keys(fonts).length;
 
-    this.assetsDirectory = { objects: {}, textures: {} };
+    this.assetsDirectory = { objects: {}, textures: {}, fonts: {} };
     this.loadingBar = document.getElementById("loading-bar") as HTMLElement;
   }
 
   async loadAssets() {
+    await Promise.allSettled(
+      this.fontPaths.map(([name, path]) => {
+        new Promise((res) => {
+          new FontLoader().load(path, (font) => {
+            res((this.assetsDirectory.fonts[name] = font));
+            this.updateLoadingBar();
+          });
+        });
+      })
+    );
     await Promise.allSettled(
       this.objectPaths.map(
         ([name, path]) =>
