@@ -185,6 +185,7 @@ export default class ChatBox {
     const textArea = document.getElementById("text");
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
+    const messagesScroll = document.getElementById("messages");
     const mattteredLogo = document.getElementById("mattered-logo");
     const privacyTerms = document.getElementById("privacy-terms");
     document
@@ -203,6 +204,10 @@ export default class ChatBox {
     textArea!.style.overflow = "inherit";
 
     messagesArea!.classList.add("messages-fall");
+    messagesArea!.style.backgroundColor = "rgba(243, 243, 243, 0)";
+    messagesScroll!.style.backgroundColor = "rgba(255, 255, 255, 0)";
+    textArea!.style.backgroundColor = "rgba(255, 255, 255, 0)";
+    textArea!.style.border = "none";
 
     messagesArea!.style.transform = `translate(0, ${
       currentWindowHeight - messagesArea!.getBoundingClientRect().top + 75
