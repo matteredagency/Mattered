@@ -3,17 +3,18 @@ import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
 import createAssetPath from "../../utils/createAssetPath";
 import Asteroids from "./Asteroids";
-
+import Text from "./Text";
 type SubjectKeys =
   | "venus"
   | "earth"
   | "mars"
   | "jupiter"
   | "asteroids"
-  | "saturn";
+  | "saturn"
+  | "text1";
 export default class SceneController {
   experience: MatteredExperience;
-  sceneSubjects: Record<SubjectKeys, Planet | Asteroids>;
+  sceneSubjects: Record<SubjectKeys, Planet | Asteroids | Text>;
 
   sceneTime: {
     [key: string]: number;
@@ -68,6 +69,12 @@ export default class SceneController {
         position: new THREE.Vector3(-650, 50, 1500),
         planetScale: 3.5,
         tilt: Math.PI * 1.15,
+      }),
+      text1: new Text({
+        name: "Outfit",
+        text: "Hello World!",
+        position: new THREE.Vector3(830, 0, 30),
+        rotateY: Math.PI * 0.25,
       }),
     };
     this.sceneTime = {

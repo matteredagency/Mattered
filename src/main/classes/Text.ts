@@ -2,7 +2,7 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import MatteredExperience from "./MatteredExperience";
 import THREE from "../globalmports";
 
-export class Text {
+export default class Text {
   rendered: boolean;
   mesh: THREE.Mesh;
   experience: MatteredExperience;
