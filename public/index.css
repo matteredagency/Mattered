@@ -263,7 +263,7 @@ tbody > tr:nth-child(even) {
 
 #chat-window > svg {
   width: 200px;
-  margin: 70px 0 20px 0;
+  margin: 15px 0 20px 0;
   transition: opacity 0.25s ease-in, transform 0.5s ease-in;
   opacity: 1;
 }
@@ -292,8 +292,7 @@ tbody > tr:nth-child(even) {
   width: 100%;
   align-items: center;
   gap: 16px;
-  height: 100px;
-  padding: 13px 0 84px 0;
+  height: 30px;
   transition: transform 0.5s ease-in;
 }
 
