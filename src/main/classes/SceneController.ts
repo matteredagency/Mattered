@@ -79,6 +79,8 @@ export default class SceneController {
       saturn: 0,
     };
 
+    Object.values(this.sceneSubjects).forEach((value) => value.init());
+
     this.experience = new MatteredExperience();
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init();

@@ -12,7 +12,6 @@ import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
-import scalePercent from "../../utils/scalePercent";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -54,9 +53,9 @@ export default class MatteredExperience {
 
     this.restartButton.addEventListener("click", () => this.resetExperience());
     this.scene = new THREE.Scene();
-    // this.gui = new GUI();
+    this.gui = new GUI();
 
-    // this.gui.domElement.parentElement?.style.zIndex = "100";
+    this.gui.domElement.parentElement?.style.zIndex = "100";
     this.init();
   }
 
