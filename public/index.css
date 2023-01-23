@@ -230,13 +230,12 @@ tbody > tr:nth-child(even) {
   width: 90%;
   height: 35%;
   max-width: 970px;
-  background: white;
   padding: 1px 1px 0px 1px;
   flex: 1;
   z-index: 10;
   transition: transform 1s ease-in;
   clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%);
-  background-color: #f3f3f3;
+  background-color: rgba(243, 243, 243, 0);
 }
 
 #messages {
@@ -247,7 +246,7 @@ tbody > tr:nth-child(even) {
   padding-left: 15px;
   padding-right: 15px;
   display: flex;
-  background: white;
+  background: rgba(255, 255, 255, 0);
   flex-flow: column-reverse;
   justify-content: end;
   clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
@@ -272,7 +271,7 @@ tbody > tr:nth-child(even) {
   height: fit-content;
   width: 90%;
   max-width: 970px;
-  background: white;
+  background: rgba(255, 255, 255, 0);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 48px 43px 43px;
@@ -410,7 +409,7 @@ tbody > tr:nth-child(even) {
   grid-column: span 2;
   outline: none;
   height: 100%;
-  background: transparent;
+  background: white;
   display: flex;
   max-height: 48px;
   border: solid 1px #f3f3f3;
