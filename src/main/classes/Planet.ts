@@ -68,6 +68,7 @@ export default class Planet {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
       this.asset.rotateZ(tilt);
+      this.asset.rotateX(-Math.PI * 0.0275);
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {

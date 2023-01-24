@@ -13,7 +13,7 @@ export default class Camera {
       75,
       window.innerWidth / window.innerHeight,
       5,
-      1500
+      2000
     );
 
     this.setCameraAtStart();
