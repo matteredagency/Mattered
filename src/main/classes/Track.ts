@@ -31,10 +31,13 @@ export default class Track {
       new THREE.Vector3(400, 0, -475),
       new THREE.Vector3(200, 0, -620),
       new THREE.Vector3(-175, 0, -425),
-      new THREE.Vector3(-250, 0, -460),
-      new THREE.Vector3(-400, 0, -200),
-      // new THREE.Vector3(-300, 0, -350),
-      // new THREE.Vector3(-300, 0, -350),
+      new THREE.Vector3(-325, 0, -425),
+      new THREE.Vector3(-390, 0, -200),
+      new THREE.Vector3(-395, 0, 400),
+      new THREE.Vector3(-368, 0, 800),
+      new THREE.Vector3(-330, 0, 1200),
+      new THREE.Vector3(-268, 0, 2000),
+      new THREE.Vector3(-250, 0, 2500),
     ];
 
     const planePoints = [
