@@ -19,9 +19,7 @@ export default class Track {
       new THREE.Vector3(375, 0, 250),
     ];
 
-    const commonPoints2 = [new THREE.Vector3(-250, 0, -750)];
-
-    const commonPoints3 = [new THREE.Vector3(-250, 0, 2500)];
+    const commonPoint2 = new THREE.Vector3(-250, 0, 2500);
 
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(375, 0, 950),
@@ -37,7 +35,7 @@ export default class Track {
       new THREE.Vector3(-368, 0, 800),
       new THREE.Vector3(-330, 0, 1200),
       new THREE.Vector3(-268, 0, 2000),
-      new THREE.Vector3(-250, 0, 2500),
+      commonPoint2,
     ];
 
     const planePoints = [
@@ -46,8 +44,8 @@ export default class Track {
       ...commonPoints1,
       new THREE.Vector3(875, 0, 100),
       new THREE.Vector3(875, 0, -50),
-      ...commonPoints2,
-      ...commonPoints3,
+      new THREE.Vector3(-250, 0, -750),
+      commonPoint2,
     ];
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
@@ -82,7 +80,7 @@ export default class Track {
       })
     );
     this.experience.scene?.add(mesh);
-    this.experience.scene?.add(cameraMesh);
+    // this.experience.scene?.add(cameraMesh);
 
     return this;
   }
