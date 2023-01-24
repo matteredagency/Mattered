@@ -68,6 +68,7 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-650, 0, 1500),
         planetScale: 3.5,
+        tilt: -Math.PI * 0.1,
       }),
       text1: new Text({
         name: "Outfit",

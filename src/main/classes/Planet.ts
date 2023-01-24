@@ -55,7 +55,6 @@ export default class Planet {
     this.atmosphereRadius = atmosphereRadius;
     this.emissiveColor = emissiveColor;
     this.emissiveIntensity = emissiveIntensity;
-    this.tilt = tilt;
     this.rendered = false;
     this.experience.assets.assetsDirectory.objects[this.name].scale.set(
       this.planetScale,
@@ -65,9 +64,10 @@ export default class Planet {
     this.asset = new THREE.Group();
 
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
-    if (this.name === "Saturn") {
+    if (this.name === "Saturn" && tilt) {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
+      this.asset.rotateZ(tilt);
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {

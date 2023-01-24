@@ -143,6 +143,12 @@ export default class ChatBox {
       } else if (this.responseBox.value) {
         this.addMessageToMessages(this.responseBox.value, false);
         this.sendButton.style.backgroundColor = "#f2f2f2";
+        setTimeout(() => {
+          window.location.href = `https://www.mattered.com/${
+            this.responseBox.value === "Contact" ? "contact" : ""
+          }`;
+        }, 750);
+        this.sendButton.setAttribute("disabled", "true");
       }
       this.textOptionSpanElements.forEach((element) => {
         element.parentElement?.classList.remove("selected-text-option");
