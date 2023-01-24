@@ -56,30 +56,18 @@ export default class Planet {
     this.emissiveColor = emissiveColor;
     this.emissiveIntensity = emissiveIntensity;
     this.tilt = tilt;
-  }
-
-  init() {
-    if (this.rendered === true) {
-      return;
-    } else if (this.rendered === false) {
-      this.rendered = true;
-      this.experience.scene.add(this.asset);
-      this.experience.spaceObjects.currentPlanet = this;
-      return;
-    }
-
-    this.asset = new THREE.Group();
+    this.rendered = false;
     this.experience.assets.assetsDirectory.objects[this.name].scale.set(
       this.planetScale,
       this.planetScale,
       this.planetScale
     );
-    this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
+    this.asset = new THREE.Group();
 
+    this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
     if (this.name === "Saturn") {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
-      this.asset.rotateZ(-Math.PI * 0.15);
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {
@@ -108,10 +96,18 @@ export default class Planet {
       this.asset.add(atmosphere);
     }
 
-    this.rendered = true;
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
-    this.experience.spaceObjects.currentPlanet = this;
-    this.experience.scene.add(this.asset);
+  }
+
+  init() {
+    if (this.rendered === true) {
+      return;
+    } else if (this.rendered === false) {
+      this.rendered = true;
+      this.experience.scene.add(this.asset);
+      this.experience.spaceObjects.currentPlanet = this;
+      return;
+    }
   }
 
   rotate() {

@@ -66,9 +66,8 @@ export default class SceneController {
         name: "Saturn",
         clockWiseRotation: true,
         rotationSpeed: 0.0005,
-        position: new THREE.Vector3(-650, 50, 1500),
+        position: new THREE.Vector3(-650, 0, 1500),
         planetScale: 3.5,
-        tilt: Math.PI * 1.15,
       }),
       text1: new Text({
         name: "Outfit",

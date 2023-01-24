@@ -2,7 +2,6 @@ import { lerp } from "three/src/math/MathUtils";
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import scalePercent from "../../utils/scalePercent";
-import NorthernLightPath from "./NorthernLightPath";
 
 export default class Track {
   experience: MatteredExperience;
@@ -29,11 +28,14 @@ export default class Track {
       ...commonPoints1,
       new THREE.Vector3(910, 0, 110),
       new THREE.Vector3(875, 0, -60),
-      new THREE.Vector3(250, 0, -500),
-      new THREE.Vector3(-300, 0, -300),
-      new THREE.Vector3(-350, 0, -100),
-      new THREE.Vector3(-350, 0, 100),
-      new THREE.Vector3(-250, 0, 2000),
+      new THREE.Vector3(400, 0, -475),
+      new THREE.Vector3(200, 0, -620),
+      new THREE.Vector3(-175, 0, -425),
+      new THREE.Vector3(-250, 0, -460),
+      new THREE.Vector3(-380, 0, -460),
+
+      // new THREE.Vector3(-300, 0, -350),
+      // new THREE.Vector3(-300, 0, -350),
     ];
 
     const planePoints = [
@@ -63,7 +65,22 @@ export default class Track {
       })
     );
 
-    // this.experience.scene?.add(mesh);
+    const cameraGeometry = new THREE.TubeGeometry(
+      this.cameraPath,
+      300,
+      5,
+      32,
+      false
+    );
+    const cameraMesh = new THREE.Mesh(
+      cameraGeometry,
+      new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xff0000,
+      })
+    );
+    this.experience.scene?.add(mesh);
+    this.experience.scene?.add(cameraMesh);
 
     return this;
   }
