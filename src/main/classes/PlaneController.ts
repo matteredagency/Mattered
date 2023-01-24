@@ -146,7 +146,7 @@ export default class PlaneController {
         startPercent: 0.13,
         endPercent: 0.16,
         startY: -Math.PI * 0.4,
-        endY: -Math.PI * 0.5,
+        endY: -Math.PI * 0.45,
         startZ: -Math.PI * 0.2,
         endZ: 0,
       });
@@ -155,7 +155,7 @@ export default class PlaneController {
         currentPercent,
         startPercent: 0.21,
         endPercent: 0.25,
-        startY: -Math.PI * 0.5,
+        startY: -Math.PI * 0.45,
         endY: -Math.PI * 0.1,
         startZ: 0,
         endZ: Math.PI * 0.2,

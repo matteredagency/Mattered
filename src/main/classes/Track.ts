@@ -120,11 +120,11 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    // const currentPlanePosition = this.path.getPointAt(
-    //   currentPercent + this.lerpPlaneDistance(currentPercent)
-    // );
+    const currentPlanePosition = this.path.getPointAt(
+      currentPercent + this.lerpPlaneDistance(currentPercent)
+    );
 
-    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
+    // const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
       currentPlanePosition.x,
