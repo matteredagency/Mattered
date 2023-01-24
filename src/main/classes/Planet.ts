@@ -100,13 +100,10 @@ export default class Planet {
   }
 
   init() {
-    if (this.rendered === true) {
-      return;
-    } else if (this.rendered === false) {
+    if (!this.rendered) {
       this.rendered = true;
       this.experience.scene.add(this.asset);
       this.experience.spaceObjects.currentPlanet = this;
-      return;
     }
   }
 

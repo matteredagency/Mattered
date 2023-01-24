@@ -13,35 +13,25 @@ export default class Asteroids {
     this.position = position;
     this.size = size;
     this.name = name;
-  }
-  init() {
-    if (this.rendered === true) {
-      return;
-    } else if (this.rendered === false) {
-      this.rendered = true;
-      this.experience.scene.add(this.asteroids);
-      return;
-    }
-    this.rendered = true;
-
     this.asteroids = this.experience.assets.assetsDirectory.objects[this.name];
 
     this.asteroids.scale.set(0.2, 0.2, 0.2);
-
+    this.rendered = false;
     this.asteroids.position.set(
       this.position.x,
       this.position.y,
       this.position.z
     );
+
     this.asteroids.rotateY(Math.PI * 1.5);
 
     this.experience.spaceObjects.asteroids = this;
-    this.experience.scene?.add(this.asteroids);
-
-    const folder = this.experience.gui.addFolder("asteroids");
-    folder.add(this.asteroids.position, "x", -1000, 1000);
-    folder.add(this.asteroids.position, "z", -1000, 1000);
-    folder.add(this.asteroids.rotation, "y", 0, Math.PI * 2);
+  }
+  init() {
+    if (!this.rendered) {
+      this.rendered = true;
+      this.experience.scene.add(this.asteroids);
+    }
   }
   rotateAsteroids() {
     this.asteroids.children.forEach((mesh, index) => {
