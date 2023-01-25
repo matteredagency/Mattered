@@ -27,7 +27,7 @@ export default class Track {
       new THREE.Vector3(910, 0, 110),
       new THREE.Vector3(875, 0, -60),
       new THREE.Vector3(400, 0, -475),
-      new THREE.Vector3(200, 0, -620),
+      new THREE.Vector3(200, 0, -600),
       new THREE.Vector3(-175, 0, -425),
       new THREE.Vector3(-325, 0, -425),
       new THREE.Vector3(-390, 0, -200),
@@ -48,9 +48,19 @@ export default class Track {
       commonPoint2,
     ];
 
-    this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
+    this.cameraPath = new THREE.CatmullRomCurve3(
+      cameraPoints,
+      false,
+      "centripetal",
+      0
+    );
 
-    this.path = new THREE.CatmullRomCurve3(planePoints);
+    this.path = new THREE.CatmullRomCurve3(
+      planePoints,
+      false,
+      "centripetal",
+      0
+    );
     this.currentCameraPercent = 0;
     this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
@@ -80,7 +90,7 @@ export default class Track {
       })
     );
     this.experience.scene?.add(mesh);
-    // this.experience.scene?.add(cameraMesh);
+    this.experience.scene?.add(cameraMesh);
 
     return this;
   }
@@ -99,14 +109,24 @@ export default class Track {
         -0.007,
         scalePercent(0.15, 0.18, currentPercent)
       );
-    } else if (currentPercent >= 0.18 && currentPercent < 0.25) {
+    } else if (currentPercent >= 0.18 && currentPercent < 0.23) {
       lerpValue = lerp(
         -0.007,
         -0.0175,
-        scalePercent(0.18, 0.25, currentPercent)
+        scalePercent(0.18, 0.23, currentPercent)
       );
-    } else if (currentPercent >= 0.25 && currentPercent < 0.4) {
-      lerpValue = lerp(-0.0175, -0.02, scalePercent(0.25, 0.4, currentPercent));
+    } else if (currentPercent >= 0.23 && currentPercent < 0.4) {
+      lerpValue = lerp(
+        -0.0175,
+        -0.0225,
+        scalePercent(0.23, 0.4, currentPercent)
+      );
+    } else if (currentPercent >= 0.4 && currentPercent < 0.6) {
+      lerpValue = lerp(
+        -0.0225,
+        -0.0175,
+        scalePercent(0.4, 0.6, currentPercent)
+      );
     }
     return lerpValue;
   }
@@ -127,7 +147,14 @@ export default class Track {
       5,
       currentPlanePosition.z
     );
-    this.experience.camera?.perspectiveCamera?.lookAt(currentPlanePosition);
+
+    if (currentPercent > 0.37 && currentPercent < 0.48) {
+      this.experience.camera?.perspectiveCamera?.lookAt(
+        this.cameraPath.getPointAt(currentPercent + 0.005)
+      );
+    } else {
+      this.experience.camera?.perspectiveCamera.lookAt(currentPlanePosition);
+    }
   }
 
   updateCameraPosition(currentPercent: number) {
