@@ -14,10 +14,28 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
 
+    // const points = [
+    //   new THREE.Vector3(0, 0, 0),
+    //   new THREE.Vector3(0, 0, 150),
+    //   new THREE.Vector3(200, 0, 350),
+    //   new THREE.Vector3(250, 0, 500),
+    //   new THREE.Vector3(200, 0, 650),
+    //   new THREE.Vector3(-200, 0, 1050),
+    //   new THREE.Vector3(-250, 0, 1200),
+    //   new THREE.Vector3(-200, 0, 1350),
+    //   new THREE.Vector3(200, 0, 1750),
+    // ];
+
     const points = [
       new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, 0, 150),
-      new THREE.Vector3(-100, 0, 250),
+      new THREE.Vector3(0, 0, 200),
+      new THREE.Vector3(200, 0, 400),
+      new THREE.Vector3(250, 0, 550),
+      new THREE.Vector3(200, 0, 700),
+      new THREE.Vector3(-200, 0, 1100),
+      new THREE.Vector3(-250, 0, 1250),
+      new THREE.Vector3(-200, 0, 1400),
+      new THREE.Vector3(200, 0, 1800),
     ];
 
     // this.cameraPath = new THREE.CatmullRomCurve3(
@@ -27,7 +45,7 @@ export default class Track {
     //   10
     // );
 
-    this.path = new THREE.CatmullRomCurve3(points, false, "centripetal", 10);
+    this.path = new THREE.CatmullRomCurve3(points, false, "chordal", 5);
     this.currentCameraPercent = 0;
     this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
@@ -84,7 +102,7 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.05);
+    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.005);
 
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
