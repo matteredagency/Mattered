@@ -87,34 +87,8 @@ export default class Track {
 
   lerpPlaneDistance(currentPercent: number) {
     let lerpValue = 0;
-    if (currentPercent < 0.15) {
-      lerpValue = lerp(0, -0.02, scalePercent(0, 0.15, currentPercent));
-    } else if (currentPercent >= 0.15 && currentPercent < 0.25) {
-      lerpValue = lerp(
-        -0.02,
-        -0.0425,
-        scalePercent(0.15, 0.25, currentPercent)
-      );
-    } else if (currentPercent >= 0.25 && currentPercent < 0.35) {
-      lerpValue = lerp(
-        -0.0425,
-        -0.055,
-        scalePercent(0.25, 0.35, currentPercent)
-      );
-    } else if (currentPercent >= 0.35 && currentPercent < 0.575) {
-      lerpValue = lerp(
-        -0.055,
-        -0.015,
-        scalePercent(0.35, 0.575, currentPercent)
-      );
-    } else if (currentPercent >= 0.575 && currentPercent < 0.625) {
-      lerpValue = lerp(-0.015, 0, scalePercent(0.575, 0.625, currentPercent));
-    } else if (currentPercent >= 0.625 && currentPercent < 0.8) {
-      lerpValue = lerp(0, -0.05, scalePercent(0.625, 0.8, currentPercent));
-    } else if (currentPercent >= 0.8 && currentPercent < 0.95) {
-      lerpValue = lerp(-0.05, -0.06, scalePercent(0.8, 0.95, currentPercent));
-    } else if (currentPercent >= 0.95) {
-      lerpValue = lerp(-0.06, -0.03, scalePercent(0.95, 1, currentPercent));
+    if (currentPercent >= 0.08 && currentPercent < 0.15) {
+      lerpValue = lerp(0.1, -0.1, scalePercent(0.08, 0.15, currentPercent));
     }
     return lerpValue;
   }
@@ -124,7 +98,6 @@ export default class Track {
       currentPercent + this.lerpPlaneDistance(currentPercent)
     );
 
-    // const currentPlanePosition = this.path.getPointAt(currentPercent + 0.01);
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
       currentPlanePosition.x,
@@ -140,7 +113,7 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number) {
-    const currentCameraPosition = this.path.getPointAt(currentPercent);
+    const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
@@ -151,10 +124,10 @@ export default class Track {
 
   autoStart(currentTime: number) {
     const currentCameraPosition = this.cameraPath.getPointAt(
-      lerp(0, 0.075, scalePercent(0, 1, currentTime / 3))
+      lerp(0, 0.08, scalePercent(0, 1, currentTime / 3))
     );
     const currentPlanePosition = this.path.getPointAt(
-      lerp(0, 0.065, scalePercent(0, 1, currentTime / 3))
+      lerp(0, 0.075, scalePercent(0, 1, currentTime / 3))
     );
     this.experience.camera.perspectiveCamera.lookAt(
       this.experience.track.path.getPointAt(0.075)
