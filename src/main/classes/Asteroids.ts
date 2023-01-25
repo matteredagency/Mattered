@@ -23,7 +23,7 @@ export default class Asteroids {
       this.position.z
     );
 
-    this.asteroids.rotateY(Math.PI * 1.5);
+    this.asteroids.rotateY(Math.PI * 0.25);
 
     this.experience.spaceObjects.asteroids = this;
   }

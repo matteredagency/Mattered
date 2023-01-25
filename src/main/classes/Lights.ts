@@ -21,7 +21,7 @@ export default class Lights {
     // folder.add(this.sun.position, "x", -1500, 500);
     // folder.add(this.ambientLight, "intensity", 0, 100);
 
-    this.sun.position.set(0, 0, 500);
+    this.sun.position.set(0, 0, 0);
     this.sun.castShadow = true;
     this.planeLight.castShadow = true;
     this.planeLight.position.setY(5);
