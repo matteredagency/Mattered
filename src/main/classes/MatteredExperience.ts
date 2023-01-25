@@ -81,6 +81,7 @@ export default class MatteredExperience {
 
     this.scene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
+    this.controls.activateControls();
     this.update();
   }
 

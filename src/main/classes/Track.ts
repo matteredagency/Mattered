@@ -88,7 +88,25 @@ export default class Track {
   lerpPlaneDistance(currentPercent: number) {
     let lerpValue = 0;
     if (currentPercent >= 0.08 && currentPercent < 0.15) {
-      lerpValue = lerp(0.1, -0.1, scalePercent(0.08, 0.15, currentPercent));
+      lerpValue = lerp(
+        -0.005,
+        -0.008,
+        scalePercent(0.08, 0.15, currentPercent)
+      );
+    } else if (currentPercent >= 0.15 && currentPercent < 0.18) {
+      lerpValue = lerp(
+        -0.008,
+        -0.007,
+        scalePercent(0.15, 0.18, currentPercent)
+      );
+    } else if (currentPercent >= 0.18 && currentPercent < 0.25) {
+      lerpValue = lerp(
+        -0.007,
+        -0.0175,
+        scalePercent(0.18, 0.25, currentPercent)
+      );
+    } else if (currentPercent >= 0.25 && currentPercent < 0.4) {
+      lerpValue = lerp(-0.0175, -0.02, scalePercent(0.25, 0.4, currentPercent));
     }
     return lerpValue;
   }
@@ -113,6 +131,7 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number) {
+    console.log(currentPercent);
     const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
