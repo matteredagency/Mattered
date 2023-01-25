@@ -26,16 +26,47 @@ export default class Track {
     //   new THREE.Vector3(200, 0, 1750),
     // ];
 
-    const points = [
-      new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, 0, 200),
-      new THREE.Vector3(200, 0, 400),
-      new THREE.Vector3(250, 0, 550),
-      new THREE.Vector3(200, 0, 700),
-      new THREE.Vector3(-200, 0, 1100),
-      new THREE.Vector3(-250, 0, 1250),
-      new THREE.Vector3(-200, 0, 1400),
-      new THREE.Vector3(200, 0, 1800),
+    // const points = [
+    //   new THREE.Vector3(0, 0, 0),
+    //   new THREE.Vector3(0, 0, 200),
+    //   new THREE.Vector3(150, 0, 300),
+    //   new THREE.Vector3(150, 0, 450),
+    //   new THREE.Vector3(-150, 0, 650),
+    //   new THREE.Vector3(-150, 0, 1000),
+    //   new THREE.Vector3(0, 0, 1100),
+    // ];
+
+    // const points: THREE.Vector3[] | [number, number, number][] = [
+    //   new THREE.Vector3(-75, 0, 0),
+    //   new THREE.Vector3(75, 0, 100),
+    //   new THREE.Vector3(100, 0, 175),
+    //   new THREE.Vector3(75, 0, 250),
+    //   new THREE.Vector3(-75, 0, 350),
+    //   new THREE.Vector3(-100, 0, 425),
+    //   new THREE.Vector3(-75, 0, 500),
+    //   new THREE.Vector3(400, 0, 500),
+    //   new THREE.Vector3(500, 0, 650),
+    //   new THREE.Vector3(200, 0, 950),
+    //   new THREE.Vector3(-500, 0, 1150),
+    // ];
+
+    const points: THREE.Vector3[] | [number, number, number][] = [
+      new THREE.Vector3(-75, 0, 0),
+      new THREE.Vector3(250, 0, 275),
+      new THREE.Vector3(-100, 0, 700),
+      new THREE.Vector3(250, 0, 1125),
+      new THREE.Vector3(-100, 0, 1525),
+      new THREE.Vector3(-450, 0, 1925),
+      new THREE.Vector3(-800, 0, 2325),
+      new THREE.Vector3(-1200, 0, 2500),
+      new THREE.Vector3(-1100, 0, 2900),
+
+      // new THREE.Vector3(-100, 0, 425),
+      // new THREE.Vector3(-75, 0, 500),
+      // new THREE.Vector3(400, 0, 500),
+      // new THREE.Vector3(500, 0, 650),
+      // new THREE.Vector3(200, 0, 950),
+      // new THREE.Vector3(-500, 0, 1150),
     ];
 
     // this.cameraPath = new THREE.CatmullRomCurve3(
@@ -45,7 +76,7 @@ export default class Track {
     //   10
     // );
 
-    this.path = new THREE.CatmullRomCurve3(points, false, "chordal", 5);
+    this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPercent = 0;
     this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
