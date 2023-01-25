@@ -26,10 +26,9 @@ export default class Track {
       ...commonPoints1,
       new THREE.Vector3(910, 0, 110),
       new THREE.Vector3(875, 0, -60),
-      new THREE.Vector3(400, 0, -475),
-      new THREE.Vector3(200, 0, -600),
+      new THREE.Vector3(150, 0, -575),
       new THREE.Vector3(-175, 0, -425),
-      new THREE.Vector3(-325, 0, -425),
+      // new THREE.Vector3(-325, 0, -425),
       new THREE.Vector3(-390, 0, -200),
       new THREE.Vector3(-395, 0, 400),
       new THREE.Vector3(-368, 0, 800),
@@ -52,14 +51,14 @@ export default class Track {
       cameraPoints,
       false,
       "centripetal",
-      0
+      10
     );
 
     this.path = new THREE.CatmullRomCurve3(
       planePoints,
       false,
       "centripetal",
-      0
+      10
     );
     this.currentCameraPercent = 0;
     this.currentPlanePercent = 0;
@@ -148,24 +147,28 @@ export default class Track {
       currentPlanePosition.z
     );
 
-    if (currentPercent > 0.37 && currentPercent < 0.48) {
-      this.experience.camera?.perspectiveCamera?.lookAt(
-        this.cameraPath.getPointAt(currentPercent + 0.005)
-      );
-    } else {
-      this.experience.camera?.perspectiveCamera.lookAt(currentPlanePosition);
-    }
+    // if (currentPercent > 0.37 && currentPercent < 0.48) {
+    //   this.experience.camera?.perspectiveCamera?.lookAt(
+    //     this.cameraPath.getPointAt(currentPercent + 0.005)
+    //   );
+    // } else {
+    //   this.experience.camera?.perspectiveCamera.lookAt(currentPlanePosition);
+    // }
+    // this.experience.camera?.perspectiveCamera.lookAt(currentPlanePosition);
   }
 
   updateCameraPosition(currentPercent: number) {
     console.log(currentPercent);
     const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
 
+    const furtherPosition = this.cameraPath.getPointAt(currentPercent + 0.01);
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
       5,
       currentCameraPosition.z
     );
+
+    this.experience.camera.perspectiveCamera.lookAt(furtherPosition);
   }
 
   autoStart(currentTime: number) {
