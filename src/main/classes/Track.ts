@@ -59,6 +59,8 @@ export default class Track {
       new THREE.Vector3(-575, 0, 1800),
       new THREE.Vector3(-800, 0, 2325),
       new THREE.Vector3(-1150, 0, 2725),
+      new THREE.Vector3(-1400, 0, 3125),
+      new THREE.Vector3(-1750, 0, 3525),
     ];
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(-75, 0, 0),
@@ -66,17 +68,15 @@ export default class Track {
       new THREE.Vector3(-100, 0, 700),
       new THREE.Vector3(250, 0, 1125),
       new THREE.Vector3(-100, 0, 1525),
-      new THREE.Vector3(-575, 0, 1800),
+      new THREE.Vector3(-400, 0, 2200),
+      new THREE.Vector3(-400, 0, 2200),
       new THREE.Vector3(-800, 0, 2325),
       new THREE.Vector3(-1150, 0, 2725),
+      new THREE.Vector3(-1400, 0, 3125),
+      new THREE.Vector3(-1750, 0, 3525),
     ];
 
-    this.cameraPath = new THREE.CatmullRomCurve3(
-      cameraPoints,
-      false,
-      "centripetal",
-      10
-    );
+    this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
 
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPercent = 0;
@@ -84,7 +84,13 @@ export default class Track {
     this.planeMovedTime = 0;
     this.planeMoved = false;
     const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
-    const cameraGeometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
+    const cameraGeometry = new THREE.TubeGeometry(
+      this.cameraPath,
+      300,
+      5,
+      32,
+      false
+    );
 
     const mesh = new THREE.Mesh(
       geometry,
@@ -143,7 +149,7 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.005);
+    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.015);
 
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
@@ -162,7 +168,7 @@ export default class Track {
 
   updateCameraPosition(currentPercent: number) {
     console.log(currentPercent);
-    const currentCameraPosition = this.path.getPointAt(currentPercent);
+    const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
