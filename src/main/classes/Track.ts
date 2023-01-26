@@ -61,6 +61,7 @@ export default class Track {
       new THREE.Vector3(-1150, 0, 2725),
       new THREE.Vector3(-1400, 0, 3125),
       new THREE.Vector3(-1750, 0, 3525),
+      // new THREE.Vector3(-2275, 0, 4125),
     ];
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
       new THREE.Vector3(-75, 0, 0),
@@ -74,6 +75,7 @@ export default class Track {
       new THREE.Vector3(-1150, 0, 2725),
       new THREE.Vector3(-1400, 0, 3125),
       new THREE.Vector3(-1750, 0, 3525),
+      new THREE.Vector3(-2450, 0, 4325),
     ];
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
@@ -149,7 +151,9 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    const currentPlanePosition = this.path.getPointAt(currentPercent + 0.015);
+    const currentPlanePosition = this.cameraPath.getPointAt(
+      currentPercent + 0.01
+    );
 
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
@@ -168,7 +172,7 @@ export default class Track {
 
   updateCameraPosition(currentPercent: number) {
     console.log(currentPercent);
-    const currentCameraPosition = this.cameraPath.getPointAt(currentPercent);
+    const currentCameraPosition = this.path.getPointAt(currentPercent);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
