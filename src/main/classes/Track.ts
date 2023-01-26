@@ -6,7 +6,7 @@ import scalePercent from "../../utils/scalePercent";
 export default class Track {
   experience: MatteredExperience;
   path: THREE.CatmullRomCurve3;
-  // cameraPath: THREE.CatmullRomCurve3;
+  cameraPath: THREE.CatmullRomCurve3;
   currentCameraPercent: number;
   currentPlanePercent: number;
   planeMovedTime: number;
@@ -60,13 +60,23 @@ export default class Track {
       new THREE.Vector3(-800, 0, 2325),
       new THREE.Vector3(-1150, 0, 2725),
     ];
+    const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
+      new THREE.Vector3(-75, 0, 0),
+      new THREE.Vector3(250, 0, 275),
+      new THREE.Vector3(-100, 0, 700),
+      new THREE.Vector3(250, 0, 1125),
+      new THREE.Vector3(-100, 0, 1525),
+      new THREE.Vector3(-575, 0, 1800),
+      new THREE.Vector3(-800, 0, 2325),
+      new THREE.Vector3(-1150, 0, 2725),
+    ];
 
-    // this.cameraPath = new THREE.CatmullRomCurve3(
-    //   cameraPoints,
-    //   false,
-    //   "centripetal",
-    //   10
-    // );
+    this.cameraPath = new THREE.CatmullRomCurve3(
+      cameraPoints,
+      false,
+      "centripetal",
+      10
+    );
 
     this.path = new THREE.CatmullRomCurve3(points);
     this.currentCameraPercent = 0;
@@ -74,6 +84,7 @@ export default class Track {
     this.planeMovedTime = 0;
     this.planeMoved = false;
     const geometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
+    const cameraGeometry = new THREE.TubeGeometry(this.path, 300, 5, 32, false);
 
     const mesh = new THREE.Mesh(
       geometry,
@@ -82,8 +93,15 @@ export default class Track {
         color: 0xffffff,
       })
     );
-
+    const cameraMesh = new THREE.Mesh(
+      cameraGeometry,
+      new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: 0xff0000,
+      })
+    );
     this.experience.scene?.add(mesh);
+    this.experience.scene?.add(cameraMesh);
 
     return this;
   }
