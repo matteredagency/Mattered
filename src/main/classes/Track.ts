@@ -50,13 +50,15 @@ export default class Track {
     //   new THREE.Vector3(-500, 0, 1150),
     // ];
 
-    const points: THREE.Vector3[] | [number, number, number][] = [
+    const commonPoints1 = [
       new THREE.Vector3(-75, 0, 0),
       new THREE.Vector3(250, 0, 275),
       new THREE.Vector3(-100, 0, 700),
       new THREE.Vector3(250, 0, 1125),
       new THREE.Vector3(-100, 0, 1525),
-      new THREE.Vector3(-575, 0, 1800),
+    ];
+
+    const commonPoints2 = [
       new THREE.Vector3(-800, 0, 2325),
       new THREE.Vector3(-1150, 0, 2725),
       new THREE.Vector3(-1400, 0, 3125),
@@ -66,22 +68,16 @@ export default class Track {
       new THREE.Vector3(-2200, 150, 4650),
       new THREE.Vector3(-2000, 150, 6000),
     ];
+
+    const points: THREE.Vector3[] | [number, number, number][] = [
+      ...commonPoints1,
+      new THREE.Vector3(-575, 0, 1800),
+      ...commonPoints2,
+    ];
     const cameraPoints: THREE.Vector3[] | [number, number, number][] = [
-      new THREE.Vector3(-75, 0, 0),
-      new THREE.Vector3(250, 0, 275),
-      new THREE.Vector3(-100, 0, 700),
-      new THREE.Vector3(250, 0, 1125),
-      new THREE.Vector3(-100, 0, 1525),
+      ...commonPoints1,
       new THREE.Vector3(-400, 0, 2200),
-      new THREE.Vector3(-400, 0, 2200),
-      new THREE.Vector3(-800, 0, 2325),
-      new THREE.Vector3(-1150, 0, 2725),
-      new THREE.Vector3(-1400, 0, 3125),
-      new THREE.Vector3(-1750, 0, 3525),
-      new THREE.Vector3(-2275, 0, 4125),
-      new THREE.Vector3(-2250, 75, 4500),
-      new THREE.Vector3(-2200, 150, 4650),
-      new THREE.Vector3(-2000, 150, 6000),
+      ...commonPoints2,
     ];
 
     this.cameraPath = new THREE.CatmullRomCurve3(cameraPoints);
