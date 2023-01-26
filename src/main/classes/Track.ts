@@ -56,11 +56,9 @@ export default class Track {
       new THREE.Vector3(-100, 0, 700),
       new THREE.Vector3(250, 0, 1125),
       new THREE.Vector3(-100, 0, 1525),
-      new THREE.Vector3(-800, 0, 1925),
-      new THREE.Vector3(-600, 0, 2500),
-      // new THREE.Vector3(-800, 0, 2325),
-      // new THREE.Vector3(-1150, 0, 2725),
-      // new THREE.Vector3(-1650, 0, 4300),
+      new THREE.Vector3(-575, 0, 1800),
+      new THREE.Vector3(-800, 0, 2325),
+      new THREE.Vector3(-1150, 0, 2725),
     ];
 
     // this.cameraPath = new THREE.CatmullRomCurve3(
