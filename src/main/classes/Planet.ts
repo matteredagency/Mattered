@@ -64,11 +64,18 @@ export default class Planet {
     this.asset = new THREE.Group();
 
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
-    if (this.name === "Saturn" && tilt) {
+    if (this.name === "Saturn") {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
-      this.asset.rotateZ(tilt);
-      this.asset.rotateX(-Math.PI * 0.0275);
+      this.asset.rotateY(Math.PI * 0.75);
+      this.asset.rotateZ(tilt!);
+
+      // this.asset.rotateX(-Math.PI * 0.0275);
+      const folder = this.experience.gui.addFolder("saturn");
+
+      folder.add(this.asset.rotation, "x", 0, Math.PI * 2);
+      folder.add(this.asset.rotation, "y", 0, Math.PI * 2);
+      folder.add(this.asset.rotation, "z", 0, Math.PI * 2);
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {
