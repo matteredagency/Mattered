@@ -74,8 +74,8 @@ export default class Track {
         color: 0xff0000,
       })
     );
-    this.experience.scene?.add(mesh);
-    this.experience.scene?.add(cameraMesh);
+    // this.experience.scene?.add(mesh);
+    // this.experience.scene?.add(cameraMesh);
 
     return this;
   }
