@@ -14,7 +14,10 @@ export default class PlaneController {
 
   float(timePassed: number) {
     this.experience.spaceObjects.paperPlane.position.y =
-      Math.cos(timePassed) * 0.5;
+      Math.cos(timePassed) * 0.5 +
+      this.experience.track.path.getPointAt(
+        this.experience.track.currentPlanePercent
+      ).y;
   }
 
   lerpPlaneRotations({

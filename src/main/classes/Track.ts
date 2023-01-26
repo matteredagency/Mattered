@@ -14,42 +14,6 @@ export default class Track {
   constructor() {
     this.experience = new MatteredExperience();
 
-    // const points = [
-    //   new THREE.Vector3(0, 0, 0),
-    //   new THREE.Vector3(0, 0, 150),
-    //   new THREE.Vector3(200, 0, 350),
-    //   new THREE.Vector3(250, 0, 500),
-    //   new THREE.Vector3(200, 0, 650),
-    //   new THREE.Vector3(-200, 0, 1050),
-    //   new THREE.Vector3(-250, 0, 1200),
-    //   new THREE.Vector3(-200, 0, 1350),
-    //   new THREE.Vector3(200, 0, 1750),
-    // ];
-
-    // const points = [
-    //   new THREE.Vector3(0, 0, 0),
-    //   new THREE.Vector3(0, 0, 200),
-    //   new THREE.Vector3(150, 0, 300),
-    //   new THREE.Vector3(150, 0, 450),
-    //   new THREE.Vector3(-150, 0, 650),
-    //   new THREE.Vector3(-150, 0, 1000),
-    //   new THREE.Vector3(0, 0, 1100),
-    // ];
-
-    // const points: THREE.Vector3[] | [number, number, number][] = [
-    //   new THREE.Vector3(-75, 0, 0),
-    //   new THREE.Vector3(75, 0, 100),
-    //   new THREE.Vector3(100, 0, 175),
-    //   new THREE.Vector3(75, 0, 250),
-    //   new THREE.Vector3(-75, 0, 350),
-    //   new THREE.Vector3(-100, 0, 425),
-    //   new THREE.Vector3(-75, 0, 500),
-    //   new THREE.Vector3(400, 0, 500),
-    //   new THREE.Vector3(500, 0, 650),
-    //   new THREE.Vector3(200, 0, 950),
-    //   new THREE.Vector3(-500, 0, 1150),
-    // ];
-
     const commonPoints1 = [
       new THREE.Vector3(-75, 0, 0),
       new THREE.Vector3(250, 0, 275),
@@ -157,7 +121,7 @@ export default class Track {
       currentPercent + 0.01
     );
 
-    this.currentPlanePercent = currentPercent;
+    this.currentPlanePercent = currentPercent + 0.01;
     this.experience.spaceObjects.paperPlane.position.set(
       currentPlanePosition.x,
       currentPlanePosition.y,
