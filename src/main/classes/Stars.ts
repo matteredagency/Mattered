@@ -40,7 +40,7 @@ export default class Stars {
     const pointRanges = [
       [-3000, 500, null],
       [-500, 500, 25],
-      [0, 9000, null],
+      [-200, 9000, null],
     ];
 
     for (let i = 0; i < this.particleCount; i++) {

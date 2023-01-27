@@ -29,7 +29,7 @@ export default class Track {
       new THREE.Vector3(-1750, 0, 3525),
       new THREE.Vector3(-2275, 0, 4125),
       new THREE.Vector3(-2250, 75, 4500),
-      new THREE.Vector3(-2200, 150, 4650),
+      new THREE.Vector3(-2100, 150, 4650),
       new THREE.Vector3(-2000, 150, 6000),
     ];
 
@@ -74,7 +74,7 @@ export default class Track {
         color: 0xff0000,
       })
     );
-    // this.experience.scene?.add(mesh);
+    this.experience.scene?.add(mesh);
     // this.experience.scene?.add(cameraMesh);
 
     return this;
