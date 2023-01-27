@@ -30,7 +30,9 @@ export default class Track {
       new THREE.Vector3(-2275, 0, 4125),
       new THREE.Vector3(-2250, 75, 4500),
       new THREE.Vector3(-2100, 150, 4650),
-      new THREE.Vector3(-2000, 150, 6000),
+      new THREE.Vector3(-1900, 225, 4700),
+      new THREE.Vector3(-800, 225, 4400),
+      new THREE.Vector3(300, 225, 4100),
     ];
 
     const points: THREE.Vector3[] | [number, number, number][] = [
