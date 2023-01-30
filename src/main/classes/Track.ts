@@ -139,7 +139,9 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number) {
-    const currentCameraPosition = this.path.getPointAt(currentPercent - 0.004);
+    const currentCameraPosition = this.cameraPath.getPointAt(
+      currentPercent - 0.004
+    );
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
