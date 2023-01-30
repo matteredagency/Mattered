@@ -395,11 +395,11 @@ export default class PlaneController {
         startX: -Math.PI * 0.08,
         endX: -Math.PI * 0.27,
       });
-    } else if (currentPercent >= 0.74 && currentPercent < 0.76) {
+    } else if (currentPercent >= 0.73 && currentPercent < 0.75) {
       this.lerpPlaneRotations({
         currentPercent,
-        startPercent: 0.74,
-        endPercent: 0.76,
+        startPercent: 0.73,
+        endPercent: 0.75,
         startY: -Math.PI * 0.625,
         endY: -Math.PI * 0.42,
         startZ: -Math.PI * 0.1,
