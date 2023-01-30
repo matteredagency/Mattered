@@ -36,8 +36,8 @@ export default class PlaneController {
     endY: number;
     startZ: number;
     endZ: number;
-    startX?:number;
-    endX?:number;
+    startX?: number;
+    endX?: number;
   }) {
     this.experience.spaceObjects.paperPlane.rotation.set(
       0,
@@ -273,7 +273,7 @@ export default class PlaneController {
         startY: -Math.PI * 1.25,
         endY: -Math.PI * 1.13,
         startZ: 0,
-        endZ: Math.PI * 0.1,
+        endZ: Math.PI * 0.075,
       });
     } else if (currentPercent >= 0.45 && currentPercent < 0.46) {
       this.lerpPlaneRotations({
@@ -282,17 +282,7 @@ export default class PlaneController {
         endPercent: 0.46,
         startY: -Math.PI * 1.13,
         endY: -Math.PI * 1.17,
-        startZ: Math.PI * 0.1,
-        endZ: 0,
-      });
-    } else if (currentPercent >= 0.45 && currentPercent < 0.46) {
-      this.lerpPlaneRotations({
-        currentPercent,
-        startPercent: 0.45,
-        endPercent: 0.46,
-        startY: -Math.PI * 1.13,
-        endY: -Math.PI * 1.17,
-        startZ: Math.PI * 0.1,
+        startZ: Math.PI * 0.075,
         endZ: 0,
       });
     } else if (currentPercent >= 0.47 && currentPercent < 0.49) {
@@ -303,7 +293,7 @@ export default class PlaneController {
         startY: -Math.PI * 1.17,
         endY: -Math.PI * 1.2,
         startZ: 0,
-        endZ: -Math.PI * 0.1,
+        endZ: -Math.PI * 0.05,
       });
     } else if (currentPercent >= 0.5 && currentPercent < 0.51) {
       this.lerpPlaneRotations({
@@ -312,7 +302,7 @@ export default class PlaneController {
         endPercent: 0.51,
         startY: -Math.PI * 1.2,
         endY: -Math.PI * 1.24,
-        startZ: -Math.PI * 0.1,
+        startZ: -Math.PI * 0.05,
         endZ: 0,
       });
     } else if (currentPercent >= 0.54 && currentPercent < 0.56) {
