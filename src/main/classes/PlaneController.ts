@@ -28,6 +28,8 @@ export default class PlaneController {
     endY,
     startZ,
     endZ,
+    startX,
+    endX,
   }: {
     currentPercent: number;
     startPercent: number;
@@ -40,7 +42,13 @@ export default class PlaneController {
     endX?: number;
   }) {
     this.experience.spaceObjects.paperPlane.rotation.set(
-      0,
+      typeof startX === "number" && typeof endX === "number"
+        ? lerp(
+            startX,
+            endX,
+            scalePercent(startPercent, endPercent, currentPercent)
+          )
+        : 0,
       lerp(
         startY,
         endY,
