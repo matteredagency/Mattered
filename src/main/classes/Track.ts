@@ -76,8 +76,8 @@ export default class Track {
         color: 0xff0000,
       })
     );
-    this.experience.scene?.add(mesh);
-    this.experience.scene?.add(cameraMesh);
+    // this.experience.scene?.add(mesh);
+    // this.experience.scene?.add(cameraMesh);
 
     return this;
   }
@@ -121,7 +121,7 @@ export default class Track {
   updatePlanePosition(currentPercent: number) {
     console.log(currentPercent);
 
-    const currentPlanePosition = this.path.getPointAt(currentPercent);
+    const currentPlanePosition = this.cameraPath.getPointAt(currentPercent);
 
     this.currentPlanePercent = currentPercent;
     this.experience.spaceObjects.paperPlane.position.set(
@@ -139,9 +139,7 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number) {
-    const currentCameraPosition = this.cameraPath.getPointAt(
-      currentPercent - 0.004
-    );
+    const currentCameraPosition = this.path.getPointAt(currentPercent - 0.005);
 
     this.experience.camera?.perspectiveCamera?.position.set(
       currentCameraPosition.x,
