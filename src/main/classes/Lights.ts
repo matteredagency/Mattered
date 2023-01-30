@@ -9,7 +9,7 @@ export default class Lights {
   constructor() {
     this.experience = new MatteredExperience();
     this.sun = new THREE.PointLight(0xffffff, 1.5);
-    this.planeLight = new THREE.PointLight(0xffffff, 5, 30, 10);
+    this.planeLight = new THREE.PointLight(0xffffff, 8, 30, 7);
     this.ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
 
     // const folder = this.experience.gui.addFolder("planeLight");
