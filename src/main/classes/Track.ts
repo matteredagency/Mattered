@@ -29,8 +29,8 @@ export default class Track {
       new THREE.Vector3(-1750, 0, 3525),
       new THREE.Vector3(-2275, 0, 4125),
       new THREE.Vector3(-2250, 75, 4500),
-      new THREE.Vector3(-2100, 150, 4650),
-      new THREE.Vector3(-1900, 225, 4700),
+      new THREE.Vector3(-2100, 130, 4650),
+      // new THREE.Vector3(-1900, 225, 4700),
       new THREE.Vector3(-800, 225, 4400),
       new THREE.Vector3(300, 225, 4100),
     ];
@@ -77,7 +77,7 @@ export default class Track {
       })
     );
     // this.experience.scene?.add(mesh);
-    // this.experience.scene?.add(cameraMesh);
+    this.experience.scene?.add(cameraMesh);
 
     return this;
   }
