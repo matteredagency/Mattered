@@ -52,31 +52,6 @@ export default class Track {
     this.currentPlanePercent = 0;
     this.planeMovedTime = 0;
     this.planeMoved = false;
-    const geometry = new THREE.TubeGeometry(this.cameraPath, 300, 5, 32, false);
-    const planeGeometry = new THREE.TubeGeometry(
-      this.planePath,
-      300,
-      5,
-      32,
-      false
-    );
-
-    const mesh = new THREE.Mesh(
-      geometry,
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0xffffff,
-      })
-    );
-    const planeMesh = new THREE.Mesh(
-      planeGeometry,
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0xff0000,
-      })
-    );
-    // this.experience.scene?.add(mesh);
-    this.experience.scene?.add(planeMesh);
 
     return this;
   }
@@ -139,7 +114,7 @@ export default class Track {
 
   updateCameraPosition(currentPercent: number) {
     const currentCameraPosition = this.cameraPath.getPointAt(
-      currentPercent - 0.005
+      currentPercent - 0.006
     );
 
     this.experience.camera?.perspectiveCamera?.position.set(
@@ -149,18 +124,14 @@ export default class Track {
     );
   }
 
-  // autoStart(currentTime: number) {
-  //   const currentPlanePosition = this.planePath.getPointAt(
-  //     lerp(0, 0.075, scalePercent(0, 1, currentTime / 3))
-  //   );
+  autoStart(currentTime: number) {
+    const currentPlanePosition = this.planePath.getPointAt(
+      lerp(0, 0.00665, scalePercent(0, 1, currentTime / 3))
+    );
 
-  //   this.experience.camera.perspectiveCamera.position.x =
-  //     currentCameraPosition.x;
-  //   this.experience.camera.perspectiveCamera.position.z =
-  //     currentCameraPosition.z;
-  //   this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;
-  //   this.experience.spaceObjects.paperPlane.position.z = currentPlanePosition.z;
-  //   this.experience.lights.planeLight.position.x = currentPlanePosition.x;
-  //   this.experience.lights.planeLight.position.z = currentPlanePosition.z;
-  // }
+    this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;
+    this.experience.spaceObjects.paperPlane.position.z = currentPlanePosition.z;
+    this.experience.lights.planeLight.position.x = currentPlanePosition.x;
+    this.experience.lights.planeLight.position.z = currentPlanePosition.z;
+  }
 }

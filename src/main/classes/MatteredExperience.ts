@@ -82,7 +82,6 @@ export default class MatteredExperience {
 
     this.scene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
-    this.controls.activateControls();
     this.update();
   }
 
@@ -95,18 +94,18 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
-    // if (elapsedTime <= 3) {
-    //   this.track.autoStart(elapsedTime);
-    //   this.planeController.updateAutoPlaneRotation(elapsedTime / 3);
-    // }
-    // if (elapsedTime >= 3.5 && !this.controls.controlsActivated) {
-    //   this.controls.activateControls();
-    //   this.scrollInstructions.fadeIn();
-    // }
+    if (elapsedTime <= 3) {
+      this.track.autoStart(elapsedTime);
+      this.planeController.updateAutoPlaneRotation(elapsedTime / 3);
+    }
+    if (elapsedTime >= 3.5 && !this.controls.controlsActivated) {
+      this.controls.activateControls();
+      this.scrollInstructions.fadeIn();
+    }
   }
 
   update() {
-    if (this.experienceStarted && !this.clock.running) {
+    if (this.experienceStarted) {
       this.clock.start();
     }
 
