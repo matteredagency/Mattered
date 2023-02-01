@@ -15,7 +15,7 @@ export default class PlaneController {
   float(timePassed: number) {
     this.experience.spaceObjects.paperPlane.position.y =
       Math.cos(timePassed) * 0.5 +
-      this.experience.track.path.getPointAt(
+      this.experience.track.planePath.getPointAt(
         this.experience.track.currentPlanePercent
       ).y;
   }
@@ -93,12 +93,12 @@ export default class PlaneController {
   }
 
   updatePlaneRotation(currentPercent: number) {
-    if (currentPercent >= 0.004 && currentPercent < 0.02) {
+    if (currentPercent >= 0.006 && currentPercent < 0.02) {
       this.lerpPlaneRotations({
         currentPercent,
-        startPercent: 0.004,
+        startPercent: 0.006,
         endPercent: 0.02,
-        startY: -Math.PI * 0.71,
+        startY: -Math.PI * 0.7,
         endY: -Math.PI * 0.67,
         startZ: 0,
         endZ: 0,
@@ -371,53 +371,43 @@ export default class PlaneController {
         startZ: Math.PI * 0.1,
         endZ: Math.PI * 0.1,
         startX: -Math.PI * 0.05,
-        endX: -Math.PI * 0.07,
+        endX: -Math.PI * 0.1,
       });
-    } else if (currentPercent >= 0.69 && currentPercent < 0.72) {
+    } else if (currentPercent >= 0.69 && currentPercent < 0.73) {
       this.lerpPlaneRotations({
         currentPercent,
         startPercent: 0.69,
-        endPercent: 0.72,
+        endPercent: 0.73,
         startY: -Math.PI * 0.825,
-        endY: -Math.PI * 0.425,
+        endY: -Math.PI * 0.5,
         startZ: Math.PI * 0.1,
-        endZ: -Math.PI * 0.1,
-        startX: -Math.PI * 0.07,
-        endX: -Math.PI * 0.09,
+        endZ: Math.PI * 0.01,
+        startX: -Math.PI * 0.1,
+        endX: -Math.PI * 0.18,
       });
-    } else if (currentPercent >= 0.73 && currentPercent < 0.75) {
+    } else if (currentPercent >= 0.73 && currentPercent < 0.77) {
       this.lerpPlaneRotations({
         currentPercent,
         startPercent: 0.73,
-        endPercent: 0.75,
-        startY: -Math.PI * 0.425,
-        endY: -Math.PI * 0.425,
-        startZ: -Math.PI * 0.1,
-        endZ: -Math.PI * 0.03,
-        startX: -Math.PI * 0.09,
-        endX: -Math.PI * 0.02,
-      });
-    } else if (currentPercent >= 0.77 && currentPercent < 0.8) {
-      this.lerpPlaneRotations({
-        currentPercent,
-        startPercent: 0.77,
-        endPercent: 0.8,
-        startY: -Math.PI * 0.425,
-        endY: -Math.PI * 0.4,
-        startZ: -Math.PI * 0.03,
-        endZ: 0,
-        startX: -Math.PI * 0.02,
+        endPercent: 0.77,
+        startY: -Math.PI * 0.5,
+        endY: -Math.PI * 0.415,
+        startZ: Math.PI * 0.01,
+        endZ: Math.PI * 0.01,
+        startX: -Math.PI * 0.18,
         endX: 0,
       });
-    } else if (currentPercent >= 0.85 && currentPercent < 0.88) {
+    } else if (currentPercent >= 0.87 && currentPercent < 0.9) {
       this.lerpPlaneRotations({
         currentPercent,
-        startPercent: 0.85,
-        endPercent: 0.88,
-        startY: -Math.PI * 0.4,
-        endY: -Math.PI * 0.415,
-        startZ: -Math.PI * 0.03,
+        startPercent: 0.87,
+        endPercent: 0.9,
+        startY: -Math.PI * 0.415,
+        endY: -Math.PI * 0.41,
+        startZ: Math.PI * 0.01,
         endZ: 0,
+        startX: 0,
+        endX: 0,
       });
     }
   }
