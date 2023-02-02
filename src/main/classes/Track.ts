@@ -126,7 +126,7 @@ export default class Track {
 
   autoStart(currentTime: number) {
     const currentPlanePosition = this.planePath.getPointAt(
-      lerp(0, 0.005, scalePercent(0, 1, currentTime / 3))
+      lerp(0, 0.005, scalePercent(0, 1, currentTime / 2))
     );
 
     this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;

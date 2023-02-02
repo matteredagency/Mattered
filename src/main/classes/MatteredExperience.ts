@@ -91,10 +91,10 @@ export default class MatteredExperience {
     const elapsedTime = this.clock.getElapsedTime();
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
-    if (elapsedTime <= 3) {
+    if (elapsedTime <= 2) {
       this.track.autoStart(elapsedTime);
     }
-    if (elapsedTime >= 3.5 && !this.controls.controlsActivated) {
+    if (elapsedTime >= 2.5 && !this.controls.controlsActivated) {
       this.controls.activateControls();
       this.scrollInstructions.fadeIn();
     }

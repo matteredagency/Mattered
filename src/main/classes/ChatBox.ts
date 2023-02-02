@@ -189,7 +189,7 @@ export default class ChatBox {
       setTimeout(() => {
         this.chatWindow!.remove();
       }, 1000);
-    }, 1000);
+    }, 500);
   }
 
   chatFall() {
