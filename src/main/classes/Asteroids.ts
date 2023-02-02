@@ -27,11 +27,11 @@ export default class Asteroids {
 
     this.experience.spaceObjects.asteroids = this;
 
-    const folder = this.experience.gui.addFolder("asteroids");
-    folder.add(this.asteroids.position, "x", -2000, -1000);
-    folder.add(this.asteroids.position, "z", 2000, 4000);
+    // const folder = this.experience.gui.addFolder("asteroids");
+    // folder.add(this.asteroids.position, "x", -2000, -1000);
+    // folder.add(this.asteroids.position, "z", 2000, 4000);
 
-    folder.add(this.asteroids.rotation, "y", 0, Math.PI * 2);
+    // folder.add(this.asteroids.rotation, "y", 0, Math.PI * 2);
   }
   init() {
     if (!this.rendered) {

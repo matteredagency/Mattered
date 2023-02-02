@@ -185,7 +185,7 @@ export default class ChatBox {
     this.chatWindow!.style.backgroundColor = "rgba(225, 225, 225, 0)";
 
     setTimeout(() => {
-      this.experience.startExperience();
+      this.experience.clock.start();
       setTimeout(() => {
         this.chatWindow!.remove();
       }, 1000);

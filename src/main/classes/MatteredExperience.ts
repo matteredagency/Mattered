@@ -1,7 +1,7 @@
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
-import { GUI } from "dat.gui";
+// import { GUI } from "dat.gui";
 import Lights from "./Lights";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
@@ -26,13 +26,12 @@ export default class MatteredExperience {
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
-  gui!: GUI;
+  // gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   restartButton!: HTMLButtonElement;
   statsTable!: HTMLTableElement;
   assets!: Assets;
-  experienceStarted!: boolean;
   audio!: HTMLAudioElement;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
@@ -40,7 +39,6 @@ export default class MatteredExperience {
     }
     MatteredExperience.instance = this;
     this.assets = new Assets();
-    this.experienceStarted = false;
     this.audio = document.getElementById("ambient-sound") as HTMLAudioElement;
     if (canvas) this.canvas = canvas;
     this.restartButton = document.createElement("button") as HTMLButtonElement;
@@ -53,9 +51,9 @@ export default class MatteredExperience {
 
     this.restartButton.addEventListener("click", () => this.resetExperience());
     this.scene = new THREE.Scene();
-    this.gui = new GUI();
+    // this.gui = new GUI();
 
-    this.gui.domElement.parentElement?.style.zIndex = "100";
+    // this.gui.domElement.parentElement?.style.zIndex = "100";
     this.init();
   }
 
@@ -76,7 +74,6 @@ export default class MatteredExperience {
 
     this.sceneController = new SceneController();
     this.camera = new Camera();
-    this.clock.start();
 
     this.planeController = new PlaneController();
 
@@ -96,7 +93,6 @@ export default class MatteredExperience {
     this.spaceObjects.stars.twinkleStars(elapsedTime);
     if (elapsedTime <= 3) {
       this.track.autoStart(elapsedTime);
-      this.planeController.updateAutoPlaneRotation(elapsedTime / 3);
     }
     if (elapsedTime >= 3.5 && !this.controls.controlsActivated) {
       this.controls.activateControls();
@@ -105,10 +101,6 @@ export default class MatteredExperience {
   }
 
   update() {
-    if (this.experienceStarted) {
-      this.clock.start();
-    }
-
     if (this.clock.running) this.timeControl();
 
     if (this.spaceObjects.asteroids) {
@@ -242,8 +234,5 @@ export default class MatteredExperience {
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
     return Math.round((subjectTime / totalSeconds) * 100);
-  }
-  startExperience() {
-    this.experienceStarted = true;
   }
 }
