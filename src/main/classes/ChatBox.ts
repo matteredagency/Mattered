@@ -143,11 +143,7 @@ export default class ChatBox {
       } else if (this.responseBox.value) {
         this.addMessageToMessages(this.responseBox.value, false);
         this.sendButton.style.backgroundColor = "#f2f2f2";
-        console.log(
-          `https://www.mattered.com/${
-            this.responseBox.value === "Contact" ? "contact" : ""
-          }`
-        );
+
         setTimeout(() => {
           window.location.href = `https://www.mattered.com/${
             this.responseBox.value === "Contact" ? "contact/" : ""

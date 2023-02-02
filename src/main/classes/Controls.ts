@@ -19,7 +19,6 @@ export default class Controls {
   }
 
   activateControls() {
-    console.log("activate controls");
     this.controlsActivated = true;
     this.scrollContainer?.addEventListener("scroll", () => {
       const { scrollHeight, scrollTop } = this.scrollContainer as HTMLElement;
