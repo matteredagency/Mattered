@@ -93,8 +93,6 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    console.log(currentPercent);
-
     const currentPlanePosition = this.planePath.getPointAt(currentPercent);
 
     this.currentPlanePercent = currentPercent;
@@ -127,6 +125,17 @@ export default class Track {
   autoStart(currentTime: number) {
     const currentPlanePosition = this.planePath.getPointAt(
       lerp(0, 0.005, scalePercent(0, 1, currentTime / 2))
+    );
+
+    this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;
+    this.experience.spaceObjects.paperPlane.position.z = currentPlanePosition.z;
+    this.experience.lights.planeLight.position.x = currentPlanePosition.x;
+    this.experience.lights.planeLight.position.z = currentPlanePosition.z;
+  }
+
+  autoEnd(currentTime: number) {
+    const currentPlanePosition = this.planePath.getPointAt(
+      lerp(0.82, 1, scalePercent(0, 1, currentTime / 3))
     );
 
     this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;

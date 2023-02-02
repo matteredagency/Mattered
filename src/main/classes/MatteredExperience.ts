@@ -33,6 +33,8 @@ export default class MatteredExperience {
   statsTable!: HTMLTableElement;
   assets!: Assets;
   audio!: HTMLAudioElement;
+  experienceEnded!: boolean;
+  stopTime!: number;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -54,6 +56,8 @@ export default class MatteredExperience {
     // this.gui = new GUI();
 
     // this.gui.domElement.parentElement?.style.zIndex = "100";
+    this.experienceEnded = false;
+    this.stopTime = 0;
     this.init();
   }
 
@@ -100,6 +104,9 @@ export default class MatteredExperience {
       this.controls.activateControls();
       this.scrollInstructions.fadeIn();
     }
+    if (this.experienceEnded) {
+      this.track.autoEnd(elapsedTime - this.stopTime);
+    }
   }
 
   update() {
@@ -116,6 +123,8 @@ export default class MatteredExperience {
   }
 
   endExperience() {
+    this.experienceEnded = true;
+    this.stopTime = this.clock.getElapsedTime();
     if (this.controls.scrollContainer) {
       this.controls.scrollContainer.style.overflowY = "hidden";
     }
