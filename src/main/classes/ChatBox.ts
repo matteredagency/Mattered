@@ -9,6 +9,7 @@ export default class ChatBox {
   messagesWrapper: HTMLDivElement;
   experience: MatteredExperience;
   chatWindow: HTMLDivElement;
+  textArea: HTMLDivElement;
 
   constructor() {
     this.messagesElement = document.getElementById(
@@ -32,6 +33,7 @@ export default class ChatBox {
       "messages-wrapper"
     ) as HTMLDivElement;
 
+    this.textArea = document.getElementById("text") as HTMLDivElement;
     this.experience = new MatteredExperience();
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
@@ -187,14 +189,15 @@ export default class ChatBox {
     setTimeout(() => {
       this.experience.clock.start();
       setTimeout(() => {
-        this.chatWindow!.remove();
+        this.chatWindow!.style.display = "none";
+        this.messagesWrapper.remove();
+        this.textArea.remove();
       }, 1000);
     }, 500);
   }
 
   chatFall() {
     const currentWindowHeight = window.screen.height;
-    const textArea = document.getElementById("text");
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
     const messagesScroll = document.getElementById("messages");
@@ -210,16 +213,16 @@ export default class ChatBox {
     }px)`;
     //@ts-ignore
     mattteredLogo!.style.opacity = "0";
-    textArea!.style.transform = `translate(0, ${
-      currentWindowHeight - textArea!.getBoundingClientRect().top
+    this.textArea!.style.transform = `translate(0, ${
+      currentWindowHeight - this.textArea!.getBoundingClientRect().top
     }px)`;
-    textArea!.style.overflow = "inherit";
+    this.textArea!.style.overflow = "inherit";
 
     messagesArea!.classList.add("messages-fall");
     messagesArea!.style.backgroundColor = "rgba(243, 243, 243, 0)";
     messagesScroll!.style.backgroundColor = "rgba(255, 255, 255, 0)";
-    textArea!.style.backgroundColor = "rgba(255, 255, 255, 0)";
-    textArea!.style.border = "none";
+    this.textArea!.style.backgroundColor = "rgba(255, 255, 255, 0)";
+    this.textArea!.style.border = "none";
 
     messagesArea!.style.transform = `translate(0, ${
       currentWindowHeight - messagesArea!.getBoundingClientRect().top + 75

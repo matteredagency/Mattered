@@ -112,6 +112,14 @@ tbody > tr:nth-child(even) {
   transition: background 0.25s ease-in;
 }
 
+.window-section {
+  clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%);
+}
+
+.window-section-inner {
+  clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%);
+}
+
 .received {
   align-self: flex-start;
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%);
@@ -234,7 +242,6 @@ tbody > tr:nth-child(even) {
   flex: 1;
   z-index: 10;
   transition: background-color 0.25s ease-out, transform 1s ease-in;
-  clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%);
   background-color: rgba(243, 243, 243, 1);
 }
 
@@ -249,7 +256,6 @@ tbody > tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 1);
   flex-flow: column-reverse;
   justify-content: end;
-  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
   transition: background-color 0.25s ease-out, transform 1s ease-in;
 }
 
