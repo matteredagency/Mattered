@@ -10,6 +10,7 @@ export default class Space {
   venus?: THREE.Group;
   currentPlanet!: Planet | null;
   asteroids!: Asteroids | null;
+  rotatingPlanets!: Planet[];
   experience: MatteredExperience;
   constructor() {
     this.experience = new MatteredExperience();
@@ -24,6 +25,7 @@ export default class Space {
     this.paperPlane.scale.set(0.3, 0.3, 0.3);
     this.paperPlane.rotateY(-Math.PI * 0.7);
     this.experience.scene.add(this.paperPlane);
+    this.rotatingPlanets = [];
   }
   init() {
     this.currentPlanet = null;
@@ -32,5 +34,16 @@ export default class Space {
 
   resetPlaneSize() {
     this.paperPlane.scale.set(0.15, 0.15, 0.15);
+  }
+
+  setRotatingPlanets() {
+    this.rotatingPlanets = Object.entries(
+      this.experience.sceneController.sceneSubjects
+    )
+      .filter(
+        ([key, _]) =>
+          key !== "asteroids" && !key.includes("text") && key !== "saturn"
+      )
+      .map(([_, subject]) => subject) as Planet[];
   }
 }

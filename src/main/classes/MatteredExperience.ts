@@ -75,6 +75,8 @@ export default class MatteredExperience {
     this.sceneController = new SceneController();
     this.camera = new Camera();
 
+    this.spaceObjects.setRotatingPlanets();
+
     this.planeController = new PlaneController();
 
     this.scene.background =
@@ -110,6 +112,7 @@ export default class MatteredExperience {
       this.update();
     });
     this.rendererInstance?.update();
+    this.spaceObjects.rotatingPlanets.forEach((planet) => planet.rotate());
   }
 
   endExperience() {
