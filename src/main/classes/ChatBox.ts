@@ -1,17 +1,23 @@
 import MatteredExperience from "./MatteredExperience";
 
 export default class ChatBox {
-  messagesElement: HTMLElement;
-  textOptionSpanElements: NodeListOf<Element>;
-  responseBox: HTMLInputElement;
-  sendButton: HTMLButtonElement;
-  typingElement: HTMLDivElement;
-  messagesWrapper: HTMLDivElement;
-  experience: MatteredExperience;
-  chatWindow: HTMLDivElement;
-  textArea: HTMLDivElement;
-
+  messagesElement!: HTMLElement;
+  textOptionSpanElements!: NodeListOf<Element>;
+  responseBox!: HTMLInputElement;
+  sendButton!: HTMLButtonElement;
+  typingElement!: HTMLDivElement;
+  messagesWrapper!: HTMLDivElement;
+  experience!: MatteredExperience;
+  chatWindow!: HTMLDivElement;
+  textArea!: HTMLDivElement;
+  matteredLogo!: HTMLElement;
+  static instance: ChatBox;
+  endStatWrappers!: HTMLDivElement[];
   constructor() {
+    if (ChatBox.instance) {
+      return ChatBox.instance;
+    }
+    ChatBox.instance = this;
     this.messagesElement = document.getElementById(
       "messages-scroll"
     ) as HTMLElement;
@@ -32,7 +38,7 @@ export default class ChatBox {
     this.messagesWrapper = document.getElementById(
       "messages-wrapper"
     ) as HTMLDivElement;
-
+    this.matteredLogo = document.getElementById("mattered-logo") as HTMLElement;
     this.textArea = document.getElementById("text") as HTMLDivElement;
     this.experience = new MatteredExperience();
     this.typingElement = document.createElement("div");
@@ -40,6 +46,31 @@ export default class ChatBox {
     this.typingElement.classList.add("typing");
     for (let i = 0; i < 3; i++) {
       this.typingElement.appendChild(document.createElement("div"));
+    }
+
+    this.endStatWrappers = [];
+
+    for (let i = 0; i < 3; i++) {
+      const endStatWrapper = document.createElement("div");
+      const endStatWrapperInner = document.createElement("div");
+      const sectionLabel = document.createElement("h3");
+      endStatWrapperInner.appendChild(sectionLabel);
+      endStatWrapper.appendChild(endStatWrapperInner);
+
+      endStatWrapper.classList.add("window-section");
+      endStatWrapperInner.classList.add("window-section-inner");
+      let message = "";
+      if (i === 0) {
+        message = "Total trip duration:";
+      } else if (i === 1) {
+        message = "Favorite stop:";
+      } else {
+        message = "Breakdown:";
+      }
+
+      sectionLabel.innerText = message;
+
+      this.endStatWrappers.push(endStatWrapper);
     }
   }
 
@@ -145,11 +176,7 @@ export default class ChatBox {
       } else if (this.responseBox.value) {
         this.addMessageToMessages(this.responseBox.value, false);
         this.sendButton.style.backgroundColor = "#f2f2f2";
-        console.log(
-          `https://www.mattered.com/${
-            this.responseBox.value === "Contact" ? "contact" : ""
-          }`
-        );
+
         setTimeout(() => {
           window.location.href = `https://www.mattered.com/${
             this.responseBox.value === "Contact" ? "contact/" : ""
@@ -190,6 +217,9 @@ export default class ChatBox {
       this.experience.clock.start();
       setTimeout(() => {
         this.chatWindow!.style.display = "none";
+        this.chatWindow!.style.opacity = "0";
+        this.matteredLogo.style.transform = "translate(0, 0)";
+        this.matteredLogo.style.opacity = "1";
         this.messagesWrapper.remove();
         this.textArea.remove();
       }, 1000);
@@ -201,18 +231,17 @@ export default class ChatBox {
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
     const messagesScroll = document.getElementById("messages");
-    const mattteredLogo = document.getElementById("mattered-logo");
     const privacyTerms = document.getElementById("privacy-terms");
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", "#000000");
 
     //@ts-ignore
-    mattteredLogo!.style.transform = `translate(0, ${
-      -mattteredLogo!.getBoundingClientRect().top - 50
+    this.matteredLogo!.style.transform = `translate(0, ${
+      -this.matteredLogo!.getBoundingClientRect().top - 50
     }px)`;
     //@ts-ignore
-    mattteredLogo!.style.opacity = "0";
+    this.matteredLogo!.style.opacity = "0";
     this.textArea!.style.transform = `translate(0, ${
       currentWindowHeight - this.textArea!.getBoundingClientRect().top
     }px)`;
@@ -246,5 +275,11 @@ export default class ChatBox {
       //@ts-ignore
       element.style.transform = `rotate(${rotation}deg)`;
     });
+  }
+
+  setEndStats() {
+    this.endStatWrappers.forEach((wrapper) =>
+      this.chatWindow.appendChild(wrapper)
+    );
   }
 }
