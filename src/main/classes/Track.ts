@@ -132,4 +132,15 @@ export default class Track {
     this.experience.lights.planeLight.position.x = currentPlanePosition.x;
     this.experience.lights.planeLight.position.z = currentPlanePosition.z;
   }
+
+  autoEnd(currentTime: number) {
+    const currentPlanePosition = this.planePath.getPointAt(
+      lerp(0.82, 1, scalePercent(0, 1, currentTime / 3))
+    );
+
+    this.experience.spaceObjects.paperPlane.position.x = currentPlanePosition.x;
+    this.experience.spaceObjects.paperPlane.position.z = currentPlanePosition.z;
+    this.experience.lights.planeLight.position.x = currentPlanePosition.x;
+    this.experience.lights.planeLight.position.z = currentPlanePosition.z;
+  }
 }

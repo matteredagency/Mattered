@@ -12,6 +12,7 @@ import PlaneController from "./PlaneController";
 import Assets from "./Assets";
 import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
+import ChatBox from "./ChatBox";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -31,8 +32,11 @@ export default class MatteredExperience {
   planeController!: PlaneController;
   restartButton!: HTMLButtonElement;
   statsTable!: HTMLTableElement;
+  chatBox!: ChatBox;
   assets!: Assets;
   audio!: HTMLAudioElement;
+  experienceEnded!: boolean;
+  stopTime!: number;
   constructor(canvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -48,12 +52,13 @@ export default class MatteredExperience {
     this.statsTable = document.getElementById(
       "stats-table"
     ) as HTMLTableElement;
-
-    this.restartButton.addEventListener("click", () => this.resetExperience());
+    this.chatBox = new ChatBox();
     this.scene = new THREE.Scene();
     // this.gui = new GUI();
 
     // this.gui.domElement.parentElement?.style.zIndex = "100";
+    this.experienceEnded = false;
+    this.stopTime = 0;
     this.init();
   }
 
@@ -100,6 +105,9 @@ export default class MatteredExperience {
       this.controls.activateControls();
       this.scrollInstructions.fadeIn();
     }
+    if (this.experienceEnded) {
+      this.track.autoEnd(elapsedTime - this.stopTime);
+    }
   }
 
   update() {
@@ -116,6 +124,8 @@ export default class MatteredExperience {
   }
 
   endExperience() {
+    this.experienceEnded = true;
+    this.stopTime = this.clock.getElapsedTime();
     if (this.controls.scrollContainer) {
       this.controls.scrollContainer.style.overflowY = "hidden";
     }
@@ -127,8 +137,9 @@ export default class MatteredExperience {
   endSceneTransitions() {
     this.canvas.classList.add("fade-out");
 
-    this.statsTable.style.display = "table";
-    document.body.appendChild(this.restartButton);
+    this.chatBox.chatWindow.style.display = "flex";
+    this.chatBox.chatWindow.style.backgroundColor = "rgba(225, 225, 225, 1)";
+    this.chatBox.setEndStats();
     setTimeout(() => {
       this.scene.remove.apply(
         this.scene,
@@ -148,7 +159,7 @@ export default class MatteredExperience {
       this.lights.sun.position.setX(229);
       this.lights.ambientLight.intensity = 0.5;
       this.restartButton.classList.add("fade-in");
-      this.statsTable.classList.add("fade-in");
+      this.chatBox.chatWindow.classList.add("fade-in");
 
       planeLight.position.setY(15);
 
@@ -159,12 +170,10 @@ export default class MatteredExperience {
   resetExperience() {
     this.restartButton.classList.remove("fade-in");
     this.canvas.classList.remove("fade-in");
-    this.statsTable.classList.remove("fade-in");
 
     setTimeout(() => {
       this.clock.elapsedTime = 0;
-      this.statsTable.children[1].innerHTML =
-        "<tr><th>Name</th><th>Time</th><th>%</th></tr>";
+
       this.canvas.classList.add("fade-in");
       this.sceneController.resetSceneController();
       this.spaceObjects.resetPlaneSize();
@@ -181,36 +190,36 @@ export default class MatteredExperience {
   setEndStats() {
     const totalExperienceSeconds = Math.round(this.clock.getElapsedTime());
 
-    const tableBody = document.querySelector("tbody") as HTMLElement;
-    const totalTimeColumn = document.getElementById(
-      "total-time"
-    ) as HTMLElement;
+    // const tableBody = document.querySelector("tbody") as HTMLElement;
+    // const totalTimeColumn = document.getElementById(
+    //   "total-time"
+    // ) as HTMLElement;
 
-    Object.entries(this.sceneController.sceneTime).forEach(([name, time]) => {
-      time = Math.round(time);
-      const newRow = document.createElement("tr");
+    // Object.entries(this.sceneController.sceneTime).forEach(([name, time]) => {
+    //   time = Math.round(time);
+    //   const newRow = document.createElement("tr");
 
-      const nameData = document.createElement("td");
-      const timeData = document.createElement("td");
-      const percentData = document.createElement("td");
+    //   const nameData = document.createElement("td");
+    //   const timeData = document.createElement("td");
+    //   const percentData = document.createElement("td");
 
-      nameData.innerText = name[0].toUpperCase() + name.substring(1);
-      timeData.innerText = this.formatTimeStatement(time, true);
-      percentData.innerText = Math.round(
-        (time / totalExperienceSeconds) * 100
-      ).toString();
+    //   nameData.innerText = name[0].toUpperCase() + name.substring(1);
+    //   timeData.innerText = this.formatTimeStatement(time, true);
+    //   percentData.innerText = Math.round(
+    //     (time / totalExperienceSeconds) * 100
+    //   ).toString();
 
-      newRow.appendChild(nameData);
-      newRow.appendChild(timeData);
-      newRow.appendChild(percentData);
+    //   newRow.appendChild(nameData);
+    //   newRow.appendChild(timeData);
+    //   newRow.appendChild(percentData);
 
-      tableBody.appendChild(newRow);
-    });
+    //   tableBody.appendChild(newRow);
+    // });
 
-    totalTimeColumn.innerText = this.formatTimeStatement(
-      totalExperienceSeconds,
-      false
-    );
+    // totalTimeColumn.innerText = this.formatTimeStatement(
+    //   totalExperienceSeconds,
+    //   false
+    // );
   }
 
   formatTimeStatement(totalSeconds: number, shortened: boolean) {

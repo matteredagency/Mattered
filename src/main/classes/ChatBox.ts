@@ -1,22 +1,28 @@
 import MatteredExperience from "./MatteredExperience";
 
 export default class ChatBox {
-  messagesElement: HTMLElement;
-  textOptionSpanElements: NodeListOf<Element>;
-  responseBox: HTMLInputElement;
-  sendButton: HTMLButtonElement;
-  typingElement: HTMLDivElement;
-  messagesWrapper: HTMLDivElement;
-  experience: MatteredExperience;
-  chatWindow: HTMLDivElement;
-
+  messagesElement!: HTMLElement;
+  textOptionSpanElements!: NodeListOf<Element>;
+  responseBox!: HTMLInputElement;
+  sendButton!: HTMLButtonElement;
+  typingElement!: HTMLDivElement;
+  messagesWrapper!: HTMLDivElement;
+  experience!: MatteredExperience;
+  chatWindow!: HTMLDivElement;
+  textArea!: HTMLDivElement;
+  matteredLogo!: HTMLElement;
+  static instance: ChatBox;
   constructor() {
+    if (ChatBox.instance) {
+      return ChatBox.instance;
+    }
+    ChatBox.instance = this;
     this.messagesElement = document.getElementById(
       "messages-scroll"
     ) as HTMLElement;
 
     this.textOptionSpanElements = document.querySelectorAll(
-      "button.text-option > span"
+      "#text > button.text-option > span"
     );
 
     this.responseBox = document.querySelector(
@@ -31,7 +37,8 @@ export default class ChatBox {
     this.messagesWrapper = document.getElementById(
       "messages-wrapper"
     ) as HTMLDivElement;
-
+    this.matteredLogo = document.getElementById("mattered-logo") as HTMLElement;
+    this.textArea = document.getElementById("text") as HTMLDivElement;
     this.experience = new MatteredExperience();
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
@@ -183,39 +190,42 @@ export default class ChatBox {
     setTimeout(() => {
       this.experience.clock.start();
       setTimeout(() => {
-        this.chatWindow!.remove();
+        this.chatWindow!.style.display = "none";
+        this.chatWindow!.style.opacity = "0";
+        this.matteredLogo.style.transform = "translate(0, 0)";
+        this.matteredLogo.style.opacity = "1";
+        this.messagesWrapper.remove();
+        this.textArea.remove();
       }, 1000);
     }, 500);
   }
 
   chatFall() {
     const currentWindowHeight = window.screen.height;
-    const textArea = document.getElementById("text");
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
     const messagesScroll = document.getElementById("messages");
-    const mattteredLogo = document.getElementById("mattered-logo");
     const privacyTerms = document.getElementById("privacy-terms");
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", "#000000");
 
     //@ts-ignore
-    mattteredLogo!.style.transform = `translate(0, ${
-      -mattteredLogo!.getBoundingClientRect().top - 50
+    this.matteredLogo!.style.transform = `translate(0, ${
+      -this.matteredLogo!.getBoundingClientRect().top - 50
     }px)`;
     //@ts-ignore
-    mattteredLogo!.style.opacity = "0";
-    textArea!.style.transform = `translate(0, ${
-      currentWindowHeight - textArea!.getBoundingClientRect().top
+    this.matteredLogo!.style.opacity = "0";
+    this.textArea!.style.transform = `translate(0, ${
+      currentWindowHeight - this.textArea!.getBoundingClientRect().top
     }px)`;
-    textArea!.style.overflow = "inherit";
+    this.textArea!.style.overflow = "inherit";
 
     messagesArea!.classList.add("messages-fall");
     messagesArea!.style.backgroundColor = "rgba(243, 243, 243, 0)";
     messagesScroll!.style.backgroundColor = "rgba(255, 255, 255, 0)";
-    textArea!.style.backgroundColor = "rgba(255, 255, 255, 0)";
-    textArea!.style.border = "none";
+    this.textArea!.style.backgroundColor = "rgba(255, 255, 255, 0)";
+    this.textArea!.style.border = "none";
 
     messagesArea!.style.transform = `translate(0, ${
       currentWindowHeight - messagesArea!.getBoundingClientRect().top + 75
@@ -239,5 +249,13 @@ export default class ChatBox {
       //@ts-ignore
       element.style.transform = `rotate(${rotation}deg)`;
     });
+  }
+
+  setEndStats() {
+    document.querySelectorAll(".end-section").forEach((node) => {
+      node.classList.remove("end-section");
+    });
+
+    document.getElementById("end-text")!.style.display = "flex";
   }
 }
