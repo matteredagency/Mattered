@@ -125,6 +125,7 @@ tbody > tr:nth-child(even) {
   flex-flow: column nowrap;
   padding: 32px;
   background-color: white;
+  gap: 18px;
   align-items: center;
   clip-path: polygon(0 0, calc(100% - 25px) 0, 100% 25px, 100% 100%, 0 100%);
 }
@@ -271,6 +272,30 @@ tbody > tr:nth-child(even) {
 
 #end-text > .text-option:nth-child(1) > svg > g > path {
   fill: white;
+}
+#time-stats {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100%;
+}
+
+.time-stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+}
+
+.time-stat > span:nth-child(1) {
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.time-stat > span:nth-child(2) {
+  font-size: 13px;
+  line-height: 13px;
 }
 
 #messages-wrapper {
