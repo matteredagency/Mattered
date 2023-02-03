@@ -12,7 +12,6 @@ export default class ChatBox {
   textArea!: HTMLDivElement;
   matteredLogo!: HTMLElement;
   static instance: ChatBox;
-  endStatWrappers!: HTMLDivElement[];
   constructor() {
     if (ChatBox.instance) {
       return ChatBox.instance;
@@ -23,7 +22,7 @@ export default class ChatBox {
     ) as HTMLElement;
 
     this.textOptionSpanElements = document.querySelectorAll(
-      "button.text-option > span"
+      "#text > button.text-option > span"
     );
 
     this.responseBox = document.querySelector(
@@ -46,31 +45,6 @@ export default class ChatBox {
     this.typingElement.classList.add("typing");
     for (let i = 0; i < 3; i++) {
       this.typingElement.appendChild(document.createElement("div"));
-    }
-
-    this.endStatWrappers = [];
-
-    for (let i = 0; i < 3; i++) {
-      const endStatWrapper = document.createElement("div");
-      const endStatWrapperInner = document.createElement("div");
-      const sectionLabel = document.createElement("h3");
-      endStatWrapperInner.appendChild(sectionLabel);
-      endStatWrapper.appendChild(endStatWrapperInner);
-
-      endStatWrapper.classList.add("window-section");
-      endStatWrapperInner.classList.add("window-section-inner");
-      let message = "";
-      if (i === 0) {
-        message = "Total trip duration:";
-      } else if (i === 1) {
-        message = "Favorite stop:";
-      } else {
-        message = "Breakdown:";
-      }
-
-      sectionLabel.innerText = message;
-
-      this.endStatWrappers.push(endStatWrapper);
     }
   }
 
@@ -278,8 +252,10 @@ export default class ChatBox {
   }
 
   setEndStats() {
-    this.endStatWrappers.forEach((wrapper) =>
-      this.chatWindow.appendChild(wrapper)
-    );
+    document.querySelectorAll(".end-section").forEach((node) => {
+      node.classList.remove("end-section");
+    });
+
+    document.getElementById("end-text")!.style.display = "flex";
   }
 }

@@ -249,6 +249,16 @@ tbody > tr:nth-child(even) {
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 10px 100%);
 }
 
+#end-text > .text-option {
+  height: 43px;
+  width: 100%;
+  opacity: 1 !important;
+}
+
+#end-text > .text-option:nth-last-of-type() > svg {
+  stroke: black;
+}
+
 #messages-wrapper {
   height: 35%;
   padding: 1px 1px 0px 1px;
@@ -442,6 +452,18 @@ tbody > tr:nth-child(even) {
   justify-content: space-between;
   transition: transform 0.5s ease-in;
   padding: 4px;
+}
+
+#end-text {
+  display: none;
+  flex-flow: column nowrap;
+  height: fit-content;
+  width: 90%;
+  max-width: 970px;
+}
+
+.end-section {
+  display: none !important;
 }
 
 #text-box > input {
