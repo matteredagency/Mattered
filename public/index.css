@@ -273,14 +273,30 @@ tbody > tr:nth-child(even) {
 #end-text > .text-option:nth-child(1) > svg > g > path {
   fill: white;
 }
+
+.time-stat-internal-width {
+  width: 100%;
+  max-width: 300px;
+}
+
 #time-stats {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   height: fit-content;
-  width: 100%;
 }
 
+#favorite-stop {
+}
+
+.window-section-inner > button {
+  background: none;
+  font-size: 13px;
+  display: flex;
+  flex-flow: row nowrap;
+  outline: none;
+  border: none;
+}
 .time-stat {
   display: flex;
   justify-content: center;
