@@ -28,22 +28,11 @@ html {
 }
 
 #stats-table {
-  display: none;
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translate(-50%);
-  width: 90%;
-  height: 35%;
-  max-height: 300px;
-  max-width: 500px;
-  z-index: 3;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  display: table;
+  width: 100%;
+  color: black;
+  height: fit-content;
   border-spacing: 0;
-  min-height: 300px;
-  opacity: 0;
-  transition: opacity 1s ease-in;
   padding: 10px;
 }
 
@@ -55,28 +44,8 @@ tbody > tr:nth-child(1) {
   font-size: 15px;
 }
 
-thead::after {
-  content: "";
-  display: block;
-  height: 10px;
-  width: 100%;
-  background: transparent;
-}
-
-tfoot::before {
-  content: "";
-  display: block;
-  height: 10px;
-  width: 100%;
-  background: transparent;
-}
-
 #stats-table > thead > th {
   padding: 10px;
-}
-
-tbody > tr:nth-child(even) {
-  background: rgba(50, 50, 50, 0.5);
 }
 
 #restart-button {
@@ -284,6 +253,18 @@ tbody > tr:nth-child(even) {
   flex-flow: row nowrap;
   justify-content: space-between;
   height: fit-content;
+}
+
+#end-stat-scroll-wrapper {
+  height: auto;
+  width: 100%;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+#end-stat-scroll {
+  height: fit-content;
+  width: 100%;
 }
 
 #favorite-stop {
@@ -733,9 +714,6 @@ nav > a > svg {
     margin-left: 5%;
   }
 
-  #stats-table {
-    top: 60px;
-  }
   #overview-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;

@@ -190,36 +190,36 @@ export default class MatteredExperience {
   setEndStats() {
     const totalExperienceSeconds = Math.round(this.clock.getElapsedTime());
 
-    // const tableBody = document.querySelector("tbody") as HTMLElement;
-    // const totalTimeColumn = document.getElementById(
-    //   "total-time"
-    // ) as HTMLElement;
+    const tableBody = document.querySelector("tbody") as HTMLElement;
+    const totalTimeColumn = document.getElementById(
+      "total-time"
+    ) as HTMLElement;
 
-    // Object.entries(this.sceneController.sceneTime).forEach(([name, time]) => {
-    //   time = Math.round(time);
-    //   const newRow = document.createElement("tr");
+    Object.entries(this.sceneController.sceneTime).forEach(([name, time]) => {
+      time = Math.round(time);
+      const newRow = document.createElement("tr");
 
-    //   const nameData = document.createElement("td");
-    //   const timeData = document.createElement("td");
-    //   const percentData = document.createElement("td");
+      const nameData = document.createElement("td");
+      const timeData = document.createElement("td");
+      const percentData = document.createElement("td");
 
-    //   nameData.innerText = name[0].toUpperCase() + name.substring(1);
-    //   timeData.innerText = this.formatTimeStatement(time, true);
-    //   percentData.innerText = Math.round(
-    //     (time / totalExperienceSeconds) * 100
-    //   ).toString();
+      nameData.innerText = name[0].toUpperCase() + name.substring(1);
+      timeData.innerText = this.formatTimeStatement(time, true);
+      percentData.innerText = Math.round(
+        (time / totalExperienceSeconds) * 100
+      ).toString();
 
-    //   newRow.appendChild(nameData);
-    //   newRow.appendChild(timeData);
-    //   newRow.appendChild(percentData);
+      newRow.appendChild(nameData);
+      newRow.appendChild(timeData);
+      newRow.appendChild(percentData);
 
-    //   tableBody.appendChild(newRow);
-    // });
+      tableBody.appendChild(newRow);
+    });
 
-    // totalTimeColumn.innerText = this.formatTimeStatement(
-    //   totalExperienceSeconds,
-    //   false
-    // );
+    totalTimeColumn.innerText = this.formatTimeStatement(
+      totalExperienceSeconds,
+      false
+    );
   }
 
   formatTimeStatement(totalSeconds: number, shortened: boolean) {
