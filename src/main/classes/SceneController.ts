@@ -112,16 +112,18 @@ export default class SceneController {
   }
 
   trackSceneTime(currentPercent: number) {
-    if (currentPercent >= 0 && currentPercent < 0.08) {
+    if (currentPercent >= 0.004 && currentPercent < 0.05) {
       this.trackSceneSubject("venus");
-    } else if (currentPercent >= 0.15 && currentPercent < 0.21) {
+    } else if (currentPercent >= 0.06 && currentPercent < 0.12) {
       this.trackSceneSubject("earth");
-    } else if (currentPercent >= 0.33 && currentPercent < 0.41) {
+    } else if (currentPercent >= 0.13 && currentPercent < 0.18) {
       this.trackSceneSubject("mars");
-    } else if (currentPercent >= 0.5 && currentPercent < 0.63) {
+    } else if (currentPercent >= 0.19 && currentPercent < 0.35) {
       this.trackSceneSubject("jupiter");
-    } else if (currentPercent >= 0.66 && currentPercent < 0.8) {
+    } else if (currentPercent >= 0.42 && currentPercent < 0.56) {
       this.trackSceneSubject("asteroids");
+    } else if (currentPercent >= 0.56 && currentPercent < 0.75) {
+      this.trackSceneSubject("saturn");
     } else {
       if (this.currentSubject) {
         this.sceneClock.stop();
