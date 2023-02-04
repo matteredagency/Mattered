@@ -93,7 +93,6 @@ export default class Track {
   }
 
   updatePlanePosition(currentPercent: number) {
-    console.log(currentPercent);
     const currentPlanePosition = this.planePath.getPointAt(currentPercent);
 
     this.currentPlanePercent = currentPercent;
