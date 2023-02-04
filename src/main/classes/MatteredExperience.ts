@@ -204,7 +204,7 @@ export default class MatteredExperience {
       const percentData = document.createElement("td");
 
       nameData.innerText = name[0].toUpperCase() + name.substring(1);
-      timeData.innerText = this.formatTimeStatement(time, true);
+      timeData.innerText = this.formatTimeStatement(time);
       percentData.innerText =
         Math.round((time / totalExperienceSeconds) * 100).toString() + "%";
 
@@ -216,31 +216,20 @@ export default class MatteredExperience {
     });
 
     totalTimeColumn.innerText = this.formatTimeStatement(
-      totalExperienceSeconds,
-      false
+      totalExperienceSeconds
     );
   }
 
-  formatTimeStatement(totalSeconds: number, shortened: boolean) {
-    const minutes = Math.floor(totalSeconds / 60);
+  formatTimeStatement(totalSeconds: number) {
+    const totalMinutes = Math.floor(totalSeconds / 60);
+
     const remainingSeconds = totalSeconds % 60;
-    let timeString = "";
 
-    if (minutes > 0) {
-      const minuteDenominator = shortened
-        ? "m"
-        : `minute${minutes > 1 ? "s" : ""}`;
-
-      timeString += `${minutes} ${minuteDenominator}, `;
-    }
-
-    const secondDenominator = shortened
-      ? "s"
-      : `second${remainingSeconds > 1 ? "s" : ""}`;
-
-    timeString += `${remainingSeconds} ${secondDenominator}`;
-
-    return timeString;
+    return `${
+      totalMinutes >= 10 || totalMinutes === 0
+        ? totalMinutes
+        : "0" + totalMinutes
+    }:${remainingSeconds >= 10 ? remainingSeconds : "0" + remainingSeconds}`;
   }
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
