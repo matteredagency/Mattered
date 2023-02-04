@@ -205,9 +205,8 @@ export default class MatteredExperience {
 
       nameData.innerText = name[0].toUpperCase() + name.substring(1);
       timeData.innerText = this.formatTimeStatement(time, true);
-      percentData.innerText = Math.round(
-        (time / totalExperienceSeconds) * 100
-      ).toString();
+      percentData.innerText =
+        Math.round((time / totalExperienceSeconds) * 100).toString() + "%";
 
       newRow.appendChild(nameData);
       newRow.appendChild(timeData);

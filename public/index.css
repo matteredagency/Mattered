@@ -40,12 +40,16 @@ tbody {
   text-align: left;
 }
 
-tbody > tr:nth-child(1) {
-  font-size: 15px;
+tbody > tr {
+  font-size: 13px;
 }
 
-#stats-table > thead > th {
-  padding: 10px;
+tfoot > tr {
+  font-size: 13px;
+}
+
+tfoot > tr {
+  font-weight: 700;
 }
 
 #restart-button {
