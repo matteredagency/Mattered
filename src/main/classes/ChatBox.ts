@@ -281,9 +281,21 @@ export default class ChatBox {
       "total-time"
     ) as HTMLElement;
 
+    const {
+      hours: totalHours,
+      minutes: totalMinutes,
+      seconds: totalSeconds,
+    } = this.getHoursMinuteSeconds(totalExperienceSeconds);
+
     Object.entries(this.experience.sceneController.sceneTime).forEach(
       ([name, time]) => {
         time = Math.round(time);
+        const {
+          hours: subjectHours,
+          minutes: subjectMinutes,
+          seconds: subjectSeconds,
+        } = this.getHoursMinuteSeconds(time);
+
         const newRow = document.createElement("tr");
 
         const nameData = document.createElement("td");
@@ -291,7 +303,10 @@ export default class ChatBox {
         const percentData = document.createElement("td");
 
         nameData.innerText = name[0].toUpperCase() + name.substring(1);
-        timeData.innerText = this.formatTimeStatement(time);
+        timeData.innerText = this.formatTimeStatement(
+          subjectHours * 60 + subjectMinutes,
+          subjectSeconds
+        );
         percentData.innerText =
           Math.round((time / totalExperienceSeconds) * 100).toString() + "%";
 
@@ -304,20 +319,25 @@ export default class ChatBox {
     );
 
     totalTimeColumn.innerText = this.formatTimeStatement(
-      totalExperienceSeconds
+      totalHours * 60 + totalMinutes,
+      totalSeconds
     );
   }
 
-  formatTimeStatement(totalSeconds: number) {
-    const totalMinutes = Math.floor(totalSeconds / 60);
+  getHoursMinuteSeconds(totalSeconds: number) {
+    const remainingSeconds = totalSeconds % 3600;
 
-    const remainingSeconds = totalSeconds % 60;
+    return {
+      hours: Math.floor(totalSeconds / 3600),
+      minutes: Math.floor(remainingSeconds / 60),
+      seconds: remainingSeconds % 60,
+    };
+  }
 
-    return `${
-      totalMinutes >= 10 || totalMinutes === 0
-        ? totalMinutes
-        : "0" + totalMinutes
-    }:${remainingSeconds >= 10 ? remainingSeconds : "0" + remainingSeconds}`;
+  formatTimeStatement(minutes: number, seconds: number) {
+    return `${minutes >= 10 || minutes === 0 ? minutes : "0" + minutes}:${
+      seconds >= 10 ? seconds : "0" + seconds
+    }`;
   }
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
