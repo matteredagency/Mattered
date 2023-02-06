@@ -257,5 +257,56 @@ export default class ChatBox {
     });
 
     document.getElementById("end-text")!.style.display = "flex";
+
+    const totalExperienceSeconds = Math.round(
+      this.experience.clock.getElapsedTime()
+    );
+
+    const tableBody = document.querySelector("tbody") as HTMLElement;
+    const totalTimeColumn = document.getElementById(
+      "total-time"
+    ) as HTMLElement;
+
+    Object.entries(this.experience.sceneController.sceneTime).forEach(
+      ([name, time]) => {
+        time = Math.round(time);
+        const newRow = document.createElement("tr");
+
+        const nameData = document.createElement("td");
+        const timeData = document.createElement("td");
+        const percentData = document.createElement("td");
+
+        nameData.innerText = name[0].toUpperCase() + name.substring(1);
+        timeData.innerText = this.formatTimeStatement(time);
+        percentData.innerText =
+          Math.round((time / totalExperienceSeconds) * 100).toString() + "%";
+
+        newRow.appendChild(nameData);
+        newRow.appendChild(timeData);
+        newRow.appendChild(percentData);
+
+        tableBody.appendChild(newRow);
+      }
+    );
+
+    totalTimeColumn.innerText = this.formatTimeStatement(
+      totalExperienceSeconds
+    );
+  }
+
+  formatTimeStatement(totalSeconds: number) {
+    const totalMinutes = Math.floor(totalSeconds / 60);
+
+    const remainingSeconds = totalSeconds % 60;
+
+    return `${
+      totalMinutes >= 10 || totalMinutes === 0
+        ? totalMinutes
+        : "0" + totalMinutes
+    }:${remainingSeconds >= 10 ? remainingSeconds : "0" + remainingSeconds}`;
+  }
+
+  getSubjectPercentage(subjectTime: number, totalSeconds: number) {
+    return Math.round((subjectTime / totalSeconds) * 100);
   }
 }
