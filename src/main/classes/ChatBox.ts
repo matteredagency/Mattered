@@ -11,6 +11,9 @@ export default class ChatBox {
   chatWindow!: HTMLDivElement;
   textArea!: HTMLDivElement;
   matteredLogo!: HTMLElement;
+  endStatsWrapper!: HTMLDivElement;
+  privacyTerms!: HTMLDivElement;
+
   static instance: ChatBox;
   constructor() {
     if (ChatBox.instance) {
@@ -25,6 +28,10 @@ export default class ChatBox {
       "#text > button.text-option > span"
     );
 
+    this.privacyTerms = document.getElementById(
+      "privacy-terms"
+    ) as HTMLDivElement;
+
     this.responseBox = document.querySelector(
       "#text-box > input"
     ) as HTMLInputElement;
@@ -37,6 +44,10 @@ export default class ChatBox {
     this.messagesWrapper = document.getElementById(
       "messages-wrapper"
     ) as HTMLDivElement;
+    this.endStatsWrapper = document.getElementById(
+      "end-stat-scroll-wrapper"
+    ) as HTMLDivElement;
+
     this.matteredLogo = document.getElementById("mattered-logo") as HTMLElement;
     this.textArea = document.getElementById("text") as HTMLDivElement;
     this.experience = new MatteredExperience();
@@ -252,9 +263,12 @@ export default class ChatBox {
   }
 
   setEndStats() {
+    this.endStatsWrapper.style.display = "block";
     document.querySelectorAll(".end-section").forEach((node) => {
       node.classList.remove("end-section");
     });
+
+    this.privacyTerms.style.transform = "translate(0, 0)";
 
     document.getElementById("end-text")!.style.display = "flex";
 
