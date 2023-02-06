@@ -607,7 +607,7 @@ p {
   margin: auto;
 }
 
-#scroll-container::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none;
 }
 
