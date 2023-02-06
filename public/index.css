@@ -432,6 +432,7 @@ tfoot > tr {
   color: #2a292c;
   outline: none;
   width: 100%;
+  gap: 10px;
   border: solid 1px #f3f3f3;
   outline: none;
   border-radius: 22px;
@@ -459,7 +460,6 @@ tfoot > tr {
 }
 
 .text-option > svg {
-  margin-right: 15px;
   stroke: #333333;
   stroke-width: 0.25px;
   position: relative;
