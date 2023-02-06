@@ -281,11 +281,27 @@ export default class ChatBox {
       "total-time"
     ) as HTMLElement;
 
-    const {
-      hours: totalHours,
-      minutes: totalMinutes,
-      seconds: totalSeconds,
-    } = this.getHoursMinuteSeconds(totalExperienceSeconds);
+    const totalTimeObject = this.getHoursMinuteSeconds(totalExperienceSeconds);
+
+    const topWindowTimeStatsDiv = document.getElementById(
+      "time-stats"
+    ) as HTMLDivElement;
+
+    Object.entries(totalTimeObject).forEach(([key, value]) => {
+      const timeStatElement = document.createElement("div");
+      const valueSpan = document.createElement("span");
+      const keySpan = document.createElement("span");
+
+      timeStatElement.classList.add("time-stat");
+
+      valueSpan.innerText = value.toString();
+      keySpan.innerText = key;
+
+      timeStatElement.appendChild(valueSpan);
+      timeStatElement.appendChild(keySpan);
+
+      topWindowTimeStatsDiv.appendChild(timeStatElement);
+    });
 
     Object.entries(this.experience.sceneController.sceneTime).forEach(
       ([name, time]) => {
@@ -319,8 +335,8 @@ export default class ChatBox {
     );
 
     totalTimeColumn.innerText = this.formatTimeStatement(
-      totalHours * 60 + totalMinutes,
-      totalSeconds
+      totalTimeObject.hours * 60 + totalTimeObject.minutes,
+      totalTimeObject.seconds
     );
   }
 
