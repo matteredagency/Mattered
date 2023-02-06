@@ -147,21 +147,12 @@ export default class MatteredExperience {
           (child) => child.type === "Group" && child.uuid !== "PaperPlane"
         )
       );
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute("content", "#E1E1E1");
 
-      const { planeLight } = this.lights;
-      const { paperPlane } = this.spaceObjects;
-      this.camera.perspectiveCamera.position.setY(5.6);
-      paperPlane.scale.set(0.3, 0.3, 0.3);
-      paperPlane.rotateY(Math.PI * 1.2);
-      planeLight.intensity = 10.5;
-      planeLight.distance = 38;
-      planeLight.decay = 5;
-      this.lights.sun.position.setX(229);
-      this.lights.ambientLight.intensity = 0.5;
       this.restartButton.classList.add("fade-in");
       this.chatBox.chatWindow.classList.add("fade-in");
-
-      planeLight.position.setY(15);
 
       this.canvas.classList.remove("fade-out");
     }, 2500);
