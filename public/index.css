@@ -81,6 +81,7 @@ tfoot > tr {
   display: flex;
   flex-flow: column nowrap;
   background-color: rgba(225, 225, 225, 1);
+  padding: 0 16px 0 16px;
   align-items: center;
   transition: background 0.25s ease-in, opacity 0.25s ease-in;
 }
@@ -269,6 +270,9 @@ tfoot > tr {
 
 #end-stat-scroll {
   height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
   width: 100%;
 }
 
@@ -338,7 +342,7 @@ tfoot > tr {
 
 #text {
   height: fit-content;
-  width: 90%;
+  width: 100%;
   max-width: 970px;
   background-color: rgba(255, 255, 255, 1);
   display: grid;
@@ -502,6 +506,7 @@ tfoot > tr {
   flex-flow: column nowrap;
   height: fit-content;
   width: 100%;
+  align-items: center;
   gap: 10px;
   max-width: 970px;
 }
@@ -703,9 +708,6 @@ nav > a > svg {
 }
 
 @media (max-width: 768px) {
-  #chat-window {
-    padding: 0 16px 0 16px;
-  }
   nav {
     height: 60px;
     padding: 0;
@@ -784,6 +786,7 @@ nav > a > svg {
     height: 100%;
     width: fit-content;
     grid-row: 2;
+    max-width: 500px;
     grid-column: 1;
     padding: 13px 20px 13px 30px;
   }
