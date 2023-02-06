@@ -163,10 +163,10 @@ export default class ChatBox {
         this.sendButton.style.backgroundColor = "#f2f2f2";
 
         setTimeout(() => {
-          window.location.href = `https://www.mattered.com/${
-            this.responseBox.value === "Contact" ? "contact/" : ""
-          }`;
-          return false;
+          (window.location.href = `https://www.mattered.com/${
+            this.responseBox.value === "Contact" ? "contact" : ""
+          }`),
+            true;
         }, 750);
         this.sendButton.setAttribute("disabled", "true");
       }

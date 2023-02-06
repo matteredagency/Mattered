@@ -434,6 +434,7 @@ tfoot > tr {
   width: 100%;
   gap: 10px;
   border: solid 1px #f3f3f3;
+  text-decoration: none;
   outline: none;
   border-radius: 22px;
   flex-flow: row nowrap;
