@@ -18,7 +18,7 @@ export default class MatteredExperience {
   mainScene!: THREE.Scene;
   endScene!: THREE.Scene;
   mainCanvas!: HTMLCanvasElement;
-  camera!: Camera;
+  mainCamera!: Camera;
   sizes?: Sizes;
   mainRenderer!: Renderer;
   secondaryRenderer!: Renderer;
@@ -49,6 +49,8 @@ export default class MatteredExperience {
     this.restartButton.setAttribute("id", "restart-button");
     this.restartButton.innerText = "Travel Again";
 
+    this.mainCamera = new Camera();
+
     this.statsTable = document.getElementById(
       "stats-table"
     ) as HTMLTableElement;
@@ -64,8 +66,14 @@ export default class MatteredExperience {
     await this.assets.loadAssets();
 
     this.sizes = new Sizes();
-    this.mainRenderer = new Renderer(this.mainCanvas);
+
+    this.mainRenderer = new Renderer(
+      this.mainCanvas,
+      this.mainScene,
+      this.mainCamera.perspectiveCamera
+    );
     this.track = new Track();
+    this.mainCamera.setCameraAtStart();
     this.spaceObjects = new Space();
     this.scrollInstructions = new ScrollInstructionsController();
     this.controls = new Controls();
@@ -74,25 +82,30 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
-    this.secondaryRenderer = new Renderer(
-      document.getElementById("favorite-stop-canvas") as HTMLCanvasElement
-    );
+    // this.secondaryRenderer = new Renderer(
+    //   document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
+    //   this.endScene
+    // );
 
+    // this.endScene.add(this.assets.assetsDirectory.objects["Saturn"]);
+    // this.endScene.add(this.mainCamera.perspectiveCamera);
+    this.endScene.background =
+      this.assets.assetsDirectory.textures["backgroundTexture"];
     this.mainSceneController = new SceneController();
-    this.camera = new Camera();
 
+    // this.secondaryRenderer.update();
     this.spaceObjects.setRotatingPlanets();
 
     this.planeController = new PlaneController();
     this.mainScene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
-    this.update();
-
+    this.updateMainScene();
+    // this.updateEndScene();
     // this.mainRenderer.renderer?.setRenderTarget()
   }
 
   resize() {
-    this.camera?.resize();
+    this.mainCamera?.resize();
     this.mainRenderer?.resize();
   }
 
@@ -112,17 +125,24 @@ export default class MatteredExperience {
     }
   }
 
-  update() {
+  updateMainScene() {
     if (this.clock.running) this.timeControl();
 
     if (this.spaceObjects.asteroids) {
       this.spaceObjects.asteroids.rotateAsteroids();
     }
     requestAnimationFrame(() => {
-      this.update();
+      this.updateMainScene();
     });
-    this.mainRenderer?.update();
+    this.mainRenderer.update();
     this.spaceObjects.rotatingPlanets.forEach((planet) => planet.rotate());
+  }
+
+  updateEndScene() {
+    requestAnimationFrame(() => {
+      this.updateEndScene();
+    });
+    this.secondaryRenderer.update();
   }
 
   endExperience() {
@@ -171,7 +191,7 @@ export default class MatteredExperience {
       this.spaceObjects.resetPlaneSize();
       this.lights.resetLights();
       this.controls.resetScroll();
-      this.camera.setCameraAtStart();
+      this.mainCamera.setCameraAtStart();
       this.restartButton.remove();
       setTimeout(() => {
         this.controls.scrollContainer.style.overflowY = "scroll";

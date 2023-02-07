@@ -15,8 +15,6 @@ export default class Camera {
       5,
       2000
     );
-
-    this.setCameraAtStart();
   }
 
   resize() {

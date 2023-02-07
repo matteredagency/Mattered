@@ -3,14 +3,22 @@ import MatteredExperience from "./MatteredExperience";
 
 export default class Renderer {
   experience: MatteredExperience;
-  renderer?: THREE.WebGLRenderer;
-  constructor(canvas: HTMLCanvasElement) {
+  renderer!: THREE.WebGLRenderer;
+  scene!: THREE.Scene;
+  camera!: THREE.PerspectiveCamera;
+  constructor(
+    canvas: HTMLCanvasElement,
+    scene: THREE.Scene,
+    camera: THREE.PerspectiveCamera
+  ) {
     this.experience = new MatteredExperience();
-
+    this.scene = scene;
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       canvas,
     });
+
+    this.camera = camera;
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -28,15 +36,6 @@ export default class Renderer {
   }
 
   update() {
-    if (
-      this.experience?.mainScene &&
-      this.renderer &&
-      this.experience?.camera?.perspectiveCamera
-    ) {
-      this.renderer.render(
-        this.experience.mainScene,
-        this.experience.camera.perspectiveCamera
-      );
-    }
+    this.renderer.render(this.scene, this.camera);
   }
 }
