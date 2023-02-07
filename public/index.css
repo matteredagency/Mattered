@@ -276,7 +276,32 @@ tfoot > tr {
   width: 100%;
 }
 
-#favorite-stop {
+#favorite-stop-section {
+  transition: clip-path 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+#favotrite-stop-section > .window-section-inner:first-child {
+  transition: clip-path 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.favorite-stop-section-expand {
+  clip-path: none !important;
+}
+
+#favorite-stop-canvas {
+  height: 100%;
+  max-height: 150px;
+  background: red;
+  z-index: 100;
+  transform: translate(0, 0);
+  transition: max-width 0.25s ease-in-out, max-height 0.25s ease-in-out,
+    transform 0.25s ease-in-out;
+}
+
+.favorite-stop-canvas-expand {
+  max-height: 100% !important;
+  position: absolute;
+  max-width: 100%;
 }
 
 .window-section-inner > button {
@@ -285,7 +310,9 @@ tfoot > tr {
   display: flex;
   flex-flow: row nowrap;
   outline: none;
+  cursor: pointer;
   border: none;
+  gap: 10px;
 }
 .time-stat {
   display: flex;

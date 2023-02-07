@@ -13,7 +13,10 @@ export default class ChatBox {
   matteredLogo!: HTMLElement;
   endStatsWrapper!: HTMLDivElement;
   privacyTerms!: HTMLDivElement;
-
+  favoriteSpotCanvas!: HTMLCanvasElement;
+  favoriteStopSection!: HTMLDivElement;
+  favoriteStopSectionInner!: HTMLDivElement;
+  favoriteSpotCanvasExpanded!: boolean;
   static instance: ChatBox;
   constructor() {
     if (ChatBox.instance) {
@@ -48,6 +51,16 @@ export default class ChatBox {
       "end-stat-scroll-wrapper"
     ) as HTMLDivElement;
 
+    this.favoriteSpotCanvas = document.getElementById(
+      "favorite-stop-canvas"
+    ) as HTMLCanvasElement;
+    this.favoriteStopSection = document.getElementById(
+      "favorite-stop-section"
+    ) as HTMLDivElement;
+    this.favoriteStopSectionInner = document.getElementById(
+      "favorite-stop-section-inner"
+    ) as HTMLDivElement;
+
     this.matteredLogo = document.getElementById("mattered-logo") as HTMLElement;
     this.textArea = document.getElementById("text") as HTMLDivElement;
     this.experience = new MatteredExperience();
@@ -57,6 +70,42 @@ export default class ChatBox {
     for (let i = 0; i < 3; i++) {
       this.typingElement.appendChild(document.createElement("div"));
     }
+
+    this.favoriteSpotCanvasExpanded = false;
+
+    document
+      .querySelector("#favorite-stop-section > .window-section-inner > button")
+      ?.addEventListener("click", () => {
+        if (this.favoriteSpotCanvasExpanded) {
+          this.favoriteStopSection.classList.remove(
+            "favorite-stop-section-expand"
+          );
+          this.favoriteStopSectionInner.classList.remove(
+            "favorite-stop-section-expand"
+          );
+
+          this.favoriteSpotCanvas.classList.remove(
+            "favorite-stop-canvas-expand"
+          );
+
+          this.favoriteSpotCanvas.classList.remove(
+            "favorite-stop-canvas-expand"
+          );
+          this.favoriteSpotCanvas.style.transform = `translate(0, 0)`;
+        } else {
+          this.favoriteStopSection.classList.add(
+            "favorite-stop-section-expand"
+          );
+          this.favoriteStopSectionInner.classList.add(
+            "favorite-stop-section-expand"
+          );
+
+          this.favoriteSpotCanvas.classList.add("favorite-stop-canvas-expand");
+          this.favoriteSpotCanvas.style.transform = `translate(0, ${-this.favoriteSpotCanvas.getBoundingClientRect()
+            .top}px)`;
+        }
+        this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
+      });
   }
 
   setUpTextOptions() {
