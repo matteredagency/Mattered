@@ -112,9 +112,9 @@ export default class Stars {
     this.geometry.attributes.color.needsUpdate = true;
   }
 
-  init() {
+  init(scene: THREE.Scene) {
     this.setGeometry();
     this.pointsMesh = this.setPointsMesh();
-    this.experience.mainScene?.add(this.pointsMesh);
+    scene.add(this.pointsMesh);
   }
 }

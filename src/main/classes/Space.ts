@@ -15,7 +15,7 @@ export default class Space {
   constructor() {
     this.experience = new MatteredExperience();
     this.stars = new Stars(18000);
-    this.stars.init();
+    this.stars.init(this.experience.mainScene);
 
     this.paperPlane =
       this.experience.assets.assetsDirectory.objects["PaperPlane"];

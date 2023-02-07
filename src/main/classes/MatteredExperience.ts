@@ -90,8 +90,7 @@ export default class MatteredExperience {
       this.secondaryCamera.perspectiveCamera
     );
 
-    // this.endScene.add(this.assets.assetsDirectory.objects["Saturn"]);
-    // this.endScene.add(this.mainCamera.perspectiveCamera);
+    this.endScene.add(this.assets.assetsDirectory.objects["Saturn"]);
     this.endScene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
     this.mainSceneController = new SceneController();
@@ -108,8 +107,10 @@ export default class MatteredExperience {
   }
 
   resize() {
-    this.mainCamera?.resize();
-    this.mainRenderer?.resize();
+    this.mainCamera.resize();
+    this.mainRenderer.resize();
+    this.secondaryCamera.resize();
+    this.secondaryRenderer.resize();
   }
 
   timeControl() {
