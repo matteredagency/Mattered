@@ -37,6 +37,7 @@ export default class MatteredExperience {
   audio!: HTMLAudioElement;
   experienceEnded!: boolean;
   stopTime!: number;
+  secondaryCamera!: Camera;
   constructor(mainCanvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -50,6 +51,7 @@ export default class MatteredExperience {
     this.restartButton.innerText = "Travel Again";
 
     this.mainCamera = new Camera();
+    this.secondaryCamera = new Camera();
 
     this.statsTable = document.getElementById(
       "stats-table"
@@ -82,10 +84,11 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
-    // this.secondaryRenderer = new Renderer(
-    //   document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
-    //   this.endScene
-    // );
+    this.secondaryRenderer = new Renderer(
+      document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
+      this.endScene,
+      this.secondaryCamera.perspectiveCamera
+    );
 
     // this.endScene.add(this.assets.assetsDirectory.objects["Saturn"]);
     // this.endScene.add(this.mainCamera.perspectiveCamera);
@@ -93,7 +96,7 @@ export default class MatteredExperience {
       this.assets.assetsDirectory.textures["backgroundTexture"];
     this.mainSceneController = new SceneController();
 
-    // this.secondaryRenderer.update();
+    this.secondaryRenderer.update();
     this.spaceObjects.setRotatingPlanets();
 
     this.planeController = new PlaneController();
