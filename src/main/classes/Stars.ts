@@ -94,13 +94,13 @@ export default class Stars {
 
       if (
         (xPosition >
-          this.experience.camera.perspectiveCamera.position.x + 300 ||
+          this.experience.mainCamera.perspectiveCamera.position.x + 300 ||
           xPosition <
-            this.experience.camera.perspectiveCamera.position.x - 300 ||
+            this.experience.mainCamera.perspectiveCamera.position.x - 300 ||
           zPosition >
-            this.experience.camera.perspectiveCamera.position.z + 300 ||
+            this.experience.mainCamera.perspectiveCamera.position.z + 300 ||
           zPosition <
-            this.experience.camera.perspectiveCamera.position.z - 300) &&
+            this.experience.mainCamera.perspectiveCamera.position.z - 300) &&
         i % 12 === 0
       ) {
         const sineLevel = Math.sin(timePassed * 5 + i) * 0.5 + 0.5;

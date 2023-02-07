@@ -107,7 +107,7 @@ export default class Track {
       currentPlanePosition.z
     );
 
-    this.experience.camera?.perspectiveCamera.lookAt(currentPlanePosition);
+    this.experience.mainCamera.perspectiveCamera.lookAt(currentPlanePosition);
   }
 
   updateCameraPosition(currentPercent: number) {
@@ -115,7 +115,7 @@ export default class Track {
       Math.max(currentPercent - 0.006, 0)
     );
 
-    this.experience.camera?.perspectiveCamera?.position.set(
+    this.experience.mainCamera.perspectiveCamera?.position.set(
       currentCameraPosition.x,
       currentCameraPosition.y + 5,
       currentCameraPosition.z
