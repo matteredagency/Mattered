@@ -4,19 +4,17 @@ import MatteredExperience from "./MatteredExperience";
 export default class Renderer {
   experience: MatteredExperience;
   renderer?: THREE.WebGLRenderer;
-  constructor() {
+  constructor(canvas: HTMLCanvasElement) {
     this.experience = new MatteredExperience();
-    this.setRenderer();
-    return this;
-  }
 
-  setRenderer() {
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
-      canvas: this.experience.canvas,
+      canvas,
     });
 
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    return this;
   }
 
   resize() {

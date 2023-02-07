@@ -715,7 +715,7 @@ nav > a > svg {
   height: 100%;
 }
 
-#matte#F3F3F3-logo {
+#mattered-logo {
   height: 70%;
   width: auto;
 }
@@ -796,6 +796,10 @@ nav > a > svg {
 }
 
 @media (min-width: 768px) {
+  #mattered-logo {
+    height: 10px;
+    min-height: 10px;
+  }
   #chat-window > svg {
     margin: 40px 0 40px 0;
   }

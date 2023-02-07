@@ -1,7 +1,6 @@
 import THREE from "../globalmports";
 import Camera from "./Camera";
 import Controls from "./Controls";
-// import { GUI } from "dat.gui";
 import Lights from "./Lights";
 import Renderer from "./Renderer";
 import Sizes from "./Sizes";
@@ -17,17 +16,16 @@ import ChatBox from "./ChatBox";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   scene!: THREE.Scene;
-  canvas!: HTMLCanvasElement;
+  mainCanvas!: HTMLCanvasElement;
   camera!: Camera;
   sizes?: Sizes;
-  rendererInstance?: Renderer;
+  mainRenderer?: Renderer;
   spaceObjects!: Space;
   controls!: Controls;
   lights!: Lights;
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
-  // gui!: GUI;
   sceneController!: SceneController;
   planeController!: PlaneController;
   restartButton!: HTMLButtonElement;
@@ -37,14 +35,14 @@ export default class MatteredExperience {
   audio!: HTMLAudioElement;
   experienceEnded!: boolean;
   stopTime!: number;
-  constructor(canvas?: HTMLCanvasElement) {
+  constructor(mainCanvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
     }
     MatteredExperience.instance = this;
     this.assets = new Assets();
     this.audio = document.getElementById("ambient-sound") as HTMLAudioElement;
-    if (canvas) this.canvas = canvas;
+    if (mainCanvas) this.mainCanvas = mainCanvas;
     this.restartButton = document.createElement("button") as HTMLButtonElement;
     this.restartButton.setAttribute("id", "restart-button");
     this.restartButton.innerText = "Travel Again";
@@ -54,9 +52,7 @@ export default class MatteredExperience {
     ) as HTMLTableElement;
     this.chatBox = new ChatBox();
     this.scene = new THREE.Scene();
-    // this.gui = new GUI();
 
-    // this.gui.domElement.parentElement?.style.zIndex = "100";
     this.experienceEnded = false;
     this.stopTime = 0;
     this.init();
@@ -66,7 +62,7 @@ export default class MatteredExperience {
     await this.assets.loadAssets();
 
     this.sizes = new Sizes();
-    this.rendererInstance = new Renderer();
+    this.mainRenderer = new Renderer(this.mainCanvas);
     this.track = new Track();
     this.spaceObjects = new Space();
     this.scrollInstructions = new ScrollInstructionsController();
@@ -91,7 +87,7 @@ export default class MatteredExperience {
 
   resize() {
     this.camera?.resize();
-    this.rendererInstance?.resize();
+    this.mainRenderer?.resize();
   }
 
   timeControl() {
@@ -119,7 +115,7 @@ export default class MatteredExperience {
     requestAnimationFrame(() => {
       this.update();
     });
-    this.rendererInstance?.update();
+    this.mainRenderer?.update();
     this.spaceObjects.rotatingPlanets.forEach((planet) => planet.rotate());
   }
 
@@ -134,7 +130,7 @@ export default class MatteredExperience {
   }
 
   endSceneTransitions() {
-    this.canvas.classList.add("fade-out");
+    this.mainCanvas.classList.add("fade-out");
 
     this.chatBox.chatWindow.style.display = "flex";
     this.chatBox.chatWindow.style.backgroundColor = "rgba(225, 225, 225, 1)";
@@ -153,18 +149,18 @@ export default class MatteredExperience {
       this.restartButton.classList.add("fade-in");
       this.chatBox.chatWindow.classList.add("fade-in");
 
-      this.canvas.classList.remove("fade-out");
+      this.mainCanvas.classList.remove("fade-out");
     }, 2500);
   }
 
   resetExperience() {
     this.restartButton.classList.remove("fade-in");
-    this.canvas.classList.remove("fade-in");
+    this.mainCanvas.classList.remove("fade-in");
 
     setTimeout(() => {
       this.clock.elapsedTime = 0;
 
-      this.canvas.classList.add("fade-in");
+      this.mainCanvas.classList.add("fade-in");
       this.sceneController.resetSceneController();
       this.spaceObjects.resetPlaneSize();
       this.lights.resetLights();
