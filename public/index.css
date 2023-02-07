@@ -300,11 +300,10 @@ tfoot > tr {
 
 .favorite-stop-canvas-expand {
   max-height: 100% !important;
-  position: absolute;
   max-width: 100%;
 }
 
-.window-section-inner > button {
+#favorite-spot-expand {
   background: none;
   font-size: 13px;
   display: flex;
@@ -313,6 +312,9 @@ tfoot > tr {
   cursor: pointer;
   border: none;
   gap: 10px;
+  z-index: 101;
+  transition: transform 0.25s ease-in-out;
+  transform: translate(0, 0);
 }
 .time-stat {
   display: flex;
