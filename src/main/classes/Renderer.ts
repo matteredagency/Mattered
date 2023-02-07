@@ -29,12 +29,12 @@ export default class Renderer {
 
   update() {
     if (
-      this.experience?.scene &&
+      this.experience?.mainScene &&
       this.renderer &&
       this.experience?.camera?.perspectiveCamera
     ) {
       this.renderer.render(
-        this.experience.scene,
+        this.experience.mainScene,
         this.experience.camera.perspectiveCamera
       );
     }

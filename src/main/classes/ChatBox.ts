@@ -66,7 +66,9 @@ export default class ChatBox {
       "favorite-spot-expand"
     ) as HTMLButtonElement;
 
-    this.matteredLogo = document.getElementById("mattered-logo") as HTMLElement;
+    this.matteredLogo = document.getElementById(
+      "mattered-logo-chat"
+    ) as HTMLElement;
     this.textArea = document.getElementById("text") as HTMLDivElement;
     this.experience = new MatteredExperience();
     this.typingElement = document.createElement("div");
@@ -362,7 +364,7 @@ export default class ChatBox {
       topWindowTimeStatsDiv.appendChild(timeStatElement);
     });
 
-    Object.entries(this.experience.sceneController.sceneTime).forEach(
+    Object.entries(this.experience.mainSceneController.sceneTime).forEach(
       ([name, time]) => {
         time = Math.round(time);
         const {

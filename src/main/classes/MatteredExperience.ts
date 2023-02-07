@@ -15,18 +15,20 @@ import ChatBox from "./ChatBox";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
-  scene!: THREE.Scene;
+  mainScene!: THREE.Scene;
+  endScene!: THREE.Scene;
   mainCanvas!: HTMLCanvasElement;
   camera!: Camera;
   sizes?: Sizes;
-  mainRenderer?: Renderer;
+  mainRenderer!: Renderer;
+  secondaryRenderer!: Renderer;
   spaceObjects!: Space;
   controls!: Controls;
   lights!: Lights;
   track!: Track;
   scrollInstructions!: ScrollInstructionsController;
   clock!: THREE.Clock;
-  sceneController!: SceneController;
+  mainSceneController!: SceneController;
   planeController!: PlaneController;
   restartButton!: HTMLButtonElement;
   statsTable!: HTMLTableElement;
@@ -51,8 +53,8 @@ export default class MatteredExperience {
       "stats-table"
     ) as HTMLTableElement;
     this.chatBox = new ChatBox();
-    this.scene = new THREE.Scene();
-
+    this.mainScene = new THREE.Scene();
+    this.endScene = new THREE.Scene();
     this.experienceEnded = false;
     this.stopTime = 0;
     this.init();
@@ -72,17 +74,21 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
+    this.secondaryRenderer = new Renderer(
+      document.getElementById("favorite-stop-canvas") as HTMLCanvasElement
+    );
 
-    this.sceneController = new SceneController();
+    this.mainSceneController = new SceneController();
     this.camera = new Camera();
 
     this.spaceObjects.setRotatingPlanets();
 
     this.planeController = new PlaneController();
-
-    this.scene.background =
+    this.mainScene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
     this.update();
+
+    // this.mainRenderer.renderer?.setRenderTarget()
   }
 
   resize() {
@@ -136,9 +142,9 @@ export default class MatteredExperience {
     this.chatBox.chatWindow.style.backgroundColor = "rgba(225, 225, 225, 1)";
     this.chatBox.setEndStats();
     setTimeout(() => {
-      this.scene.remove.apply(
-        this.scene,
-        this.scene.children.filter(
+      this.mainScene.remove.apply(
+        this.mainScene,
+        this.mainScene.children.filter(
           (child) => child.type === "Group" && child.uuid !== "PaperPlane"
         )
       );
@@ -161,7 +167,7 @@ export default class MatteredExperience {
       this.clock.elapsedTime = 0;
 
       this.mainCanvas.classList.add("fade-in");
-      this.sceneController.resetSceneController();
+      this.mainSceneController.resetSceneController();
       this.spaceObjects.resetPlaneSize();
       this.lights.resetLights();
       this.controls.resetScroll();

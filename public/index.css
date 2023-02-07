@@ -715,9 +715,9 @@ nav > a > svg {
   height: 100%;
 }
 
-#mattered-logo {
-  height: 70%;
-  width: auto;
+#mattered-logo-chat {
+  height: auto;
+  width: 200px;
 }
 
 .fade-in {

@@ -24,7 +24,7 @@ export default class Space {
     this.paperPlane.position.set(startPath.x, 0, startPath.z);
     this.paperPlane.scale.set(0.3, 0.3, 0.3);
     this.paperPlane.rotateY(-Math.PI * 0.7);
-    this.experience.scene.add(this.paperPlane);
+    this.experience.mainScene.add(this.paperPlane);
     this.rotatingPlanets = [];
   }
   init() {
@@ -38,7 +38,7 @@ export default class Space {
 
   setRotatingPlanets() {
     this.rotatingPlanets = Object.entries(
-      this.experience.sceneController.sceneSubjects
+      this.experience.mainSceneController.sceneSubjects
     )
       .filter(
         ([key, _]) =>

@@ -38,14 +38,14 @@ export default class Text {
   init() {
     if (!this.rendered) {
       this.rendered = true;
-      this.experience.scene.add(this.mesh);
+      this.experience.mainScene.add(this.mesh);
     }
     return;
   }
 
   remove() {
     if (!this.rendered) return;
-    this.experience.scene.remove(this.mesh);
+    this.experience.mainScene.remove(this.mesh);
     this.rendered = false;
   }
 }

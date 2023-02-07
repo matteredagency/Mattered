@@ -109,7 +109,7 @@ export default class Planet {
   init() {
     if (!this.rendered) {
       this.rendered = true;
-      this.experience.scene.add(this.asset);
+      this.experience.mainScene.add(this.asset);
       this.experience.spaceObjects.currentPlanet = this;
     }
   }
@@ -126,7 +126,7 @@ export default class Planet {
     if (!this.rendered) return;
 
     this.rendered = false;
-    this.experience.scene?.remove(this.asset);
+    this.experience.mainScene?.remove(this.asset);
     this.experience.spaceObjects.currentPlanet = null;
   }
 }

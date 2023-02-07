@@ -36,7 +36,7 @@ export default class Asteroids {
   init() {
     if (!this.rendered) {
       this.rendered = true;
-      this.experience.scene.add(this.asteroids);
+      this.experience.mainScene.add(this.asteroids);
     }
   }
   rotateAsteroids() {
@@ -51,6 +51,6 @@ export default class Asteroids {
     if (!this.rendered) return;
 
     this.rendered = false;
-    this.experience.scene?.remove(this.asteroids);
+    this.experience.mainScene?.remove(this.asteroids);
   }
 }

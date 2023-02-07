@@ -115,6 +115,6 @@ export default class Stars {
   init() {
     this.setGeometry();
     this.pointsMesh = this.setPointsMesh();
-    this.experience.scene?.add(this.pointsMesh);
+    this.experience.mainScene?.add(this.pointsMesh);
   }
 }

@@ -25,9 +25,9 @@ export default class Lights {
     this.sun.castShadow = true;
     this.planeLight.castShadow = true;
     this.planeLight.position.setY(5);
-    this.experience.scene?.add(this.sun);
-    this.experience.scene?.add(this.ambientLight);
-    this.experience.scene.add(this.planeLight);
+    this.experience.mainScene?.add(this.sun);
+    this.experience.mainScene?.add(this.ambientLight);
+    this.experience.mainScene.add(this.planeLight);
 
     return this;
   }
