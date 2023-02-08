@@ -93,7 +93,7 @@ export default class ChatBox {
             "favorite-stop-section-expand"
           );
           this.favoriteSpotCanvas.style.position = "relative";
-        }, 200);
+        }, 250);
         this.favoriteSpotExpandButton.style.position = "relative";
 
         this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
@@ -109,12 +109,14 @@ export default class ChatBox {
         this.favoriteSpotCanvas.classList.add("favorite-stop-canvas-expand");
         this.favoriteSpotCanvas.style.transform = `translate(0, ${-this.favoriteSpotCanvas.getBoundingClientRect()
           .top}px)`;
-        this.favoriteSpotExpandButton.style.position = "absolute";
         this.favoriteSpotCanvas.style.position = "absolute";
 
         this.favoriteSpotExpandButton.style.transform = `translate(0, ${Math.round(
           window.innerHeight / 2
         )}px)`;
+        this.favoriteSpotExpandButton.style.position = "absolute";
+
+        this.favoriteSpotExpandButton.style.color = "white";
       }
       this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
     });

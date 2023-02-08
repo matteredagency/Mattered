@@ -3,19 +3,23 @@ import createAssetPath from "../../utils/createAssetPath";
 import THREE, { GLTFLoader } from "../globalmports";
 import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
 export default class Assets {
-  objectPaths: string[][];
-  texturePaths: string[][];
-  fontPaths: string[][];
-  backgroundTextures: THREE.CubeTextureLoader;
-  loadedAssets: number;
-  totalAssets: number;
-  assetsDirectory: {
+  objectPaths!: string[][];
+  texturePaths!: string[][];
+  fontPaths!: string[][];
+  backgroundTextures!: THREE.CubeTextureLoader;
+  loadedAssets!: number;
+  totalAssets!: number;
+  assetsDirectory!: {
     objects: { [key: string]: THREE.Group };
     textures: { [key: string]: THREE.Texture };
     fonts: { [key: string]: Font };
   };
-  loadingBar: HTMLElement;
+  loadingBar!: HTMLElement;
+  static instance: Assets;
   constructor() {
+    if (Assets.instance) return Assets.instance;
+    Assets.instance = this;
+
     const objects = {
       AsteroidSet: "AsteroidSet.glb",
       Earth: "Earth.glb",
