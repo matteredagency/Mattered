@@ -2,7 +2,12 @@ import THREE from "../globalmports";
 import { PointsMaterial } from "three";
 import MatteredExperience from "./MatteredExperience";
 import randomNumInRange from "../../utils/randomNumInRange";
-import createAssetPath from "../../utils/createAssetPath";
+
+interface StarRanges {
+  xRanges: [number, number];
+  yRanges: [number, number];
+  zRanges: [number, number];
+}
 
 export default class Stars {
   geometry: THREE.BufferGeometry;
@@ -14,8 +19,8 @@ export default class Stars {
   colorBufferArray: Float32Array;
   colorAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
   positionAttribute!: THREE.BufferAttribute | THREE.InterleavedBufferAttribute;
-
-  constructor(particleCount: number) {
+  starRanges: StarRanges;
+  constructor(particleCount: number, starRanges: StarRanges) {
     this.geometry = new THREE.BufferGeometry();
     this.particleCount = particleCount;
     this.particleVelocities = [];
@@ -23,6 +28,7 @@ export default class Stars {
     this.experience = new MatteredExperience();
     this.pointsMesh = null;
     this.colorBufferArray = new Float32Array(particleCount * 3);
+    this.starRanges = starRanges;
     return this;
   }
 
@@ -37,10 +43,11 @@ export default class Stars {
 
   private setGeometry() {
     const positionsBuffer = new Float32Array(this.particleCount * 3);
+
     const pointRanges = [
-      [-3000, 500, null],
-      [-500, 500, 25],
-      [-200, 9000, null],
+      [this.starRanges.xRanges[0], this.starRanges.xRanges[1], null],
+      [this.starRanges.yRanges[0], this.starRanges.yRanges[1], 25],
+      [this.starRanges.zRanges[0], this.starRanges.zRanges[1], null],
     ];
 
     for (let i = 0; i < this.particleCount; i++) {

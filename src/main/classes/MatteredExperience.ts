@@ -12,6 +12,7 @@ import Assets from "./Assets";
 import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
 import ChatBox from "./ChatBox";
+import FavoriteSpotExperience from "./FavoriteSpotExperience";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -37,6 +38,7 @@ export default class MatteredExperience {
   audio!: HTMLAudioElement;
   experienceEnded!: boolean;
   stopTime!: number;
+  favoriteSpotExperience!: FavoriteSpotExperience;
   constructor(mainCanvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -76,7 +78,7 @@ export default class MatteredExperience {
     this.spaceObjects = new Space();
     this.scrollInstructions = new ScrollInstructionsController();
     this.controls = new Controls();
-    this.lights = new Lights();
+    this.lights = new Lights(this.mainScene, true);
     this.sizes.on("resize", () => {
       this.resize();
     });
@@ -84,12 +86,12 @@ export default class MatteredExperience {
 
     this.mainSceneController = new SceneController();
 
-    this.secondaryRenderer.update();
     this.spaceObjects.setRotatingPlanets();
 
     this.planeController = new PlaneController();
     this.mainScene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
+    this.favoriteSpotExperience = new FavoriteSpotExperience();
     this.updateMainScene();
   }
 
