@@ -20,7 +20,7 @@ export default class MatteredExperience {
   endScene!: THREE.Scene;
   mainCanvas!: HTMLCanvasElement;
   mainCamera!: Camera;
-  sizes?: Sizes;
+  sizes!: Sizes;
   mainRenderer!: Renderer;
   secondaryRenderer!: Renderer;
   spaceObjects!: Space;
@@ -97,7 +97,7 @@ export default class MatteredExperience {
 
   resize() {
     this.mainCamera.resize();
-    this.mainRenderer.resize();
+    this.mainRenderer.resizeMain();
   }
 
   timeControl() {

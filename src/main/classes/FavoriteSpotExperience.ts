@@ -56,9 +56,14 @@ export default class FavoriteSpotExperience {
       this.secondaryCamera.perspectiveCamera
     );
 
-    this.sizes.on("resize", () => {
-      this.resize();
-    });
+    // const observer = new ResizeObserver(entries => {
+
+    //   const {target:{clientWidth, clientHeight}} = entries[0]
+    //   this.secondaryRenderer.resizeFavorite(clientWidth, clientHeight, )
+
+    // })
+
+    // observer.observe(document.getElementById("favorite-spot-canvas") as Element)
 
     this.updateFavoriteSpotScene();
   }
@@ -79,10 +84,6 @@ export default class FavoriteSpotExperience {
     this.sceneExpanded = !this.sceneExpanded;
   }
 
-  resize() {
-    this.secondaryCamera.resize();
-    this.secondaryRenderer.resize();
-  }
   updateFavoriteSpotScene() {
     requestAnimationFrame(() => {
       this.updateFavoriteSpotScene();

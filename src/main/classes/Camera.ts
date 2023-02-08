@@ -18,11 +18,15 @@ export default class Camera {
   }
 
   resize() {
-    if (this.experience?.sizes && this.perspectiveCamera) {
-      this.perspectiveCamera.aspect = this.experience.sizes.aspect;
-      this.perspectiveCamera.updateProjectionMatrix();
-    }
+    this.perspectiveCamera.aspect = this.experience.sizes.aspect;
+    this.perspectiveCamera.updateProjectionMatrix();
   }
+
+  // resizeFavoriteSpot(){
+
+  //   this.perspectiveCamera.aspect =
+
+  // }
 
   setCameraAtStart() {
     const startPath = this.experience.track.cameraPath.getPointAt(0.001);

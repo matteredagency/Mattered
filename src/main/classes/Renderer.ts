@@ -25,7 +25,7 @@ export default class Renderer {
     return this;
   }
 
-  resize() {
+  resizeMain() {
     if (this.renderer && this.experience?.sizes) {
       this.renderer.setSize(
         this.experience.sizes.width,
@@ -33,6 +33,11 @@ export default class Renderer {
       );
       this.renderer.setPixelRatio(this.experience.sizes.pixelRatio);
     }
+  }
+
+  resizeFavorite(width: number, height: number, pixelRatio: number) {
+    this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(pixelRatio);
   }
 
   update() {
