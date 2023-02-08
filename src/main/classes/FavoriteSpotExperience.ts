@@ -56,11 +56,6 @@ export default class FavoriteSpotExperience {
       this.secondaryCamera.perspectiveCamera
     );
 
-    this.secondaryRenderer.renderer.setClearColor(new THREE.Color("white"));
-    // this.favoriteSpotScene.background =
-    //   this.assets.assetsDirectory.textures["backgroundTexture"];
-
-    console.log(this.favoriteSpotScene);
     this.sizes.on("resize", () => {
       this.resize();
     });
@@ -70,9 +65,10 @@ export default class FavoriteSpotExperience {
 
   setFavoriteObject(name: string) {
     this.assets.assetsDirectory.objects[name].position.set(0, 0, -100);
+    this.secondaryRenderer.renderer.setClearAlpha(0);
+    // this.secondaryRenderer.renderer.setClearColor(new THREE.Color("white"));
 
     this.favoriteSpotScene.add(this.assets.assetsDirectory.objects[name]);
-    console.log(this.favoriteSpotScene);
   }
 
   toggleSceneExpand() {
