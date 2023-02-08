@@ -69,12 +69,6 @@ export default class Planet {
       this.asset.children[0].children[0].scale.y = 0.1;
       this.asset.rotateY(Math.PI * 0.75);
       this.asset.rotateZ(tilt!);
-
-      // this.asset.rotateX(-Math.PI * 0.0275);
-      // const folder = this.experience.gui.addFolder("saturn");
-
-      // folder.add(this.asset.position, "x", -3000, -1500);
-      // folder.add(this.asset.position, "z", 4000, 4500);
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {

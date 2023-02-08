@@ -158,7 +158,7 @@ export default class MatteredExperience {
 
       this.restartButton.classList.add("fade-in");
       this.chatBox.chatWindow.classList.add("fade-in");
-
+      this.favoriteSpotExperience.setFavoriteObject("Earth");
       this.mainCanvas.classList.remove("fade-out");
     }, 2500);
   }

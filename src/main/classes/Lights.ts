@@ -8,9 +8,6 @@ export default class Lights {
   planeLight!: THREE.PointLight;
   static instance: Lights;
   constructor(scene: THREE.Scene, isMainScene: boolean) {
-    if (Lights.instance) return Lights.instance;
-    Lights.instance = this;
-
     this.sun = new THREE.PointLight(0xffffff, 1.5);
     this.ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
 
@@ -19,6 +16,7 @@ export default class Lights {
 
     scene.add(this.sun);
     scene.add(this.ambientLight);
+
     if (isMainScene) {
       this.planeLight = new THREE.PointLight(0xffffff, 8, 30, 7);
       this.planeLight.castShadow = true;
