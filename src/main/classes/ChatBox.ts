@@ -118,6 +118,7 @@ export default class ChatBox {
 
         this.favoriteSpotExpandButton.style.color = "white";
       }
+      this.experience.favoriteSpotExperience.toggleSceneExpand();
       this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
     });
   }

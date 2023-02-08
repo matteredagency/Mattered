@@ -17,7 +17,7 @@ export default class FavoriteSpotExperience {
   sizes!: Sizes;
   stars!: Stars;
   gui!: GUI;
-
+  sceneExpanded!: boolean;
   static instance: FavoriteSpotExperience;
   constructor() {
     if (FavoriteSpotExperience.instance) return FavoriteSpotExperience.instance;
@@ -34,6 +34,7 @@ export default class FavoriteSpotExperience {
     this.experienceEnded = false;
     this.sizes = new Sizes();
     this.lights = new Lights(this.favoriteSpotScene, false);
+    this.sceneExpanded = false;
 
     this.gui = new GUI();
 
@@ -55,8 +56,9 @@ export default class FavoriteSpotExperience {
       this.secondaryCamera.perspectiveCamera
     );
 
-    this.favoriteSpotScene.background =
-      this.assets.assetsDirectory.textures["backgroundTexture"];
+    this.secondaryRenderer.renderer.setClearColor(new THREE.Color("white"));
+    // this.favoriteSpotScene.background =
+    //   this.assets.assetsDirectory.textures["backgroundTexture"];
 
     console.log(this.favoriteSpotScene);
     this.sizes.on("resize", () => {
@@ -71,6 +73,14 @@ export default class FavoriteSpotExperience {
 
     this.favoriteSpotScene.add(this.assets.assetsDirectory.objects[name]);
     console.log(this.favoriteSpotScene);
+  }
+
+  toggleSceneExpand() {
+    this.favoriteSpotScene.background = this.sceneExpanded
+      ? null
+      : this.assets.assetsDirectory.textures["backgroundTexture"];
+
+    this.sceneExpanded = !this.sceneExpanded;
   }
 
   resize() {

@@ -129,7 +129,7 @@ export default class MatteredExperience {
     this.spaceObjects.rotatingPlanets.forEach((planet) => planet.rotate());
   }
 
-  endExperience() {
+  endMainExperience() {
     this.experienceEnded = true;
     this.stopTime = this.clock.getElapsedTime();
     if (this.controls.scrollContainer) {
