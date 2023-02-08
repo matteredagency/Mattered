@@ -37,7 +37,6 @@ export default class MatteredExperience {
   audio!: HTMLAudioElement;
   experienceEnded!: boolean;
   stopTime!: number;
-  secondaryCamera!: Camera;
   constructor(mainCanvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -51,14 +50,12 @@ export default class MatteredExperience {
     this.restartButton.innerText = "Travel Again";
 
     this.mainCamera = new Camera();
-    this.secondaryCamera = new Camera();
 
     this.statsTable = document.getElementById(
       "stats-table"
     ) as HTMLTableElement;
     this.chatBox = new ChatBox();
     this.mainScene = new THREE.Scene();
-    this.endScene = new THREE.Scene();
     this.experienceEnded = false;
     this.stopTime = 0;
     this.init();
@@ -84,15 +81,7 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
-    this.secondaryRenderer = new Renderer(
-      document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
-      this.endScene,
-      this.secondaryCamera.perspectiveCamera
-    );
 
-    this.endScene.add(this.assets.assetsDirectory.objects["Saturn"]);
-    this.endScene.background =
-      this.assets.assetsDirectory.textures["backgroundTexture"];
     this.mainSceneController = new SceneController();
 
     this.secondaryRenderer.update();
@@ -102,15 +91,11 @@ export default class MatteredExperience {
     this.mainScene.background =
       this.assets.assetsDirectory.textures["backgroundTexture"];
     this.updateMainScene();
-    // this.updateEndScene();
-    // this.mainRenderer.renderer?.setRenderTarget()
   }
 
   resize() {
     this.mainCamera.resize();
     this.mainRenderer.resize();
-    this.secondaryCamera.resize();
-    this.secondaryRenderer.resize();
   }
 
   timeControl() {
@@ -140,13 +125,6 @@ export default class MatteredExperience {
     });
     this.mainRenderer.update();
     this.spaceObjects.rotatingPlanets.forEach((planet) => planet.rotate());
-  }
-
-  updateEndScene() {
-    requestAnimationFrame(() => {
-      this.updateEndScene();
-    });
-    this.secondaryRenderer.update();
   }
 
   endExperience() {
