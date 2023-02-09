@@ -103,7 +103,7 @@ export default class FavoriteSpotExperience {
         assetSize = 1.15;
         break;
       case "Saturn":
-        assetSize = 0.1;
+        assetSize = 0.5;
         break;
       default:
         assetSize = 1;
@@ -129,6 +129,7 @@ export default class FavoriteSpotExperience {
         position: this.assetPosition,
         isMainExperience: false,
         planetScale: assetSize,
+        ...(name === "Saturn" && { tilt: Math.PI * 0.9 }),
       }).init(this.favoriteStopScene);
     }
 
