@@ -101,15 +101,12 @@ export default class FavoriteSpotExperience {
         assetSize = 0.4;
         break;
       default:
-        assetSize = 1;
+        assetSize = 0.09;
     }
 
     if (name === "Asteroids") {
-      this.favoriteStop = new Asteroids(
-        "AsteroidSet",
-        this.assetPosition,
-        0.09
-      );
+      this.favoriteStop = new Asteroids(name, this.assetPosition, assetSize);
+      this.favoriteStop.asset.rotateY(Math.PI * 0.8);
     } else {
       this.favoriteStop = new Planet({
         name,
@@ -143,6 +140,9 @@ export default class FavoriteSpotExperience {
     if (this.sceneExpanded) {
       this.secondaryRenderer.renderer.setSize(300, 150);
       this.secondaryCamera.resizeFavoriteSpot(300, 150);
+      if (this.favoriteStop?.name === "Asteroids") {
+        this.favoriteStop.asset.children[0].scale.set(0.09, 0.09, 0.09);
+      }
     } else {
       this.secondaryCamera.resizeFavoriteSpot(
         window.innerWidth,
@@ -152,6 +152,10 @@ export default class FavoriteSpotExperience {
         window.innerWidth,
         window.innerHeight
       );
+
+      if (this.favoriteStop?.name === "Asteroids") {
+        this.favoriteStop.asset.children[0].scale.set(0.05, 0.05, 0.05);
+      }
     }
 
     this.sceneExpanded = !this.sceneExpanded;

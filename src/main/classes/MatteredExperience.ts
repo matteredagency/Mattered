@@ -178,7 +178,7 @@ export default class MatteredExperience {
         }
       }
     );
-    this.favoriteSpotExperience.setFavoriteObject(highestKey);
+    this.favoriteSpotExperience.setFavoriteObject("Asteroids");
   }
 
   resetExperience() {
