@@ -83,21 +83,21 @@ export default class FavoriteSpotExperience {
   setFavoriteObject(name: string) {
     this.secondaryRenderer.renderer.setSize(300, 150);
 
-    const isSaturnOrJupiter = name === "Saturn" || name === "Jupiter";
-
     let assetSize = 0;
-    let atmosphereSize = 0;
+    let atmosphereRadius = 0;
 
     switch (name) {
       case "Earth":
         assetSize = 1.25;
+        atmosphereRadius = 45;
         break;
       case "Venus":
-        assetSize = 0.5;
+        assetSize = 0.4;
+        atmosphereRadius = 39;
         break;
       case "Mars":
         assetSize = 1.15;
-        atmosphereSize = 40;
+        atmosphereRadius = 40;
         break;
       case "Jupiter":
         assetSize = 1.15;
@@ -117,13 +117,13 @@ export default class FavoriteSpotExperience {
       new Planet({
         name,
         clockWiseRotation: true,
-        ...(!isSaturnOrJupiter && {
+        ...(atmosphereRadius > 0 && {
           atmosphereColor: new THREE.Color(
             name === "Earth" ? 0x4c9aff : 0xbab19e
           ),
         }),
-        ...(!isSaturnOrJupiter && {
-          atmosphereRadius: 35,
+        ...(atmosphereRadius > 0 && {
+          atmosphereRadius,
         }),
         rotationSpeed: 0.0005,
         position: this.assetPosition,
