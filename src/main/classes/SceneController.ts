@@ -187,7 +187,7 @@ export default class SceneController {
       ) {
         this.sceneSubjects.jupiter.init(this.experience.mainScene);
         this.sceneSubjects.saturn.init(this.experience.mainScene);
-        this.sceneSubjects.asteroids.init(this.experience.mainScene);
+        // this.sceneSubjects.asteroids.init(this.experience.mainScene);
       }
     }
   }

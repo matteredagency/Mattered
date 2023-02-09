@@ -172,7 +172,6 @@ export default class MatteredExperience {
 
     setTimeout(() => {
       this.clock.elapsedTime = 0;
-
       this.mainCanvas.classList.add("fade-in");
       this.mainSceneController.resetSceneController();
       this.spaceObjects.resetPlaneSize();

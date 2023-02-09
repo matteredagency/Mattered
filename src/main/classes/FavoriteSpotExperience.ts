@@ -6,6 +6,8 @@ import Sizes from "./Sizes";
 import Lights from "./Lights";
 import Stars from "./Stars";
 import { GUI } from "dat.gui";
+import Asteroids from "./Asteroids";
+import Planet from "./Planet";
 
 export default class FavoriteSpotExperience {
   secondaryCamera!: Camera;
@@ -20,6 +22,7 @@ export default class FavoriteSpotExperience {
   sceneExpanded!: boolean;
   static instance: FavoriteSpotExperience;
   favoriteStopObject!: THREE.Group;
+  assetPosition!: THREE.Vector3;
   constructor() {
     if (FavoriteSpotExperience.instance) return FavoriteSpotExperience.instance;
 
@@ -36,7 +39,7 @@ export default class FavoriteSpotExperience {
     this.sizes = new Sizes();
     this.lights = new Lights(this.favoriteStopScene, false);
     this.sceneExpanded = false;
-
+    this.assetPosition = new THREE.Vector3(0, 0, -100);
     this.gui = new GUI();
 
     this.gui.domElement.parentElement?.style.zIndex = "1000";
@@ -79,13 +82,58 @@ export default class FavoriteSpotExperience {
 
   setFavoriteObject(name: string) {
     this.secondaryRenderer.renderer.setSize(300, 150);
-    this.favoriteStopObject = this.assets.assetsDirectory.objects[name];
-    this.favoriteStopObject.position.set(0, 0, -100);
-    this.favoriteStopObject.scale.set(1, 1, 1);
-    this.secondaryRenderer.renderer.setClearAlpha(0);
-    // this.secondaryRenderer.renderer.setClearColor(new THREE.Color("white"));
 
-    this.favoriteStopScene.add(this.assets.assetsDirectory.objects[name]);
+    const isSaturnOrJupiter = name === "Saturn" || name === "Jupiter";
+
+    let assetSize = 0;
+    let atmosphereSize = 0;
+
+    switch (name) {
+      case "Earth":
+        assetSize = 1.25;
+        break;
+      case "Venus":
+        assetSize = 0.5;
+        break;
+      case "Mars":
+        assetSize = 1.15;
+        atmosphereSize = 40;
+        break;
+      case "Jupiter":
+        assetSize = 1.15;
+        break;
+      case "Saturn":
+        assetSize = 20;
+        break;
+      default:
+        assetSize = 1;
+    }
+
+    if (name === "Asteroids") {
+      new Asteroids("AsteroidSet", this.assetPosition, 0.09).init(
+        this.favoriteStopScene
+      );
+    } else {
+      new Planet({
+        name,
+        clockWiseRotation: true,
+        ...(!isSaturnOrJupiter && {
+          atmosphereColor: new THREE.Color(
+            name === "Earth" ? 0x4c9aff : 0xbab19e
+          ),
+        }),
+        ...(!isSaturnOrJupiter && {
+          atmosphereRadius: 35,
+        }),
+        rotationSpeed: 0.0005,
+        position: this.assetPosition,
+        planetScale: assetSize,
+      }).init(this.favoriteStopScene);
+    }
+
+    console.log(this.favoriteStopScene);
+
+    this.secondaryRenderer.renderer.setClearAlpha(0);
   }
 
   toggleSceneExpand() {
