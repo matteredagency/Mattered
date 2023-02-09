@@ -176,7 +176,7 @@ export default class SceneController {
         this.sceneSubjects.mars.init(this.experience.mainScene);
       }
     }
-    if (currentPercent >= 0.185 && currentPercent <= 0.37) {
+    if (currentPercent >= 0.185 && currentPercent <= 0.8) {
       if (this.sceneSubjects.mars.rendered) {
         this.sceneSubjects.mars.remove();
       }
@@ -187,7 +187,21 @@ export default class SceneController {
       ) {
         this.sceneSubjects.jupiter.init(this.experience.mainScene);
         this.sceneSubjects.saturn.init(this.experience.mainScene);
-        // this.sceneSubjects.asteroids.init(this.experience.mainScene);
+        this.sceneSubjects.asteroids.init(this.experience.mainScene);
+      }
+    }
+    if (currentPercent > 0.8) {
+      if (this.sceneSubjects.mars.rendered) {
+        this.sceneSubjects.mars.remove();
+      }
+      if (
+        !this.sceneSubjects.jupiter.rendered &&
+        !this.sceneSubjects.saturn.rendered &&
+        !this.sceneSubjects.asteroids.rendered
+      ) {
+        this.sceneSubjects.jupiter.remove();
+        this.sceneSubjects.saturn.remove();
+        this.sceneSubjects.asteroids.remove();
       }
     }
   }
