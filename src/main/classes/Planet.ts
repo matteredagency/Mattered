@@ -100,10 +100,10 @@ export default class Planet {
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
   }
 
-  init() {
+  init(scene: THREE.Scene) {
     if (!this.rendered) {
       this.rendered = true;
-      this.experience.mainScene.add(this.asset);
+      scene.add(this.asset);
       this.experience.spaceObjects.currentPlanet = this;
     }
   }

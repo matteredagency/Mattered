@@ -33,10 +33,10 @@ export default class Asteroids {
 
     // folder.add(this.asteroids.rotation, "y", 0, Math.PI * 2);
   }
-  init() {
+  init(scene: THREE.Scene) {
     if (!this.rendered) {
       this.rendered = true;
-      this.experience.mainScene.add(this.asteroids);
+      this.experience.mainScene.add(scene);
     }
   }
   rotateAsteroids() {

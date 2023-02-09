@@ -71,8 +71,11 @@ export default class MatteredExperience {
     this.mainRenderer = new Renderer(
       this.mainCanvas,
       this.mainScene,
-      this.mainCamera.perspectiveCamera
+      this.mainCamera.perspectiveCamera,
+      { width: window.innerWidth, height: window.innerHeight }
     );
+
+    this.mainRenderer.renderer.setSize(window.innerWidth, window.innerHeight);
     this.track = new Track();
     this.mainCamera.setCameraAtStart();
     this.spaceObjects = new Space();
@@ -158,7 +161,7 @@ export default class MatteredExperience {
 
       this.restartButton.classList.add("fade-in");
       this.chatBox.chatWindow.classList.add("fade-in");
-      this.favoriteSpotExperience.setFavoriteObject("Earth");
+      this.favoriteSpotExperience.setFavoriteObject("Saturn");
       this.mainCanvas.classList.remove("fade-out");
     }, 2500);
   }

@@ -22,11 +22,10 @@ export default class Camera {
     this.perspectiveCamera.updateProjectionMatrix();
   }
 
-  // resizeFavoriteSpot(){
-
-  //   this.perspectiveCamera.aspect =
-
-  // }
+  resizeFavoriteSpot(width: number, height: number) {
+    this.perspectiveCamera.aspect = width / height;
+    this.perspectiveCamera.updateProjectionMatrix();
+  }
 
   setCameraAtStart() {
     const startPath = this.experience.track.cameraPath.getPointAt(0.001);

@@ -88,7 +88,7 @@ export default class SceneController {
 
     this.experience = new MatteredExperience();
     this.sceneClock = new THREE.Clock();
-    this.sceneSubjects.venus.init();
+    this.sceneSubjects.venus.init(this.experience.mainScene);
     this.currentSubject = null;
   }
 
@@ -138,12 +138,12 @@ export default class SceneController {
   sceneSelect(currentPercent: number) {
     if (currentPercent >= 0 && currentPercent < 0.055) {
       if (!this.sceneSubjects.venus.rendered) {
-        this.sceneSubjects.venus.init();
+        this.sceneSubjects.venus.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.055 && currentPercent <= 0.125) {
       if (!this.sceneSubjects.earth.rendered) {
-        this.sceneSubjects.earth.init();
+        this.sceneSubjects.earth.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.1 && currentPercent <= 0.185) {
@@ -158,7 +158,7 @@ export default class SceneController {
         !this.sceneSubjects.mars.rendered &&
         !this.sceneSubjects.jupiter.rendered
       ) {
-        this.sceneSubjects.mars.init();
+        this.sceneSubjects.mars.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.1 && currentPercent <= 0.185) {
@@ -173,7 +173,7 @@ export default class SceneController {
         !this.sceneSubjects.mars.rendered &&
         !this.sceneSubjects.jupiter.rendered
       ) {
-        this.sceneSubjects.mars.init();
+        this.sceneSubjects.mars.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.185 && currentPercent <= 0.37) {
@@ -185,9 +185,9 @@ export default class SceneController {
         !this.sceneSubjects.saturn.rendered &&
         !this.sceneSubjects.asteroids.rendered
       ) {
-        this.sceneSubjects.jupiter.init();
-        this.sceneSubjects.saturn.init();
-        this.sceneSubjects.asteroids.init();
+        this.sceneSubjects.jupiter.init(this.experience.mainScene);
+        this.sceneSubjects.saturn.init(this.experience.mainScene);
+        this.sceneSubjects.asteroids.init(this.experience.mainScene);
       }
     }
   }

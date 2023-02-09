@@ -9,7 +9,8 @@ export default class Renderer {
   constructor(
     canvas: HTMLCanvasElement,
     scene: THREE.Scene,
-    camera: THREE.PerspectiveCamera
+    camera: THREE.PerspectiveCamera,
+    { width, height }: { width: number; height: number }
   ) {
     this.experience = new MatteredExperience();
     this.scene = scene;
@@ -20,11 +21,8 @@ export default class Renderer {
 
     this.camera = camera;
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-
     return this;
   }
-
   resizeMain() {
     if (this.renderer && this.experience?.sizes) {
       this.renderer.setSize(
@@ -35,9 +33,9 @@ export default class Renderer {
     }
   }
 
-  resizeFavorite(width: number, height: number, pixelRatio: number) {
+  resizeFavorite(width: number, height: number) {
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(pixelRatio);
+    this.renderer.setPixelRatio(this.experience.sizes.pixelRatio);
   }
 
   update() {

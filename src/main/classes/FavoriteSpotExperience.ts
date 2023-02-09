@@ -11,7 +11,7 @@ export default class FavoriteSpotExperience {
   secondaryCamera!: Camera;
   secondaryRenderer!: Renderer;
   assets!: Assets;
-  favoriteSpotScene!: THREE.Scene;
+  favoriteStopScene!: THREE.Scene;
   experienceEnded!: boolean;
   lights!: Lights;
   sizes!: Sizes;
@@ -19,6 +19,7 @@ export default class FavoriteSpotExperience {
   gui!: GUI;
   sceneExpanded!: boolean;
   static instance: FavoriteSpotExperience;
+  favoriteStopObject!: THREE.Group;
   constructor() {
     if (FavoriteSpotExperience.instance) return FavoriteSpotExperience.instance;
 
@@ -29,11 +30,11 @@ export default class FavoriteSpotExperience {
       zRanges: [-500, 500],
     });
     this.assets = new Assets();
-    this.favoriteSpotScene = new THREE.Scene();
+    this.favoriteStopScene = new THREE.Scene();
     this.secondaryCamera = new Camera();
     this.experienceEnded = false;
     this.sizes = new Sizes();
-    this.lights = new Lights(this.favoriteSpotScene, false);
+    this.lights = new Lights(this.favoriteStopScene, false);
     this.sceneExpanded = false;
 
     this.gui = new GUI();
@@ -48,38 +49,63 @@ export default class FavoriteSpotExperience {
       0,
       Math.PI * 2
     );
-    this.stars.init(this.favoriteSpotScene);
+    this.stars.init(this.favoriteStopScene);
     this.secondaryCamera.perspectiveCamera.position.set(0, 0, 20);
+
+    const favoriteStopCanvas = document.getElementById(
+      "favorite-stop-canvas"
+    ) as HTMLCanvasElement;
+
     this.secondaryRenderer = new Renderer(
       document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
-      this.favoriteSpotScene,
-      this.secondaryCamera.perspectiveCamera
+      this.favoriteStopScene,
+      this.secondaryCamera.perspectiveCamera,
+      { width: favoriteStopCanvas.width, height: favoriteStopCanvas.height }
     );
 
-    // const observer = new ResizeObserver(entries => {
-
-    //   const {target:{clientWidth, clientHeight}} = entries[0]
-    //   this.secondaryRenderer.resizeFavorite(clientWidth, clientHeight, )
-
-    // })
-
-    // observer.observe(document.getElementById("favorite-spot-canvas") as Element)
+    // favoriteStopCanvas.addEventListener("resize", () => {
+    //   this.secondaryCamera.resizeFavoriteSpot(
+    //     favoriteStopCanvas.width,
+    //     favoriteStopCanvas.height
+    //   );
+    //   this.secondaryRenderer.resizeFavorite(
+    //     favoriteStopCanvas.width,
+    //     favoriteStopCanvas.height
+    //   );
+    // });
 
     this.updateFavoriteSpotScene();
   }
 
   setFavoriteObject(name: string) {
-    this.assets.assetsDirectory.objects[name].position.set(0, 0, -100);
+    this.secondaryRenderer.renderer.setSize(300, 150);
+    this.favoriteStopObject = this.assets.assetsDirectory.objects[name];
+    this.favoriteStopObject.position.set(0, 0, -100);
+    this.favoriteStopObject.scale.set(1, 1, 1);
     this.secondaryRenderer.renderer.setClearAlpha(0);
     // this.secondaryRenderer.renderer.setClearColor(new THREE.Color("white"));
 
-    this.favoriteSpotScene.add(this.assets.assetsDirectory.objects[name]);
+    this.favoriteStopScene.add(this.assets.assetsDirectory.objects[name]);
   }
 
   toggleSceneExpand() {
-    this.favoriteSpotScene.background = this.sceneExpanded
+    this.favoriteStopScene.background = this.sceneExpanded
       ? null
       : this.assets.assetsDirectory.textures["backgroundTexture"];
+
+    if (this.sceneExpanded) {
+      this.secondaryRenderer.renderer.setSize(300, 150);
+      this.secondaryCamera.resizeFavoriteSpot(300, 150);
+    } else {
+      this.secondaryCamera.resizeFavoriteSpot(
+        window.innerWidth,
+        window.innerHeight
+      );
+      this.secondaryRenderer.renderer.setSize(
+        window.innerWidth,
+        window.innerHeight
+      );
+    }
 
     this.sceneExpanded = !this.sceneExpanded;
   }
