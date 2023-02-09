@@ -9,8 +9,7 @@ export default class Renderer {
   constructor(
     canvas: HTMLCanvasElement,
     scene: THREE.Scene,
-    camera: THREE.PerspectiveCamera,
-    { width, height }: { width: number; height: number }
+    camera: THREE.PerspectiveCamera
   ) {
     this.experience = new MatteredExperience();
     this.scene = scene;
@@ -35,7 +34,7 @@ export default class Renderer {
 
   resizeFavorite(width: number, height: number) {
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(this.experience.sizes.pixelRatio);
+    this.renderer.setPixelRatio(3);
   }
 
   update() {
