@@ -100,6 +100,11 @@ export default class ChatBox {
 
         this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
         this.favoriteSpotExpandButton.style.transform = "translate(0, 0)";
+        this.favoriteSpotExpandButton.style.color = "black";
+        this.favoriteSpotExpandButton.children[1].textContent = "Expand";
+        this.favoriteSpotExpandButton.children[0].children[0].classList.remove(
+          "expand-button-fill"
+        );
       } else {
         this.favoriteStopSection.classList.add("favorite-stop-section-expand");
         this.favoriteStopSectionInner.classList.add(
@@ -117,6 +122,10 @@ export default class ChatBox {
         this.favoriteSpotExpandButton.style.position = "absolute";
 
         this.favoriteSpotExpandButton.style.color = "white";
+        this.favoriteSpotExpandButton.children[1].textContent = "Minimize";
+        this.favoriteSpotExpandButton.children[0].children[0].classList.add(
+          "expand-button-fill"
+        );
       }
       this.experience.favoriteSpotExperience.toggleSceneExpand();
       this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;

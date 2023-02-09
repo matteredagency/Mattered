@@ -622,6 +622,10 @@ p {
   row-gap: 5px;
 }
 
+.expand-button-fill {
+  fill: white;
+}
+
 .space-section {
   border-left: solid white 2px;
   background: linear-gradient(90deg, rgb(50, 50, 50) 0%, transparent 75%);
