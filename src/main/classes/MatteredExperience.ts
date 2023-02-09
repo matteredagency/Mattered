@@ -123,7 +123,7 @@ export default class MatteredExperience {
     if (this.clock.running) this.timeControl();
 
     if (this.spaceObjects.asteroids) {
-      this.spaceObjects.asteroids.rotateAsteroids();
+      this.spaceObjects.asteroids.rotate();
     }
     requestAnimationFrame(() => {
       this.updateMainScene();

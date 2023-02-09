@@ -21,7 +21,7 @@ export default class FavoriteSpotExperience {
   gui!: GUI;
   sceneExpanded!: boolean;
   static instance: FavoriteSpotExperience;
-  favoriteStopObject!: THREE.Group;
+  favoriteStop?: Planet | Asteroids | null;
   assetPosition!: THREE.Vector3;
   constructor() {
     if (FavoriteSpotExperience.instance) return FavoriteSpotExperience.instance;
@@ -41,7 +41,7 @@ export default class FavoriteSpotExperience {
     this.sceneExpanded = false;
     this.assetPosition = new THREE.Vector3(0, 0, -100);
     this.gui = new GUI();
-
+    this.favoriteStop = null;
     this.gui.domElement.parentElement?.style.zIndex = "1000";
 
     const folder = this.gui.addFolder("camera");
@@ -110,11 +110,13 @@ export default class FavoriteSpotExperience {
     }
 
     if (name === "Asteroids") {
-      new Asteroids("AsteroidSet", this.assetPosition, 0.09).init(
-        this.favoriteStopScene
+      this.favoriteStop = new Asteroids(
+        "AsteroidSet",
+        this.assetPosition,
+        0.09
       );
     } else {
-      new Planet({
+      this.favoriteStop = new Planet({
         name,
         clockWiseRotation: true,
         ...(atmosphereRadius > 0 && {
@@ -130,10 +132,10 @@ export default class FavoriteSpotExperience {
         isMainExperience: false,
         planetScale: assetSize,
         ...(name === "Saturn" && { tilt: Math.PI * 0.9 }),
-      }).init(this.favoriteStopScene);
+      });
     }
 
-    console.log(this.favoriteStopScene);
+    this.favoriteStop.init(this.favoriteStopScene);
 
     this.secondaryRenderer.renderer.setClearAlpha(0);
   }
@@ -161,6 +163,9 @@ export default class FavoriteSpotExperience {
   }
 
   updateFavoriteSpotScene() {
+    if (this.favoriteStop) {
+      this.favoriteStop.rotate();
+    }
     requestAnimationFrame(() => {
       this.updateFavoriteSpotScene();
     });

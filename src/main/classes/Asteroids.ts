@@ -30,7 +30,7 @@ export default class Asteroids {
       scene.add(this.asset);
     }
   }
-  rotateAsteroids() {
+  rotate() {
     this.asset.children[0].children.forEach((mesh, index) => {
       let pi = Math.PI;
       if (index % 2 === 0) pi *= -1;
