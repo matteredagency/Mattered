@@ -14,6 +14,7 @@ interface PlanetConstructorParameters {
   atmosphereRadius?: number;
   emissiveIntensity?: number;
   tilt?: number;
+  isMainExperience: boolean;
 }
 export default class Planet {
   asset!: THREE.Group;
@@ -43,6 +44,7 @@ export default class Planet {
     emissiveColor,
     emissiveIntensity,
     tilt,
+    isMainExperience,
   }: PlanetConstructorParameters) {
     this.experience = new MatteredExperience();
     this.rotationSpeed = rotationSpeed;
@@ -64,7 +66,7 @@ export default class Planet {
     this.asset = new THREE.Group();
 
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
-    if (this.name === "Saturn") {
+    if (this.name === "Saturn" && isMainExperience) {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
       this.asset.rotateY(Math.PI * 0.75);

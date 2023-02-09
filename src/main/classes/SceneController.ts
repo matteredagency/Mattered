@@ -31,6 +31,7 @@ export default class SceneController {
         planetScale: 1,
         atmosphereColor: new THREE.Color(0xffd494),
         atmosphereRadius: 95,
+        isMainExperience: true,
       }),
       earth: new Planet({
         name: "Earth",
@@ -40,6 +41,7 @@ export default class SceneController {
         planetScale: 1,
         atmosphereRadius: 35,
         atmosphereColor: new THREE.Color(0x4c9aff),
+        isMainExperience: true,
       }),
       mars: new Planet({
         name: "Mars",
@@ -49,6 +51,7 @@ export default class SceneController {
         planetScale: 1,
         atmosphereColor: new THREE.Color(0xbab19e),
         atmosphereRadius: 34.5,
+        isMainExperience: true,
       }),
       jupiter: new Planet({
         name: "Jupiter",
@@ -56,6 +59,7 @@ export default class SceneController {
         rotationSpeed: 0.0005,
         position: new THREE.Vector3(-450, 0, 1925),
         planetScale: 3.5,
+        isMainExperience: true,
       }),
       asteroids: new Asteroids(
         "AsteroidSet",
@@ -69,6 +73,7 @@ export default class SceneController {
         position: new THREE.Vector3(-2017, 25, 4267),
         planetScale: 3.5,
         tilt: Math.PI * 0.9,
+        isMainExperience: true,
       }),
       // text1: new Text({
       //   name: "Outfit",

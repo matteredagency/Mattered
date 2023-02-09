@@ -103,7 +103,7 @@ export default class FavoriteSpotExperience {
         assetSize = 1.15;
         break;
       case "Saturn":
-        assetSize = 20;
+        assetSize = 0.1;
         break;
       default:
         assetSize = 1;
@@ -127,6 +127,7 @@ export default class FavoriteSpotExperience {
         }),
         rotationSpeed: 0.0005,
         position: this.assetPosition,
+        isMainExperience: false,
         planetScale: assetSize,
       }).init(this.favoriteStopScene);
     }
