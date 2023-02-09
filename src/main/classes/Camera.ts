@@ -3,17 +3,13 @@ import MatteredExperience from "./MatteredExperience";
 export default class Camera {
   experience: MatteredExperience;
   perspectiveCamera!: THREE.PerspectiveCamera;
-  constructor() {
+  constructor(width: number, height: number, distance: number) {
     this.experience = new MatteredExperience();
-    this.createPerspectiveCamera();
-  }
-
-  createPerspectiveCamera() {
     this.perspectiveCamera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      width / height,
       5,
-      2000
+      distance
     );
   }
 

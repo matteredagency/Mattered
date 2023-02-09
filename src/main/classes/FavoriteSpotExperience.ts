@@ -34,7 +34,7 @@ export default class FavoriteSpotExperience {
     });
     this.assets = new Assets();
     this.favoriteStopScene = new THREE.Scene();
-    this.secondaryCamera = new Camera();
+    this.secondaryCamera = new Camera(300, 150, 2000);
     this.experienceEnded = false;
     this.sizes = new Sizes();
     this.lights = new Lights(this.favoriteStopScene, false);
@@ -55,15 +55,10 @@ export default class FavoriteSpotExperience {
     this.stars.init(this.favoriteStopScene);
     this.secondaryCamera.perspectiveCamera.position.set(0, 0, 20);
 
-    const favoriteStopCanvas = document.getElementById(
-      "favorite-stop-canvas"
-    ) as HTMLCanvasElement;
-
     this.secondaryRenderer = new Renderer(
       document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
       this.favoriteStopScene,
-      this.secondaryCamera.perspectiveCamera,
-      { width: favoriteStopCanvas.width, height: favoriteStopCanvas.height }
+      this.secondaryCamera.perspectiveCamera
     );
 
     // favoriteStopCanvas.addEventListener("resize", () => {

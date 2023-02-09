@@ -51,7 +51,7 @@ export default class MatteredExperience {
     this.restartButton.setAttribute("id", "restart-button");
     this.restartButton.innerText = "Travel Again";
 
-    this.mainCamera = new Camera();
+    this.mainCamera = new Camera(window.innerWidth, window.innerHeight, 2000);
 
     this.statsTable = document.getElementById(
       "stats-table"
@@ -71,8 +71,7 @@ export default class MatteredExperience {
     this.mainRenderer = new Renderer(
       this.mainCanvas,
       this.mainScene,
-      this.mainCamera.perspectiveCamera,
-      { width: window.innerWidth, height: window.innerHeight }
+      this.mainCamera.perspectiveCamera
     );
 
     this.mainRenderer.renderer.setSize(window.innerWidth, window.innerHeight);
