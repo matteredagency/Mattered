@@ -21,7 +21,7 @@ export default class Assets {
     Assets.instance = this;
 
     const objects = {
-      AsteroidSet: "AsteroidSet.glb",
+      Asteroids: "Asteroids.glb",
       Earth: "Earth.glb",
       Jupiter: "Jupiter.glb",
       Mars: "Mars.glb",

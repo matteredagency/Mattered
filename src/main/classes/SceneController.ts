@@ -62,7 +62,7 @@ export default class SceneController {
         isMainExperience: true,
       }),
       asteroids: new Asteroids(
-        "AsteroidSet",
+        "Asteroids",
         new THREE.Vector3(-1488, 0, 3295),
         0.2
       ),
@@ -83,12 +83,12 @@ export default class SceneController {
       // }),
     };
     this.sceneTime = {
-      earth: 0,
-      venus: 0,
-      mars: 0,
-      jupiter: 0,
-      asteroids: 0,
-      saturn: 0,
+      Earth: 0,
+      Venus: 0,
+      Mars: 0,
+      Jupiter: 0,
+      Asteroids: 0,
+      Saturn: 0,
     };
 
     this.experience = new MatteredExperience();
@@ -118,17 +118,17 @@ export default class SceneController {
 
   trackSceneTime(currentPercent: number) {
     if (currentPercent >= 0.004 && currentPercent < 0.05) {
-      this.trackSceneSubject("venus");
+      this.trackSceneSubject("Venus");
     } else if (currentPercent >= 0.06 && currentPercent < 0.12) {
-      this.trackSceneSubject("earth");
+      this.trackSceneSubject("Earth");
     } else if (currentPercent >= 0.13 && currentPercent < 0.18) {
-      this.trackSceneSubject("mars");
+      this.trackSceneSubject("Mars");
     } else if (currentPercent >= 0.19 && currentPercent < 0.35) {
-      this.trackSceneSubject("jupiter");
+      this.trackSceneSubject("Jupiter");
     } else if (currentPercent >= 0.42 && currentPercent < 0.56) {
-      this.trackSceneSubject("asteroids");
+      this.trackSceneSubject("Asteroids");
     } else if (currentPercent >= 0.56 && currentPercent < 0.75) {
-      this.trackSceneSubject("saturn");
+      this.trackSceneSubject("Saturn");
     } else {
       if (this.currentSubject) {
         this.sceneClock.stop();

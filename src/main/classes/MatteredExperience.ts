@@ -161,9 +161,25 @@ export default class MatteredExperience {
 
       this.restartButton.classList.add("fade-in");
       this.chatBox.chatWindow.classList.add("fade-in");
-      this.favoriteSpotExperience.setFavoriteObject("Saturn");
+
+      this.setFavoriteStop();
       this.mainCanvas.classList.remove("fade-out");
     }, 2500);
+  }
+
+  setFavoriteStop() {
+    let highestNum = 0;
+    let highestKey = "";
+
+    Object.entries(this.mainSceneController.sceneTime).forEach(
+      ([key, value]) => {
+        if (value >= highestNum) {
+          highestKey = key;
+          highestNum = value;
+        }
+      }
+    );
+    this.favoriteSpotExperience.setFavoriteObject(highestKey);
   }
 
   resetExperience() {
