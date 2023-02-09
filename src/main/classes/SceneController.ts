@@ -60,7 +60,7 @@ export default class SceneController {
       asteroids: new Asteroids(
         "AsteroidSet",
         new THREE.Vector3(-1488, 0, 3295),
-        0.09
+        0.2
       ),
       saturn: new Planet({
         name: "Saturn",
@@ -151,8 +151,8 @@ export default class SceneController {
         this.sceneSubjects.earth.rendered &&
         this.sceneSubjects.venus.rendered
       ) {
-        this.sceneSubjects.earth.remove();
-        this.sceneSubjects.venus.remove();
+        this.sceneSubjects.earth.remove(this.experience.mainScene);
+        this.sceneSubjects.venus.remove(this.experience.mainScene);
       }
       if (
         !this.sceneSubjects.mars.rendered &&
@@ -166,8 +166,8 @@ export default class SceneController {
         this.sceneSubjects.earth.rendered &&
         this.sceneSubjects.venus.rendered
       ) {
-        this.sceneSubjects.earth.remove();
-        this.sceneSubjects.venus.remove();
+        this.sceneSubjects.earth.remove(this.experience.mainScene);
+        this.sceneSubjects.venus.remove(this.experience.mainScene);
       }
       if (
         !this.sceneSubjects.mars.rendered &&
@@ -178,7 +178,7 @@ export default class SceneController {
     }
     if (currentPercent >= 0.185 && currentPercent <= 0.8) {
       if (this.sceneSubjects.mars.rendered) {
-        this.sceneSubjects.mars.remove();
+        this.sceneSubjects.mars.remove(this.experience.mainScene);
       }
       if (
         !this.sceneSubjects.jupiter.rendered &&
@@ -192,16 +192,16 @@ export default class SceneController {
     }
     if (currentPercent > 0.8) {
       if (this.sceneSubjects.mars.rendered) {
-        this.sceneSubjects.mars.remove();
+        this.sceneSubjects.mars.remove(this.experience.mainScene);
       }
       if (
         !this.sceneSubjects.jupiter.rendered &&
         !this.sceneSubjects.saturn.rendered &&
         !this.sceneSubjects.asteroids.rendered
       ) {
-        this.sceneSubjects.jupiter.remove();
-        this.sceneSubjects.saturn.remove();
-        this.sceneSubjects.asteroids.remove();
+        this.sceneSubjects.jupiter.remove(this.experience.mainScene);
+        this.sceneSubjects.saturn.remove(this.experience.mainScene);
+        this.sceneSubjects.asteroids.remove(this.experience.mainScene);
       }
     }
   }

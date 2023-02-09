@@ -7,50 +7,41 @@ export default class Asteroids {
   name: string;
   size: number;
   position: THREE.Vector3;
-  asteroids!: THREE.Group;
+  asset!: THREE.Group;
   constructor(name: string, position: THREE.Vector3, size: number) {
     this.experience = new MatteredExperience();
     this.position = position;
     this.size = size;
     this.name = name;
-    this.asteroids = this.experience.assets.assetsDirectory.objects[this.name];
+    this.asset = new THREE.Group();
+    this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
 
-    this.asteroids.scale.set(0.2, 0.2, 0.2);
+    this.asset.children[0].scale.set(size, size, size);
     this.rendered = false;
-    this.asteroids.position.set(
-      this.position.x,
-      this.position.y,
-      this.position.z
-    );
+    this.asset.position.set(this.position.x, this.position.y, this.position.z);
 
-    this.asteroids.rotateY(Math.PI * 2.31);
+    this.asset.rotateY(Math.PI * 2.31);
 
     this.experience.spaceObjects.asteroids = this;
-
-    // const folder = this.experience.gui.addFolder("asteroids");
-    // folder.add(this.asteroids.position, "x", -2000, -1000);
-    // folder.add(this.asteroids.position, "z", 2000, 4000);
-
-    // folder.add(this.asteroids.rotation, "y", 0, Math.PI * 2);
   }
   init(scene: THREE.Scene) {
     if (!this.rendered) {
       this.rendered = true;
-      this.experience.mainScene.add(scene);
+      scene.add(this.asset);
     }
   }
   rotateAsteroids() {
-    this.asteroids.children.forEach((mesh, index) => {
+    this.asset.children[0].children.forEach((mesh, index) => {
       let pi = Math.PI;
       if (index % 2 === 0) pi *= -1;
       mesh.rotateX(pi * 0.001);
     });
   }
 
-  remove() {
+  remove(scene: THREE.Scene) {
     if (!this.rendered) return;
 
     this.rendered = false;
-    this.experience.mainScene?.remove(this.asteroids);
+    scene.remove(this.asset);
   }
 }
