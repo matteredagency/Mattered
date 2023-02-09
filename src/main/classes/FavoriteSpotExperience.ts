@@ -103,7 +103,7 @@ export default class FavoriteSpotExperience {
         assetSize = 1.15;
         break;
       case "Saturn":
-        assetSize = 0.5;
+        assetSize = 0.4;
         break;
       default:
         assetSize = 1;

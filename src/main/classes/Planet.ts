@@ -66,7 +66,7 @@ export default class Planet {
     this.asset = new THREE.Group();
 
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
-    if (this.name === "Saturn" && isMainExperience) {
+    if (this.name === "Saturn") {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
       this.asset.rotateY(Math.PI * 0.75);
