@@ -292,7 +292,6 @@ tfoot > tr {
   height: 150px;
   max-height: 150px;
   z-index: 100;
-  transform: translate(0, 0);
   transition: max-width 0.25s ease-in-out, max-height 0.25s ease-in-out,
     top 0.25s ease-in-out;
 }

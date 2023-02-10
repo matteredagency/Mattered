@@ -5,7 +5,6 @@ import Camera from "./Camera";
 import Sizes from "./Sizes";
 import Lights from "./Lights";
 import Stars from "./Stars";
-import { GUI } from "dat.gui";
 import Asteroids from "./Asteroids";
 import Planet from "./Planet";
 
@@ -18,7 +17,6 @@ export default class FavoriteSpotExperience {
   lights!: Lights;
   sizes!: Sizes;
   stars!: Stars;
-  gui!: GUI;
   sceneExpanded!: boolean;
   static instance: FavoriteSpotExperience;
   favoriteStop?: Planet | Asteroids | null;
@@ -40,18 +38,8 @@ export default class FavoriteSpotExperience {
     this.lights = new Lights(this.favoriteStopScene, false);
     this.sceneExpanded = false;
     this.assetPosition = new THREE.Vector3(0, 0, -100);
-    this.gui = new GUI();
     this.favoriteStop = null;
-    this.gui.domElement.parentElement?.style.zIndex = "1000";
 
-    const folder = this.gui.addFolder("camera");
-
-    folder.add(
-      this.secondaryCamera.perspectiveCamera.rotation,
-      "y",
-      0,
-      Math.PI * 2
-    );
     this.stars.init(this.favoriteStopScene);
     this.secondaryCamera.perspectiveCamera.position.set(0, 0, 20);
 
@@ -60,17 +48,6 @@ export default class FavoriteSpotExperience {
       this.favoriteStopScene,
       this.secondaryCamera.perspectiveCamera
     );
-
-    // favoriteStopCanvas.addEventListener("resize", () => {
-    //   this.secondaryCamera.resizeFavoriteSpot(
-    //     favoriteStopCanvas.width,
-    //     favoriteStopCanvas.height
-    //   );
-    //   this.secondaryRenderer.resizeFavorite(
-    //     favoriteStopCanvas.width,
-    //     favoriteStopCanvas.height
-    //   );
-    // });
 
     this.updateFavoriteSpotScene();
   }
