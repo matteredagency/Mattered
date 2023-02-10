@@ -18,6 +18,7 @@ export default class ChatBox {
   favoriteStopSectionInner!: HTMLDivElement;
   favoriteSpotCanvasExpanded!: boolean;
   favoriteSpotExpandButton!: HTMLButtonElement;
+  lastBoundingTop!: number;
   static instance: ChatBox;
   constructor() {
     if (ChatBox.instance) {
@@ -31,6 +32,8 @@ export default class ChatBox {
     this.textOptionSpanElements = document.querySelectorAll(
       "#text > button.text-option > span"
     );
+
+    this.lastBoundingTop = 0;
 
     this.privacyTerms = document.getElementById(
       "privacy-terms"
@@ -82,9 +85,10 @@ export default class ChatBox {
 
     this.favoriteSpotExpandButton.addEventListener("click", () => {
       if (this.favoriteSpotCanvasExpanded) {
-        setTimeout(() => {
-          this.favoriteSpotCanvas.style.transform = "translate(0, 0)";
-        }, 0);
+        this.favoriteSpotExpandButton.style.position = "relative";
+
+        this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
+        this.favoriteSpotCanvas.style.top = `${this.lastBoundingTop}px`;
         setTimeout(() => {
           this.favoriteStopSection.classList.remove(
             "favorite-stop-section-expand"
@@ -93,12 +97,9 @@ export default class ChatBox {
             "favorite-stop-section-expand"
           );
           this.favoriteSpotCanvas.style.position = "relative";
-        }, 250);
-        this.favoriteSpotExpandButton.style.position = "relative";
+          this.favoriteSpotCanvas.style.removeProperty("top");
+        }, 25);
 
-        this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
-
-        this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
         this.favoriteSpotExpandButton.style.transform = "translate(0, 0)";
         this.favoriteSpotExpandButton.style.color = "black";
         this.favoriteSpotExpandButton.children[1].textContent = "Expand";
@@ -106,15 +107,19 @@ export default class ChatBox {
           "expand-button-fill"
         );
       } else {
+        this.lastBoundingTop =
+          this.favoriteSpotCanvas.getBoundingClientRect().top;
         this.favoriteStopSection.classList.add("favorite-stop-section-expand");
         this.favoriteStopSectionInner.classList.add(
           "favorite-stop-section-expand"
         );
 
         this.favoriteSpotCanvas.classList.add("favorite-stop-canvas-expand");
-        this.favoriteSpotCanvas.style.transform = `translate(0, ${-this.favoriteSpotCanvas.getBoundingClientRect()
-          .top}px)`;
         this.favoriteSpotCanvas.style.position = "absolute";
+        this.favoriteSpotCanvas.style.top = `${this.lastBoundingTop}px`;
+        setTimeout(() => {
+          this.favoriteSpotCanvas.style.top = "0";
+        }, 25);
 
         this.favoriteSpotExpandButton.style.transform = `translate(0, ${Math.round(
           window.innerHeight / 2
