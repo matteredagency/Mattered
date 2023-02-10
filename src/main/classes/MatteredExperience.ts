@@ -100,6 +100,7 @@ export default class MatteredExperience {
 
   timeControl() {
     const elapsedTime = this.clock.getElapsedTime();
+    const stopElapsedTimeDiff = elapsedTime - this.stopTime;
     this.planeController.float(elapsedTime);
     this.spaceObjects.stars.twinkleStars(elapsedTime);
     if (elapsedTime <= 2) {
@@ -109,8 +110,8 @@ export default class MatteredExperience {
       this.controls.activateControls();
       this.scrollInstructions.fadeIn();
     }
-    if (this.experienceEnded) {
-      this.track.autoEnd(elapsedTime - this.stopTime);
+    if (this.experienceEnded && stopElapsedTimeDiff <= 3) {
+      this.track.autoEnd(stopElapsedTimeDiff);
     }
   }
 
@@ -186,11 +187,14 @@ export default class MatteredExperience {
     }, 500);
 
     setTimeout(() => {
+      this.experienceEnded = false;
       this.clock.elapsedTime = 0;
+      this.clock.start();
       this.mainCanvas.classList.add("fade-in");
       this.mainSceneController.resetSceneController();
       this.controls.resetScroll();
       this.mainCamera.setCameraAtStart();
+      this.spaceObjects.setPlaneStartPosition();
       setTimeout(() => {
         this.controls.scrollContainer.style.overflowY = "scroll";
       }, 1000);

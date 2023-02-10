@@ -28,7 +28,6 @@ export default class Controls {
       }
       this.scrollPercent = scrollTop / scrollHeight + 0.004;
 
-      console.log(this.scrollPercent);
       this.experience.mainSceneController.updateSceneData(this.scrollPercent);
       this.experience.planeController.updatePlaneRotation(this.scrollPercent);
       this.experience.track.updateCameraPosition(this.scrollPercent);

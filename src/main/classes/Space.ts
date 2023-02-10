@@ -24,16 +24,20 @@ export default class Space {
     this.paperPlane =
       this.experience.assets.assetsDirectory.objects["PaperPlane"];
 
-    const startPath = this.experience.track.planePath.getPointAt(0);
-    this.paperPlane.position.set(startPath.x, 0, startPath.z);
     this.paperPlane.scale.set(0.3, 0.3, 0.3);
-    this.paperPlane.rotateY(-Math.PI * 0.7);
-    this.experience.mainScene.add(this.paperPlane);
+    this.setPlaneStartPosition();
     this.rotatingPlanets = [];
   }
   init() {
     this.currentPlanet = null;
     this.asteroids = null;
+  }
+
+  setPlaneStartPosition() {
+    const startPath = this.experience.track.planePath.getPointAt(0);
+    this.paperPlane.position.set(startPath.x, 0, startPath.z);
+    this.paperPlane.rotation.set(0, -Math.PI * 0.7, 0);
+    this.experience.mainScene.add(this.paperPlane);
   }
 
   setRotatingPlanets() {
