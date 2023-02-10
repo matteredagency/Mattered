@@ -36,10 +36,6 @@ export default class Space {
     this.asteroids = null;
   }
 
-  resetPlaneSize() {
-    this.paperPlane.scale.set(0.15, 0.15, 0.15);
-  }
-
   setRotatingPlanets() {
     this.rotatingPlanets = Object.entries(
       this.experience.mainSceneController.sceneSubjects

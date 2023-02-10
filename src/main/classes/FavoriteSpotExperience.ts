@@ -114,28 +114,26 @@ export default class FavoriteSpotExperience {
       ? null
       : this.assets.assetsDirectory.textures["backgroundTexture"];
 
-    if (this.sceneExpanded) {
-      this.secondaryRenderer.renderer.setSize(300, 150);
-      this.secondaryCamera.resizeFavoriteSpot(300, 150);
-      if (this.favoriteStop?.name === "Asteroids") {
-        this.favoriteStop.asset.children[0].scale.set(0.09, 0.09, 0.09);
-      }
-    } else {
-      this.secondaryCamera.resizeFavoriteSpot(
-        window.innerWidth,
-        window.innerHeight
-      );
-      this.secondaryRenderer.renderer.setSize(
-        window.innerWidth,
-        window.innerHeight
-      );
+    const sceneWidth = this.sceneExpanded ? 300 : window.innerWidth;
+    const sceneHeight = this.sceneExpanded ? 150 : window.innerHeight;
 
-      if (this.favoriteStop?.name === "Asteroids") {
-        this.favoriteStop.asset.children[0].scale.set(0.05, 0.05, 0.05);
-      }
+    const asteroidsScale = this.sceneExpanded ? 0.09 : 0.05;
+
+    this.secondaryRenderer.renderer.setSize(sceneWidth, sceneHeight);
+    this.secondaryCamera.resizeFavoriteStop(sceneWidth, sceneHeight);
+    if (this.favoriteStop?.name === "Asteroids") {
+      this.favoriteStop.asset.children[0].scale.set(
+        asteroidsScale,
+        asteroidsScale,
+        asteroidsScale
+      );
     }
 
     this.sceneExpanded = !this.sceneExpanded;
+  }
+
+  removeFavoriteStop() {
+    this.favoriteStop?.remove(this.favoriteStopScene);
   }
 
   updateFavoriteSpotScene() {

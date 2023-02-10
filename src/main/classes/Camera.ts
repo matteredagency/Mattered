@@ -18,7 +18,7 @@ export default class Camera {
     this.perspectiveCamera.updateProjectionMatrix();
   }
 
-  resizeFavoriteSpot(width: number, height: number) {
+  resizeFavoriteStop(width: number, height: number) {
     this.perspectiveCamera.aspect = width / height;
     this.perspectiveCamera.updateProjectionMatrix();
   }
