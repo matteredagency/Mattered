@@ -83,7 +83,7 @@ tfoot > tr {
   background-color: rgba(225, 225, 225, 1);
   padding: 0 16px 0 16px;
   align-items: center;
-  transition: background 0.25s ease-in, opacity 0.25s ease-in;
+  transition: background 0.25s ease-in, opacity 0.5s ease-in;
 }
 
 .window-section {

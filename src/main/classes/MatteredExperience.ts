@@ -177,7 +177,13 @@ export default class MatteredExperience {
   }
 
   resetExperience() {
-    this.mainCanvas.classList.remove("fade-in");
+    setTimeout(() => {
+      this.chatBox.chatWindow.classList.add("fade-out");
+      setTimeout(() => {
+        this.chatBox.chatWindow.style.display = "none";
+        this.favoriteSpotExperience.removeFavoriteStop();
+      }, 500);
+    }, 500);
 
     setTimeout(() => {
       this.clock.elapsedTime = 0;

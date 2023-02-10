@@ -102,6 +102,8 @@ export default class SceneController {
     Object.keys(this.sceneSubjects).forEach((key) => {
       this.sceneSubjects[key as SubjectKeys].rendered = false;
     });
+
+    this.sceneSubjects.venus.init(this.experience.mainScene);
   }
 
   updateSceneData(currentPercent: number) {

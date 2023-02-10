@@ -7,7 +7,7 @@ export default class ChatBox {
   sendButton!: HTMLButtonElement;
   typingElement!: HTMLDivElement;
   messagesWrapper!: HTMLDivElement;
-  experience!: MatteredExperience;
+  mainExperience!: MatteredExperience;
   chatWindow!: HTMLDivElement;
   textArea!: HTMLDivElement;
   matteredLogo!: HTMLElement;
@@ -18,6 +18,7 @@ export default class ChatBox {
   favoriteStopSectionInner!: HTMLDivElement;
   favoriteSpotCanvasExpanded!: boolean;
   favoriteSpotExpandButton!: HTMLButtonElement;
+  startOverButton!: HTMLButtonElement;
   lastBoundingTop!: number;
   static instance: ChatBox;
   constructor() {
@@ -73,7 +74,7 @@ export default class ChatBox {
       "mattered-logo-chat"
     ) as HTMLElement;
     this.textArea = document.getElementById("text") as HTMLDivElement;
-    this.experience = new MatteredExperience();
+    this.mainExperience = new MatteredExperience();
     this.typingElement = document.createElement("div");
     this.typingElement.classList.add("message");
     this.typingElement.classList.add("typing");
@@ -86,9 +87,19 @@ export default class ChatBox {
     this.favoriteSpotExpandButton.addEventListener("click", () => {
       this.expandButtonEffects();
     });
+
+    this.startOverButton = document.getElementById(
+      "start-over"
+    ) as HTMLButtonElement;
+
+    this.startOverButton.addEventListener("click", () => {
+      this.startOverButtonCallback();
+    });
   }
 
-  startOverButtonCallback() {}
+  startOverButtonCallback() {
+    this.mainExperience.resetExperience();
+  }
 
   expandButtonEffects() {
     if (this.favoriteSpotCanvasExpanded) {
@@ -139,7 +150,7 @@ export default class ChatBox {
         "expand-button-fill"
       );
     }
-    this.experience.favoriteSpotExperience.toggleSceneExpand();
+    this.mainExperience.favoriteSpotExperience.toggleSceneExpand();
     this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
   }
 
@@ -236,7 +247,7 @@ export default class ChatBox {
                 }, 1000);
                 setTimeout(() => {
                   this.start3DExperience();
-                  this.experience.audio.play();
+                  this.mainExperience.audio.play();
                 }, 1500);
               }, 500);
             }, 1000);
@@ -283,7 +294,7 @@ export default class ChatBox {
     this.chatWindow!.style.backgroundColor = "rgba(225, 225, 225, 0)";
 
     setTimeout(() => {
-      this.experience.clock.start();
+      this.mainExperience.clock.start();
       setTimeout(() => {
         this.chatWindow!.style.display = "none";
         this.chatWindow!.style.opacity = "0";
@@ -357,7 +368,7 @@ export default class ChatBox {
     document.getElementById("end-text")!.style.display = "flex";
 
     const totalExperienceSeconds = Math.round(
-      this.experience.clock.getElapsedTime()
+      this.mainExperience.clock.getElapsedTime()
     );
 
     const tableBody = document.querySelector("tbody") as HTMLElement;
@@ -387,7 +398,7 @@ export default class ChatBox {
       topWindowTimeStatsDiv.appendChild(timeStatElement);
     });
 
-    Object.entries(this.experience.mainSceneController.sceneTime).forEach(
+    Object.entries(this.mainExperience.mainSceneController.sceneTime).forEach(
       ([name, time]) => {
         time = Math.round(time);
         const {
