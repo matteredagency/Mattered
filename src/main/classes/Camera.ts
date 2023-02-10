@@ -24,7 +24,6 @@ export default class Camera {
   }
 
   setCameraAtStart() {
-    console.log("setting camera at start");
     const startPath = this.experience.track.cameraPath.getPointAt(0.001);
     this.perspectiveCamera.position.set(startPath.x, 5, startPath.z);
     this.perspectiveCamera.lookAt(

@@ -155,7 +155,7 @@ export default class MatteredExperience {
         .querySelector('meta[name="theme-color"]')
         ?.setAttribute("content", "#E1E1E1");
 
-      this.chatBox.chatWindow.classList.add("fade-in");
+      this.chatBox.chatWindow.style.opacity = "1";
 
       this.setFavoriteStop();
       this.mainCanvas.classList.remove("fade-out");
@@ -179,9 +179,9 @@ export default class MatteredExperience {
 
   resetExperience() {
     setTimeout(() => {
-      this.chatBox.chatWindow.classList.add("fade-out");
       setTimeout(() => {
         this.chatBox.chatWindow.style.display = "none";
+        this.chatBox.chatWindow.style.opacity = "0";
         this.chatBox.resetEndStats();
         this.favoriteSpotExperience.removeFavoriteStop();
       }, 500);

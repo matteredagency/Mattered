@@ -133,6 +133,7 @@ export default class FavoriteSpotExperience {
   }
 
   removeFavoriteStop() {
+    console.log("removed favorite stop");
     this.favoriteStop?.remove(this.favoriteStopScene);
   }
 
