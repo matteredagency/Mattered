@@ -182,6 +182,7 @@ export default class MatteredExperience {
       this.chatBox.chatWindow.classList.add("fade-out");
       setTimeout(() => {
         this.chatBox.chatWindow.style.display = "none";
+        this.chatBox.resetEndStats();
         this.favoriteSpotExperience.removeFavoriteStop();
       }, 500);
     }, 500);
@@ -195,6 +196,8 @@ export default class MatteredExperience {
       this.controls.resetScroll();
       this.mainCamera.setCameraAtStart();
       this.spaceObjects.setPlaneStartPosition();
+      this.chatBox.chatWindow.classList.remove("fade-out");
+
       setTimeout(() => {
         this.controls.scrollContainer.style.overflowY = "scroll";
       }, 1000);

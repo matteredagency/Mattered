@@ -20,6 +20,8 @@ export default class ChatBox {
   favoriteSpotExpandButton!: HTMLButtonElement;
   startOverButton!: HTMLButtonElement;
   lastBoundingTop!: number;
+  statsTable!: HTMLElement;
+  totalTripDurationSection!: HTMLDivElement;
   static instance: ChatBox;
   constructor() {
     if (ChatBox.instance) {
@@ -69,6 +71,11 @@ export default class ChatBox {
     this.favoriteSpotExpandButton = document.getElementById(
       "favorite-stop-expand"
     ) as HTMLButtonElement;
+
+    this.totalTripDurationSection = document.getElementById(
+      "time-stats"
+    ) as HTMLDivElement;
+    this.statsTable = document.querySelector("tbody") as HTMLElement;
 
     this.matteredLogo = document.getElementById(
       "mattered-logo-chat"
@@ -371,16 +378,11 @@ export default class ChatBox {
       this.mainExperience.clock.getElapsedTime()
     );
 
-    const tableBody = document.querySelector("tbody") as HTMLElement;
     const totalTimeColumn = document.getElementById(
       "total-time"
     ) as HTMLElement;
 
     const totalTimeObject = this.getHoursMinuteSeconds(totalExperienceSeconds);
-
-    const topWindowTimeStatsDiv = document.getElementById(
-      "time-stats"
-    ) as HTMLDivElement;
 
     Object.entries(totalTimeObject).forEach(([key, value]) => {
       const timeStatElement = document.createElement("div");
@@ -395,7 +397,7 @@ export default class ChatBox {
       timeStatElement.appendChild(valueSpan);
       timeStatElement.appendChild(keySpan);
 
-      topWindowTimeStatsDiv.appendChild(timeStatElement);
+      this.totalTripDurationSection.appendChild(timeStatElement);
     });
 
     Object.entries(this.mainExperience.mainSceneController.sceneTime).forEach(
@@ -425,7 +427,7 @@ export default class ChatBox {
         newRow.appendChild(timeData);
         newRow.appendChild(percentData);
 
-        tableBody.appendChild(newRow);
+        this.statsTable.appendChild(newRow);
       }
     );
 
@@ -433,6 +435,11 @@ export default class ChatBox {
       totalTimeObject.hours * 60 + totalTimeObject.minutes,
       totalTimeObject.seconds
     );
+  }
+
+  resetEndStats() {
+    this.statsTable.innerHTML = "";
+    this.totalTripDurationSection.innerHTML = "";
   }
 
   getHoursMinuteSeconds(totalSeconds: number) {
