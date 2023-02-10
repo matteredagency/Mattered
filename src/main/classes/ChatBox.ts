@@ -66,7 +66,7 @@ export default class ChatBox {
     ) as HTMLDivElement;
 
     this.favoriteSpotExpandButton = document.getElementById(
-      "favorite-spot-expand"
+      "favorite-stop-expand"
     ) as HTMLButtonElement;
 
     this.matteredLogo = document.getElementById(

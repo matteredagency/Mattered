@@ -301,7 +301,7 @@ tfoot > tr {
   max-width: 100%;
 }
 
-#favorite-spot-expand {
+#favorite-stop-expand {
   background: none;
   font-size: 13px;
   display: flex;
@@ -311,7 +311,6 @@ tfoot > tr {
   border: none;
   gap: 10px;
   z-index: 101;
-  transition: transform 0.25s ease-in-out, color 0.25s ease-in-out;
   transform: translate(0, 0);
 }
 .time-stat {
