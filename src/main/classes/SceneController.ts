@@ -1,10 +1,9 @@
 import THREE from "../globalmports";
 import MatteredExperience from "./MatteredExperience";
 import Planet from "./Planet";
-import createAssetPath from "../../utils/createAssetPath";
 import Asteroids from "./Asteroids";
 import Text from "./Text";
-type SubjectKeys =
+export type SubjectKeys =
   | "venus"
   | "earth"
   | "mars"

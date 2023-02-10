@@ -38,6 +38,10 @@ export default class Asteroids {
     });
   }
 
+  resetAsset(name: string) {
+    this.asset.add(this.experience.assets.assetsDirectory.objects[name]);
+  }
+
   remove(scene: THREE.Scene) {
     if (!this.rendered) return;
 

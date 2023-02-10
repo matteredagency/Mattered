@@ -44,7 +44,6 @@ export default class Planet {
     emissiveColor,
     emissiveIntensity,
     tilt,
-    isMainExperience,
   }: PlanetConstructorParameters) {
     this.experience = new MatteredExperience();
     this.rotationSpeed = rotationSpeed;
@@ -64,8 +63,8 @@ export default class Planet {
       this.planetScale
     );
     this.asset = new THREE.Group();
-
     this.asset.add(this.experience.assets.assetsDirectory.objects[this.name]);
+
     if (this.name === "Saturn") {
       this.asset.children[0].children[1].scale.y = 0.1;
       this.asset.children[0].children[0].scale.y = 0.1;
@@ -74,40 +73,54 @@ export default class Planet {
     }
 
     if (this.atmosphereColor && this.atmosphereRadius) {
-      const atmosphere = new THREE.Mesh(
-        new THREE.SphereGeometry(this.atmosphereRadius, 30, 30),
-        new THREE.ShaderMaterial({
-          vertexShader: atmosphereVertex,
-          fragmentShader: atmosphereFragment,
-          uniforms: {
-            atmosphereR: {
-              value: this.atmosphereColor.r,
-            },
-            atmosphereG: {
-              value: this.atmosphereColor.g,
-            },
-            atmosphereB: {
-              value: this.atmosphereColor.b,
-            },
-          },
-          blending: THREE.AdditiveBlending,
-          side: THREE.BackSide,
-          transparent: true,
-          opacity: 0.5,
-        })
-      );
-      this.asset.add(atmosphere);
+      this.addAtmosphere();
     }
 
     this.asset.position.set(this.position.x, this.position.y, this.position.z);
   }
 
+  addAtmosphere() {
+    const atmosphere = new THREE.Mesh(
+      new THREE.SphereGeometry(this.atmosphereRadius, 30, 30),
+      new THREE.ShaderMaterial({
+        vertexShader: atmosphereVertex,
+        fragmentShader: atmosphereFragment,
+        uniforms: {
+          atmosphereR: {
+            value: this.atmosphereColor!.r,
+          },
+          atmosphereG: {
+            value: this.atmosphereColor!.g,
+          },
+          atmosphereB: {
+            value: this.atmosphereColor!.b,
+          },
+        },
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide,
+        transparent: true,
+        opacity: 0.5,
+      })
+    );
+    this.asset.add(atmosphere);
+  }
+
+  resetAsset(name: string) {
+    this.experience.assets.assetsDirectory.objects[name].scale.set(
+      this.planetScale,
+      this.planetScale,
+      this.planetScale
+    );
+    this.asset.add(this.experience.assets.assetsDirectory.objects[name]);
+
+    if (this.atmosphereRadius && this.atmosphereColor) this.addAtmosphere();
+  }
+
   init(scene: THREE.Scene) {
-    if (!this.rendered) {
-      this.rendered = true;
-      scene.add(this.asset);
-      this.experience.spaceObjects.currentPlanet = this;
-    }
+    if (this.rendered) return;
+    this.rendered = true;
+    scene.add(this.asset);
+    this.experience.spaceObjects.currentPlanet = this;
   }
 
   rotate() {
@@ -118,11 +131,11 @@ export default class Planet {
       this.asset.rotation.x = this.tilt;
     }
   }
-  remove() {
+  remove(scene: THREE.Scene) {
     if (!this.rendered) return;
 
     this.rendered = false;
-    this.experience.mainScene?.remove(this.asset);
+    scene.remove(this.asset);
     this.experience.spaceObjects.currentPlanet = null;
   }
 }

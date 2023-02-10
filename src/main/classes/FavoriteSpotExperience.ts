@@ -7,11 +7,15 @@ import Lights from "./Lights";
 import Stars from "./Stars";
 import Asteroids from "./Asteroids";
 import Planet from "./Planet";
+import MatteredExperience from "./MatteredExperience";
+import { SubjectKeys } from "./SceneController";
+import { Plane } from "three";
 
 export default class FavoriteSpotExperience {
   secondaryCamera!: Camera;
   secondaryRenderer!: Renderer;
   assets!: Assets;
+  mainExperience!: MatteredExperience;
   favoriteStopScene!: THREE.Scene;
   experienceEnded!: boolean;
   lights!: Lights;
@@ -30,6 +34,7 @@ export default class FavoriteSpotExperience {
       yRanges: [-500, 500],
       zRanges: [-500, 500],
     });
+    this.mainExperience = new MatteredExperience();
     this.assets = new Assets();
     this.favoriteStopScene = new THREE.Scene();
     this.secondaryCamera = new Camera(300, 150, 2000);
@@ -133,8 +138,13 @@ export default class FavoriteSpotExperience {
   }
 
   removeFavoriteStop() {
-    console.log("removed favorite stop");
+    const { name } = this.favoriteStop as Planet | Asteroids;
     this.favoriteStop?.remove(this.favoriteStopScene);
+    (
+      this.mainExperience.mainSceneController.sceneSubjects[
+        name.toLowerCase() as SubjectKeys
+      ] as Planet | Asteroids
+    ).resetAsset(name);
   }
 
   updateFavoriteSpotScene() {
