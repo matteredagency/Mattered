@@ -303,6 +303,7 @@ tfoot > tr {
 
 #favorite-stop-expand {
   background: none;
+  color: black;
   font-size: 13px;
   display: flex;
   flex-flow: row nowrap;
