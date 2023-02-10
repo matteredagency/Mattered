@@ -84,57 +84,63 @@ export default class ChatBox {
     this.favoriteSpotCanvasExpanded = false;
 
     this.favoriteSpotExpandButton.addEventListener("click", () => {
-      if (this.favoriteSpotCanvasExpanded) {
-        this.favoriteSpotExpandButton.style.position = "relative";
+      this.expandButtonEffects();
+    });
+  }
 
-        this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
-        this.favoriteSpotCanvas.style.top = `${this.lastBoundingTop}px`;
-        setTimeout(() => {
-          this.favoriteStopSection.classList.remove(
-            "favorite-stop-section-expand"
-          );
-          this.favoriteStopSectionInner.classList.remove(
-            "favorite-stop-section-expand"
-          );
-          this.favoriteSpotCanvas.style.position = "relative";
-          this.favoriteSpotCanvas.style.removeProperty("top");
-        }, 25);
+  startOverButtonCallback() {}
 
-        this.favoriteSpotExpandButton.style.transform = "translate(0, 0)";
-        this.favoriteSpotExpandButton.style.color = "black";
-        this.favoriteSpotExpandButton.children[1].textContent = "Expand";
-        this.favoriteSpotExpandButton.children[0].children[0].classList.remove(
-          "expand-button-fill"
-        );
-      } else {
-        this.lastBoundingTop =
-          this.favoriteSpotCanvas.getBoundingClientRect().top;
-        this.favoriteStopSection.classList.add("favorite-stop-section-expand");
-        this.favoriteStopSectionInner.classList.add(
+  expandButtonEffects() {
+    if (this.favoriteSpotCanvasExpanded) {
+      this.favoriteSpotExpandButton.style.position = "relative";
+
+      this.favoriteSpotCanvas.classList.remove("favorite-stop-canvas-expand");
+      this.favoriteSpotCanvas.style.top = `${this.lastBoundingTop}px`;
+      setTimeout(() => {
+        this.favoriteStopSection.classList.remove(
           "favorite-stop-section-expand"
         );
-
-        this.favoriteSpotCanvas.classList.add("favorite-stop-canvas-expand");
-        this.favoriteSpotCanvas.style.position = "absolute";
-        this.favoriteSpotCanvas.style.top = `${this.lastBoundingTop}px`;
-        setTimeout(() => {
-          this.favoriteSpotCanvas.style.top = "0";
-        }, 25);
-
-        this.favoriteSpotExpandButton.style.transform = `translate(0, ${Math.round(
-          window.innerHeight / 2
-        )}px)`;
-        this.favoriteSpotExpandButton.style.position = "absolute";
-
-        this.favoriteSpotExpandButton.style.color = "white";
-        this.favoriteSpotExpandButton.children[1].textContent = "Minimize";
-        this.favoriteSpotExpandButton.children[0].children[0].classList.add(
-          "expand-button-fill"
+        this.favoriteStopSectionInner.classList.remove(
+          "favorite-stop-section-expand"
         );
-      }
-      this.experience.favoriteSpotExperience.toggleSceneExpand();
-      this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
-    });
+        this.favoriteSpotCanvas.style.position = "relative";
+        this.favoriteSpotCanvas.style.removeProperty("top");
+      }, 25);
+
+      this.favoriteSpotExpandButton.style.transform = "translate(0, 0)";
+      this.favoriteSpotExpandButton.style.color = "black";
+      this.favoriteSpotExpandButton.children[1].textContent = "Expand";
+      this.favoriteSpotExpandButton.children[0].children[0].classList.remove(
+        "expand-button-fill"
+      );
+    } else {
+      this.lastBoundingTop =
+        this.favoriteSpotCanvas.getBoundingClientRect().top;
+      this.favoriteStopSection.classList.add("favorite-stop-section-expand");
+      this.favoriteStopSectionInner.classList.add(
+        "favorite-stop-section-expand"
+      );
+
+      this.favoriteSpotCanvas.classList.add("favorite-stop-canvas-expand");
+      this.favoriteSpotCanvas.style.position = "absolute";
+      this.favoriteSpotCanvas.style.top = `${this.lastBoundingTop}px`;
+      setTimeout(() => {
+        this.favoriteSpotCanvas.style.top = "0";
+      }, 25);
+
+      this.favoriteSpotExpandButton.style.transform = `translate(0, ${Math.round(
+        window.innerHeight / 2
+      )}px)`;
+      this.favoriteSpotExpandButton.style.position = "absolute";
+
+      this.favoriteSpotExpandButton.style.color = "white";
+      this.favoriteSpotExpandButton.children[1].textContent = "Minimize";
+      this.favoriteSpotExpandButton.children[0].children[0].classList.add(
+        "expand-button-fill"
+      );
+    }
+    this.experience.favoriteSpotExperience.toggleSceneExpand();
+    this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
   }
 
   setUpTextOptions() {

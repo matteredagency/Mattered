@@ -31,7 +31,6 @@ export default class MatteredExperience {
   clock!: THREE.Clock;
   mainSceneController!: SceneController;
   planeController!: PlaneController;
-  restartButton!: HTMLButtonElement;
   statsTable!: HTMLTableElement;
   chatBox!: ChatBox;
   assets!: Assets;
@@ -47,9 +46,6 @@ export default class MatteredExperience {
     this.assets = new Assets();
     this.audio = document.getElementById("ambient-sound") as HTMLAudioElement;
     if (mainCanvas) this.mainCanvas = mainCanvas;
-    this.restartButton = document.createElement("button") as HTMLButtonElement;
-    this.restartButton.setAttribute("id", "restart-button");
-    this.restartButton.innerText = "Travel Again";
 
     this.mainCamera = new Camera(window.innerWidth, window.innerHeight, 2000);
 
@@ -158,7 +154,6 @@ export default class MatteredExperience {
         .querySelector('meta[name="theme-color"]')
         ?.setAttribute("content", "#E1E1E1");
 
-      this.restartButton.classList.add("fade-in");
       this.chatBox.chatWindow.classList.add("fade-in");
 
       this.setFavoriteStop();
@@ -182,17 +177,14 @@ export default class MatteredExperience {
   }
 
   resetExperience() {
-    this.restartButton.classList.remove("fade-in");
     this.mainCanvas.classList.remove("fade-in");
 
     setTimeout(() => {
       this.clock.elapsedTime = 0;
       this.mainCanvas.classList.add("fade-in");
       this.mainSceneController.resetSceneController();
-      this.lights.resetLights();
       this.controls.resetScroll();
       this.mainCamera.setCameraAtStart();
-      this.restartButton.remove();
       setTimeout(() => {
         this.controls.scrollContainer.style.overflowY = "scroll";
       }, 1000);
