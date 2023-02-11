@@ -806,7 +806,7 @@ nav > a > svg {
     margin: 40px 0 40px 0;
   }
   #messages {
-    padding: 0 100px 0 100px;
+    padding: 0 100px 0 100px !important;
   }
 
   #text {

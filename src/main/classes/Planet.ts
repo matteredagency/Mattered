@@ -127,7 +127,6 @@ export default class Planet {
     this.asset.rotation.y +=
       Math.PI * this.rotationSpeed * this.rotationDirection;
     if (this.tilt) {
-      // this.asset.rotation.x = this.tilt;
       this.asset.rotation.x = this.tilt;
     }
   }
