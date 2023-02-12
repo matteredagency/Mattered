@@ -31,15 +31,20 @@ export default class Asteroids {
     }
   }
   rotate() {
-    this.asset.children[0].children.forEach((mesh, index) => {
-      let pi = Math.PI;
-      if (index % 2 === 0) pi *= -1;
-      mesh.rotateX(pi * 0.001);
-    });
+    if (this.asset?.children[0]) {
+      this.asset.children[0].children.forEach((mesh, index) => {
+        let pi = Math.PI;
+        if (index % 2 === 0) pi *= -1;
+        mesh.rotateX(pi * 0.001);
+      });
+    }
   }
 
   resetAsset(name: string) {
+    console.log(this.asset);
     this.asset.add(this.experience.assets.assetsDirectory.objects[name]);
+    this.asset.children[0].scale.set(this.size, this.size, this.size);
+    console.log(this.asset);
   }
 
   remove(scene: THREE.Scene) {
