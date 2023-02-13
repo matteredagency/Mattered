@@ -81,8 +81,8 @@ export default class FavoriteSpotExperience {
       Mars: {
         expandedSize: 1.15,
         minimizedSize: 1.9,
-        // expandedAtmosphereRadius: 40,
-        // minimizedAtmosphereRadius: 40,
+        expandedAtmosphereRadius: 1,
+        minimizedAtmosphereRadius: 20,
       },
       Jupiter: {
         expandedSize: 1.15,
