@@ -51,6 +51,7 @@ export default class FavoriteSpotExperience {
     this.experienceEnded = false;
     this.sizes = new Sizes();
     this.lights = new Lights(this.favoriteStopScene, false);
+    this.lights.sun.position.setZ(100);
     this.sceneExpanded = false;
     this.assetPosition = new THREE.Vector3(0, 0, -100);
     this.favoriteStop = null;
@@ -63,10 +64,6 @@ export default class FavoriteSpotExperience {
       this.favoriteStopScene,
       this.secondaryCamera.perspectiveCamera
     );
-
-    const folder = this.gui.addFolder("camera");
-
-    folder.add(this.secondaryCamera.perspectiveCamera.position, "z", -100, 100);
 
     this.favoriteStopDetails = {
       Earth: {
@@ -89,7 +86,7 @@ export default class FavoriteSpotExperience {
       },
       Jupiter: {
         expandedSize: 1.15,
-        minimizedSize: 1.15,
+        minimizedSize: 1.7,
       },
       Saturn: {
         expandedSize: 0.4,
@@ -136,6 +133,19 @@ export default class FavoriteSpotExperience {
     }
 
     this.favoriteStop.init(this.favoriteStopScene);
+
+    const folder = this.gui.addFolder("favoriteStop");
+
+    folder.add(this.favoriteStop.asset.scale, "x", 0, 2);
+    folder.add(this.favoriteStop.asset.scale, "y", 0, 2);
+    folder.add(this.favoriteStop.asset.scale, "z", 0, 2);
+    // if(this.favoriteStopDetails[this.favoriteStop.name].expandedAtmosphereRadius){
+    //   const folder = this.gui.addFolder("favoriteStop");
+
+    //   folder.add(this.favoriteStop.asset.scale, "x", 0, 2);
+    //   folder.add(this.favoriteStop.asset.scale, "y", 0, 2);
+    //   folder.add(this.favoriteStop.asset.scale, "z", 0, 2);
+    // }
 
     this.secondaryRenderer.renderer.setClearAlpha(0);
   }
