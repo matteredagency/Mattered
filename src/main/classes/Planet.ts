@@ -133,6 +133,15 @@ export default class Planet {
 
   setAssetSize(objectSize: number, atmosphereSize?: number) {
     this.asset.children[0].scale.set(objectSize, objectSize, objectSize);
+    if (this.name === "Saturn") {
+      const ringSizeToUse = objectSize === 0.4 ? 1 : 0.9;
+      this.asset.children[0].children[0].scale.set(
+        ringSizeToUse,
+        0.1,
+        ringSizeToUse
+      );
+    }
+
     if (atmosphereSize) {
       this.asset.children[1].scale.set(
         atmosphereSize,

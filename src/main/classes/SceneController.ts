@@ -126,7 +126,7 @@ export default class SceneController {
       this.trackSceneSubject("Mars");
     } else if (currentPercent >= 0.19 && currentPercent < 0.35) {
       this.trackSceneSubject("Jupiter");
-    } else if (currentPercent >= 0.42 && currentPercent < 0.56) {
+    } else if (currentPercent >= 0.42 && currentPercent < 0.55) {
       this.trackSceneSubject("Asteroids");
     } else if (currentPercent >= 0.56 && currentPercent < 0.75) {
       this.trackSceneSubject("Saturn");

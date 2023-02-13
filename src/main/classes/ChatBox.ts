@@ -106,6 +106,7 @@ export default class ChatBox {
 
   startOverButtonCallback() {
     this.mainExperience.resetExperience();
+    this.mainExperience.favoriteSpotExperience.gui.removeFolder("favoriteStop");
   }
 
   expandButtonEffects() {

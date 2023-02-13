@@ -86,11 +86,11 @@ export default class FavoriteSpotExperience {
       },
       Jupiter: {
         expandedSize: 1.15,
-        minimizedSize: 1.7,
+        minimizedSize: 1.9,
       },
       Saturn: {
         expandedSize: 0.4,
-        minimizedSize: 0.4,
+        minimizedSize: 0.8,
       },
       Asteroids: {
         expandedSize: 0.05,
@@ -128,8 +128,16 @@ export default class FavoriteSpotExperience {
         position: this.assetPosition,
         isMainExperience: false,
         planetScale: this.favoriteStopDetails[name].minimizedSize,
-        ...(name === "Saturn" && { tilt: Math.PI * 0.9 }),
+        ...(name === "Saturn" && { tilt: Math.PI * 0.015 }),
       });
+
+      if (name == "Saturn") {
+        this.favoriteStop.asset.children[0].children[0].scale.set(
+          0.9,
+          0.1,
+          0.9
+        );
+      }
     }
 
     this.favoriteStop.init(this.favoriteStopScene);
@@ -139,13 +147,6 @@ export default class FavoriteSpotExperience {
     folder.add(this.favoriteStop.asset.scale, "x", 0, 2);
     folder.add(this.favoriteStop.asset.scale, "y", 0, 2);
     folder.add(this.favoriteStop.asset.scale, "z", 0, 2);
-    // if(this.favoriteStopDetails[this.favoriteStop.name].expandedAtmosphereRadius){
-    //   const folder = this.gui.addFolder("favoriteStop");
-
-    //   folder.add(this.favoriteStop.asset.scale, "x", 0, 2);
-    //   folder.add(this.favoriteStop.asset.scale, "y", 0, 2);
-    //   folder.add(this.favoriteStop.asset.scale, "z", 0, 2);
-    // }
 
     this.secondaryRenderer.renderer.setClearAlpha(0);
   }
@@ -196,9 +197,8 @@ export default class FavoriteSpotExperience {
   }
 
   updateFavoriteSpotScene() {
-    if (this.favoriteStop) {
-      this.favoriteStop.rotate();
-    }
+    if (this.favoriteStop) this.favoriteStop.rotate();
+
     requestAnimationFrame(() => {
       this.updateFavoriteSpotScene();
     });
