@@ -29,9 +29,10 @@ export default class FavoriteSpotExperience {
   gui!: GUI;
   favoriteStopDetails!: {
     [key: string]: {
-      cameraZPosition: number;
-      size: number;
-      atmosphereRadius?: number;
+      expandedSize: number;
+      minimizedSize: number;
+      expandedAtmosphereRadius?: number;
+      minimizedAtmosphereRadius?: number;
     };
   };
   constructor() {
@@ -69,31 +70,34 @@ export default class FavoriteSpotExperience {
 
     this.favoriteStopDetails = {
       Earth: {
-        size: 1.25,
-        cameraZPosition: 20,
-        atmosphereRadius: 45,
+        expandedSize: 1.25,
+        minimizedSize: 1.25,
+        expandedAtmosphereRadius: 45,
+        minimizedAtmosphereRadius: 45,
       },
       Venus: {
-        size: 0.4,
-        cameraZPosition: -31,
-        atmosphereRadius: 39,
+        expandedSize: 0.4,
+        minimizedSize: 0.4,
+        expandedAtmosphereRadius: 39,
+        minimizedAtmosphereRadius: 39,
       },
       Mars: {
-        size: 1.15,
-        cameraZPosition: 20,
-        atmosphereRadius: 40,
+        expandedSize: 1.15,
+        minimizedSize: 1.15,
+        expandedAtmosphereRadius: 40,
+        minimizedAtmosphereRadius: 40,
       },
       Jupiter: {
-        size: 1.15,
-        cameraZPosition: 20,
+        expandedSize: 1.15,
+        minimizedSize: 1.15,
       },
       Saturn: {
-        size: 0.4,
-        cameraZPosition: 20,
+        expandedSize: 0.4,
+        minimizedSize: 0.4,
       },
       Asteroids: {
-        size: 0.09,
-        cameraZPosition: 20,
+        expandedSize: 0.05,
+        minimizedSize: 0.09,
       },
     };
 
@@ -107,25 +111,26 @@ export default class FavoriteSpotExperience {
       this.favoriteStop = new Asteroids(
         name,
         this.assetPosition,
-        this.favoriteStopDetails[name].size
+        this.favoriteStopDetails[name].minimizedSize
       );
       this.favoriteStop.asset.rotateY(Math.PI * 0.8);
     } else {
       this.favoriteStop = new Planet({
         name,
         clockWiseRotation: true,
-        ...(this.favoriteStopDetails[name].atmosphereRadius && {
+        ...(this.favoriteStopDetails[name].minimizedAtmosphereRadius && {
           atmosphereColor: new THREE.Color(
             name === "Earth" ? 0x4c9aff : 0xbab19e
           ),
         }),
-        ...(this.favoriteStopDetails[name].atmosphereRadius && {
-          atmosphereRadius: this.favoriteStopDetails[name].atmosphereRadius,
+        ...(this.favoriteStopDetails[name].minimizedAtmosphereRadius && {
+          atmosphereRadius:
+            this.favoriteStopDetails[name].minimizedAtmosphereRadius,
         }),
         rotationSpeed: 0.0005,
         position: this.assetPosition,
         isMainExperience: false,
-        planetScale: this.favoriteStopDetails[name].size,
+        planetScale: this.favoriteStopDetails[name].minimizedSize,
         ...(name === "Saturn" && { tilt: Math.PI * 0.9 }),
       });
     }
@@ -136,34 +141,38 @@ export default class FavoriteSpotExperience {
   }
 
   toggleSceneExpand() {
-    this.favoriteStopScene.background = this.sceneExpanded
+    this.sceneExpanded = !this.sceneExpanded;
+
+    this.favoriteStopScene.background = !this.sceneExpanded
       ? null
       : this.assets.assetsDirectory.textures["backgroundTexture"];
 
-    const sceneWidth = this.sceneExpanded ? 300 : window.innerWidth;
-    const sceneHeight = this.sceneExpanded ? 150 : window.innerHeight;
+    const sceneWidth = !this.sceneExpanded ? 300 : window.innerWidth;
+    const sceneHeight = !this.sceneExpanded ? 150 : window.innerHeight;
 
-    if (this.favoriteStop) {
-      this.secondaryCamera.perspectiveCamera.position.setZ(
-        this.sceneExpanded
-          ? this.favoriteStopDetails[this.favoriteStop?.asset.name]
-              .cameraZPosition
-          : 20
-      );
-    }
-    const asteroidsScale = this.sceneExpanded ? 0.09 : 0.05;
+    const asteroidsScale = !this.sceneExpanded ? 0.09 : 0.05;
 
     this.secondaryRenderer.renderer.setSize(sceneWidth, sceneHeight);
     this.secondaryCamera.resizeFavoriteStop(sceneWidth, sceneHeight);
-    if (this.favoriteStop?.name === "Asteroids") {
-      this.favoriteStop.asset.children[0].scale.set(
-        asteroidsScale,
-        asteroidsScale,
-        asteroidsScale
+
+    if (this.favoriteStop) {
+      const {
+        expandedAtmosphereRadius,
+        minimizedAtmosphereRadius,
+        expandedSize,
+        minimizedSize,
+      } = this.favoriteStopDetails[this.favoriteStop.name];
+      const assetSizeToUse = this.sceneExpanded ? expandedSize : minimizedSize;
+      const atmosphereSizeToUse = this.sceneExpanded
+        ? expandedAtmosphereRadius
+        : minimizedAtmosphereRadius;
+      this.favoriteStop.setAssetSize(
+        this.favoriteStop?.name === "Asteroids"
+          ? asteroidsScale
+          : assetSizeToUse,
+        atmosphereSizeToUse
       );
     }
-
-    this.sceneExpanded = !this.sceneExpanded;
   }
 
   removeFavoriteStop() {

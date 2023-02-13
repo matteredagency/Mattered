@@ -47,6 +47,17 @@ export default class Asteroids {
     console.log(this.asset);
   }
 
+  setAssetSize(objectSize: number, atmosphereSize?: number) {
+    this.asset.children[0].scale.set(objectSize, objectSize, objectSize);
+    if (atmosphereSize) {
+      this.asset.children[1].scale.set(
+        atmosphereSize,
+        atmosphereSize,
+        atmosphereSize
+      );
+    }
+  }
+
   remove(scene: THREE.Scene) {
     if (!this.rendered) return;
 

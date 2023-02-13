@@ -130,6 +130,18 @@ export default class Planet {
       this.asset.rotation.x = this.tilt;
     }
   }
+
+  setAssetSize(objectSize: number, atmosphereSize?: number) {
+    this.asset.children[0].scale.set(objectSize, objectSize, objectSize);
+    if (atmosphereSize) {
+      this.asset.children[1].scale.set(
+        atmosphereSize,
+        atmosphereSize,
+        atmosphereSize
+      );
+    }
+  }
+
   remove(scene: THREE.Scene) {
     if (!this.rendered) return;
 
