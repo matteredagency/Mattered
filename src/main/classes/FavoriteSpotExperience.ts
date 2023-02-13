@@ -68,21 +68,21 @@ export default class FavoriteSpotExperience {
     this.favoriteStopDetails = {
       Earth: {
         expandedSize: 1.25,
-        minimizedSize: 1.25,
-        expandedAtmosphereRadius: 45,
-        minimizedAtmosphereRadius: 45,
+        minimizedSize: 1.9,
+        expandedAtmosphereRadius: 7,
+        minimizedAtmosphereRadius: 6.84,
       },
       Venus: {
         expandedSize: 0.4,
         minimizedSize: 0.4,
-        expandedAtmosphereRadius: 39,
-        minimizedAtmosphereRadius: 39,
+        // expandedAtmosphereRadius: 39,
+        // minimizedAtmosphereRadius: 39,
       },
       Mars: {
         expandedSize: 1.15,
         minimizedSize: 1.9,
-        expandedAtmosphereRadius: 40,
-        minimizedAtmosphereRadius: 40,
+        // expandedAtmosphereRadius: 40,
+        // minimizedAtmosphereRadius: 40,
       },
       Jupiter: {
         expandedSize: 1.15,
