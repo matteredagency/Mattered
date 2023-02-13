@@ -80,7 +80,7 @@ export default class FavoriteSpotExperience {
       },
       Mars: {
         expandedSize: 1.15,
-        minimizedSize: 1.15,
+        minimizedSize: 1.9,
         expandedAtmosphereRadius: 40,
         minimizedAtmosphereRadius: 40,
       },
@@ -154,9 +154,9 @@ export default class FavoriteSpotExperience {
   toggleSceneExpand() {
     this.sceneExpanded = !this.sceneExpanded;
 
-    this.favoriteStopScene.background = !this.sceneExpanded
-      ? null
-      : this.assets.assetsDirectory.textures["backgroundTexture"];
+    this.favoriteStopScene.background = this.sceneExpanded
+      ? this.assets.assetsDirectory.textures["backgroundTexture"]
+      : null;
 
     const sceneWidth = !this.sceneExpanded ? 300 : window.innerWidth;
     const sceneHeight = !this.sceneExpanded ? 150 : window.innerHeight;
