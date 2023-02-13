@@ -74,9 +74,9 @@ export default class FavoriteSpotExperience {
       },
       Venus: {
         expandedSize: 0.4,
-        minimizedSize: 0.4,
-        // expandedAtmosphereRadius: 39,
-        // minimizedAtmosphereRadius: 39,
+        minimizedSize: 0.7,
+        expandedAtmosphereRadius: 22,
+        minimizedAtmosphereRadius: 1.75,
       },
       Mars: {
         expandedSize: 1.15,
