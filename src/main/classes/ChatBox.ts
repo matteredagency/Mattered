@@ -68,10 +68,6 @@ export default class ChatBox {
       "end-text"
     ) as HTMLDivElement;
 
-    if (this.endStatsScroll.clientHeight > this.endStatsWrapper.clientHeight) {
-      this.endTextOptionsSection.style.boxShadow = "0px -15px 10px red;";
-    }
-
     this.favoriteSpotCanvas = document.getElementById(
       "favorite-stop-canvas"
     ) as HTMLCanvasElement;
@@ -393,6 +389,14 @@ export default class ChatBox {
     this.privacyTerms.style.transform = "translate(0, 0)";
 
     this.endTextOptionsSection.style.display = "flex";
+
+    console.log(this.endStatsScroll.clientHeight);
+    console.log(this.endStatsWrapper.clientHeight);
+
+    if (this.endStatsScroll.clientHeight > this.endStatsWrapper.clientHeight) {
+      this.endTextOptionsSection.style.boxShadow =
+        "0px -4px 25px rgba(0, 0, 0, 0.2)";
+    }
 
     const totalExperienceSeconds = Math.round(
       this.mainExperience.clock.getElapsedTime()
