@@ -117,11 +117,11 @@ export default class ChatBox {
   startOverButtonCallback() {
     this.mainExperience.resetExperience();
 
-    Object.values(
-      this.mainExperience.favoriteSpotExperience.gui.__folders
-    ).forEach((folder) =>
-      this.mainExperience.favoriteSpotExperience.gui.removeFolder(folder)
-    );
+    // Object.values(
+    //   this.mainExperience.favoriteSpotExperience.gui.__folders
+    // ).forEach((folder) =>
+    //   this.mainExperience.favoriteSpotExperience.gui.removeFolder(folder)
+    // );
   }
 
   expandButtonEffects() {
@@ -394,7 +394,7 @@ export default class ChatBox {
 
     if (window.innerHeight <= 1130) {
       this.endTextOptionsSection.style.boxShadow =
-        "0px -4px 25px rgba(0, 0, 0, 0.2)";
+        "0px -4px 12.5px rgba(0, 0, 0, 0.2)";
     }
 
     const totalExperienceSeconds = Math.round(
