@@ -390,10 +390,13 @@ export default class ChatBox {
 
     this.endTextOptionsSection.style.display = "flex";
 
-    console.log(this.endStatsScroll.clientHeight);
-    console.log(this.endStatsWrapper.clientHeight);
-
-    if (this.endStatsScroll.clientHeight > this.endStatsWrapper.clientHeight) {
+    console.log(
+      this.endStatsWrapper.scrollHeight,
+      this.endStatsWrapper.clientHeight,
+      this.endStatsScroll.clientHeight,
+      this.endStatsScroll.scrollHeight
+    );
+    if (window.innerHeight <= 1130) {
       this.endTextOptionsSection.style.boxShadow =
         "0px -4px 25px rgba(0, 0, 0, 0.2)";
     }

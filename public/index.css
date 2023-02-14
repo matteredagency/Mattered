@@ -264,6 +264,7 @@ tfoot > tr {
   display: none;
   width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #end-stat-scroll {
@@ -367,7 +368,7 @@ tfoot > tr {
 
 #text {
   height: fit-content;
-  width: 100%;
+  width: 90%;
   max-width: 970px;
   background-color: rgba(255, 255, 255, 1);
   display: grid;
@@ -392,6 +393,7 @@ tfoot > tr {
   z-index: 11;
   align-items: center;
   gap: 16px;
+  position: relative;
   height: 30px;
   transition: transform 0.5s ease-in;
 }
@@ -528,8 +530,9 @@ tfoot > tr {
 }
 
 #end-text {
-  padding-top: 10px;
+  padding: 10px 0 10px 0;
   display: none;
+  position: relative;
   flex-flow: column nowrap;
   height: fit-content;
   z-index: 10;
