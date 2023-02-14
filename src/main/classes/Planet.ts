@@ -113,6 +113,14 @@ export default class Planet {
     );
     this.asset.add(this.experience.assets.assetsDirectory.objects[name]);
 
+    if (this.name === "Saturn") {
+      this.experience.assets.assetsDirectory.objects["Saturn"].scale.set(
+        1,
+        0.1,
+        1
+      );
+    }
+
     if (this.atmosphereRadius && this.atmosphereColor) this.addAtmosphere();
   }
 
