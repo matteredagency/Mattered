@@ -160,25 +160,7 @@ export default class SceneController {
         this.sceneSubjects.earth.remove(this.experience.mainScene);
         this.sceneSubjects.venus.remove(this.experience.mainScene);
       }
-      if (
-        !this.sceneSubjects.mars.rendered &&
-        !this.sceneSubjects.jupiter.rendered
-      ) {
-        this.sceneSubjects.mars.init(this.experience.mainScene);
-      }
-    }
-    if (currentPercent >= 0.1 && currentPercent <= 0.185) {
-      if (
-        this.sceneSubjects.earth.rendered &&
-        this.sceneSubjects.venus.rendered
-      ) {
-        this.sceneSubjects.earth.remove(this.experience.mainScene);
-        this.sceneSubjects.venus.remove(this.experience.mainScene);
-      }
-      if (
-        !this.sceneSubjects.mars.rendered &&
-        !this.sceneSubjects.jupiter.rendered
-      ) {
+      if (!this.sceneSubjects.mars.rendered) {
         this.sceneSubjects.mars.init(this.experience.mainScene);
       }
     }
