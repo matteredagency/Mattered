@@ -384,7 +384,7 @@ tfoot > tr {
     transform 0.75s ease-in;
 }
 
-#privacy-terms {
+#privacy-terms-main {
   display: flex;
   flex-flow: row nowrap;
   height: fit-content;
@@ -440,7 +440,7 @@ tfoot > tr {
   );
 }
 
-#privacy-terms > a {
+#privacy-terms-main > a {
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
@@ -448,7 +448,7 @@ tfoot > tr {
   font-size: 11px;
 }
 
-#privacy-terms > div {
+#privacy-terms-main > div {
   height: 3px;
   width: 3px;
   border-radius: 3px;
@@ -828,7 +828,7 @@ nav > a > svg {
   #text-box {
     grid-column: span 4;
   }
-  #privacy-terms {
+  #privacy-terms-main {
     align-items: center;
     height: 10%;
     padding: 0;

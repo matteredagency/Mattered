@@ -334,7 +334,6 @@ export default class ChatBox {
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
     const messagesScroll = document.getElementById("messages");
-    const privacyTerms = document.getElementById("privacy-terms");
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute("content", "#000000");
@@ -360,8 +359,8 @@ export default class ChatBox {
       currentWindowHeight - messagesArea!.getBoundingClientRect().top + 75
     }px)`;
 
-    privacyTerms!.style.transform = `translate(0, ${
-      currentWindowHeight - privacyTerms!.getBoundingClientRect().top + 75
+    this.privacyTerms.style.transform = `translate(0, ${
+      currentWindowHeight - this.privacyTerms!.getBoundingClientRect().top + 75
     }px)`;
     this.textOptionSpanElements.forEach((element, index) => {
       let rotation = Math.random() * 30;
@@ -378,6 +377,9 @@ export default class ChatBox {
       //@ts-ignore
       element.style.transform = `rotate(${rotation}deg)`;
     });
+    setTimeout(() => {
+      this.privacyTerms.remove();
+    }, 2000);
   }
 
   setEndStats() {
@@ -390,12 +392,6 @@ export default class ChatBox {
 
     this.endTextOptionsSection.style.display = "flex";
 
-    console.log(
-      this.endStatsWrapper.scrollHeight,
-      this.endStatsWrapper.clientHeight,
-      this.endStatsScroll.clientHeight,
-      this.endStatsScroll.scrollHeight
-    );
     if (window.innerHeight <= 1130) {
       this.endTextOptionsSection.style.boxShadow =
         "0px -4px 25px rgba(0, 0, 0, 0.2)";
