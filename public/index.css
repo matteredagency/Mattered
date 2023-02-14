@@ -261,7 +261,7 @@ tfoot > tr {
 }
 
 #end-stat-scroll-wrapper {
-  height: 100%;
+  height: fit-content;
   display: none;
   width: 100%;
   overflow-y: auto;

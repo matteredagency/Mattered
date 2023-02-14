@@ -128,7 +128,7 @@ export default class FavoriteSpotExperience {
         position: this.assetPosition,
         isMainExperience: false,
         planetScale: this.favoriteStopDetails[name].minimizedSize,
-        ...(name === "Saturn" && { tilt: Math.PI * 0.015 }),
+        ...(name === "Saturn" && { tilt: Math.PI * 0.02 }),
       });
 
       if (name == "Saturn") {
