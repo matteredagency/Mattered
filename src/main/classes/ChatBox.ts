@@ -41,7 +41,7 @@ export default class ChatBox {
     this.lastBoundingTop = 0;
 
     this.privacyTerms = document.getElementById(
-      "privacy-terms"
+      "privacy-terms-main"
     ) as HTMLDivElement;
 
     this.responseBox = document.querySelector(

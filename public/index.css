@@ -384,7 +384,7 @@ tfoot > tr {
     transform 0.75s ease-in;
 }
 
-#privacy-terms-main {
+.privacy-terms {
   display: flex;
   flex-flow: row nowrap;
   height: fit-content;
@@ -396,6 +396,16 @@ tfoot > tr {
   position: relative;
   height: 30px;
   transition: transform 0.5s ease-in;
+}
+
+.privacy-terms {
+  display: flex;
+  flex-flow: row nowrap;
+  height: fit-content;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  gap: 16px;
 }
 
 .received:last-of-type {
@@ -440,7 +450,7 @@ tfoot > tr {
   );
 }
 
-#privacy-terms-main > a {
+.privacy-terms > a {
   cursor: pointer;
   font-weight: 500;
   text-decoration: none;
@@ -448,7 +458,7 @@ tfoot > tr {
   font-size: 11px;
 }
 
-#privacy-terms-main > div {
+.privacy-terms > div {
   height: 3px;
   width: 3px;
   border-radius: 3px;
@@ -828,7 +838,7 @@ nav > a > svg {
   #text-box {
     grid-column: span 4;
   }
-  #privacy-terms-main {
+  .privacy-terms {
     align-items: center;
     height: 10%;
     padding: 0;
