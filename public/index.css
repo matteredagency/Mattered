@@ -821,7 +821,6 @@ nav > a > svg {
     height: 100%;
     width: fit-content;
     grid-row: 2;
-    max-width: 500px;
     grid-column: 1;
     padding: 13px 20px 13px 30px;
   }
