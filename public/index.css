@@ -688,8 +688,8 @@ p {
 
 #sound-controller {
   background-color: transparent;
-  height: 100%;
-  width: 100px;
+  height: 40px;
+  width: 40px;
   position: relative;
   cursor: pointer;
   z-index: 4;
@@ -724,7 +724,6 @@ nav > a {
   justify-content: center;
   cursor: pointer;
   align-items: center;
-  margin-right: 10px;
 }
 
 nav > a > svg {
@@ -753,20 +752,11 @@ nav > a > svg {
 }
 
 @media (max-width: 768px) {
-  #sound-controller {
-    height: 40px;
-    width: 40px;
-  }
   nav {
     position: absolute;
     width: 100%;
     left: 0;
     transform: translate(0);
-  }
-
-  nav > canvas {
-    width: 80px;
-    margin-left: 5%;
   }
 
   #overview-grid {
