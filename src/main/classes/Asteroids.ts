@@ -41,10 +41,8 @@ export default class Asteroids {
   }
 
   resetAsset(name: string) {
-    console.log(this.asset);
     this.asset.add(this.experience.assets.assetsDirectory.objects[name]);
     this.asset.children[0].scale.set(this.size, this.size, this.size);
-    console.log(this.asset);
   }
 
   setAssetSize(objectSize: number, atmosphereSize?: number) {

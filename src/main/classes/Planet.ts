@@ -142,7 +142,6 @@ export default class Planet {
       );
     }
 
-    console.log(this.asset.children);
     if (atmosphereSize) {
       this.asset.children[1].scale.set(
         atmosphereSize,
