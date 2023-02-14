@@ -812,6 +812,19 @@ nav > a > svg {
     padding: 0 100px 0 100px !important;
   }
 
+  #sound-controller {
+    height: 80px;
+    width: 80px;
+  }
+
+  nav {
+    padding: 0 20px 0 20px;
+  }
+
+  nav > a > svg {
+    height: 40px;
+  }
+
   #text {
     display: grid;
     flex-flow: column nowrap;
