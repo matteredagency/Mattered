@@ -81,13 +81,12 @@ tfoot > tr {
   display: flex;
   flex-flow: column nowrap;
   background-color: rgba(225, 225, 225, 1);
-  padding: 0 16px 0 16px;
   align-items: center;
   transition: background 0.25s ease-in, opacity 0.5s ease-in;
 }
 
 .window-section {
-  width: 100%;
+  width: 90%;
   max-width: 970px;
   margin-bottom: 10px;
   background-color: rgba(243, 243, 243, 1);
@@ -226,7 +225,7 @@ tfoot > tr {
 
 #end-text > .text-option {
   height: 43px;
-  width: 100%;
+  width: 90%;
   opacity: 1 !important;
 }
 
@@ -535,7 +534,6 @@ tfoot > tr {
   width: 100%;
   align-items: center;
   gap: 10px;
-  max-width: 970px;
 }
 
 .end-section {
@@ -763,11 +761,8 @@ nav > a > svg {
     max-width: 500px;
   }
 
-  #messages-wrapper {
-    width: 100%;
-  }
   #text {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -820,6 +815,7 @@ nav > a > svg {
   .text-option {
     height: 100%;
     width: fit-content;
+    max-width: 970px;
     grid-row: 2;
     grid-column: 1;
     padding: 13px 20px 13px 30px;

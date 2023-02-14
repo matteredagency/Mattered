@@ -12,6 +12,7 @@ export default class ChatBox {
   textArea!: HTMLDivElement;
   matteredLogo!: HTMLElement;
   endStatsWrapper!: HTMLDivElement;
+  endStatsScroll!: HTMLDivElement;
   privacyTerms!: HTMLDivElement;
   favoriteSpotCanvas!: HTMLCanvasElement;
   favoriteStopSection!: HTMLDivElement;
@@ -22,6 +23,7 @@ export default class ChatBox {
   lastBoundingTop!: number;
   statsTable!: HTMLElement;
   totalTripDurationSection!: HTMLDivElement;
+  endTextOptionsSection!: HTMLDivElement;
   static instance: ChatBox;
   constructor() {
     if (ChatBox.instance) {
@@ -57,6 +59,18 @@ export default class ChatBox {
     this.endStatsWrapper = document.getElementById(
       "end-stat-scroll-wrapper"
     ) as HTMLDivElement;
+
+    this.endStatsScroll = document.getElementById(
+      "end-stat-scroll"
+    ) as HTMLDivElement;
+
+    this.endTextOptionsSection = document.getElementById(
+      "end-text"
+    ) as HTMLDivElement;
+
+    if (this.endStatsScroll.clientHeight > this.endStatsWrapper.clientHeight) {
+      this.endTextOptionsSection.style.boxShadow = "0px -15px 10px red;";
+    }
 
     this.favoriteSpotCanvas = document.getElementById(
       "favorite-stop-canvas"
@@ -378,7 +392,7 @@ export default class ChatBox {
 
     this.privacyTerms.style.transform = "translate(0, 0)";
 
-    document.getElementById("end-text")!.style.display = "flex";
+    this.endTextOptionsSection.style.display = "flex";
 
     const totalExperienceSeconds = Math.round(
       this.mainExperience.clock.getElapsedTime()
