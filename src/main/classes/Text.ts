@@ -9,6 +9,7 @@ export default class Text {
   experience: MatteredExperience;
   material: MeshBasicMaterial;
   name: string;
+  position: THREE.Vector3;
   constructor({
     name,
     position,
@@ -28,15 +29,17 @@ export default class Text {
       side: THREE.DoubleSide,
     });
 
+    this.position = position;
+
     const font = this.experience.assets.assetsDirectory.fonts["Outfit"];
 
-    const shapes = font.generateShapes(text, 25);
+    const shapes = font.generateShapes(text, 10);
     const geometry = new THREE.ShapeGeometry(shapes);
     geometry.computeBoundingBox();
     const xMid =
       -0.5 * (geometry.boundingBox!.max.x - geometry.boundingBox!.min.x);
 
-    geometry.translate(xMid, 0, 0);
+    geometry.translate(xMid, 20, 0);
 
     const holeShapes = [] as THREE.Shape[];
 
@@ -54,7 +57,11 @@ export default class Text {
   }
 
   lookAtCamera() {
-    this.mesh.lookAt(this.experience.mainCamera.perspectiveCamera.position);
+    this.mesh.lookAt(
+      this.experience.mainCamera.perspectiveCamera.position.x,
+      this.position.y,
+      this.experience.mainCamera.perspectiveCamera.position.z
+    );
   }
 
   init(scene: THREE.Scene) {
@@ -67,7 +74,7 @@ export default class Text {
 
   fadeInText() {
     if (this.material.opacity >= 1) return;
-    this.material.opacity += 0.01;
+    this.material.opacity += 0.005;
     window.requestAnimationFrame(() => this.fadeInText());
   }
 

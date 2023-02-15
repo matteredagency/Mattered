@@ -76,9 +76,8 @@ export default class SceneController {
       }),
       text1: new Text({
         name: "Outfit",
-        text: "Hello World!",
-        position: new THREE.Vector3(325, 0, 1120),
-        rotateY: 0,
+        text: "We increased click rate by 105%",
+        position: new THREE.Vector3(325, 30, 1120),
       }),
     };
     this.sceneTime = {
