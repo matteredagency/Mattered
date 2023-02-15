@@ -78,6 +78,12 @@ export default class SceneController {
         name: "Outfit",
         text: "We increased click rate by 105%",
         position: new THREE.Vector3(325, 30, 1120),
+        linePoints: [
+          new THREE.Vector2(90, -5),
+          new THREE.Vector2(110, -20),
+          new THREE.Vector2(90, -20),
+          new THREE.Vector2(110, -5),
+        ],
       }),
     };
     this.sceneTime = {

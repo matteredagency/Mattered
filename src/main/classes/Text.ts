@@ -1,8 +1,7 @@
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import MatteredExperience from "./MatteredExperience";
 import THREE from "../globalmports";
-import { MeshBasicMaterial } from "three";
-
+import { MeshBasicMaterial, Shape } from "three";
 export default class Text {
   rendered: boolean;
   mesh: THREE.Mesh;
@@ -14,10 +13,12 @@ export default class Text {
     name,
     position,
     text,
+    linePoints,
   }: {
     text: string;
     name: string;
     position: THREE.Vector3;
+    linePoints?: THREE.Vector2[];
   }) {
     this.experience = new MatteredExperience();
     this.rendered = false;
@@ -34,6 +35,9 @@ export default class Text {
     const font = this.experience.assets.assetsDirectory.fonts["Outfit"];
 
     const shapes = font.generateShapes(text, 10);
+
+    if (linePoints) shapes.push(new Shape(linePoints));
+
     const geometry = new THREE.ShapeGeometry(shapes);
     geometry.computeBoundingBox();
     const xMid =
@@ -74,7 +78,7 @@ export default class Text {
 
   fadeInText() {
     if (this.material.opacity >= 1) return;
-    this.material.opacity += 0.005;
+    this.material.opacity += 0.01;
     window.requestAnimationFrame(() => this.fadeInText());
   }
 
