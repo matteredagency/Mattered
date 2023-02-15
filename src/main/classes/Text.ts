@@ -19,17 +19,53 @@ export default class Text {
   }) {
     this.experience = new MatteredExperience();
     this.rendered = false;
-    const geometry = new TextGeometry(text, {
-      font: this.experience.assets.assetsDirectory.fonts[name],
-      size: 7.5,
-      height: 3,
-      curveSegments: 12,
+    // const geometry = new TextGeometry(text, {
+    //   font: this.experience.assets.assetsDirectory.fonts["Outfit"],
+    //   size: 7.5,
+    //   height: 3,
+    //   curveSegments: 12,
+    // });
+
+    // this.mesh = new THREE.Mesh(
+    //   geometry,
+    //   new THREE.MeshBasicMaterial({ color: "white" })
+    // );
+
+    const font = this.experience.assets.assetsDirectory.fonts["Outfit"];
+
+    const shapes = font.generateShapes("Hello World!", 100);
+    const geometry = new THREE.ShapeGeometry(shapes);
+    geometry.computeBoundingBox();
+    const xMid =
+      -0.5 * (geometry.boundingBox!.max.x - geometry.boundingBox!.min.x);
+
+    geometry.translate(xMid, 0, 0);
+
+    const matLite = new THREE.MeshBasicMaterial({
+      color: "white",
+      transparent: true,
+      opacity: 1,
+      side: THREE.DoubleSide,
     });
 
-    this.mesh = new THREE.Mesh(
-      geometry,
-      new THREE.MeshBasicMaterial({ color: "white" })
-    );
+    const holeShapes = [];
+
+    for (let i = 0; i < shapes.length; i++) {
+      const shape = shapes[i];
+
+      if (shape.holes && shape.holes.length > 0) {
+        for (let j = 0; j < shape.holes.length; j++) {
+          const hole = shape.holes[j];
+          holeShapes.push(hole);
+        }
+      }
+    }
+
+    // this.experience.mainCamera.perspectiveCamera.getWorldDirection( this.mesh.normal ).negate()
+
+    shapes.push.apply(shapes, holeShapes as THREE.Shape[]);
+
+    this.mesh = new THREE.Mesh(geometry, matLite);
 
     this.mesh.position.set(position.x, position.y, position.z);
     this.mesh.rotateY(rotateY);

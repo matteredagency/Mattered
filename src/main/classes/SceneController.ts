@@ -9,8 +9,8 @@ export type SubjectKeys =
   | "mars"
   | "jupiter"
   | "asteroids"
-  | "saturn";
-// | "text1";
+  | "saturn"
+  | "text1";
 export default class SceneController {
   experience: MatteredExperience;
   sceneSubjects: Record<SubjectKeys, Planet | Asteroids | Text>;
@@ -74,12 +74,12 @@ export default class SceneController {
         tilt: Math.PI * 0.9,
         isMainExperience: true,
       }),
-      // text1: new Text({
-      //   name: "Outfit",
-      //   text: "Hello World!",
-      //   position: new THREE.Vector3(830, 0, 30),
-      //   rotateY: Math.PI * 0.25,
-      // }),
+      text1: new Text({
+        name: "Outfit",
+        text: "Hello World!",
+        position: new THREE.Vector3(-100, 0, 700),
+        rotateY: 0,
+      }),
     };
     this.sceneTime = {
       Earth: 0,
@@ -94,6 +94,7 @@ export default class SceneController {
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init(this.experience.mainScene);
     this.currentSubject = null;
+    this.sceneSubjects.text1.init();
   }
 
   resetSceneController() {
