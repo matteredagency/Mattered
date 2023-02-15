@@ -77,7 +77,7 @@ export default class SceneController {
       text1: new Text({
         name: "Outfit",
         text: "Hello World!",
-        position: new THREE.Vector3(-100, 0, 700),
+        position: new THREE.Vector3(325, 0, 1120),
         rotateY: 0,
       }),
     };
@@ -94,7 +94,6 @@ export default class SceneController {
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init(this.experience.mainScene);
     this.currentSubject = null;
-    this.sceneSubjects.text1.init();
   }
 
   resetSceneController() {
@@ -163,6 +162,7 @@ export default class SceneController {
       }
       if (!this.sceneSubjects.mars.rendered) {
         this.sceneSubjects.mars.init(this.experience.mainScene);
+        this.sceneSubjects.text1.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.185 && currentPercent <= 0.8) {

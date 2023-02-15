@@ -13,6 +13,7 @@ import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
 import ChatBox from "./ChatBox";
 import FavoriteSpotExperience from "./FavoriteSpotExperience";
+import Text from "./Text";
 
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -117,6 +118,8 @@ export default class MatteredExperience {
 
   updateMainScene() {
     if (this.clock.running) this.timeControl();
+
+    (this.mainSceneController.sceneSubjects.text1 as Text).lookAtCamera();
 
     if (this.spaceObjects.asteroids) {
       this.spaceObjects.asteroids.rotate();
