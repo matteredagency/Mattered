@@ -76,14 +76,9 @@ export default class SceneController {
       }),
       text1: new Text({
         name: "Outfit",
-        text: "We increased click rate by 105%",
-        position: new THREE.Vector3(325, 30, 1120),
-        linePoints: [
-          new THREE.Vector2(90, -5),
-          new THREE.Vector2(110, -20),
-          new THREE.Vector2(90, -20),
-          new THREE.Vector2(110, -5),
-        ],
+        headerText: "Mattered is a people first agency.",
+        text: "\n\nWe increased click rate by 105%",
+        position: new THREE.Vector3(400, 30, 275),
       }),
     };
     this.sceneTime = {
@@ -105,6 +100,9 @@ export default class SceneController {
     Object.keys(this.sceneTime).forEach((key) => (this.sceneTime[key] = 0));
     Object.keys(this.sceneSubjects).forEach((key) => {
       this.sceneSubjects[key as SubjectKeys].rendered = false;
+      if (key.includes("text")) {
+        (this.sceneSubjects[key as SubjectKeys] as Text).material.opacity = 0;
+      }
     });
 
     this.sceneSubjects.venus.init(this.experience.mainScene);

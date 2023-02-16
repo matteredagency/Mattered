@@ -31,7 +31,7 @@ export default class Assets {
     };
     const textures = { Star: "star.webp" };
 
-    const fonts = { Outfit: "Outfit.json" };
+    const fonts = { Outfit: "Outfit.json", OutfitBold: "OutfitBold.json" };
     this.objectPaths = Object.entries(objects).map(([name, path]) => [
       name,
       createAssetPath(`/objects/${path}`),

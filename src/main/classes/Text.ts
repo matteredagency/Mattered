@@ -14,7 +14,9 @@ export default class Text {
     position,
     text,
     linePoints,
+    headerText,
   }: {
+    headerText?: string;
     text: string;
     name: string;
     position: THREE.Vector3;
@@ -30,11 +32,26 @@ export default class Text {
       side: THREE.DoubleSide,
     });
 
+    const shapes = [] as THREE.Shape[];
+
     this.position = position;
 
-    const font = this.experience.assets.assetsDirectory.fonts["Outfit"];
+    if (headerText) {
+      shapes.push.apply(
+        shapes,
+        this.experience.assets.assetsDirectory.fonts[
+          "OutfitBold"
+        ].generateShapes(headerText, 20)
+      );
+    }
 
-    const shapes = font.generateShapes(text, 10);
+    shapes.push.apply(
+      shapes,
+      this.experience.assets.assetsDirectory.fonts["Outfit"].generateShapes(
+        text,
+        10
+      )
+    );
 
     if (linePoints) shapes.push(new Shape(linePoints));
 
