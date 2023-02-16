@@ -41,7 +41,7 @@ export default class Text {
         shapes,
         this.experience.assets.assetsDirectory.fonts[
           "OutfitBold"
-        ].generateShapes(headerText, 20)
+        ].generateShapes(headerText, 15)
       );
     }
 
@@ -60,7 +60,7 @@ export default class Text {
     const xMid =
       -0.5 * (geometry.boundingBox!.max.x - geometry.boundingBox!.min.x);
 
-    geometry.translate(xMid, 20, 0);
+    geometry.translate(xMid, 0, 0);
 
     const holeShapes = [] as THREE.Shape[];
 

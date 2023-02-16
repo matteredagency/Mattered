@@ -77,8 +77,8 @@ export default class SceneController {
       text1: new Text({
         name: "Outfit",
         headerText: "Mattered is a people first agency.",
-        text: "\n\nWe increased click rate by 105%",
-        position: new THREE.Vector3(400, 30, 275),
+        text: "\n\n   We are dedicated to putting our clients and their \n  customers at the center of the universe.",
+        position: new THREE.Vector3(480, 200, 415),
       }),
     };
     this.sceneTime = {
@@ -145,6 +145,10 @@ export default class SceneController {
   }
 
   sceneSelect(currentPercent: number) {
+    if (currentPercent > 0.004) {
+      this.sceneSubjects.text1.init(this.experience.mainScene);
+    }
+
     if (currentPercent >= 0 && currentPercent < 0.055) {
       if (!this.sceneSubjects.venus.rendered) {
         this.sceneSubjects.venus.init(this.experience.mainScene);
@@ -165,7 +169,6 @@ export default class SceneController {
       }
       if (!this.sceneSubjects.mars.rendered) {
         this.sceneSubjects.mars.init(this.experience.mainScene);
-        this.sceneSubjects.text1.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.185 && currentPercent <= 0.8) {
