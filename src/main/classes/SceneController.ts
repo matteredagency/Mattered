@@ -10,7 +10,17 @@ export type SubjectKeys =
   | "jupiter"
   | "asteroids"
   | "saturn"
-  | "text1";
+  | "text1"
+  | "text2"
+  | "text3"
+  | "text4"
+  | "text5"
+  | "text6"
+  | "text7"
+  | "text8"
+  | "text9"
+  | "text10";
+
 export default class SceneController {
   experience: MatteredExperience;
   sceneSubjects: Record<SubjectKeys, Planet | Asteroids | Text>;
@@ -78,7 +88,57 @@ export default class SceneController {
         name: "Outfit",
         headerText: "Mattered is a people first agency.",
         text: "\n\n   We are dedicated to putting our clients and their \n         customers at the center of the universe.",
-        position: new THREE.Vector3(480, 200, 415),
+        position: new THREE.Vector3(480, 225, 415),
+      }),
+      text2: new Text({
+        name: "Outfit",
+        headerText: "7.58x",
+        text: "\n\n In November of 2022, we averaged a \n 7.58x on ad spending on Meta",
+        position: new THREE.Vector3(0, 50, 500),
+      }),
+      text3: new Text({
+        name: "Outfit",
+        headerText: "Spending less make more.",
+        text: "We increased one clients ROAS by 585% (over an 11.4x)\n and spend 63% less than the prior year.",
+        position: new THREE.Vector3(-150, 225, 700),
+      }),
+      text4: new Text({
+        name: "Outfit",
+        headerText: "1,000,000,000+",
+        text: "We send over 1 billion emails annually",
+        position: new THREE.Vector3(325, 150, 1120),
+      }),
+      text5: new Text({
+        name: "Outfit",
+        headerText: "34x ROI",
+        text: "\n\nAverage SMS ROI Yotpo SMS",
+        position: new THREE.Vector3(-300, 0, 2000),
+      }),
+      text6: new Text({
+        name: "Outfit",
+        headerText: "From October 2022",
+        position: new THREE.Vector3(-1488, 100, 3295),
+      }),
+      text7: new Text({
+        name: "Outfit",
+        headerText: "to January 12",
+        position: new THREE.Vector3(-1750, 100, 3525),
+      }),
+      text8: new Text({
+        name: "Outfit",
+        headerText: "Mattered clients averaged a \n72x ROI for SMS Marketing",
+        text: "\nvia Yotpo SMSBump.",
+        position: new THREE.Vector3(2275, 50, 4125),
+      }),
+      text9: new Text({
+        name: "Outfit",
+        headerText: "We also make websites...",
+        position: new THREE.Vector3(-2250, 75, 4500),
+      }),
+      text10: new Text({
+        name: "Outfit",
+        headerText: "...and custom digital experiences like this one.",
+        position: new THREE.Vector3(-2100, 180, 4650),
       }),
     };
     this.sceneTime = {

@@ -17,7 +17,7 @@ export default class Text {
     headerText,
   }: {
     headerText?: string;
-    text: string;
+    text?: string;
     name: string;
     position: THREE.Vector3;
     linePoints?: THREE.Vector2[];
@@ -45,13 +45,15 @@ export default class Text {
       );
     }
 
-    shapes.push.apply(
-      shapes,
-      this.experience.assets.assetsDirectory.fonts["Outfit"].generateShapes(
-        text,
-        10
-      )
-    );
+    if (text) {
+      shapes.push.apply(
+        shapes,
+        this.experience.assets.assetsDirectory.fonts["Outfit"].generateShapes(
+          text,
+          10
+        )
+      );
+    }
 
     if (linePoints) shapes.push(new Shape(linePoints));
 
