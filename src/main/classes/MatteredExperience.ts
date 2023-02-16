@@ -119,7 +119,7 @@ export default class MatteredExperience {
   updateMainScene() {
     if (this.clock.running) this.timeControl();
 
-    (this.mainSceneController.sceneSubjects.text1 as Text).lookAtCamera();
+    this.mainSceneController.faceTextToCamera();
 
     if (this.spaceObjects.asteroids) {
       this.spaceObjects.asteroids.rotate();

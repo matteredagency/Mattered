@@ -30,6 +30,7 @@ export default class SceneController {
   };
   sceneClock: THREE.Clock;
   currentSubject: string | null;
+  textSceneSubjects: Text[];
   constructor() {
     this.sceneSubjects = {
       venus: new Planet({
@@ -105,8 +106,8 @@ export default class SceneController {
       text4: new Text({
         name: "Outfit",
         headerText: "1,000,000,000+",
-        text: "We send over 1 billion emails annually",
-        position: new THREE.Vector3(325, 150, 1120),
+        text: "\n\nWe send over 1 billion emails annually",
+        position: new THREE.Vector3(325, 50, 1120),
       }),
       text5: new Text({
         name: "Outfit",
@@ -149,6 +150,10 @@ export default class SceneController {
       Asteroids: 0,
       Saturn: 0,
     };
+
+    this.textSceneSubjects = Object.values(this.sceneSubjects).filter(
+      (object) => object instanceof Text
+    ) as Text[];
 
     this.experience = new MatteredExperience();
     this.sceneClock = new THREE.Clock();
@@ -204,9 +209,19 @@ export default class SceneController {
     }
   }
 
+  faceTextToCamera() {
+    this.textSceneSubjects.forEach((text) => text.lookAtCamera());
+  }
+
   sceneSelect(currentPercent: number) {
     if (currentPercent > 0.004) {
-      this.sceneSubjects.text1.init(this.experience.mainScene);
+      Object.keys(this.sceneSubjects).forEach((key) => {
+        if (key.includes("text")) {
+          (this.sceneSubjects[key as SubjectKeys] as Text).init(
+            this.experience.mainScene
+          );
+        }
+      });
     }
 
     if (currentPercent >= 0 && currentPercent < 0.055) {
