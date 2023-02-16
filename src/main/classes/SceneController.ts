@@ -77,7 +77,7 @@ export default class SceneController {
       text1: new Text({
         name: "Outfit",
         headerText: "Mattered is a people first agency.",
-        text: "\n\n   We are dedicated to putting our clients and their \n  customers at the center of the universe.",
+        text: "\n\n   We are dedicated to putting our clients and their \n         customers at the center of the universe.",
         position: new THREE.Vector3(480, 200, 415),
       }),
     };
