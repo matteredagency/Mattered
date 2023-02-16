@@ -90,40 +90,49 @@ export default class SceneController {
         headerText: "Mattered is a people first agency.",
         text: "\n\n   We are dedicated to putting our clients and their \n         customers at the center of the universe.",
         position: new THREE.Vector3(480, 225, 415),
+        headerSize: 15,
+        textSize: 10,
       }),
       text2: new Text({
         name: "Outfit",
-        headerText: "7.58x",
-        text: "\n\n In November of 2022, we averaged a \n 7.58x on ad spending on Meta",
-        position: new THREE.Vector3(0, 50, 500),
+        headerText: "            7.58x",
+        headerSize: 8,
+        textSize: 4,
+        text: "\n\nIn November of 2022, we averaged a \n    7.58x on ad spending on Meta",
+        position: new THREE.Vector3(146, 25, 520),
       }),
       text3: new Text({
         name: "Outfit",
         headerText: "Spending less make more.",
-        text: "We increased one clients ROAS by 585% (over an 11.4x)\n and spend 63% less than the prior year.",
-        position: new THREE.Vector3(-150, 225, 700),
+        text: "\nWe increased one clients ROAS by 585% (over an 11.4x)\n and spend 63% less than the prior year.",
+        position: new THREE.Vector3(-148, 12, 828),
       }),
       text4: new Text({
         name: "Outfit",
         headerText: "1,000,000,000+",
+        headerSize: 5,
+        textSize: 2.5,
         text: "\n\nWe send over 1 billion emails annually",
-        position: new THREE.Vector3(325, 50, 1120),
+        position: new THREE.Vector3(325, 75, 1120),
       }),
       text5: new Text({
         name: "Outfit",
         headerText: "34x ROI",
+        headerSize: 5,
+        textSize: 2.5,
         text: "\n\nAverage SMS ROI Yotpo SMS",
-        position: new THREE.Vector3(-300, 0, 2000),
+        position: new THREE.Vector3(-500, 0, 1800),
       }),
       text6: new Text({
         name: "Outfit",
         headerText: "From October 2022",
+        headerSize: 5,
         position: new THREE.Vector3(-1488, 100, 3295),
       }),
       text7: new Text({
         name: "Outfit",
         headerText: "to January 12",
-        position: new THREE.Vector3(-1750, 100, 3525),
+        position: new THREE.Vector3(-1701, 100, 3538),
       }),
       text8: new Text({
         name: "Outfit",
@@ -156,6 +165,15 @@ export default class SceneController {
     ) as Text[];
 
     this.experience = new MatteredExperience();
+
+    this.textSceneSubjects.forEach((text, index) => {
+      const folder = this.experience.gui.addFolder(`text${index + 1}`);
+
+      folder.add(text.mesh.position, "x", -2500, 600);
+      folder.add(text.mesh.position, "y", 0, 225);
+      folder.add(text.mesh.position, "z", 0, 5000);
+    });
+
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init(this.experience.mainScene);
     this.currentSubject = null;

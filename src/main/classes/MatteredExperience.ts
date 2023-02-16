@@ -13,8 +13,7 @@ import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
 import ChatBox from "./ChatBox";
 import FavoriteSpotExperience from "./FavoriteSpotExperience";
-import Text from "./Text";
-
+import { GUI } from "dat.gui";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   mainScene!: THREE.Scene;
@@ -36,6 +35,7 @@ export default class MatteredExperience {
   chatBox!: ChatBox;
   assets!: Assets;
   audio!: HTMLAudioElement;
+  gui!: GUI;
   experienceEnded!: boolean;
   stopTime!: number;
   favoriteSpotExperience!: FavoriteSpotExperience;
@@ -82,7 +82,10 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
+    this.gui = new GUI();
+    this.gui.domElement.parentElement.style.zIndex = "100";
 
+    console.log(this.gui.domElement);
     this.mainSceneController = new SceneController();
 
     this.spaceObjects.setRotatingPlanets();

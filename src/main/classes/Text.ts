@@ -1,4 +1,3 @@
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import MatteredExperience from "./MatteredExperience";
 import THREE from "../globalmports";
 import { MeshBasicMaterial, Shape } from "three";
@@ -15,10 +14,14 @@ export default class Text {
     text,
     linePoints,
     headerText,
+    headerSize,
+    textSize,
   }: {
     headerText?: string;
     text?: string;
     name: string;
+    headerSize?: number;
+    textSize?: number;
     position: THREE.Vector3;
     linePoints?: THREE.Vector2[];
   }) {
@@ -36,21 +39,21 @@ export default class Text {
 
     this.position = position;
 
-    if (headerText) {
+    if (headerText && headerSize) {
       shapes.push.apply(
         shapes,
         this.experience.assets.assetsDirectory.fonts[
           "OutfitBold"
-        ].generateShapes(headerText, 15)
+        ].generateShapes(headerText, headerSize)
       );
     }
 
-    if (text) {
+    if (text && textSize) {
       shapes.push.apply(
         shapes,
         this.experience.assets.assetsDirectory.fonts["Outfit"].generateShapes(
           text,
-          10
+          textSize
         )
       );
     }
