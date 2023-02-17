@@ -111,7 +111,6 @@ export default class Track {
   }
 
   updateCameraPosition(currentPercent: number) {
-    console.log(currentPercent);
     const currentCameraPosition = this.cameraPath.getPointAt(
       Math.max(currentPercent - 0.006, 0)
     );
