@@ -309,10 +309,10 @@ export default class SceneController {
       if (currentPercent >= 0.55) {
         this.sceneSubjects.text8.init(this.experience.mainScene);
       }
-      if (currentPercent >= 0.62) {
+      if (currentPercent >= 0.63) {
         this.sceneSubjects.text9.init(this.experience.mainScene);
       }
-      if (currentPercent >= 0.68) {
+      if (currentPercent >= 0.67) {
         this.sceneSubjects.text10.init(this.experience.mainScene);
       }
     }
