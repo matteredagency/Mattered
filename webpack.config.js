@@ -10,7 +10,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const environment = process.env.NODE_ENV || "development";
 const isDevelopment = environment === "development";
-
 module.exports = {
   entry: {
     main: "./src/main/main.ts",
