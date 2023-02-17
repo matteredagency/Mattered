@@ -110,7 +110,7 @@ export default class Text {
 
   fadeInText() {
     if (this.material.opacity >= 1) return;
-    this.material.opacity += 0.01;
+    this.material.opacity += 0.02;
     window.requestAnimationFrame(() => this.fadeInText());
   }
 
