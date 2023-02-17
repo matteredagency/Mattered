@@ -23,6 +23,15 @@ export default class Asteroids {
     this.asset.rotateY(Math.PI * 2.31);
 
     this.experience.spaceObjects.asteroids = this;
+
+    this.asset.children[0].children.forEach((mesh) => {
+      (
+        (mesh as THREE.Mesh).material as THREE.MeshStandardMaterial
+      ).roughness = 10;
+      (
+        (mesh as THREE.Mesh).material as THREE.MeshStandardMaterial
+      ).color.setRGB(0.4, 0.4, 0.4);
+    });
   }
   init(scene: THREE.Scene) {
     if (!this.rendered) {
