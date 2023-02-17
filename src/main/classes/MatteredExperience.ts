@@ -13,7 +13,6 @@ import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
 import ChatBox from "./ChatBox";
 import FavoriteSpotExperience from "./FavoriteSpotExperience";
-import { GUI } from "dat.gui";
 export default class MatteredExperience {
   static instance: MatteredExperience;
   mainScene!: THREE.Scene;
@@ -35,7 +34,6 @@ export default class MatteredExperience {
   chatBox!: ChatBox;
   assets!: Assets;
   audio!: HTMLAudioElement;
-  gui!: GUI;
   experienceEnded!: boolean;
   stopTime!: number;
   favoriteSpotExperience!: FavoriteSpotExperience;

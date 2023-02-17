@@ -9,8 +9,6 @@ import Asteroids from "./Asteroids";
 import Planet from "./Planet";
 import MatteredExperience from "./MatteredExperience";
 import { SubjectKeys } from "./SceneController";
-import { GUI } from "dat.gui";
-import { Plane } from "three";
 
 export default class FavoriteSpotExperience {
   secondaryCamera!: Camera;
@@ -26,7 +24,6 @@ export default class FavoriteSpotExperience {
   static instance: FavoriteSpotExperience;
   favoriteStop?: Planet | Asteroids | null;
   assetPosition!: THREE.Vector3;
-  gui!: GUI;
   favoriteStopDetails!: {
     [key: string]: {
       expandedSize: number;
@@ -55,10 +52,8 @@ export default class FavoriteSpotExperience {
     this.sceneExpanded = false;
     this.assetPosition = new THREE.Vector3(0, 0, -100);
     this.favoriteStop = null;
-    // this.gui = new GUI();
     this.stars.init(this.favoriteStopScene);
     this.secondaryCamera.perspectiveCamera.position.set(0, 0, 20);
-    // this.gui.domElement.parentElement.style.zIndex = "1000";
     this.secondaryRenderer = new Renderer(
       document.getElementById("favorite-stop-canvas") as HTMLCanvasElement,
       this.favoriteStopScene,
@@ -141,12 +136,6 @@ export default class FavoriteSpotExperience {
     }
 
     this.favoriteStop.init(this.favoriteStopScene);
-
-    // const folder = this.gui.addFolder("favoriteStop");
-
-    // folder.add(this.favoriteStop.asset.scale, "x", 0, 2);
-    // folder.add(this.favoriteStop.asset.scale, "y", 0, 2);
-    // folder.add(this.favoriteStop.asset.scale, "z", 0, 2);
 
     this.secondaryRenderer.renderer.setClearAlpha(0);
   }
