@@ -667,6 +667,14 @@ p {
   transform: scale(8);
 }
 
+table > tbody > tr > td:nth-of-type(3) {
+  text-align: right;
+}
+
+table > tfoot > tr > td:nth-of-type(3) {
+  text-align: right;
+}
+
 #canvas-scene {
   opacity: 1;
   height: 100%;
