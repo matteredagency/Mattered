@@ -664,7 +664,7 @@ p {
 #scroll-container > div {
   height: 1000vh;
   width: 100%;
-  transform: scale(7);
+  transform: scale(8);
 }
 
 #canvas-scene {
