@@ -482,9 +482,7 @@ export default class ChatBox {
   }
 
   formatTimeStatement(minutes: number, seconds: number) {
-    return `${minutes >= 10 || minutes === 0 ? minutes : "0" + minutes}:${
-      seconds >= 10 ? seconds : "0" + seconds
-    }`;
+    return `${minutes}:${seconds >= 10 ? seconds : "0" + seconds}`;
   }
 
   getSubjectPercentage(subjectTime: number, totalSeconds: number) {
