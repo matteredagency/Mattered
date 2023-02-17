@@ -8,6 +8,7 @@ export default class Text {
   material: MeshBasicMaterial;
   name: string;
   position: THREE.Vector3;
+  lookAtPosition: THREE.Vector3 | null;
   constructor({
     name,
     position,
@@ -16,6 +17,7 @@ export default class Text {
     headerText,
     headerSize,
     textSize,
+    lookAtPosition,
   }: {
     headerText?: string;
     text?: string;
@@ -24,6 +26,7 @@ export default class Text {
     textSize?: number;
     position: THREE.Vector3;
     linePoints?: THREE.Vector2[];
+    lookAtPosition?: THREE.Vector3;
   }) {
     this.experience = new MatteredExperience();
     this.rendered = false;
@@ -34,6 +37,10 @@ export default class Text {
       opacity: 0,
       side: THREE.DoubleSide,
     });
+
+    this.lookAtPosition = lookAtPosition
+      ? new THREE.Vector3(lookAtPosition.x, position.y, lookAtPosition.z)
+      : null;
 
     const shapes = [] as THREE.Shape[];
 
@@ -80,9 +87,12 @@ export default class Text {
     this.mesh = new THREE.Mesh(geometry, this.material);
 
     this.mesh.position.set(position.x, position.y, position.z);
+
+    if (this.lookAtPosition) this.mesh.lookAt(this.lookAtPosition);
   }
 
   lookAtCamera() {
+    if (this.lookAtPosition) return;
     this.mesh.lookAt(
       this.experience.mainCamera.perspectiveCamera.position.x,
       this.position.y,

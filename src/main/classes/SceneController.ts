@@ -31,7 +31,10 @@ export default class SceneController {
   sceneClock: THREE.Clock;
   currentSubject: string | null;
   textSceneSubjects: Text[];
+
   constructor() {
+    this.experience = new MatteredExperience();
+
     this.sceneSubjects = {
       venus: new Planet({
         name: "Venus",
@@ -100,6 +103,7 @@ export default class SceneController {
         textSize: 4,
         text: "\n\nIn November of 2022, we averaged a \n    7.58x on ad spending on Meta",
         position: new THREE.Vector3(146, 25, 520),
+        lookAtPosition: this.experience.track.cameraPath.getPointAt(0.06),
       }),
       text3: new Text({
         name: "Outfit",
@@ -123,6 +127,7 @@ export default class SceneController {
         headerSize: 5,
         textSize: 1.75,
         text: "\n\nAverage SMS ROI Yotpo SMS",
+        lookAtPosition: this.experience.track.cameraPath.getPointAt(0.3049),
         position: new THREE.Vector3(-535, 10, 1815),
       }),
       text6: new Text({
@@ -143,6 +148,7 @@ export default class SceneController {
         text: "\n\nvia Yotpo SMSBump.",
         headerSize: 5,
         textSize: 2.5,
+        lookAtPosition: this.experience.track.cameraPath.getPointAt(0.58),
         position: new THREE.Vector3(-2200, 10, 3958),
       }),
       text9: new Text({
@@ -170,8 +176,6 @@ export default class SceneController {
     this.textSceneSubjects = Object.values(this.sceneSubjects).filter(
       (object) => object instanceof Text
     ) as Text[];
-
-    this.experience = new MatteredExperience();
 
     this.textSceneSubjects.forEach((text, index) => {
       const folder = this.experience.gui.addFolder(`text${index + 1}`);
