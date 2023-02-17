@@ -98,7 +98,7 @@ export default class SceneController {
       }),
       text2: new Text({
         name: "Outfit",
-        headerText: "                  7.58x",
+        headerText: "                7.58x",
         headerSize: 8,
         textSize: 4,
         text: "\n\nIn November of 2022, we averaged a \n 7.58x return on ad spending on Meta.",

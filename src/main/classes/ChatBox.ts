@@ -386,6 +386,7 @@ export default class ChatBox {
 
   setEndStats() {
     this.endStatsWrapper.style.display = "block";
+
     document.querySelectorAll(".end-section").forEach((node) => {
       node.classList.remove("end-section");
     });
@@ -397,6 +398,9 @@ export default class ChatBox {
     if (window.innerHeight <= 1130) {
       this.endTextOptionsSection.style.boxShadow =
         "0px -4px 12.5px rgba(0, 0, 0, 0.2)";
+      this.matteredLogo.style.removeProperty("marginBottom");
+    } else {
+      this.matteredLogo.style.marginBottom = "auto";
     }
 
     const totalExperienceSeconds = Math.round(
