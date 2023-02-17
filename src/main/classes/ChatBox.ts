@@ -24,6 +24,7 @@ export default class ChatBox {
   statsTable!: HTMLElement;
   totalTripDurationSection!: HTMLDivElement;
   endTextOptionsSection!: HTMLDivElement;
+  themeColorMetaTag!: HTMLElement;
   static instance: ChatBox;
   constructor() {
     if (ChatBox.instance) {
@@ -86,6 +87,10 @@ export default class ChatBox {
       "time-stats"
     ) as HTMLDivElement;
     this.statsTable = document.querySelector("tbody") as HTMLElement;
+
+    this.themeColorMetaTag = document.querySelector(
+      'meta[name="theme-color"]'
+    ) as HTMLElement;
 
     this.matteredLogo = document.getElementById(
       "mattered-logo-chat"
@@ -167,6 +172,11 @@ export default class ChatBox {
         "expand-button-fill"
       );
     }
+    this.themeColorMetaTag.setAttribute(
+      "content",
+      this.favoriteSpotCanvasExpanded ? "#E1E1E1" : "#000000"
+    );
+
     this.mainExperience.favoriteSpotExperience.toggleSceneExpand();
     this.favoriteSpotCanvasExpanded = !this.favoriteSpotCanvasExpanded;
   }
@@ -328,9 +338,7 @@ export default class ChatBox {
     const messagesArea = document.getElementById("messages-wrapper");
     const messages = document.querySelectorAll("div.message");
     const messagesScroll = document.getElementById("messages");
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute("content", "#000000");
+    this.themeColorMetaTag.setAttribute("content", "#000000");
 
     //@ts-ignore
     this.matteredLogo!.style.transform = `translate(0, ${
