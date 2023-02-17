@@ -185,12 +185,14 @@ export default class MatteredExperience {
   resetExperience() {
     setTimeout(() => {
       setTimeout(() => {
-        this.chatBox.chatWindow.style.display = "none";
         this.chatBox.chatWindow.style.opacity = "0";
-        this.chatBox.resetEndStats();
-        this.favoriteSpotExperience.removeFavoriteStop();
+        setTimeout(() => {
+          this.chatBox.chatWindow.style.display = "none";
+          this.chatBox.resetEndStats();
+          this.favoriteSpotExperience.removeFavoriteStop();
+        }, 500);
       }, 500);
-    }, 500);
+    }, 100);
 
     setTimeout(() => {
       this.experienceEnded = false;
@@ -205,7 +207,7 @@ export default class MatteredExperience {
 
       setTimeout(() => {
         this.controls.scrollContainer.style.overflowY = "scroll";
-      }, 1000);
+      }, 2000);
     }, 1000);
   }
 }
