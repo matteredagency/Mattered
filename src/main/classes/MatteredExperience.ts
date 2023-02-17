@@ -82,10 +82,9 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
-    this.gui = new GUI();
-    this.gui.domElement.parentElement.style.zIndex = "100";
+    // this.gui = new GUI();
+    // this.gui.domElement.parentElement.style.zIndex = "100";
 
-    console.log(this.gui.domElement);
     this.mainSceneController = new SceneController();
 
     this.spaceObjects.setRotatingPlanets();

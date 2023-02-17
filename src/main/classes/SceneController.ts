@@ -178,13 +178,13 @@ export default class SceneController {
       (object) => object instanceof Text
     ) as Text[];
 
-    this.textSceneSubjects.forEach((text, index) => {
-      const folder = this.experience.gui.addFolder(`text${index + 1}`);
+    // this.textSceneSubjects.forEach((text, index) => {
+    //   const folder = this.experience.gui.addFolder(`text${index + 1}`);
 
-      folder.add(text.mesh.position, "x", -2500, 600);
-      folder.add(text.mesh.position, "y", 0, 225);
-      folder.add(text.mesh.position, "z", 0, 5000);
-    });
+    //   folder.add(text.mesh.position, "x", -2500, 600);
+    //   folder.add(text.mesh.position, "y", 0, 225);
+    //   folder.add(text.mesh.position, "z", 0, 5000);
+    // });
 
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init(this.experience.mainScene);
@@ -309,10 +309,10 @@ export default class SceneController {
       if (currentPercent >= 0.55) {
         this.sceneSubjects.text8.init(this.experience.mainScene);
       }
-      if (currentPercent >= 0.63) {
+      if (currentPercent >= 0.62) {
         this.sceneSubjects.text9.init(this.experience.mainScene);
       }
-      if (currentPercent >= 0.69) {
+      if (currentPercent >= 0.68) {
         this.sceneSubjects.text10.init(this.experience.mainScene);
       }
     }

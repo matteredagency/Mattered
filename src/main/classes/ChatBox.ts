@@ -116,12 +116,6 @@ export default class ChatBox {
 
   startOverButtonCallback() {
     this.mainExperience.resetExperience();
-
-    // Object.values(
-    //   this.mainExperience.favoriteSpotExperience.gui.__folders
-    // ).forEach((folder) =>
-    //   this.mainExperience.favoriteSpotExperience.gui.removeFolder(folder)
-    // );
   }
 
   expandButtonEffects() {
