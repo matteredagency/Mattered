@@ -102,7 +102,7 @@ export default class SceneController {
         headerSize: 8,
         textSize: 4,
         text: "\n\nIn November of 2022, we averaged a \n    7.58x on ad spending on Meta",
-        position: new THREE.Vector3(146, 25, 520),
+        position: new THREE.Vector3(112, 25, 520),
         lookAtPosition: this.experience.track.cameraPath.getPointAt(0.06),
       }),
       text3: new Text({
@@ -244,24 +244,25 @@ export default class SceneController {
   }
 
   sceneSelect(currentPercent: number) {
-    if (currentPercent > 0.004) {
-      Object.keys(this.sceneSubjects).forEach((key) => {
-        if (key.includes("text")) {
-          (this.sceneSubjects[key as SubjectKeys] as Text).init(
-            this.experience.mainScene
-          );
-        }
-      });
-    }
-
     if (currentPercent >= 0 && currentPercent < 0.055) {
       if (!this.sceneSubjects.venus.rendered) {
         this.sceneSubjects.venus.init(this.experience.mainScene);
+      }
+      if (currentPercent >= 0) {
+        this.sceneSubjects.text1.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.055 && currentPercent <= 0.125) {
       if (!this.sceneSubjects.earth.rendered) {
         this.sceneSubjects.earth.init(this.experience.mainScene);
+      }
+
+      if (currentPercent >= 0.039) {
+        this.sceneSubjects.text2.init(this.experience.mainScene);
+      }
+
+      if (currentPercent >= 0.084) {
+        this.sceneSubjects.text3.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.1 && currentPercent <= 0.185) {
@@ -274,6 +275,10 @@ export default class SceneController {
       }
       if (!this.sceneSubjects.mars.rendered) {
         this.sceneSubjects.mars.init(this.experience.mainScene);
+      }
+
+      if (currentPercent >= 0.13) {
+        this.sceneSubjects.text4.init(this.experience.mainScene);
       }
     }
     if (currentPercent >= 0.185 && currentPercent <= 0.8) {
@@ -288,6 +293,27 @@ export default class SceneController {
         this.sceneSubjects.jupiter.init(this.experience.mainScene);
         this.sceneSubjects.saturn.init(this.experience.mainScene);
         this.sceneSubjects.asteroids.init(this.experience.mainScene);
+      }
+
+      if (currentPercent >= 0.29) {
+        this.sceneSubjects.text5.init(this.experience.mainScene);
+      }
+
+      if (currentPercent >= 0.39) {
+        this.sceneSubjects.text6.init(this.experience.mainScene);
+      }
+
+      if (currentPercent >= 0.47) {
+        this.sceneSubjects.text7.init(this.experience.mainScene);
+      }
+      if (currentPercent >= 0.55) {
+        this.sceneSubjects.text8.init(this.experience.mainScene);
+      }
+      if (currentPercent >= 0.63) {
+        this.sceneSubjects.text9.init(this.experience.mainScene);
+      }
+      if (currentPercent >= 0.69) {
+        this.sceneSubjects.text10.init(this.experience.mainScene);
       }
     }
     if (currentPercent > 0.8) {
