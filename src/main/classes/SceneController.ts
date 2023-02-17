@@ -127,7 +127,7 @@ export default class SceneController {
         headerSize: 5,
         textSize: 1.75,
         text: "\n\nAverage SMS ROI Yotpo SMS",
-        lookAtPosition: this.experience.track.cameraPath.getPointAt(0.3049),
+        lookAtPosition: this.experience.track.cameraPath.getPointAt(0.3048),
         position: new THREE.Vector3(-535, 10, 1815),
       }),
       text6: new Text({
@@ -144,12 +144,13 @@ export default class SceneController {
       }),
       text8: new Text({
         name: "Outfit",
-        headerText: "Mattered clients averaged a \n72x ROI for SMS Marketing",
-        text: "\n\nvia Yotpo SMSBump.",
+        headerText:
+          "Mattered clients averaged a \n72x ROI for SMS Marketing\n\n\n",
+        text: "\n\n\nvia Yotpo SMSBump.",
         headerSize: 5,
-        textSize: 2.5,
+        textSize: 4,
         lookAtPosition: this.experience.track.cameraPath.getPointAt(0.58),
-        position: new THREE.Vector3(-2200, 10, 3958),
+        position: new THREE.Vector3(-2007, 30, 3772),
       }),
       text9: new Text({
         name: "Outfit",
