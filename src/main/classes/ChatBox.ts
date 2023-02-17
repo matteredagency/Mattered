@@ -227,7 +227,7 @@ export default class ChatBox {
               this.messagesElement.lastChild as Node
             );
             this.addMessageToMessages(
-              "Please let us tell you more about us.",
+              "Let's get to know each other a bit better.",
               true
             );
             setTimeout(() => {
@@ -236,7 +236,7 @@ export default class ChatBox {
                 this.messagesElement.removeChild(
                   this.messagesElement.lastChild as Node
                 );
-                this.addMessageToMessages("Shall we begin?", true);
+                this.addMessageToMessages("We'll start!", true);
                 this.setUpTextOptions();
               }, 1000);
             }, 1000);
@@ -264,7 +264,7 @@ export default class ChatBox {
               this.messagesElement.removeChild(
                 this.messagesElement.lastChild as Node
               );
-              this.addMessageToMessages("Yes! Just sit tight", true);
+              this.addMessageToMessages("You got it! Here we go...", true);
               setTimeout(() => {
                 this.sendButton.style.animation =
                   "1s 1 ease-in-out launchplane";

@@ -98,27 +98,27 @@ export default class SceneController {
       }),
       text2: new Text({
         name: "Outfit",
-        headerText: "            7.58x",
+        headerText: "                  7.58x",
         headerSize: 8,
         textSize: 4,
-        text: "\n\nIn November of 2022, we averaged a \n   7.58x return on ad spending on Meta.",
+        text: "\n\nIn November of 2022, we averaged a \n 7.58x return on ad spending on Meta.",
         position: new THREE.Vector3(112, 25, 520),
         lookAtPosition: this.experience.track.cameraPath.getPointAt(0.06),
       }),
       text3: new Text({
         name: "Outfit",
-        headerText: "Spend less, make more.",
+        headerText: "  Spend less, make more.",
         headerSize: 12,
         textSize: 6,
-        text: "\n\nWe increased one clients ROAS by 585% (over an 11.4x)\n and spent 63% less than the prior year.",
+        text: "\n\nWe increased one clients ROAS by 585% (over an 11.4x)\nwhile spending 63% less than the prior year.",
         position: new THREE.Vector3(-230, 90, 760),
       }),
       text4: new Text({
         name: "Outfit",
-        headerText: "         1,000,000,000+",
+        headerText: "                         1,000,000,000",
         headerSize: 7,
         textSize: 5,
-        text: "\n\nWe send over 1 billion emails annually.",
+        text: "\n\nWe send over 1 billion emails annually for our clients.",
         position: new THREE.Vector3(325, 60, 1120),
       }),
       text5: new Text({
@@ -132,7 +132,7 @@ export default class SceneController {
       }),
       text6: new Text({
         name: "Outfit",
-        headerText: "From October 2022",
+        headerText: "from October 2022",
         headerSize: 8,
         position: new THREE.Vector3(-1320, 25, 3000),
       }),
@@ -162,7 +162,7 @@ export default class SceneController {
         name: "Outfit",
         headerText: "...and custom digital experiences like this one.",
         headerSize: 3,
-        position: new THREE.Vector3(-1884, 200, 4650),
+        position: new THREE.Vector3(-1884, 185, 4650),
       }),
     };
     this.sceneTime = {
