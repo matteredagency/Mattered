@@ -108,13 +108,19 @@ export default class Text {
     if (!this.rendered) {
       this.rendered = true;
       scene.add(this.mesh);
+      this.clock.start();
       this.fadeInText();
     }
   }
 
   fadeInText() {
-    if (this.material.opacity >= 1) return;
-    this.material.opacity += 0.015;
+    const elapsedTime = this.clock.getElapsedTime();
+    if (elapsedTime >= 1) {
+      this.clock.stop();
+      this.clock.elapsedTime = 0;
+      return;
+    }
+    this.material.opacity = elapsedTime / 1;
     window.requestAnimationFrame(() => this.fadeInText());
   }
 
