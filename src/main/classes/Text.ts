@@ -9,6 +9,8 @@ export default class Text {
   name: string;
   position: THREE.Vector3;
   lookAtPosition: THREE.Vector3 | null;
+  clock: THREE.Clock;
+
   constructor({
     name,
     position,
@@ -37,6 +39,8 @@ export default class Text {
       opacity: 0,
       side: THREE.DoubleSide,
     });
+
+    this.clock = new THREE.Clock();
 
     this.lookAtPosition = lookAtPosition
       ? new THREE.Vector3(lookAtPosition.x, position.y, lookAtPosition.z)
