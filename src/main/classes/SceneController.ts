@@ -179,13 +179,13 @@ export default class SceneController {
       (object) => object instanceof Text
     ) as Text[];
 
-    this.textSceneSubjects.forEach((text, index) => {
-      const folder = this.experience.gui.addFolder(`text${index + 1}`);
+    // this.textSceneSubjects.forEach((text, index) => {
+    //   const folder = this.experience.gui.addFolder(`text${index + 1}`);
 
-      folder.add(text.mesh.position, "x", -2500, 600);
-      folder.add(text.mesh.position, "y", 0, 225);
-      folder.add(text.mesh.position, "z", 0, 5000);
-    });
+    //   folder.add(text.mesh.position, "x", -2500, 600);
+    //   folder.add(text.mesh.position, "y", 0, 225);
+    //   folder.add(text.mesh.position, "z", 0, 5000);
+    // });
 
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init(this.experience.mainScene);
