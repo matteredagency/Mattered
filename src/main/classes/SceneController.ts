@@ -107,11 +107,11 @@ export default class SceneController {
       }),
       text3: new Text({
         name: "Outfit",
-        headerText: "  Spend less, make more.",
+        headerText: "Work smarter, not harder.",
         headerSize: 12,
         textSize: 6,
-        text: "\n\nWe increased one clients ROAS by 585% (over an 11.4x)\nwhile spending 63% less than the prior year.",
-        position: new THREE.Vector3(-230, 90, 760),
+        text: "\n\n  We increased one client's ROAS by 585% to an 11.4x!",
+        position: new THREE.Vector3(-230, 80, 760),
       }),
       text4: new Text({
         name: "Outfit",
@@ -138,7 +138,7 @@ export default class SceneController {
       }),
       text7: new Text({
         name: "Outfit",
-        headerText: "to January 12",
+        headerText: "to January 2023",
         headerSize: 8,
         position: new THREE.Vector3(-1670, 25, 3441),
       }),
@@ -160,9 +160,10 @@ export default class SceneController {
       }),
       text10: new Text({
         name: "Outfit",
-        headerText: "...and custom digital experiences like this one.",
+        headerText:
+          "...and custom digital experiences\n                      like this one.",
         headerSize: 3,
-        position: new THREE.Vector3(-1884, 185, 4650),
+        position: new THREE.Vector3(-1884, 185, 4660),
       }),
     };
     this.sceneTime = {
@@ -178,13 +179,13 @@ export default class SceneController {
       (object) => object instanceof Text
     ) as Text[];
 
-    // this.textSceneSubjects.forEach((text, index) => {
-    //   const folder = this.experience.gui.addFolder(`text${index + 1}`);
+    this.textSceneSubjects.forEach((text, index) => {
+      const folder = this.experience.gui.addFolder(`text${index + 1}`);
 
-    //   folder.add(text.mesh.position, "x", -2500, 600);
-    //   folder.add(text.mesh.position, "y", 0, 225);
-    //   folder.add(text.mesh.position, "z", 0, 5000);
-    // });
+      folder.add(text.mesh.position, "x", -2500, 600);
+      folder.add(text.mesh.position, "y", 0, 225);
+      folder.add(text.mesh.position, "z", 0, 5000);
+    });
 
     this.sceneClock = new THREE.Clock();
     this.sceneSubjects.venus.init(this.experience.mainScene);
@@ -295,7 +296,7 @@ export default class SceneController {
         this.sceneSubjects.asteroids.init(this.experience.mainScene);
       }
 
-      if (currentPercent >= 0.29) {
+      if (currentPercent >= 0.28) {
         this.sceneSubjects.text5.init(this.experience.mainScene);
       }
 
@@ -309,7 +310,7 @@ export default class SceneController {
       if (currentPercent >= 0.55) {
         this.sceneSubjects.text8.init(this.experience.mainScene);
       }
-      if (currentPercent >= 0.655) {
+      if (currentPercent >= 0.645) {
         this.sceneSubjects.text9.init(this.experience.mainScene);
       }
       if (currentPercent >= 0.71) {
