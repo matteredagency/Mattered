@@ -12,7 +12,6 @@ import Assets from "./Assets";
 import ScrollInstructionsController from "./ScrollInstructions";
 import "../../../public/index.css";
 import ChatBox from "./ChatBox";
-import { GUI } from "dat.gui";
 import FavoriteSpotExperience from "./FavoriteSpotExperience";
 export default class MatteredExperience {
   static instance: MatteredExperience;
@@ -38,7 +37,6 @@ export default class MatteredExperience {
   experienceEnded!: boolean;
   stopTime!: number;
   favoriteSpotExperience!: FavoriteSpotExperience;
-  gui!: GUI;
   constructor(mainCanvas?: HTMLCanvasElement) {
     if (MatteredExperience.instance) {
       return MatteredExperience.instance;
@@ -56,8 +54,7 @@ export default class MatteredExperience {
     this.chatBox = new ChatBox();
     this.mainScene = new THREE.Scene();
     this.experienceEnded = false;
-    this.gui = new GUI();
-    this.gui.domElement.parentElement?.style.zIndex = "100";
+
     this.stopTime = 0;
     this.init();
   }
@@ -84,8 +81,6 @@ export default class MatteredExperience {
       this.resize();
     });
     this.clock = new THREE.Clock();
-    // this.gui = new GUI();
-    // this.gui.domElement.parentElement.style.zIndex = "100";
 
     this.mainSceneController = new SceneController();
 
